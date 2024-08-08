@@ -6,10 +6,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.human.dao.IMusicalDao">
 
 <select id="selectAllMusical" resultType="com.human.dto.MusicalDto">
-select * from muisical
+<![CDATA[SELECT *
+FROM musical
+order by musical_id
+offset (#{page} -1 ) * #{perPageNum} rows
+fetch next #{perPageNum} rows only]]>
 </select>
-<select id="selectAll" resultType="com.human.dto.MusicalDto">
-select * from customer order by id
+
+<select id="getTotalCount" resultType="Integer">
+select count(*) from musical 
 </select>
 
 

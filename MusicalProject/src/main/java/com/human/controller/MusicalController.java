@@ -19,21 +19,43 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.human.dto.MusicalDto;
 import com.human.service.IMusicalService;
+import com.human.vo.BoardVo;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
-@RequestMapping("/musical")
+@RequestMapping(value = "/musical")
 public class MusicalController {
 	
 	@Autowired
 	private IMusicalService musicalService;
 	
-	@RequestMapping("/")
-	public void musicalList() {
-		
-	}
+	  @RequestMapping("/listAll")
+	    public String listAll(
+	            @RequestParam(value = "page", defaultValue = "1") int page,
+	            @RequestParam(value = "perPageNum", defaultValue = "10") int perPageNum,
+	            Model model) throws Exception {
+
+	        // BoardVo 객체 생성 및 설정
+	        BoardVo boardVo = new BoardVo();
+	        boardVo.setPage(page);
+	        boardVo.setPerPageNum(perPageNum);
+
+	        // 총 데이터 개수와 페이징 데이터 계산
+	        int totalCount = musicalService.getTotalCount();
+	        boardVo.setTotalCount(totalCount);
+
+	        // 데이터 가져오기
+	        List<MusicalDto> musicalList = musicalService.selectAllMusical(boardVo);
+
+	        // 모델에 데이터와 페이지 정보 추가
+	        model.addAttribute("musicalList", musicalList);
+	        model.addAttribute("boardVo", boardVo);
+	        
+	        return "musical/list";  // JSP 뷰 이름
+	    }
+
 }
 
 

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.human.dao.IMusicalDao;
 import com.human.dto.MusicalDto;
+import com.human.vo.BoardVo;
 
 @Service
 public class MusicalServiceImpl implements IMusicalService {
@@ -16,10 +17,20 @@ public class MusicalServiceImpl implements IMusicalService {
 	private SqlSession sqlSession;
 
 	@Override
-	public List<MusicalDto> selectAllMusical() throws Exception {
+	public List<MusicalDto> selectAllMusical(BoardVo vo) throws Exception {
 		
+		IMusicalDao dao = sqlSession.getMapper(IMusicalDao.class);
 		
-		return null;
+		List<MusicalDto> dtos = dao.selectAllMusical(vo);
+		
+		return dtos;
+	}
+
+	@Override
+	public Integer getTotalCount() throws Exception {
+		IMusicalDao dao = sqlSession.getMapper(IMusicalDao.class);
+		
+		return dao.getTotalCount();
 	}
 
 	
