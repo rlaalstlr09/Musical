@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,9 +21,11 @@ import com.musical.dto.Musical_scheduleDto;
 import com.musical.dto.ReservationDto;
 import com.musical.dto.SeatDto;
 import com.musical.service.IHallService;
+import com.musical.service.IMusicalService;
 import com.musical.service.IMusical_scheduleService;
 import com.musical.service.IReservationService;
 import com.musical.service.ISeatService;
+import com.musical.service.IVenueService;
 
 @Controller
 @RequestMapping(value = "/reservation")
@@ -38,9 +41,14 @@ public class ReservationController {
 	private ISeatService seatservice;
 	@Autowired
 	private IReservationService reservationservice;
-
 	@Autowired
 	private IHallService hallservice;
+	@Autowired
+	private IVenueService venueservice;
+	@Autowired
+	private IMusicalService musicalservice;
+	
+	
 
 	@RequestMapping(value = "/reservation", method = RequestMethod.GET)
 	public void reservation(Model model) throws Exception {
@@ -140,9 +148,60 @@ public class ReservationController {
 
 	}
 
+	////////////////////////////////////////admin 뮤지컬 스케줄 추가
+		
+	@RequestMapping(value = "/mu_sch_admin", method = RequestMethod.GET)
+	public void mu_sch_admin(Model model) throws Exception {
+		System.out.println("mu_sch_admin");
+		model.addAttribute("musicaldtos", musicalservice.musical_list());
+		model.addAttribute("venuedtos",venueservice.venue_list() );
+
+	}
+	@RequestMapping(value = "/mu_sch_admin", method = RequestMethod.POST)
+	public String mu_sch_adminDB(@ModelAttribute Musical_scheduleDto mu_schdto,Model model) throws Exception {
+		System.out.println("mu_sch_adminDB");
+		System.out.println(mu_schdto.toString());
+		int mu_sch_id = seatservice.seat_create_seq();
+		mu_schdto.setMu_sch_id(mu_sch_id);	
+		mu_schservice.insert_mu_sch(mu_schdto);
+		
+		
+		SeatDto seatdto =new SeatDto();
+		seatdto.hall_id = mu_schdto.getHall_id();
+		seatdto.mu_sch_id =mu_sch_id;
+		seatdto.musical_id =mu_schdto.getMusical_id();
+		seatdto.seat_price =5000;
+		
+		seatservice.manage_seats(seatdto);
+		return "home";
+	}
+	
+	
+	@RequestMapping(value = "/venue_select", method = RequestMethod.GET)
+	@ResponseBody
+	public List<HallDto> venue_select(@RequestParam("venue_id") int venue_id) throws Exception {
+	    System.out.println("venue_select");
+	    List<HallDto> halldtos= hallservice.hall_list_venue(venue_id);
+	    return halldtos;
+	}
+
+	
+	
+	////////////////////////////////////////////////////////////
+	
+	
+	
 	@RequestMapping(value = "/select_dateex", method = RequestMethod.GET)
 	public void select_dateex(Model model) throws Exception {
 		System.out.println("seat_select");
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
