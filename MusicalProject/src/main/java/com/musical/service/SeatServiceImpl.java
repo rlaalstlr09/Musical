@@ -54,4 +54,17 @@ public class SeatServiceImpl implements ISeatService{
 		return dao.seat_count(mu_sch_id);
 	}
 
+	@Override
+	public int seat_create_seq() throws Exception {
+		// TODO Auto-generated method stub
+		ISeatDao dao=sqlSession.getMapper(ISeatDao.class);
+		return dao.seat_create_seq();
+	}
+	
+	@Override
+	public void manage_seats(SeatDto seatdto) throws Exception{
+		ISeatDao dao=sqlSession.getMapper(ISeatDao.class);
+		dao.manage_seats(seatdto);
+	}
+
 }

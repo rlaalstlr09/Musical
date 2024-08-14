@@ -28,5 +28,11 @@ public class Musical_scheduleServiceImpl implements IMusical_scheduleService{
 		dao.mu_sch_seat_update(seat_count, mu_sch_id);
 		
 	}
+	@Override
+	public void insert_mu_sch(Musical_scheduleDto mu_schdto) throws Exception {
+		// TODO Auto-generated method stub
+		IMusical_scheduleDao dao=sqlSession.getMapper(IMusical_scheduleDao.class);
+		dao.insert_mu_sch(mu_schdto);
+	}
 
 }

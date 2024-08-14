@@ -11,4 +11,8 @@ public interface ISeatService {
 	public List<SeatDto> seat_reservation_check(int reservation_id) throws Exception;
 	public void seat_cancel(int reservation_id) throws Exception;
 	public int seat_count(int mu_sch_id) throws Exception;
+	
+
+	public int seat_create_seq()throws Exception;
+	void manage_seats(SeatDto seatdto) throws Exception;
 }
