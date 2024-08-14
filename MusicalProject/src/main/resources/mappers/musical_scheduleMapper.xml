@@ -16,13 +16,27 @@ update musical_schedule set seat_count =#{param1} where mu_sch_id= #{param2}
 </update>
 
 
-
+<insert id="insert_mu_sch">  
+  INSERT INTO musical_schedule (
+  		mu_sch_id,
+        musical_id,
+        venue_id,
+        mu_sch_date,
+        mu_sch_time,
+        hall_id,
+        seat_count
+    ) VALUES (
+        #{mu_sch_id },
+        #{musical_id },
+        #{venue_id },
+        #{mu_sch_date},
+        #{mu_sch_time},
+        #{hall_id },
+        #{seat_count}
+    )
+</insert>
 
 </mapper>
-
-
-
-
 
 
 

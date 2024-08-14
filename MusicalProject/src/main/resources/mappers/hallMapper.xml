@@ -11,6 +11,9 @@ select * from hall where hall_id=#{param1}
 </select>
 
 
+<select id="hall_list_venue" resultType="com.musical.dto.HallDto">
+select * from hall where venue_id=#{param1} 
+</select>
 
 
 </mapper>
