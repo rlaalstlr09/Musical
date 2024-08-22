@@ -14,7 +14,7 @@ public interface IMusicalService {
 	
 	public List<MusicalScheduleDto> selectMusicalSchedule(Integer musical_id) throws Exception;
 	
-	public boolean selectMusicalLike(Integer musical_id, String customer_id) throws Exception;
+	public Integer selectMusicalLike(Integer musical_id, String customer_id) throws Exception;
 	public void insertLike(Integer musical_id, String customer_id) throws Exception;
 	public void deleteLike(Integer musical_id, String customer_id) throws Exception;
 }

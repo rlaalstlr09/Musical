@@ -34,23 +34,33 @@
                 loadTabContent(defaultTab);
             }
 			
-			function likeToggle(){
+          	//좋아요 토글, 누르면 버튼 바뀜
+            $('a#like-button').on('click', function (){
+            	let $this = $(this);
 				$.ajax({
 					url:'/ex/musical/like',
-					method : 'post',
+					method : 'POST',
 					data:{
-						musical_id : $('a#like').data('musical'),
-						customer_id : $('a#like').data('customer')
+						musical_id : $this.data('musical'),
+						customer_id : $this.data('customer')
 					},
 					success: function(){
-						
+	                    if ($this.hasClass('liked')) {
+	                    	if(confirm('정말 취소하시겠습니까?')){
+	                    		$this.removeClass('liked').text('♡'); // 좋아요 취소
+	                    	}
+	                    } else {
+	                    	$this.addClass('liked').text('♥'); // 좋아요 추가
+	                    }
+
 					},
 					error: function(error) {
 	                	console.error('Error loading content:', error);
 	                }
 				
 				});
-			}
+			});
+
 
             //탭 클릭하면 함수 실행
             $('a[data-toggle="tab"]').on('click', function(e) {
@@ -59,10 +69,7 @@
             });
             loadDefaultTabContent();
             
-         	$('a#like-button').on('click', function(event){
-         		event.preventDefault();
-         		likeToggle();
-         	});
+         	
         });
     </script>
 </head>
@@ -81,10 +88,12 @@
 		 </c:forEach>
     </div>
     <div id = "like">
-    	<a href="#" id = "like-button" data-customer = "${customer.customer_id }" data-musical = "${musical.musical_id }">
-    		<c:if test="${isLike == true}">♥</c:if>
-    		<c:if test="${isLike == false}">♡</c:if>
+    	<a href="#" id = "like-button" class="${isLike == 1 ? 'liked' : ''}" data-customer = "${customer_id }" data-musical = "${musical.musical_id }">
+    		${isLike == 1 ? '♥' : '♡'}
     	</a>
+    </div>
+    <div>
+    	<a href="#">예매하기</a>
     </div>
     <div id = "tab">
 	    <ul class="nav nav-tabs" id="myTab" role="tablist">

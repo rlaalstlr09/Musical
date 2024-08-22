@@ -53,7 +53,8 @@ public class MusicalServiceImpl implements IMusicalService {
 
 
 	@Override
-	public boolean selectMusicalLike(Integer musical_id, String customer_id) throws Exception {
+	public Integer selectMusicalLike(Integer musical_id, String customer_id) throws Exception {
+		
 		IMusicalDao dao = sqlSession.getMapper(IMusicalDao.class);
 		return dao.selectMusicalLike(musical_id, customer_id);
 	}
@@ -61,6 +62,7 @@ public class MusicalServiceImpl implements IMusicalService {
 
 	@Override
 	public void insertLike(Integer musical_id, String customer_id) throws Exception {
+		
 		IMusicalDao dao = sqlSession.getMapper(IMusicalDao.class);
 		dao.insertLike(musical_id, customer_id);
 		
@@ -70,6 +72,7 @@ public class MusicalServiceImpl implements IMusicalService {
 	@Override
 	public void deleteLike(Integer musical_id, String customer_id) throws Exception {
 		// TODO Auto-generated method stub
+		
 		IMusicalDao dao = sqlSession.getMapper(IMusicalDao.class);
 		dao.deleteLike(musical_id, customer_id);
 	}
