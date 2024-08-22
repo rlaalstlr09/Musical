@@ -5,19 +5,88 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.human.dao.IMusicalDao">
 
-<select id="selectAllMusical" resultType="com.human.dto.MusicalDto">
-<![CDATA[SELECT *
-FROM musical
-order by musical_id
-offset (#{page} -1 ) * #{perPageNum} rows
-fetch next #{perPageNum} rows only]]>
+<select id="selectAllMusical" parameterType="map" resultType="com.human.dto.MusicalDto">
+<![CDATA[
+SELECT distinct m.*, v.venue_name, h.hall_name
+FROM musical m
+JOIN musical_schedule ms ON m.musical_id = ms.musical_id
+JOIN venue v ON v.venue_id = ms.venue_id
+JOIN hall h ON h.hall_id = ms.hall_id
+WHERE   
+    upper(m.musical_title) LIKE upper('%' || #{keyword, jdbcType=VARCHAR} || '%')
+    AND
+    ((#{filter.startDate, jdbcType=VARCHAR} IS NULL AND #{filter.endDate, jdbcType=VARCHAR} IS NULL) 
+        OR (m.musical_period_start <= TO_DATE(#{filter.endDate, jdbcType=VARCHAR}, 'YYYY-MM-DD') 
+        AND m.musical_period_end >= TO_DATE(#{filter.startDate, jdbcType=VARCHAR}, 'YYYY-MM-DD')))
+    AND
+    (#{filter.age, jdbcType=INTEGER} = 0 OR m.musical_agelimit <= #{filter.age, jdbcType=INTEGER})  
+    AND
+    (#{filter.minRunningtime, jdbcType=INTEGER} IS NULL AND #{filter.maxRunningtime, jdbcType=INTEGER} IS NULL
+        OR (m.musical_runningtime <= #{filter.maxRunningtime, jdbcType=INTEGER} 
+        AND m.musical_runningtime >= #{filter.minRunningtime, jdbcType=INTEGER})) 
+ORDER BY
+    CASE
+        WHEN #{sort, jdbcType=VARCHAR} = 'likes' THEN TO_CHAR(m.musical_period_end)
+        WHEN #{sort, jdbcType=VARCHAR} = 'period' THEN TO_CHAR(m.musical_period_start, 'YYYY-MM-DD')
+        WHEN #{sort, jdbcType=VARCHAR} = 'title' THEN TO_CHAR(m.musical_title)
+        ELSE TO_CHAR(m.musical_id)
+    END
+OFFSET (#{vo.page, jdbcType=INTEGER} - 1) * #{vo.perPageNum, jdbcType=INTEGER} ROWS
+FETCH NEXT #{vo.perPageNum, jdbcType=INTEGER} ROWS ONLY
+]]>
 </select>
 
-<select id="getTotalCount" resultType="Integer">
-select count(*) from musical 
+<select id = "selectMusicalId" resultType = "com.human.dto.MusicalDto">
+	SELECT distinct m.*, v.venue_name, h.hall_name
+	FROM musical m
+	JOIN musical_schedule ms ON m.musical_id = ms.musical_id
+	JOIN venue v ON v.venue_id = ms.venue_id
+	JOIN hall h ON h.hall_id = ms.hall_id
+	WHERE m.musical_id = #{musical_id}
 </select>
 
+<select id="getTotalCount" parameterType="map" resultType="Integer">
+<![CDATA[
+select count(*) 
+from musical
+where 
+	upper(musical_title) like upper('%' || #{keyword} || '%')
+	AND
+	((#{filter.startDate, jdbcType=VARCHAR} IS NULL AND #{filter.endDate, jdbcType=VARCHAR} IS NULL) 
+	    OR (musical_period_start <= TO_DATE(#{filter.endDate, jdbcType=VARCHAR}, 'YYYY-MM-DD') 
+    AND musical_period_end >= TO_DATE(#{filter.startDate, jdbcType=VARCHAR}, 'YYYY-MM-DD')))
+ 	AND
+	(#{filter.age, jdbcType=INTEGER} = 0 OR musical_agelimit <= #{filter.age, jdbcType=INTEGER})  
+	AND
+	(#{filter.minRunningtime, jdbcType=INTEGER} IS NULL AND #{filter.maxRunningtime, jdbcType=INTEGER} IS NULL
+		OR (musical_runningtime <= #{filter.maxRunningtime, jdbcType=INTEGER} 
+    AND musical_runningtime >= #{filter.minRunningtime, jdbcType=INTEGER}))
+]]>
+</select>
 
+<select id = "selectMusicalSchedule" resultType = "com.human.dto.MusicalScheduleDto">
+select * 
+from musical_schedule
+where musical_id = #{musical_id} 
+order by mu_sch_date, mu_sch_time
+</select>
+
+<select id = "selectMusicalLike" resultType = "boolean">
+select count(*) > 0
+from musical_like
+where musical_id = #{musical_id} and customer_id = #{customer_id}
+</select>
+
+<insert id = "insertLike">
+insert into musical_like
+values(#{musical_id}, #{customer_id})
+</insert>
+
+<delete id = "deleteLike">
+delete 
+from musical_like
+where musical_id = #{musical_id} and customer_id = #{customer_id}
+</delete>
 </mapper>
 
 

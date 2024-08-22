@@ -13,8 +13,8 @@
 			name="driverClassName" />
 		<property value="jdbc:oracle:thin:@localhost:1521:xe"
 			name="url" />
-		<property value="c##human" name="username" />
-		<property value="human" name="password" />
+		<property value="hr" name="username" />
+		<property value="hr" name="password" />
 	</bean>
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">

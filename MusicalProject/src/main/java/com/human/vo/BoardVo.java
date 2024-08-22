@@ -34,7 +34,7 @@ public class BoardVo {
 		this.totalEndPage = totalEndPage;
 	}
 	public int getPage() {
-		return page;
+		return page; 
 	}
 	public void setPage(int page) {
 		if(page<=0) {
@@ -113,6 +113,14 @@ public class BoardVo {
 		this.next = next;
 	}
 
+	
+	@Override
+	public String toString() {
+		return "BoardVo [page=" + page + ", perPageNum=" + perPageNum + ", totalCount=" + totalCount
+				+ ", totalStartPage=" + totalStartPage + ", totalEndPage=" + totalEndPage + ", startPage=" + startPage
+				+ ", endPage=" + endPage + ", prev=" + prev + ", next=" + next + ", displayPageNum=" + displayPageNum
+				+ "]";
+	}
 	
 	public String makeSearch() {
 		UriComponents u=UriComponentsBuilder.newInstance()
