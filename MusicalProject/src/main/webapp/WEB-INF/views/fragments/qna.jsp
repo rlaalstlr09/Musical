@@ -7,10 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div id = "container">
-	<h1>뮤지컬 목록</h1>
-	
-	
-</div>
+<h1>Q&A</h1>
 </body>
 </html>
