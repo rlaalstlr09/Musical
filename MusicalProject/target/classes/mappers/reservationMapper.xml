@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.musical.dao.IReservationDao">
+
+
+
+
+<select id="reservation_select" resultType="com.musical.dto.ReservationDto">
+select * from reservation where mu_sch_id=#{param1} 
+</select>
+
+<select id="reservation_check" resultType="com.musical.dto.ReservationDto">
+select * from reservation where customer_id=#{param1} and reservation_cancel=0 order by reservation_time 
+</select>
+
+<insert id="reservation_insert">
+    INSERT INTO reservation (reservation_id, booked_count, mu_sch_id, customer_id, total_cost, reservation_cancel, reservation_time)
+    VALUES (#{reservation_id}, #{booked_count}, #{mu_sch_id}, #{customer_id}, #{total_cost}, DEFAULT, DEFAULT)
+</insert>
+
+
+<update id="reservation_cancel">
+update reservation set reservation_cancel=1 where reservation_id= #{param1}
+</update>
+
+
+
+<select id="mypage_reservation_total" resultType="int">
+select count(*) from reservation where customer_id=#{param1}
+</select>
+
+
+
+<select id="reser_seq" resultType="int">
+    SELECT reservation_seq.NEXTVAL FROM dual
+</select>
+
+
+
+
+</mapper>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.musical.dao.ISeatDao">
+
+
+	<select id="seat_select" resultType="com.musical.dto.SeatDto">
+		select * from seat where mu_sch_id=#{param1}
+	</select>
+
+
+	<select id="seat_count" resultType="int">
+		select count(*) from seat where mu_sch_id=#{param1} and seat_reservation=0
+	</select>
+
+	<select id="seat_reservation_check"
+		resultType="com.musical.dto.SeatDto">
+		select * from seat where seat_reservation=#{param1}
+	</select>
+
+
+
+	<update id="seat_reservation">
+		update seat set seat_reservation=#{param2} where seat_id=#{param1}
+	</update>
+
+
+	<update id="seat_cancel">
+		update seat set seat_reservation=0 where seat_reservation=#{param1}
+	</update>
+
+
+	<select id="seat_create_seq" resultType="int">
+  	  SELECT seat_create_seq.NEXTVAL FROM dual
+	</select>
+
+	<select id="manage_seats" statementType="CALLABLE">
+		{call manage_seats(
+			#{hall_id, mode=IN, jdbcType=NUMERIC}, 
+			#{mu_sch_id,mode=IN, jdbcType=NUMERIC},
+			 #{musical_id, mode=IN, jdbcType=NUMERIC},
+			#{seat_price, mode=IN, jdbcType=NUMERIC}
+			)
+		}
+	</select>
+
+
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
