@@ -167,10 +167,10 @@ public class ReservationController {
 		
 		
 		SeatDto seatdto =new SeatDto();
-		seatdto.hall_id = mu_schdto.getHall_id();
-		seatdto.mu_sch_id =mu_sch_id;
-		seatdto.musical_id =mu_schdto.getMusical_id();
-		seatdto.seat_price =5000;
+		seatdto.setHall_id(mu_schdto.getHall_id());
+		seatdto.setMu_sch_id(mu_sch_id);
+		seatdto.setMusical_id(mu_schdto.getMusical_id()) ;
+		seatdto.setSeat_price(5000);
 		
 		seatservice.manage_seats(seatdto);
 		return "home";
