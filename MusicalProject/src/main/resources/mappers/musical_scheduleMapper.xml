@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.musical.dao.IMusical_scheduleDao">
+
+
+<select id="select_Musical_sch" resultType="com.musical.dto.Musical_scheduleDto">
+select * from musical_schedule where mu_sch_date=#{param1} and venue_id=#{param2} and musical_id=#{param3}
+</select>
+
+
+<update id="mu_sch_seat_update">
+update musical_schedule set seat_count =#{param1} where mu_sch_id= #{param2}
+</update>
+
+
+<insert id="insert_mu_sch">  
+  INSERT INTO musical_schedule (
+  		mu_sch_id,
+        musical_id,
+        venue_id,
+        mu_sch_date,
+        mu_sch_time,
+        hall_id,
+        seat_count
+    ) VALUES (
+        #{mu_sch_id },
+        #{musical_id },
+        #{venue_id },
+        #{mu_sch_date},
+        #{mu_sch_time},
+        #{hall_id },
+        #{seat_count}
+    )
+</insert>
+
+</mapper>
+
+
+
+
+

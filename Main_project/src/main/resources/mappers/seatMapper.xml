@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
@@ -6,18 +5,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.musical.dao.ISeatDao">
 
-<select id = "selectSeatInfo" resultType = "com.human.dto.SeatDto">
-	select distinct seat_price, seat_grade
-	from seat 
-	where hall_id = (
-					select distinct hall_id 
-					from musical_schedule 
-					where musical_id = #{musical_id}
-	)
-</select>
 
-
-<select id="seat_select" resultType="com.musical.dto.SeatDto">
+	<select id="seat_select" resultType="com.musical.dto.SeatDto">
 		select * from seat where mu_sch_id=#{param1}
 	</select>
 
@@ -43,9 +32,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 
 
+
+
 	<select id="seat_create_seq" resultType="int">
   	  SELECT seat_create_seq.NEXTVAL FROM dual
 	</select>
+
+
 
 	<select id="manage_seats" statementType="CALLABLE">
 		{call manage_seats(
@@ -58,7 +51,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 
+
+
 </mapper>
+
+
+
+
+
+
 
 
 
