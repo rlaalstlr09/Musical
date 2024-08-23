@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.musical.dao.ISeatDao">
+<mapper namespace="com.human.dao.ISeatDao">
 
 <select id = "selectSeatInfo" resultType = "com.human.dto.SeatDto">
 	select distinct seat_price, seat_grade
@@ -15,7 +15,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	)
 </select>
 
-<select id="seat_select" resultType="com.musical.dto.SeatDto">
+
+<select id="seat_select" resultType="com.human.dto.SeatDto">
 		select * from seat where mu_sch_id=#{param1}
 	</select>
 
@@ -25,7 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="seat_reservation_check"
-		resultType="com.musical.dto.SeatDto">
+		resultType="com.human.dto.SeatDto">
 		select * from seat where seat_reservation=#{param1}
 	</select>
 
@@ -56,9 +57,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 
-
 </mapper>
-
 
 
 

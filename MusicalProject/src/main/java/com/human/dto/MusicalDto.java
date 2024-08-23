@@ -55,7 +55,17 @@ public class MusicalDto {
 		this.seatDtos = seatDtos;
 	}
 
-	
+	public MusicalDto(int musical_id, String musical_title, String musical_poster, Date musical_period_start,
+			Date musical_period_end, int musical_runningtime, String musical_agelimit) {
+		super();
+		this.musical_id = musical_id;
+		this.musical_title = musical_title;
+		this.musical_poster = musical_poster;
+		this.musical_period_start = musical_period_start;
+		this.musical_period_end = musical_period_end;
+		this.musical_runningtime = musical_runningtime;
+		this.musical_agelimit = musical_agelimit;
+	}
 
 	@Override
 	public String toString() {

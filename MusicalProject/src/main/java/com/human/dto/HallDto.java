@@ -1,10 +1,10 @@
-package com.musical.dto;
+package com.human.dto;
 
 public class HallDto {
-	public int hall_id;
-	public String hall_name;
-	public int hall_total_seat;
-	public int venue_id;
+	private int hall_id;
+	private String hall_name;
+	private int hall_total_seat;
+	private int venue_id;
 	
 	public HallDto() {}
 	public HallDto(int hall_id, String hall_name, int hall_total_seat, int venue_id) {

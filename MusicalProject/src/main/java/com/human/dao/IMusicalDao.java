@@ -19,4 +19,8 @@ public interface IMusicalDao {
 	public Integer selectMusicalLike(@Param("musical_id") Integer musical_id, @Param("customer_id") String customer_id) throws Exception;
 	public void insertLike(@Param("musical_id") Integer musical_id, @Param("customer_id") String customer_id) throws Exception;
 	public void deleteLike(@Param("musical_id") Integer musical_id, @Param("customer_id") String customer_id) throws Exception;
+	
+	
+	
+	public List<MusicalDto> musical_list() throws Exception;
 }

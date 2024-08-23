@@ -3,10 +3,10 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.musical.dao.IMusical_scheduleDao">
+<mapper namespace="com.human.dao.IMusicalScheduleDao">
 
 
-<select id="select_Musical_sch" resultType="com.musical.dto.Musical_scheduleDto">
+<select id="select_Musical_sch" resultType="com.human.dto.MusicalScheduleDto">
 select * from musical_schedule where mu_sch_date=#{param1} and venue_id=#{param2} and musical_id=#{param3}
 </select>
 

@@ -1,4 +1,4 @@
-package com.musical.ex;
+package com.human.controller;
 
 import java.util.List;
 
@@ -16,16 +16,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.musical.dto.HallDto;
-import com.musical.dto.Musical_scheduleDto;
-import com.musical.dto.ReservationDto;
-import com.musical.dto.SeatDto;
-import com.musical.service.IHallService;
-import com.musical.service.IMusicalService;
-import com.musical.service.IMusical_scheduleService;
-import com.musical.service.IReservationService;
-import com.musical.service.ISeatService;
-import com.musical.service.IVenueService;
+import com.human.dto.HallDto;
+import com.human.dto.MusicalScheduleDto;
+import com.human.dto.ReservationDto;
+import com.human.dto.SeatDto;
+import com.human.service.IHallService;
+import com.human.service.IMusicalService;
+import com.human.service.IMusicalScheduleService;
+import com.human.service.IReservationService;
+import com.human.service.ISeatService;
+import com.human.service.IVenueService;
 
 @Controller
 @RequestMapping(value = "/reservation")
@@ -36,7 +36,7 @@ public class ReservationController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@Autowired
-	private IMusical_scheduleService mu_schservice;
+	private IMusicalScheduleService mu_schservice;
 	@Autowired
 	private ISeatService seatservice;
 	@Autowired
@@ -59,16 +59,16 @@ public class ReservationController {
 	////////////////////////// request르 받아서 구현
 	@RequestMapping(value = "/select_date", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
-	public List<Musical_scheduleDto> select_date(@RequestParam("date") String date) throws Exception {
+	public List<MusicalScheduleDto> select_date(@RequestParam("date") String date) throws Exception {
 		System.out.println("Fetching schedule for date: " + date);
-		List<Musical_scheduleDto> dtos = mu_schservice.select_Musical_sch(date, 1, 1);
+		List<MusicalScheduleDto> dtos = mu_schservice.select_Musical_sch(date, 1, 1);
 
-		for (Musical_scheduleDto schedule : dtos) {
+		for (MusicalScheduleDto schedule : dtos) {
 
 
 			HallDto hall = hallservice.select_hall(schedule.getHall_id());
 
-			int mu_sch_id = schedule.mu_sch_id;
+			int mu_sch_id = schedule.getMu_sch_id();
 			int totalSeats = hall.getHall_total_seat();
 			int availableSeats = seatservice.seat_count(mu_sch_id);
 			String resultseat = String.valueOf(availableSeats) + "/" + String.valueOf(totalSeats);
@@ -158,7 +158,7 @@ public class ReservationController {
 
 	}
 	@RequestMapping(value = "/mu_sch_admin", method = RequestMethod.POST)
-	public String mu_sch_adminDB(@ModelAttribute Musical_scheduleDto mu_schdto,Model model) throws Exception {
+	public String mu_sch_adminDB(@ModelAttribute MusicalScheduleDto mu_schdto,Model model) throws Exception {
 		System.out.println("mu_sch_adminDB");
 		System.out.println(mu_schdto.toString());
 		int mu_sch_id = seatservice.seat_create_seq();

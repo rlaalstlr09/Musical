@@ -3,16 +3,16 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.musical.dao.IReservationDao">
+<mapper namespace="com.human.dao.IReservationDao">
 
 
 
 
-<select id="reservation_select" resultType="com.musical.dto.ReservationDto">
+<select id="reservation_select" resultType="com.human.dto.ReservationDto">
 select * from reservation where mu_sch_id=#{param1} 
 </select>
 
-<select id="reservation_check" resultType="com.musical.dto.ReservationDto">
+<select id="reservation_check" resultType="com.human.dto.ReservationDto">
 select * from reservation where customer_id=#{param1} and reservation_cancel=0 order by reservation_time 
 </select>
 

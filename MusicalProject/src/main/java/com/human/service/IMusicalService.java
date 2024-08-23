@@ -17,4 +17,7 @@ public interface IMusicalService {
 	public Integer selectMusicalLike(Integer musical_id, String customer_id) throws Exception;
 	public void insertLike(Integer musical_id, String customer_id) throws Exception;
 	public void deleteLike(Integer musical_id, String customer_id) throws Exception;
+	
+	
+	public List<MusicalDto> musical_list() throws Exception;
 }
