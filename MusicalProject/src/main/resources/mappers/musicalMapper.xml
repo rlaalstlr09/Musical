@@ -71,14 +71,22 @@ where musical_id = #{musical_id}
 order by mu_sch_date, mu_sch_time
 </select>
 
-<select id = "selectMusicalLike" resultType = "boolean">
-select count(*) > 0
-from musical_like
-where musical_id = #{musical_id} and customer_id = #{customer_id}
+<select id = "selectMusicalLike" resultType = "Integer">
+SELECT 
+    CASE 
+        WHEN EXISTS (
+            SELECT 1 
+            FROM musical_like
+            WHERE customer_id = #{customer_id}
+              AND musical_id = #{musical_id}
+        ) THEN 1
+        ELSE 0
+    END AS is_liked
+FROM dual
 </select>
 
 <insert id = "insertLike">
-insert into musical_like
+insert into musical_like (musical_id, customer_id)
 values(#{musical_id}, #{customer_id})
 </insert>
 

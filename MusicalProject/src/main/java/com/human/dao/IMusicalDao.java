@@ -16,7 +16,7 @@ public interface IMusicalDao {
 
 	public List<MusicalScheduleDto> selectMusicalSchedule(Integer musical_id) throws Exception;
 	
-	public boolean selectMusicalLike(Integer musical_id, String customer_id) throws Exception;
-	public void insertLike(Integer musical_id, String customer_id) throws Exception;
-	public void deleteLike(Integer musical_id, String customer_id) throws Exception;
+	public Integer selectMusicalLike(@Param("musical_id") Integer musical_id, @Param("customer_id") String customer_id) throws Exception;
+	public void insertLike(@Param("musical_id") Integer musical_id, @Param("customer_id") String customer_id) throws Exception;
+	public void deleteLike(@Param("musical_id") Integer musical_id, @Param("customer_id") String customer_id) throws Exception;
 }
