@@ -76,9 +76,10 @@
 <body>
 <div class="container mt-4">
 	<div id="info">
+		<button onclick = "location.href='/ex/musical/listAll'">목록</button>
 		<img src="/ex/resources/${musical.musical_poster}" alt="poster" class="img-fluid">
 		<h1>${musical.musical_title}</h1><br>
-		 공연 장소 : ${musical.venue_name} ${musical.hall_name}<br>
+		 공연 장소 : <a href = "#">${musical.venue_name} ${musical.hall_name}</a><br>
 		 공연 기간 : <fmt:formatDate value="${musical.musical_period_start}" pattern="yyyy-MM-dd"/> ~ <fmt:formatDate value="${musical.musical_period_end}" pattern="yyyy-MM-dd"/><br>
 		 상영 시간 : ${musical.musical_runningtime}<br>
 		 연령 제한 : ${musical.musical_agelimit}<br>
