@@ -3,69 +3,84 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="utf-8">
+    <title>키워드로 장소검색하기</title>
 </head>
 <body>
-	<div id="map" style="width: 100%; height: 350px;"></div>
-	<script>
-		// 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
-		var infowindow = new kakao.maps.InfoWindow({
-			zIndex : 1
-		});
+<div id="map-detail-info"></div>
+<div id="map" style="width:500px;height:350px;"></div>
 
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-		mapOption = {
-			center : new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-			level : 3
-		// 지도의 확대 레벨
-		};
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f19069c7a5e6ecba64f00927cb2c6594&libraries=services"></script>
+<script>
+// 마커를 클릭하면 장소명을 표출할 인포윈도우입니다
+var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };  
 
-		// 지도를 생성합니다    
-		var map = new kakao.maps.Map(mapContainer, mapOption);
+// 지도를 생성합니다    
+var map = new kakao.maps.Map(mapContainer, mapOption); 
 
-		// 장소 검색 객체를 생성합니다
-		var ps = new kakao.maps.services.Places();
+// 장소 검색 객체를 생성합니다
+var ps = new kakao.maps.services.Places(); 
 
-		// 키워드로 장소를 검색합니다
-		ps.keywordSearch('대학로 TOM(티오엠) 2관', placesSearchCB);
+// 키워드로 장소를 검색합니다
+ps.keywordSearch('${name.venue_name}' + ' ' + '${name.hall_name}', placesSearchCB); 
 
-		// 키워드 검색 완료 시 호출되는 콜백함수 입니다
-		function placesSearchCB(data, status, pagination) {
-			if (status === kakao.maps.services.Status.OK) {
+// 키워드 검색 완료 시 호출되는 콜백함수입니다
+function placesSearchCB(data, status, pagination) {
+    if (status === kakao.maps.services.Status.OK) {
 
-				// 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
-				// LatLngBounds 객체에 좌표를 추가합니다
-				var bounds = new kakao.maps.LatLngBounds();
+        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+        // LatLngBounds 객체에 좌표를 추가합니다
+        var bounds = new kakao.maps.LatLngBounds();
 
-				for (var i = 0; i < 1; i++) {
-					displayMarker(data[i]);
-					bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
-				}
+        // 첫 번째 장소를 가져옵니다
+        var place = data[0];
 
-				// 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
-				map.setBounds(bounds);
-			}
-		}
+        displayMarker(place);    
+        bounds.extend(new kakao.maps.LatLng(place.y, place.x));
 
-		// 지도에 마커를 표시하는 함수입니다
-		function displayMarker(place) {
+        // 장소의 정보를 표시합니다
+        displayPlaceInfo(place);
 
-			// 마커를 생성하고 지도에 표시합니다
-			var marker = new kakao.maps.Marker({
-				map : map,
-				position : new kakao.maps.LatLng(place.y, place.x)
-			});
+        // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+        map.setBounds(bounds);
+    }
+}
 
-			// 마커에 클릭이벤트를 등록합니다
-			kakao.maps.event.addListener(marker, 'click', function() {
-				// 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
-				infowindow
-						.setContent('<div style="padding:5px;font-size:12px;">'
-								+ place.place_name + '</div>');
-				infowindow.open(map, marker);
-			});
-		}
-	</script>
+// 지도에 마커를 표시하는 함수입니다
+function displayMarker(place) {
+    
+    // 마커를 생성하고 지도에 표시합니다
+    var marker = new kakao.maps.Marker({
+        map: map,
+        position: new kakao.maps.LatLng(place.y, place.x) 
+    });
+
+    // 마커에 클릭이벤트를 등록합니다
+    kakao.maps.event.addListener(marker, 'click', function() {
+        // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+        infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
+        infowindow.open(map, marker);
+    });
+}
+
+// 장소의 정보를 표시하는 함수입니다
+function displayPlaceInfo(place) {
+    var content = '<div style="padding:5px;font-size:12px;">' +
+                  '<strong>' + place.place_name + '</strong><br>' +
+                  '주소: ' + place.address_name + '<br>' +
+                  '전화: ' + (place.phone || '정보 없음') + '<br>' +
+                  '상세주소: ' + (place.road_address_name || '정보 없음') + '<br>' +
+                  '카테고리: ' + place.category_name + '<br>' +
+                  '웹사이트: <a href="' + (place.place_url || '#') + '" target="_blank">' + (place.place_url || '정보 없음') + '</a></div>';
+    
+    document.getElementById('map-detail-info').innerHTML = content;
+}
+
+</script>
 </body>
 </html>

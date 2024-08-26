@@ -42,7 +42,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		JOIN musical_schedule ms ON m.musical_id = ms.musical_id
 		JOIN venue v ON v.venue_id = ms.venue_id
 		JOIN hall h ON h.hall_id = ms.hall_id
-		WHERE m.musical_id = #{musical_id}
+		WHERE m.musical_id = #{musical_id} 
 	</select>
 	
 	<select id="getTotalCount" parameterType="map" resultType="Integer">
