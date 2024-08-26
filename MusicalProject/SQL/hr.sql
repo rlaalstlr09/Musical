@@ -8,7 +8,7 @@ BEGIN
 END;
 /
 
--- 2. ∏µÁ ≈◊¿Ã∫Ì µÂ∑”
+-- 2. ¬∏√∞¬µ√ß √Ö√ó√Ä√å¬∫√≠ ¬µ√•¬∑√ì
 BEGIN
    FOR rec IN (SELECT table_name FROM user_tables) 
    LOOP
@@ -233,8 +233,57 @@ begin
     for row_num in 1..6 loop
         for col_num in 1..8 loop
             insert into seat(hall_id, mu_sch_id, musical_id, seat_grade, seat_name, seat_row, seat_col, seat_reservation, seat_price)
-            values(p_hall_id, p_mu_sch_id, p_musical_id, '¿œπ›ºÆ', chr(64 + row_num) || '-' || col_num, row_num, col_num, 0, p_seat_price);
+            values(p_hall_id, p_mu_sch_id, p_musical_id, '√Ä√è¬π√ù¬º¬Æ', chr(64 + row_num) || '-' || col_num, row_num, col_num, 0, p_seat_price);
         end loop;
     end loop;
 end;
+
+
+CREATE TABLE venue_api (
+    x NUMBER,
+    y NUMBER,
+    venue_id NUMBER,
+    geometry SDO_GEOMETRY,
+    CONSTRAINT pk_venue_api PRIMARY KEY (x, y),
+    CONSTRAINT fk_venue_api_venue FOREIGN KEY (venue_id) REFERENCES venue(venue_id)
+);
+
+CREATE TABLE notice_board (
+nGroupKind VARCHAR2(255),
+nId NUMBER PRIMARY KEY,
+nTitle VARCHAR2(255) NOT NULL,
+nContent CLOB NOT NULL,
+nEtc VARCHAR2(4000) NULL,
+nOpenTime DATE DEFAULT null,
+nWriteTime DATE DEFAULT sysdate,
+nUpdateTime DATE DEFAULT null,
+nHit NUMBER DEFAULT 0,
+nDelete VARCHAR2(1) DEFAULT 'Y'
+);
+CREATE SEQUENCE notice_board_seq START WITH 1 INCREMENT BY 1;
+
+CREATE TABLE faq_board (
+fGroupKind VARCHAR2(255),
+fId NUMBER PRIMARY KEY,
+fTitle VARCHAR2(255) NOT NULL,
+fContent CLOB NOT NULL,
+fEtc VARCHAR2(4000) NULL,
+fWriteTime DATE DEFAULT sysdate,
+fUpdateTime DATE DEFAULT null,
+fDelete VARCHAR2(1) DEFAULT 'Y'
+);
+CREATE SEQUENCE faq_board_seq START WITH 1 INCREMENT BY 1;
+
+create table admin(
+manage_id number primary key,
+table_name varchar2(50),
+table_id number,
+table_content varchar2(400) null,
+table_crud varchar2(50),
+crud_reason varchar2(4000) DEFAULT null,
+fileName varchar2(200) DEFAULT null,
+crud_date date DEFAULT sysdate
+);
+CREATE SEQUENCE admin_seq START WITH 1 INCREMENT BY 1;
+
 
