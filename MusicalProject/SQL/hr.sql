@@ -225,7 +225,7 @@ nocycle;
 
 create or replace procedure manage_seats(
     p_hall_id in number,
-    p_mu_sch in number,
+    p_mu_sch_id in number,
     p_musical_id in number,
     p_seat_price in number
 ) as
