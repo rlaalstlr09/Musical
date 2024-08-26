@@ -41,6 +41,8 @@ public class MusicalController {
 	@Autowired
 	private ISeatService seatService;
 
+	
+	//뮤지컬 리스트 페이지
 	@RequestMapping("/listAll")
 	public String listAll(@RequestParam(value = "page", defaultValue = "1") int page,
 			@RequestParam(value = "perPageNum", defaultValue = "10") int perPageNum,
@@ -87,6 +89,7 @@ public class MusicalController {
 		return "musical/list"; // JSP 뷰 이름
 	}
 
+	//뮤지컬 리스트에서 뮤지컬 선택하면 해당 뮤지컬 상세보기
 	@RequestMapping(value = "/detail/{musical_id}")
 	public String musicalDetail(@PathVariable("musical_id") Integer musical_id, Model model) throws Exception {
 
@@ -113,12 +116,22 @@ public class MusicalController {
 		return "musical/detail";
 	}
 
+	//뮤지컬 상세보기 탭 누르면 동작
 	@GetMapping("/{tabId}")
 	public String getMusicalTabContent(@PathVariable String tabId, Model model) {
 		// 뮤지컬 상세보기 페이지 탭 구현
 		return "fragments/" + tabId;
 	}
+	
+	
+	//공연장 정보
+	@GetMapping("/venue")
+	public String getVenue(MusicalDto musicalDto, Model model) {
+		model.addAttribute("name", musicalDto);
+		return "fragments/venue";
+	}
 
+	//뮤지컬 좋아요 누르면 동작
 	@PostMapping("/like")
 	public RedirectView likeToggle(@RequestParam("customer_id") String customer_id, @RequestParam("musical_id") Integer musical_id, HttpServletRequest request) {
 	    

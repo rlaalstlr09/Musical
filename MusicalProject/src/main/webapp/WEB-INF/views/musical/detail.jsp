@@ -79,7 +79,7 @@
 		<button onclick = "location.href='/ex/musical/listAll'">목록</button>
 		<img src="/ex/resources/${musical.musical_poster}" alt="poster" class="img-fluid">
 		<h1>${musical.musical_title}</h1><br>
-		 공연 장소 : <a href = "#">${musical.venue_name} ${musical.hall_name}</a><br>
+		 공연 장소 : <a href = "/ex/musical/venue?venue_name=${musical.venue_name }&hall_name=${musical.hall_name}">${musical.venue_name} ${musical.hall_name}</a><br>
 		 공연 기간 : <fmt:formatDate value="${musical.musical_period_start}" pattern="yyyy-MM-dd"/> ~ <fmt:formatDate value="${musical.musical_period_end}" pattern="yyyy-MM-dd"/><br>
 		 상영 시간 : ${musical.musical_runningtime}<br>
 		 연령 제한 : ${musical.musical_agelimit}<br>
@@ -129,8 +129,7 @@
    		</div>
    		
    		<div id = "venue">
-   			${musical.venue_name }&nbsp;${musical.hall_name }<br>
-   			대충 공연장 설명
+   			<iframe src="/ex/musical/venue?venue_name=${musical.venue_name}&hall_name=${musical.hall_name}" width="100%" height="500px" frameborder="0"></iframe>
    		</div>
    		<div id = "review">
    			대충 만점 리뷰 3개정도 넣기
