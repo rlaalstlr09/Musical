@@ -24,12 +24,15 @@ public class MusicalDto {
 	//뮤지컬 상세보기 좌석 등급, 가격 
 	private List<SeatDto> seatDtos;
 	
+	//뮤지컬 총 좋아요 개수
+	private Integer total_likes;
+	
 	public MusicalDto() {}
 
 	
 	//뮤지컬 리스트 출력을 위한 생성자
 	public MusicalDto(Integer musical_id, String musical_title, String musical_poster, Date musical_period_start,
-			Date musical_period_end, String venue_name, String hall_name) {
+			Date musical_period_end, String venue_name, String hall_name, Integer total_likes) {
 		super();
 		this.musical_id = musical_id;
 		this.musical_title = musical_title;
@@ -38,6 +41,7 @@ public class MusicalDto {
 		this.musical_period_end = musical_period_end;
 		this.venue_name = venue_name;
 		this.hall_name = hall_name;
+		this.total_likes = total_likes;
 	}
 	
 	//뮤지컬 상세보기를 위한 생성자
@@ -52,6 +56,7 @@ public class MusicalDto {
 		this.musical_agelimit = musicalDto.getMusical_agelimit();
 		this.venue_name = musicalDto.getVenue_name();
 		this.hall_name = musicalDto.getHall_name();
+		this.total_likes = musicalDto.getTotal_likes();
 		this.seatDtos = seatDtos;
 	}
 
@@ -149,6 +154,16 @@ public class MusicalDto {
 	}
 	public void setMusical_agelimit(String musical_agelimit) {
 		this.musical_agelimit = musical_agelimit;
+	}
+
+
+	public Integer getTotal_likes() {
+		return total_likes;
+	}
+
+
+	public void setTotal_likes(Integer total_likes) {
+		this.total_likes = total_likes;
 	}
 	
 	

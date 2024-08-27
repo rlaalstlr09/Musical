@@ -37,22 +37,36 @@
           	//좋아요 토글, 누르면 버튼 바뀜
             $('a#like-button').on('click', function (){
             	let $this = $(this);
+				let isLiked = $this.hasClass('liked');
+				let musicalId = $this.data('musical');
+				let customerId = $this.data('customer');
+				
+				if(isLiked && !confirm('정말 취소하시겠습니까?')){
+				 return;
+				}
+				
 				$.ajax({
 					url:'/ex/musical/like',
 					method : 'POST',
 					data:{
-						musical_id : $this.data('musical'),
-						customer_id : $this.data('customer')
+						musical_id : musicalId,
+						customer_id : customerId
 					},
-					success: function(){
-	                    if ($this.hasClass('liked')) {
-	                    	if(confirm('정말 취소하시겠습니까?')){
-	                    		$this.removeClass('liked').text('♡'); // 좋아요 취소
-	                    	}
-	                    } else {
+					success: function(response){
+						 if (response.redirect) {
+			                    // 로그인 필요 시 로그인 페이지로 리다이렉트
+			                    window.location.href = response.redirect;
+			             }
+						 var currentCount = parseInt($('span#total-likes').text(), 10);
+	                    if (isLiked) {
+	                    	$this.removeClass('liked').text('♡'); // 좋아요 취소
+	                    	$('span#total-likes').text(currentCount - 1);
+	                   } else {
 	                    	$this.addClass('liked').text('♥'); // 좋아요 추가
+	                    	$('span#total-likes').text(currentCount + 1);
+	                    	
 	                    }
-
+	                    $('span#total-likes').text(response.total_likes);
 					},
 					error: function(error) {
 	                	console.error('Error loading content:', error);
@@ -91,7 +105,9 @@
     <div id = "like">
     	<a href="#" id = "like-button" class="${isLike == 1 ? 'liked' : ''}" data-customer = "${customer_id }" data-musical = "${musical.musical_id }">
     		${isLike == 1 ? '♥' : '♡'}
+    		
     	</a>
+    	<span id = "total-likes">${musical.total_likes }</span>
     </div>
     <div>
     	<a href="#">예매하기</a>

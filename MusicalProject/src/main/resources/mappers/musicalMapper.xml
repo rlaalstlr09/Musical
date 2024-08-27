@@ -7,11 +7,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="selectAllMusical" parameterType="map" resultType="com.human.dto.MusicalDto">
 	<![CDATA[
-	SELECT distinct m.*, v.venue_name, h.hall_name
+	SELECT m.*, v.venue_name, h.hall_name, COALESCE(like_count.total_likes, 0) AS total_likes
 	FROM musical m
 	JOIN musical_schedule ms ON m.musical_id = ms.musical_id
 	JOIN venue v ON v.venue_id = ms.venue_id
 	JOIN hall h ON h.hall_id = ms.hall_id
+	LEFT JOIN (
+    SELECT musical_id, COUNT(*) AS total_likes
+    FROM musical_like
+    GROUP BY musical_id
+	) like_count ON m.musical_id = like_count.musical_id
 	WHERE   
 	    upper(m.musical_title) LIKE upper('%' || #{keyword, jdbcType=VARCHAR} || '%')
 	    AND
@@ -26,22 +31,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	        AND m.musical_runningtime >= #{filter.minRunningtime, jdbcType=INTEGER})) 
 	ORDER BY
 	    CASE
-	        WHEN #{sort, jdbcType=VARCHAR} = 'likes' THEN TO_CHAR(m.musical_period_end)
+	        WHEN #{sort, jdbcType=VARCHAR} = 'likes' THEN TO_CHAR(-COALESCE(like_count.total_likes, 0))
 	        WHEN #{sort, jdbcType=VARCHAR} = 'period' THEN TO_CHAR(m.musical_period_start, 'YYYY-MM-DD')
 	        WHEN #{sort, jdbcType=VARCHAR} = 'title' THEN TO_CHAR(m.musical_title)
 	        ELSE TO_CHAR(m.musical_id)
 	    END
+	    
 	OFFSET (#{vo.page, jdbcType=INTEGER} - 1) * #{vo.perPageNum, jdbcType=INTEGER} ROWS
 	FETCH NEXT #{vo.perPageNum, jdbcType=INTEGER} ROWS ONLY
 	]]>
 	</select>
 	
 	<select id = "selectMusicalId" resultType = "com.human.dto.MusicalDto">
-		SELECT distinct m.*, v.venue_name, h.hall_name
+		SELECT distinct m.*, v.venue_name, h.hall_name, COALESCE(like_count.total_likes, 0) AS total_likes
 		FROM musical m
 		JOIN musical_schedule ms ON m.musical_id = ms.musical_id
 		JOIN venue v ON v.venue_id = ms.venue_id
 		JOIN hall h ON h.hall_id = ms.hall_id
+		LEFT JOIN (
+	    SELECT musical_id, COUNT(*) AS total_likes
+	    FROM musical_like
+	    GROUP BY musical_id
+		) like_count ON m.musical_id = like_count.musical_id
 		WHERE m.musical_id = #{musical_id} 
 	</select>
 	
