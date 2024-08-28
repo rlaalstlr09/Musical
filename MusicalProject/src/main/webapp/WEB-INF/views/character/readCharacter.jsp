@@ -27,6 +27,9 @@
 #updateForm{
 display:none;
 }
+#updateActor #deleteActor{
+display:none;
+}
 </style>
 
 <title>배우 정보</title>
