@@ -99,15 +99,14 @@ public class ReviewController {
 	@RequestMapping(value = "/review/updateReview", method = RequestMethod.GET)
 	public String updateReview()throws Exception{
 		
-		
 		return "review/updateReview";
 	}
 	
 	@RequestMapping(value = "/review/updateReview", method = RequestMethod.POST)
-	public String updateRevieww(ReviewDto dto,Model model)throws Exception{
+	public String updateRevieww(ReviewDto dto)throws Exception{
 		
 		rService.update(dto);
-		model.addAttribute("review",dto);
+		
 		
 		return "redirect:/review/review";
 	}
