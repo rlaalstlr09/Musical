@@ -5,7 +5,7 @@
 
 <html>
 <head>
-<title>rivew_page</title>
+<title>my_rivew_page</title>
 <style>
 
 .review_content {
@@ -156,23 +156,7 @@ margin-left:200px;}
 	    	<p>등록된 리뷰가 없습니다.</p>
 	    </c:if>
 	    <c:if test="${roundRating ne null && avgRating ne null }">
-		    <div class="average-rating">
-		    <p>총 ${boardVo.totalCount }개의 리뷰가 등록되었습니다</p>
-				<div class="avg_main">
-				<p>평균 평점:</p>
-				<div class="star_rating read-only" id="starstar">
-						
-						 <span class="star on " style="width: ${roundRating >= 1 ? '30px' : '0'};"></span>
-						 <span class="star on " style="width: ${roundRating >= 2 ? '30px' : '0'};"></span>
-						 <span class="star on " style="width: ${roundRating >= 3 ? '30px' : '0'};"></span>
-						 <span class="star on " style="width: ${roundRating >= 4 ? '30px' : '0'};"></span>
-						 <span class="star on " style="width: ${roundRating >= 5 ? '30px' : '0'};"></span>
-						
-					
-				</div>
-				<p >${avgRating }</p>
-			</div>
-			</div>
+		    
 		<c:forEach items="${List }" var="reviewDto">
 			<div class="review_content">
 				<div class="reviw_title">
@@ -206,27 +190,8 @@ margin-left:200px;}
 			
 		</c:forEach>
 	</c:if>
-	<div id="reviewForm">
-		<form action="insertReview" method="get">
-			 <div class="star_rating">
-                <span class="star" data-value="1"></span>
-                <span class="star" data-value="2"></span>
-                <span class="star" data-value="3"></span>
-                <span class="star" data-value="4"></span>
-                <span class="star" data-value="5"></span>
-            </div>
-			
-            <input type="hidden" id="ratingValue" name="rating" value="0">
-			<input type="hidden" name="customer_id" value="중근식"> 
-			
-			<input type="hidden"name="musical_id" value=1>
-			<textarea id="reviewContent" name="content" placeholder="댓글을 입력하세요"></textarea>
-
-
-			<br> <input type="submit" value="리뷰 제출">
-		</form>
-	</div>
-	<div><input type="button" value="리뷰작성" id="openReview"></div>
+	
+	
 	
 	<div class="pagination">
     	<c:if test="${boardVo.page !=1}">

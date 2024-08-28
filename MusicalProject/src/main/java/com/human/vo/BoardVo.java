@@ -19,7 +19,7 @@ public class BoardVo {
 	private boolean next;			//다음 페이지 목록 이동
 									//pageMaker에서 사용자에게 제공하는 한 화면에서 보여줄 페이지 개수
 	private int displayPageNum = 10;
-
+	private String sort;  //분류
 
 	public int getTotalStartPage() {
 		return totalStartPage;
@@ -59,6 +59,13 @@ public class BoardVo {
 		//전체 개수를 설정한다음 페이징에 필요한 데이터 값을 생성
 		//할 수 있다.
 		calcData();
+	}
+	
+	public String getSort() {
+		return sort;
+	}
+	public void setSort(String sort) {
+		this.sort = sort;
 	}
 	private void calcData() {
 		totalStartPage=1;
