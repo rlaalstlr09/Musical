@@ -105,6 +105,7 @@
                 </div>
                 <div>${musical.venue_name}&nbsp;${musical.hall_name }</div>
                 <div><fmt:formatDate value="${musical.musical_period_start}" pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${musical.musical_period_end }" pattern = "yyyy-MM-dd"/></div>
+                <div>♥&nbsp;${musical.total_likes }</div>
             </div>
         </c:forEach>
     </div>

@@ -1,25 +1,18 @@
 package com.human.controller;
 
+
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.human.dto.MusicalDto;
@@ -41,6 +34,8 @@ public class MusicalController {
 	@Autowired
 	private ISeatService seatService;
 
+	
+	//뮤지컬 리스트 페이지
 	@RequestMapping("/listAll")
 	public String listAll(@RequestParam(value = "page", defaultValue = "1") int page,
 			@RequestParam(value = "perPageNum", defaultValue = "10") int perPageNum,
@@ -87,8 +82,9 @@ public class MusicalController {
 		return "musical/list"; // JSP 뷰 이름
 	}
 
+	//뮤지컬 리스트에서 뮤지컬 선택하면 해당 뮤지컬 상세보기
 	@RequestMapping(value = "/detail/{musical_id}")
-	public String musicalDetail(@PathVariable("musical_id") Integer musical_id, Model model) throws Exception {
+	public String musicalDetail(@PathVariable("musical_id") Integer musical_id, Integer total_likes, Model model) throws Exception {
 
 		MusicalDto musicalDto = new MusicalDto(musicalService.selectMusicalId(musical_id),
 				seatService.selectSeatInfo(musical_id));
@@ -113,32 +109,44 @@ public class MusicalController {
 		return "musical/detail";
 	}
 
+	//뮤지컬 상세보기 탭 누르면 동작
 	@GetMapping("/{tabId}")
 	public String getMusicalTabContent(@PathVariable String tabId, Model model) {
 		// 뮤지컬 상세보기 페이지 탭 구현
 		return "fragments/" + tabId;
 	}
+	
+	
+	//공연장 정보
+	@GetMapping("/venue")
+	public String getVenue(MusicalDto musicalDto, Model model) {
+		model.addAttribute("name", musicalDto);
+		return "fragments/venue";
+	}
 
+	//뮤지컬 좋아요 누르면 동작
 	@PostMapping("/like")
 	public RedirectView likeToggle(@RequestParam("customer_id") String customer_id, @RequestParam("musical_id") Integer musical_id, HttpServletRequest request) {
 	    
 		//로그인 안한 상태. 로그인페이지로 리다이렉트하게 바꾸셈
 		if (customer_id == null || customer_id.trim().isEmpty()) {
-	        return new RedirectView("/ex/musical/listAll");
+			 
+            return new RedirectView("/ex/musical/listAll");
 	    }
 
 	    try {
 	    	//좋아요 이미 눌러진 상태에서 버튼 누르면 삭제
 	        if (musicalService.selectMusicalLike(musical_id, customer_id) == 1) {
 	            musicalService.deleteLike(musical_id, customer_id);
-	            return new RedirectView("/ex/musical/detail/" + musical_id); 
 	        } else {
 	            musicalService.insertLike(musical_id, customer_id);
-	            return new RedirectView("/ex/musical/detail/" + musical_id);
 	        }
+	        return new RedirectView("/ex/musical/detail/" + musical_id);
+	        
+	        
 	    } catch (Exception e) {
 	        e.printStackTrace();
-	        return new RedirectView("/ex/musical/listAll"); 
+	        return new RedirectView("/ex/musical/listAll");
 	    }
 	}
 }
