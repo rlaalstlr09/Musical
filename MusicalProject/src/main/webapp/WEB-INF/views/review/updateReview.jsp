@@ -63,6 +63,7 @@
 						댓글 내용:<textarea  name="content">${reviewDto.content } </textarea>
 						<input type="hidden" value=${reviewDto.rating } name="rating">
 						<input type="date" value="<fmt:formatDate value='${reviewDto.review_date}' pattern='yyyy-MM-dd'/>" readonly>
+						<input type="submit" value="수정하기">
 					</form>
 				</div>
 				
