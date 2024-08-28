@@ -7,11 +7,7 @@
 <head>
 <title>rivew_page</title>
 <style>
-div{
-border:1px solid black;}
-body{
-font-size: 25px;
-}
+
 .review_content {
 	margin-top: 40px;
 	margin-bottom: 40px
@@ -23,25 +19,31 @@ display:none;
         display: inline-flex;
         flex-direction: row;
     }
-
+.avg_main{
+ display: inline-flex;
+  flex-direction: row;
+}
     .star_rating .star {
         width: 30px;
         height: 30px;
         margin-right: 5px;
-        background: url('../resources/star.png') no-repeat;
+        background: url('../resources/img/star.png') no-repeat;
         background-size: cover;
         cursor: pointer;
     }
 
     .star_rating .star.on {
-        background: url('../resources/full_star.png') no-repeat;
+        background: url('../resources/img/full_star.png') no-repeat;
         background-size: cover;
     }
 
 	.star_rating.read-only .star {
             pointer-events: none; /* 클릭 이벤트를 비활성화합니다 */
         }
-        
+     #starstar{
+     margin-top:10px;
+     margin-bottom:20px;
+     }
    
         
     
@@ -88,7 +90,7 @@ margin-left:200px;}
 			var sortBy=$(this).val();
 			$.ajax({
 				
-				url:'/ex/review/review',
+				url:'/10CustomerHobby/review/review',
 				type:'GET',
 				data:{sort:sortBy},
 				success:function(response){
@@ -150,54 +152,60 @@ margin-left:200px;}
 	        <option value="rating" ${param.sort == 'rating' ? 'selected' : ''}>평점순</option>
 	    </select>
 	    </div>
-	    <div class="average-rating">
-			<p>평균 평점:</p>
-			<div class="star_rating read-only">
+	    <c:if test = "${roundRating == null && avgRating == null }">
+	    	<p>등록된 리뷰가 없습니다.</p>
+	    </c:if>
+	    <c:if test="${roundRating ne null && avgRating ne null }">
+		    <div class="average-rating">
+		    <p>총 ${boardVo.totalCount }개의 리뷰가 등록되었습니다</p>
+				<div class="avg_main">
+				<p>평균 평점:</p>
+				<div class="star_rating read-only" id="starstar">
+						
+						 <span class="star on " style="width: ${roundRating >= 1 ? '30px' : '0'};"></span>
+						 <span class="star on " style="width: ${roundRating >= 2 ? '30px' : '0'};"></span>
+						 <span class="star on " style="width: ${roundRating >= 3 ? '30px' : '0'};"></span>
+						 <span class="star on " style="width: ${roundRating >= 4 ? '30px' : '0'};"></span>
+						 <span class="star on " style="width: ${roundRating >= 5 ? '30px' : '0'};"></span>
+						
 					
-					 <span class="star on " style="width: ${roundRating >= 1 ? '30px' : '0'};"></span>
-					 <span class="star on " style="width: ${roundRating >= 2 ? '30px' : '0'};"></span>
-					 <span class="star on " style="width: ${roundRating >= 3 ? '30px' : '0'};"></span>
-					 <span class="star on " style="width: ${roundRating >= 4 ? '30px' : '0'};"></span>
-					 <span class="star on " style="width: ${roundRating >= 5 ? '30px' : '0'};"></span>
-					
-				
+				</div>
+				<p >${avgRating }</p>
 			</div>
-			<p >${avgRating }</p>
-		</div>
-	<c:forEach items="${List }" var="reviewDto">
-		<div class="review_content">
-			<div class="reviw_title">
-				닉네임: ${reviewDto.customer_id}&nbsp;&nbsp;|&nbsp;&nbsp;
-				<fmt:formatDate pattern="yyyy-MM-dd"
-					value="${reviewDto.review_date}" />
-				&nbsp;&nbsp;|&nbsp;&nbsp; 평점:
-				 <div class="star_rating read-only">
-                    <span class="star on " style="width: ${reviewDto.rating >= 1 ? '30px' : '0'};"></span>
-                    <span class="star on" style="width: ${reviewDto.rating >= 2 ? '30px' : '0'};"></span>
-                    <span class="star on" style="width: ${reviewDto.rating >= 3 ? '30px' : '0'};"></span>
-                    <span class="star on" style="width: ${reviewDto.rating >= 4 ? '30px' : '0'};"></span>
-                    <span class="star on" style="width: ${reviewDto.rating >= 5 ? '30px' : '0'};"></span>
-                </div>
-                <p class="review_text">${reviewDto.content}</p>
+			</div>
+		<c:forEach items="${List }" var="reviewDto">
+			<div class="review_content">
+				<div class="reviw_title">
+					닉네임: ${reviewDto.customer_id}&nbsp;&nbsp;|&nbsp;&nbsp;
+					<fmt:formatDate pattern="yyyy-MM-dd"
+						value="${reviewDto.review_date}" />
+					&nbsp;&nbsp;|&nbsp;&nbsp; 평점:
+					 <div class="star_rating read-only">
+	                    <span class="star on " style="width: ${reviewDto.rating >= 1 ? '30px' : '0'};"></span>
+	                    <span class="star on" style="width: ${reviewDto.rating >= 2 ? '30px' : '0'};"></span>
+	                    <span class="star on" style="width: ${reviewDto.rating >= 3 ? '30px' : '0'};"></span>
+	                    <span class="star on" style="width: ${reviewDto.rating >= 4 ? '30px' : '0'};"></span>
+	                    <span class="star on" style="width: ${reviewDto.rating >= 5 ? '30px' : '0'};"></span>
+	                </div>
+	                <p class="review_text">${reviewDto.content}</p>
+				</div>
+				
+				<div id="updateForm_${reviewDto.review_id}">
+				<form action="updateReview">
+				<input type="hidden" value=${reviewDto.review_id } name="review_id" readonly>
+				<input type="hidden" value=${reviewDto.customer_id } name="customer_id">
+				<input type="hidden" value=${reviewDto.musical_id } name="musical_id">
+				<input type="text" value=${reviewDto.content } name="content">
+				<input type="hidden" value=${reviewDto.rating } name="rating">
+				<input type="date" value="<fmt:formatDate value='${reviewDto.review_date}' pattern='yyyy-MM-dd'/>" >
+				</form>
+				</div>
+				
+	
 			</div>
 			
-			<div id="updateForm_${reviewDto.review_id}">
-			<form action="updateReview">
-			<input type="number" value=${reviewDto.review_id } readonly>
-			<input type="text" value=${reviewDto.customer_id } >
-			<input type="number" value=${reviewDto.musical_id } >
-			<input type="text" value=${reviewDto.content } >
-			<input type="number" value=${reviewDto.rating } >
-			<input type="date" value="<fmt:formatDate value='${reviewDto.review_date}' pattern='yyyy-MM-dd'/>" >
-			</form>
-			</div>
-			<button class="deleteReview" data-review-id="${reviewDto.review_id }">삭제</button>
-			<button class="updateReview" data-id="${reviewDto.review_id}">수정하기</button>
-
-		</div>
-		
-	</c:forEach>
-
+		</c:forEach>
+	</c:if>
 	<div id="reviewForm">
 		<form action="insertReview" method="get">
 			 <div class="star_rating">
@@ -209,7 +217,7 @@ margin-left:200px;}
             </div>
 			
             <input type="hidden" id="ratingValue" name="rating" value="0">
-			<input type="hidden" name="customer_id" value="1"> 
+			<input type="hidden" name="customer_id" value="중근식"> 
 			
 			<input type="hidden"name="musical_id" value=1>
 			<textarea id="reviewContent" name="content" placeholder="댓글을 입력하세요"></textarea>
