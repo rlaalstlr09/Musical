@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.human.dao.QaDao">
+<insert id="create">
+insert into qa(qa_id,customer_id,qa_type,title,content)
+values (qa_count.nextval,#{customer_id},#{qa_type},#{title},#{content})
+</insert>
+<select id="read" resultType="QaDto">
+select * from qa where qa_id=#{qa_id} and customer_id = #{customer_id}
+</select>
+<update id="update">
+update qa set title=#{title},content=#{content} 
+where qa_id=#{qa_id}
+and customer_id = #{customer_id}
+</update>
+<delete id="delete">
+delete qa where qa_id=#{qa_id} and customer_id = #{customer_id}
+</delete>
+<delete id="deleteAll">
+delete qa where customer_id = #{customer_id}
+</delete>
+<sql id='qa_search'>
+	<if test="searchType!=null">
+		<if test="searchType == 't'.toString()"> and title like '%'|| #{keyword}||'%' </if>
+		<if test="searchType == 'c'.toString()"> and content like '%'|| #{keyword}||'%' </if>
+		<if test="searchType == 'cs'.toString()"> and customer_id like '%'|| #{keyword}||'%' </if>
+		<if test="searchType == 'tc'.toString()"> and ( title like '%'|| #{keyword}||'%' OR content like '%'|| #{keyword}||'%') </if>
+		<if test="searchType == 'cc'.toString()"> and ( content like '%'|| #{keyword}||'%' OR customer_id like '%'|| #{keyword}||'%') </if>
+		<if test="searchType == 'tcc'.toString()"> and ( title like '%'|| #{keyword}||'%' OR content like '%'|| #{keyword}||'%' OR customer_id like '%'|| #{keyword}||'%') </if>
+	</if>
+</sql>
+<sql id='qa_category'>
+    <if test="categoryType!=null">
+		and qa_type = #{qa_type}
+    </if>
+</sql>
+	<select id="qa_list" resultType="QaDto">
+		select * from qa where customer_id = #{customer_id}
+	</select>
+
+	<select id="qa_listSearchCount" resultType="int">
+<![CDATA[ select count(qa_id) from qa where 1=1 ]]>
+		<include refid="qa_search" />
+		<include refid="qa_category"/>
+<![CDATA[ and qa_id > 0 ]]>
+	</select>
+
+	<select id="qa_listCount" resultType="int">
+<![CDATA[ select count(qa_id) from qa where 1=1 ]]>
+<![CDATA[ and qa_id > 0 and customer_id=#{customer_id} ]]>
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.human.dao.ICustomerDao">
+<insert id="insert">
+insert into customer values(#{customer_id},#{customer_pw},#{customer_phone},#{customer_email}
+,#{customer_address},#{customer_birth},1)
+</insert>
+<select id="selectAll" resultType="CustomerDto">
+select * from customer
+</select>
+<select id="selectName" resultType="CustomerDto">
+select * from customer where customer_id=#{customer_id}
+</select>
+<select id="selectId" resultType="boolean">
+select count(*) from customer where customer_id=#{customer_id}
+</select>
+<update id="update">
+update customer set
+customer_phone=#{customer_phone},customer_email=#{customer_email},
+customer_address=#{customer_address},customer_birth=#{customer_birth}
+where customer_id=#{customer_id}
+</update>
+<update id="pwUpdate">
+update customer set
+customer_pw=#{customer_pw}
+where customer_id=#{customer_id}
+</update>
+<delete id="delete">
+delete customer where customer_id=#{customer_id}
+</delete>
+<select id="findCustomerId" resultType="CustomerDto">
+select * from customer
+where customer_email = #{customer_email}
+</select>
+<select id="pwCheck" resultType="Integer">
+select
+count(*) from customer
+where customer_id = #{customer_id} and customer_email = #{customer_email}
+</select>
+<update id="newPwUpdate">
+update customer
+set
+customer_pw = #{customer_pw}
+where customer_id = #{customer_id} and customer_email = #{customer_email}
+</update>
+<select id="nowPwCheck" resultType="CustomerDto">
+select customer_pw from customer
+where customer_id = #{customer_id}
+</select>
+</mapper>
