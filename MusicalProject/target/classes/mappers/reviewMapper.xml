@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.human.dao.IReviewDao">
+
+<select id="selectAll" parameterType="map" resultType="com.human.dto.ReviewDto">
+select * from review where musical_id=#{musical_id} order by case 
+	when #{sort,jdbcType=VARCHAR}='rating' then to_char(rating)
+	when #{sort,jdbcType=VARCHAR}='date' then to_char(review_date)
+	else to_char(review_id)
+	end desc
+OFFSET (#{page}-1) * #{perPageNum} ROWS
+FETCH NEXT #{perPageNum} ROWS ONLY
+</select>
+
+<select id="selectMyReview" parameterType="map" resultType="com.human.dto.ReviewDto">
+select * from review where customer_id=#{customer_id}
+OFFSET (#{page}-1) * #{perPageNum} ROWS
+FETCH NEXT #{perPageNum} ROWS ONLY
+</select>
+
+<select id="avgRating" resultType="Double">
+select round(avg(rating),1) from review
+</select>
+
+<insert id="insert" >
+insert into review(review_id,customer_id,musical_id,content,rating,review_date)
+ values(review_seq.nextval,#{customer_id},#{musical_id},#{content},#{rating},sysdate)
+</insert>
+<select id="totalCount" resultType="Integer">
+select count(*) from review
+</select>
+
+<delete id="delete">
+delete review where review_id=#{review_id}
+</delete>
+
+<update id="update">
+update review set review_id=#{review_id},customer_id=#{customer_id},musical_id=#{musical_id},content=#{content},rating=#{rating},review_date=#{review_date}
+</update>
+
+</mapper>
+
+
+
+
+
+
+
+
+

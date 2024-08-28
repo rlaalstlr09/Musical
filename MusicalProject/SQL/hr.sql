@@ -148,12 +148,14 @@ create table inquiry(
         REFERENCES customer(customer_id)
 );
 
+
 create table review(
     review_id number,
     customer_id nvarchar2(50),
     musical_id number,
     content nvarchar2(500),
     rating number,
+    review_date date,
     CONSTRAINT fk_review_customer
         FOREIGN KEY (customer_id)
         REFERENCES customer(customer_id),
@@ -237,4 +239,11 @@ begin
         end loop;
     end loop;
 end;
-
+drop sequence review_seq;
+CREATE SEQUENCE review_seq
+  START WITH 1
+  INCREMENT BY 1
+  MINVALUE 1;
+  
+  alter table review add review_date date;
+  
