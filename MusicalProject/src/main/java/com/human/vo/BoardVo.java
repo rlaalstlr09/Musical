@@ -19,6 +19,8 @@ public class BoardVo {
 	private boolean next;			//다음 페이지 목록 이동
 									//pageMaker에서 사용자에게 제공하는 한 화면에서 보여줄 페이지 개수
 	private int displayPageNum = 10;
+	
+	private String sort;  //분류
 
 
 	public int getTotalStartPage() {
