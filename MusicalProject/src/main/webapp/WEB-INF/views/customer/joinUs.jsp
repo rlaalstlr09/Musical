@@ -36,7 +36,7 @@ window.onload = function() {
 				return true;
 			}else{
 				console.log("실패");
-				$('#result').text('이용약관을 동의해주세요').css('color','red');
+				$('#result').text('이용약관에 동의해주세요').css('color','red');
 				return false;
 			}
 		}
