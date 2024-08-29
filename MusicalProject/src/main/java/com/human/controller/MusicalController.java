@@ -68,7 +68,7 @@ public class MusicalController {
 
 		// 데이터 가져오기
 		List<MusicalDto> musicalList = musicalService.selectAllMusical(boardVo, keyword, sort, filter);
-
+		
 		System.out.println(totalCount);
 		System.out.println(boardVo);
 		System.out.println(musicalList);
@@ -109,14 +109,6 @@ public class MusicalController {
 		return "musical/detail";
 	}
 
-	//뮤지컬 상세보기 탭 누르면 동작
-	@GetMapping("/{tabId}")
-	public String getMusicalTabContent(@PathVariable String tabId, Model model) {
-		// 뮤지컬 상세보기 페이지 탭 구현
-		return "fragments/" + tabId;
-	}
-	
-	
 	//공연장 정보
 	@GetMapping("/venue")
 	public String getVenue(MusicalDto musicalDto, Model model) {
