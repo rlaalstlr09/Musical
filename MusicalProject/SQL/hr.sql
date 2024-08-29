@@ -139,18 +139,6 @@ CREATE TABLE reservation (
         REFERENCES customer(customer_id)
 );
 
-create table inquiry(
-    inquiry_id number,
-    customer_id nvarchar2(50),
-    category nvarchar2(100),
-    content nvarchar2(500),
-    response nvarchar2(500),
-    CONSTRAINT fk_inquiry_customer
-        FOREIGN KEY (customer_id)
-        REFERENCES customer(customer_id)
-);
-
-
 create table review(
     review_id number,
     customer_id nvarchar2(50),
@@ -166,20 +154,18 @@ create table review(
         REFERENCES musical(musical_id)
 );
 
+create sequence qa_count;
 create table qa(
     qa_id number,
     customer_id nvarchar2(50),
-    musical_id number,
-    qa_type nvarchar2(500),
-    content nvarchar2(500),
-    response nvarchar2(500),
-    display NUMBER(1),
-     CONSTRAINT fk_qa_customer
+    qa_type nvarchar2(50),
+    title nvarchar2(500),
+    content varchar2(4000),
+    response varchar2(4000) default null,
+    display NUMBER(1) default 0,
+     CONSTRAINT fk_Q&A_customer
         FOREIGN KEY (customer_id)
-        REFERENCES customer(customer_id),
-     CONSTRAINT fk_qa_musical
-        FOREIGN KEY (musical_id)
-        REFERENCES musical(musical_id)
+        REFERENCES customer(customer_id)
 );
 
 create table actor(
