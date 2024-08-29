@@ -38,7 +38,7 @@ display:none;
 	<div class="all">
 	<h1>배우 정보</h1>
 		<div class="photo">
-		<img src=${actor.actor_url }>
+		<img src=${actor.actor_img }>
 		</div>
 		<div class="info">
 			<div class="info_head">
@@ -57,7 +57,7 @@ display:none;
 		<input type="date" value="<fmt:formatDate value='${actor.birthday}' pattern='yyyy-MM-dd'/>"name="birthday">
 		<input type="number" value="${actor.height}"name="height">
 		<input type="number" value="${actor.weight}"name="weight">
-		<input type="text" value="${actor.actor_url}"name="actor_url"><br>
+		<input type="text" value="${actor.actor_img}"name="actor_img"><br>
 		<input type="submit" value="수정하기">
 		</form>
 		</div>

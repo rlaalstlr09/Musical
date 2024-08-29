@@ -40,36 +40,6 @@ public class ReviewController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ReviewController.class);
 	
-	@RequestMapping(value = "/review", method = RequestMethod.GET)
-	public String selectAllReview(
-			Model model,
-			@RequestParam(value="musical_id",defaultValue="1") Integer musical_id,
-			@RequestParam(value="page",defaultValue="1") int page,
-			@RequestParam(value="perPageNum",defaultValue="10") int perPageNum,
-			@RequestParam(value="sort",defaultValue="date") String sort)throws Exception{
-								
-		
-		
-		Double avgRating=rService.avgRating();
-		
-		BoardVo vo=new BoardVo();
-		vo.setSort(sort);
-		vo.setPage(page);
-		vo.setPerPageNum(perPageNum);
-		Long roundRating=null;
-		
-		if(avgRating != null) roundRating = Math.round(avgRating); 
-		
-		
-		vo.setTotalCount(rService.totalCount());
-		ArrayList<ReviewDto>dto=rService.selectAll(musical_id,vo);
-		System.out.println(dto);
-		model.addAttribute("List",dto);
-		model.addAttribute("avgRating",avgRating);
-		model.addAttribute("boardVo",vo);
-		model.addAttribute("roundRating",roundRating);
-		return "/ex/musical/review";
-	}
 	
 	@RequestMapping(value = "/myReview", method = RequestMethod.GET)
 	public String myReview(Model model,@RequestParam(value="customer_id",defaultValue="1") String customer_id,@RequestParam(value="page",defaultValue="1") int page,
@@ -85,8 +55,6 @@ public class ReviewController {
 		return "review/myReview";
 	}
 	
-	
-	
 	@RequestMapping(value = "/updateReview", method = RequestMethod.GET)
 	public String updateReview()throws Exception{
 		
@@ -99,7 +67,7 @@ public class ReviewController {
 		rService.update(dto);
 		
 		
-		return "redirect:/review/review";
+		return "redirect:/review/myReview";
 	}
 	
 	@RequestMapping(value = "/insertReview", method = RequestMethod.GET)

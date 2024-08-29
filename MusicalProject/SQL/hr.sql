@@ -8,7 +8,7 @@ BEGIN
 END;
 /
 
--- 2. ¸ðµç Å×ÀÌºí µå·Ó
+-- 2. ¸ðµç Å×?Ìºí µå·Ó
 BEGIN
    FOR rec IN (SELECT table_name FROM user_tables) 
    LOOP
@@ -185,7 +185,8 @@ actor_id number primary key,
 actor_name varchar(50),
 birthday date,
 height number,
-weight number
+weight number,
+actor_img nvarchar2(100)
 
 
 );
@@ -235,7 +236,7 @@ begin
     for row_num in 1..6 loop
         for col_num in 1..8 loop
             insert into seat(hall_id, mu_sch_id, musical_id, seat_grade, seat_name, seat_row, seat_col, seat_reservation, seat_price)
-            values(p_hall_id, p_mu_sch_id, p_musical_id, 'ÀÏ¹Ý¼®', chr(64 + row_num) || '-' || col_num, row_num, col_num, 0, p_seat_price);
+            values(p_hall_id, p_mu_sch_id, p_musical_id, '?Ï¹Ý¼®', chr(64 + row_num) || '-' || col_num, row_num, col_num, 0, p_seat_price);
         end loop;
     end loop;
 end;
@@ -298,5 +299,4 @@ CREATE SEQUENCE review_seq
   START WITH 1
   INCREMENT BY 1
   MINVALUE 1;
-  
-  alter table review add review_date date;
+

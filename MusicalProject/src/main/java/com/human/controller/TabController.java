@@ -59,17 +59,17 @@ public class TabController {
 		model.addAttribute("boardVo", vo);
 		model.addAttribute("roundRating", roundRating);
 		model.addAttribute("musical_id", musical_id);
-		return "musical/tabs/review";
+		return "musical/fragments/review";
 
 	}
 	
 	@RequestMapping(value = "/character", method = RequestMethod.GET)
-	public String selectAll(Model model)throws Exception{
-		ArrayList<ActorCharacterDto>dto=ACService.selectAll();
+	public String selectAll(Integer musical_id, Model model)throws Exception{
+		ArrayList<ActorCharacterDto>dto=ACService.selectAll(musical_id);
 		
 		model.addAttribute("List",dto);
 		System.out.println(dto);
 		
-		return "tabs/character";
+		return "musical/fragments/character";
 	}
 }

@@ -113,7 +113,7 @@ public class MusicalController {
 	@GetMapping("/venue")
 	public String getVenue(MusicalDto musicalDto, Model model) {
 		model.addAttribute("name", musicalDto);
-		return "fragments/venue";
+		return "musical/fragments/venue";
 	}
 
 	//뮤지컬 좋아요 누르면 동작

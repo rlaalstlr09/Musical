@@ -116,7 +116,7 @@
     <div id = "tab">
 	    <ul class="nav nav-tabs" id="myTab" role="tablist">
 	        <li class="nav-item">
-	            <a class="nav-link active" id="actor-tab" data-toggle="tab" href="#actor" role="tab">배우 정보</a>
+	            <a class="nav-link active" id="chararcter-tab" data-toggle="tab" href="#character" role="tab">배우 정보</a>
 	        </li>
 	        <li class="nav-item">
 	            <a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab">리뷰</a>

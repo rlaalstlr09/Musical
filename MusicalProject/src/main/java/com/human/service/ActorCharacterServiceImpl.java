@@ -29,9 +29,9 @@ public class ActorCharacterServiceImpl implements IActorCharacterService {
 	}
 
 	@Override
-	public ArrayList<ActorCharacterDto> selectAll() throws Exception {
+	public ArrayList<ActorCharacterDto> selectAll(Integer musical_id) throws Exception {
 		IActorCharacterDao dao=sqlSession.getMapper(IActorCharacterDao.class);
-		return dao.selectAll();
+		return dao.selectAll(musical_id);
 	}
 
 	@Override

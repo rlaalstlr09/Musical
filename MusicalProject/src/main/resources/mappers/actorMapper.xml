@@ -15,7 +15,7 @@ select * from actor
 insert into actor values(actor_seq.nextval,#{actor_name},#{birthday},#{height},#{weight},#{actor_url})
 </insert>
 <update id="update">
-update actor set actor_id=#{actor_id},actor_name=#{actor_name},birthday=#{birthday},height=#{height},weight=#{weight},actor_url=#{actor_url} where actor_id=#{actor_id}
+update actor set actor_id=#{actor_id},actor_name=#{actor_name},birthday=#{birthday},height=#{height},weight=#{weight},actor_img=#{actor_img} where actor_id=#{actor_id}
 </update>
 
 <delete id="delete">

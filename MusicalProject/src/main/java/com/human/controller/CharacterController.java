@@ -49,15 +49,7 @@ public class CharacterController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 
-	@RequestMapping(value = "/character", method = RequestMethod.GET)
-	public String selectAll(Model model)throws Exception{
-		ArrayList<ActorCharacterDto>dto=ACService.selectAll();
-		
-		model.addAttribute("List",dto);
-		System.out.println(dto);
-		
-		return "tabs/character";
-	}
+	
 	@RequestMapping(value = "/readCharacter", method = RequestMethod.GET)
 	public String readCharacter(Model model,Integer actor_id)throws Exception{
 		
@@ -66,7 +58,7 @@ public class CharacterController {
 		model.addAttribute("actor",dto);
 		System.out.println(dto);
 		
-		return "character/readCharacter";
+		return "musical/fragments/readCharacter";
 	}
 	@RequestMapping(value = "/updateActor", method = RequestMethod.GET)
 	public String updateActor(Model model,ActorDto dto)throws Exception{
