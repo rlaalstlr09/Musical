@@ -27,13 +27,13 @@ display:none;
         width: 30px;
         height: 30px;
         margin-right: 5px;
-        background: url('../resources/img/star.png') no-repeat;
+        background: url('/ex/resources/img/star.png') no-repeat;
         background-size: cover;
         cursor: pointer;
     }
 
     .star_rating .star.on {
-        background: url('../resources/img/full_star.png') no-repeat;
+        background: url('/ex/resources/img/full_star.png') no-repeat;
         background-size: cover;
     }
 
@@ -90,11 +90,14 @@ margin-left:200px;}
 			var sortBy=$(this).val();
 			$.ajax({
 				
-				url:'/10CustomerHobby/review/review',
+				url:'/ex/tab/review',
 				type:'GET',
-				data:{sort:sortBy},
+				data:{
+					sort:sortBy,
+					musical_id : '${musical_id}'	
+				},
 				success:function(response){
-					$('body').html(response);
+					$('#tab-content').html(response);
 				},
 				error: function(xhr, status, error) {
 	                console.error('AJAX 요청 실패:', status, error);
@@ -207,7 +210,7 @@ margin-left:200px;}
 		</c:forEach>
 	</c:if>
 	<div id="reviewForm">
-		<form action="insertReview" method="get">
+		<form action="/ex/review/insertReview" method="get">
 			 <div class="star_rating">
                 <span class="star" data-value="1"></span>
                 <span class="star" data-value="2"></span>
@@ -217,9 +220,9 @@ margin-left:200px;}
             </div>
 			
             <input type="hidden" id="ratingValue" name="rating" value="0">
-			<input type="hidden" name="customer_id" value="중근식"> 
+			<input type="hidden" name="customer_id" value="test"> 
 			
-			<input type="hidden"name="musical_id" value=1>
+			<input type="hidden"name="musical_id" value='${musical_id }'>
 			<textarea id="reviewContent" name="content" placeholder="댓글을 입력하세요"></textarea>
 
 

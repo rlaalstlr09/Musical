@@ -17,7 +17,8 @@
         	//탭 누르면 실행되는 함수 ajax로 값 받아서 탭 내용 바꿈
             function loadTabContent(tabId) {
                 $.ajax({
-                    url: '/ex/musical/' + tabId, 
+                    url: '/ex/tab/' + tabId, 
+                   	data : { musical_id : '${musical.musical_id}'},
                     method: 'GET',
                     success: function(data) {
                         $('#tab-content').html(data);
