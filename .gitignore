@@ -119,5 +119,7 @@ $RECYCLE.BIN/
 
 *.properties
 
+root-context.xml
+
 servers/*
 # End of https://www.toptal.com/developers/gitignore/api/java,eclipse,windows
