@@ -54,6 +54,7 @@ public class TabController {
 		vo.setTotalCount(rService.totalCount());
 		ArrayList<ReviewDto> dto = rService.selectAll(musical_id, vo);
 		System.out.println(dto);
+		System.out.println(musical_id);
 		model.addAttribute("List", dto);
 		model.addAttribute("avgRating", avgRating);
 		model.addAttribute("boardVo", vo);

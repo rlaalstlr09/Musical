@@ -74,6 +74,7 @@ public class ReviewController {
 	public String insertReview(Integer musical_id, ReviewDto dto, Model model)throws Exception{
 		
 		rService.insert(dto);
+		System.out.println(dto);
 		model.addAttribute("musical_id", musical_id);
 		return "redirect:/tab/review";
 	}
