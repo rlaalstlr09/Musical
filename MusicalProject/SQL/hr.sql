@@ -188,7 +188,7 @@ create table character(
 character_id number primary key,
 musical_id number,
 character_name varchar2(50),
-actor_id number,
+
 CONSTRAINT fk_musical
     FOREIGN KEY (musical_id)
     REFERENCES musical(musical_id)
@@ -301,9 +301,13 @@ crud_date date DEFAULT sysdate
 CREATE SEQUENCE admin_seq START WITH 1 INCREMENT BY 1;
 
 
-drop sequence review_seq;
+
 CREATE SEQUENCE review_seq
   START WITH 1
   INCREMENT BY 1
   MINVALUE 1;
 
+
+
+
+--ALTER TABLE character DROP CONSTRAINT fk_actor;
