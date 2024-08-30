@@ -41,7 +41,7 @@ public class CharacterController {
 	@Autowired
 	CharacterServiceImpl service;
 	@Autowired
-	ActorServiceImpl actorservice;
+	ActorServiceImpl actorService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(CharacterController.class);
 	
@@ -53,7 +53,7 @@ public class CharacterController {
 	@RequestMapping(value = "/readCharacter", method = RequestMethod.GET)
 	public String readCharacter(Model model,Integer actor_id)throws Exception{
 		
-		ActorDto dto=actorservice.select(actor_id);
+		ActorDto dto=actorService.select(actor_id);
 		
 		model.addAttribute("actor",dto);
 		System.out.println(dto);
@@ -65,18 +65,23 @@ public class CharacterController {
 		
 		
 		
-		actorservice.update(dto);
+		actorService.update(dto);
 		System.out.println(dto);
 		
 		return "redirect:/character/readCharacter?actor_id="+dto.getActor_id();
 	}
 	@RequestMapping(value = "/deleteActor", method = RequestMethod.GET)
 	public String deleteActor(int actor_id)throws Exception{
-		actorservice.delete(actor_id);
-		
-		
+		actorService.delete(actor_id);
 		return "redirect:/tab/character";
 	}
+	
+	@RequestMapping(value = "/insertActor", method = RequestMethod.GET)//character테이블과 actor_character테이블에 데이터를 동시에 추가 actor_id는 null이어도 됨
+	public void insertActorCharacter(CharacterDto dto)throws Exception {
+		service.insert(dto);
+		service.insertActorCharacter();
+	}
+	
 	/////////////////////////////////////////////////////////////////
 
 	

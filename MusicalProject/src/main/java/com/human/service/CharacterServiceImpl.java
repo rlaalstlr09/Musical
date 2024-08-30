@@ -21,6 +21,12 @@ public class CharacterServiceImpl implements ICharacterService {
 		dao.insert(dto);		
 	}
 	@Override
+	public void insertActorCharacter() throws Exception{
+		ICharacterDao dao=sqlSession.getMapper(ICharacterDao.class);
+		dao.insertActorCharacter();		
+	}
+	
+	@Override
 	public CharacterDto select(int id) throws Exception {
 		ICharacterDao dao=sqlSession.getMapper(ICharacterDao.class);
 		return dao.select(id);

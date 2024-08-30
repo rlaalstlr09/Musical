@@ -15,10 +15,10 @@ public class ActorDto {
 	private String actor_img;
 	
 	
-	public String getactor_img() {
+	public String getActor_img() {
 		return actor_img;
 	}
-	public void setactor_img(String actor_img) {
+	public void setActor_img(String actor_img) {
 		this.actor_img = actor_img;
 	}
 	public int getActor_id() {
