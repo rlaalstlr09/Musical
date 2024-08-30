@@ -9,29 +9,7 @@
 <head>
  <link rel="stylesheet" href="../resources/css/styles.css">
 	<style>
-		#container{
-			padding: 0 20%;
-		}
-        .musical-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 2열 */
-            gap: 16px; /* 항목 간의 간격 */
-        }
-        .musical-item {
-            border: 1px solid #ccc;
-            padding: 16px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .musical-item img {
-            width: 100%;
-            height: auto;
-        }
-        .pagination{
-        	text-align : center;
-        }
-        .hidden{
-        	display:none;
-        }
+		
         
     </style>
     <title>뮤지컬 목록</title>
@@ -90,7 +68,7 @@
             <button class="filter">적용</button>
         </div>
     
-	    <script src="../resources/script/script.js"></script>
+	    <script src="/ex/resources/script/musicalList.js"></script>
     
      <div class="musical-grid">
         <c:forEach var="musical" items="${musicals}">

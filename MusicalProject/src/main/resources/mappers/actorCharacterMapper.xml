@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.human.dao.IActorCharacterDao">
+
+<select id="selectAll" resultType="com.human.dto.ActorCharacterDto">
+select c.character_name,a.actor_name,a.actor_img,a.actor_id from character c join actor a on c.actor_id=a.actor_id where #{musical_id}=c.musical_id
+</select>
+
+
+
+
+
+</mapper>
+
+
+
+
+
+
+
+
+

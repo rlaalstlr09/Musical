@@ -33,54 +33,15 @@ import com.human.vo.BoardVo;
  */
 
 @Controller
+@RequestMapping(value = "/review")
 public class ReviewController {
 	@Autowired
 	ReviewServiceImpl rService;
-	@Autowired
-	ActorCharacterServiceImpl ACService;
-	@Autowired
-	CharacterServiceImpl service;
 	
-	
-	@Autowired
-	ActorServiceImpl actorservice;
 	private static final Logger logger = LoggerFactory.getLogger(ReviewController.class);
 	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
-
 	
-	
-	
-	
-	@RequestMapping(value = "/review/review", method = RequestMethod.GET)
-	public String selectAllReview(Model model,@RequestParam(value="musical_id",defaultValue="1") Integer musical_id,@RequestParam(value="page",defaultValue="1") int page,
-			@RequestParam(value="perPageNum",defaultValue="10") int perPageNum,@RequestParam(value="sort",defaultValue="date") String sort)throws Exception{
-								
-		
-		
-		Double avgRating=rService.avgRating();
-		
-		BoardVo vo=new BoardVo();
-		vo.setSort(sort);
-		vo.setPage(page);
-		vo.setPerPageNum(perPageNum);
-		Long roundRating=null;
-		
-		if(avgRating != null) roundRating = Math.round(avgRating); 
-		
-		
-		vo.setTotalCount(rService.totalCount());
-		ArrayList<ReviewDto>dto=rService.selectAll(musical_id,vo);
-		System.out.println(dto);
-		model.addAttribute("List",dto);
-		model.addAttribute("avgRating",avgRating);
-		model.addAttribute("boardVo",vo);
-		model.addAttribute("roundRating",roundRating);
-		return "review/review";
-	}
-	@RequestMapping(value = "/review/myReview", method = RequestMethod.GET)
+	@RequestMapping(value = "/myReview", method = RequestMethod.GET)
 	public String myReview(Model model,@RequestParam(value="customer_id",defaultValue="1") String customer_id,@RequestParam(value="page",defaultValue="1") int page,
 			@RequestParam(value="perPageNum",defaultValue="10") int perPageNum)throws Exception{
 		BoardVo vo=new BoardVo();
@@ -94,82 +55,37 @@ public class ReviewController {
 		return "review/myReview";
 	}
 	
-	
-	
-	@RequestMapping(value = "/review/updateReview", method = RequestMethod.GET)
+	@RequestMapping(value = "/updateReview", method = RequestMethod.GET)
 	public String updateReview()throws Exception{
 		
 		return "review/updateReview";
 	}
 	
-	@RequestMapping(value = "/review/updateReview", method = RequestMethod.POST)
+	@RequestMapping(value = "/updateReview", method = RequestMethod.POST)
 	public String updateRevieww(ReviewDto dto)throws Exception{
 		
 		rService.update(dto);
 		
 		
-		return "redirect:/review/review";
+		return "redirect:/review/myReview";
 	}
 	
-	@RequestMapping(value = "/review/insertReview", method = RequestMethod.GET)
-	public String insertReview(ReviewDto dto)throws Exception{
+	@RequestMapping(value = "/insertReview", method = RequestMethod.GET)
+	public String insertReview(Integer musical_id, ReviewDto dto, Model model)throws Exception{
 		
-		
-		
-		System.out.println(dto);
 		rService.insert(dto);
-		return "redirect:/review/review";
+		System.out.println(dto);
+		model.addAttribute("musical_id", musical_id);
+		return "redirect:/tab/review";
 	}
 	
-	@RequestMapping(value = "/review/deleteReview", method = RequestMethod.GET)
-	public String deleteReview(int review_id)throws Exception{
-		
-		
+	@RequestMapping(value = "/deleteReview", method = RequestMethod.GET)
+	public String deleteReview(Integer musical_id, int review_id, Model model)throws Exception{
 		
 		rService.delete(review_id);
-		return "redirect:/review/review";
+		model.addAttribute("musical_id", musical_id);
+		return "redirect:/tab/review";
 	}
-	
-	///////////////////////////////////////////////////////////
-
-	@RequestMapping(value = "/character/characterList", method = RequestMethod.GET)
-	public String selectAll(Model model)throws Exception{
-		ArrayList<ActorCharacterDto>dto=ACService.selectAll();
-		
-		model.addAttribute("List",dto);
-		System.out.println(dto);
-		
-		return "character/characterList";
-	}
-	@RequestMapping(value = "/character/readCharacter", method = RequestMethod.GET)
-	public String readCharacter(Model model,Integer actor_id)throws Exception{
-		
-		ActorDto dto=actorservice.select(actor_id);
-		
-		model.addAttribute("actor",dto);
-		System.out.println(dto);
-		
-		return "character/readCharacter";
-	}
-	@RequestMapping(value = "/character/updateActor", method = RequestMethod.GET)
-	public String updateActor(Model model,ActorDto dto)throws Exception{
-		
-		
-		
-		actorservice.update(dto);
-		System.out.println(dto);
-		
-		return "redirect:/character/readCharacter?actor_id="+dto.getActor_id();
-	}
-	@RequestMapping(value = "/character/deleteActor", method = RequestMethod.GET)
-	public String deleteActor(int actor_id)throws Exception{
-		actorservice.delete(actor_id);
-		
-		
-		return "redirect:/character/characterList";
-	}
-	/////////////////////////////////////////////////////////////////
-
 	
 
 }

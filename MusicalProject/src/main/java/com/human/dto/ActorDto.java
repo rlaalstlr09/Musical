@@ -12,14 +12,14 @@ public class ActorDto {
 	private Date birthday;
 	private double height;
 	private double weight;
-	private String actor_url;
+	private String actor_img;
 	
 	
-	public String getActor_url() {
-		return actor_url;
+	public String getactor_img() {
+		return actor_img;
 	}
-	public void setActor_url(String actor_url) {
-		this.actor_url = actor_url;
+	public void setactor_img(String actor_img) {
+		this.actor_img = actor_img;
 	}
 	public int getActor_id() {
 		return actor_id;
@@ -57,16 +57,16 @@ public class ActorDto {
 	@Override
 	public String toString() {
 		return "ActorDto [actor_id=" + actor_id + ", actor_name=" + actor_name + ", birthday=" + birthday + ", height="
-				+ height + ", weight=" + weight + ", actor_url=" + actor_url + "]";
+				+ height + ", weight=" + weight + ", actor_img=" + actor_img + "]";
 	}
-	public ActorDto(int actor_id, String actor_name, Date birthday, double height, double weight, String actor_url) {
+	public ActorDto(int actor_id, String actor_name, Date birthday, double height, double weight, String actor_img) {
 		super();
 		this.actor_id = actor_id;
 		this.actor_name = actor_name;
 		this.birthday = birthday;
 		this.height = height;
 		this.weight = weight;
-		this.actor_url = actor_url;
+		this.actor_img = actor_img;
 	}
 	public ActorDto() {
 		

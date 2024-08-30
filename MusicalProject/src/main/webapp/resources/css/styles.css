@@ -3,6 +3,29 @@ body {
     font-family: Arial, sans-serif;
 }
 
+#container{
+			padding: 0 20%;
+		}
+.musical-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2열 */
+    gap: 16px; /* 항목 간의 간격 */
+}
+.musical-item {
+    border: 1px solid #ccc;
+    padding: 16px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.musical-item img {
+    width: 100%;
+    height: auto;
+}
+.pagination{
+	text-align : center;
+}
+.hidden{
+	display:none;
+}
 
 .filter-button {
     display: block;

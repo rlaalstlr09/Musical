@@ -3,7 +3,7 @@ package com.human.dto;
 public class ActorCharacterDto {
 	private String character_name;
 	private String actor_name;
-	private String actor_url;
+	private String actor_img;
 	private Integer actor_id;
 	
 	public Integer getActor_id() {
@@ -24,24 +24,24 @@ public class ActorCharacterDto {
 	public void setActor_name(String actor_name) {
 		this.actor_name = actor_name;
 	}
-	public String getActor_url() {
-		return actor_url;
+	public String getactor_img() {
+		return actor_img;
 	}
-	public void setActor_url(String actor_url) {
-		this.actor_url = actor_url;
+	public void setactor_img(String actor_img) {
+		this.actor_img = actor_img;
 	}
 	
-	public ActorCharacterDto(String character_name, String actor_name, String actor_url,Integer actor_id) {
+	public ActorCharacterDto(String character_name, String actor_name, String actor_img,Integer actor_id) {
 		super();
 		this.character_name = character_name;
 		this.actor_name = actor_name;
-		this.actor_url = actor_url;
+		this.actor_img = actor_img;
 		this.actor_id= actor_id;
 	}
 	@Override
 	public String toString() {
-		return "ActorCharacterDto [character_name=" + character_name + ", actor_name=" + actor_name + ", actor_url="
-				+ actor_url + ", actor_id=" + actor_id + "]";
+		return "ActorCharacterDto [character_name=" + character_name + ", actor_name=" + actor_name + ", actor_img="
+				+ actor_img + ", actor_id=" + actor_id + "]";
 	}
 	public ActorCharacterDto() {
 		

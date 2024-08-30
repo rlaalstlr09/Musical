@@ -27,13 +27,13 @@ display:none;
         width: 30px;
         height: 30px;
         margin-right: 5px;
-        background: url('../resources/img/star.png') no-repeat;
+        background: url('/ex/resources/img/star.png') no-repeat;
         background-size: cover;
         cursor: pointer;
     }
 
     .star_rating .star.on {
-        background: url('../resources/img/full_star.png') no-repeat;
+        background: url('/ex/resources/img/full_star.png') no-repeat;
         background-size: cover;
     }
 
@@ -82,19 +82,90 @@ display:none;
 }
 .sort-options{
 margin-left:200px;}
+
+
+#tab-content {
+    /* 탭 부분이 고정된 위치에 있거나 페이지 상단에 있을 때 */
+    position: relative; /* 또는 fixed */
+    top: 0;
+    width: 100%;
+    /* 기타 필요한 스타일 */
+}
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$(document).ready(function() {
+		$(document).on('click', '.pagination a', function(e) {
+	        e.preventDefault(); // 기본 링크 동작 방지
+
+	        var page = $(this).data('page'); // 클릭한 페이지 번호
+	        loadPage(page);
+	    });
+		
+		
+		function loadPage(page) {
+	        $.ajax({
+	            url: '/ex/tab/review', // 페이지 로드 요청 URL
+	            type: 'GET',
+	            data: {
+	                page: page, // 현재 페이지 번호
+	                sort: $('#sort').val(), // 정렬 기준
+	                musical_id: $('#musical_id').val() // 음악 ID
+	            },
+	            success: function(response) {
+	                $('#tab-content').html(response); // 받은 데이터를 콘텐츠에 업데이트
+
+	                $('html, body').animate({
+	                    scrollTop: $('#tab-content').offset().top
+	                }, 5); // 500ms 동안 스크롤 이동
+	            },
+	            error: function(xhr, status, error) {
+	                console.error('AJAX 요청 실패:', status, error);
+	            }
+	        });
+	    }
+		
+		
 		$('#sort').change(function(){
 			var sortBy=$(this).val();
 			$.ajax({
 				
-				url:'/10CustomerHobby/review/review',
+				url:'/ex/tab/review',
 				type:'GET',
-				data:{sort:sortBy},
+				data:{
+					sort:sortBy,
+					musical_id : '${musical_id}'	
+				},
 				success:function(response){
-					$('body').html(response);
+					$('#tab-content').html(response);
+				},
+				error: function(xhr, status, error) {
+	                console.error('AJAX 요청 실패:', status, error);
+			
+				}
+			});
+		});
+		
+		
+		$('#insertReview').click(function(e){
+			e.preventDefault();
+			
+			
+			
+			$.ajax({
+				
+				url:'/ex/review/insertReview',
+				type:'GET',
+				data:{
+					content: $('#content').val(), 
+					musical_id : $('#musical_id').val(),
+					customer_id:$('#customer_id').val(),
+					rating:$('#rating').val()
+					
+				},
+				success:function(response){
+					$('#tab-content').html(response);
+					 $("#reviewForm").toggle();
 				},
 				error: function(xhr, status, error) {
 	                console.error('AJAX 요청 실패:', status, error);
@@ -129,14 +200,14 @@ margin-left:200px;}
 	            var value = $(this).data('value');
 	            $(this).siblings().removeClass('on');
 	            $(this).addClass('on').prevAll('.star').addClass('on');
-	            $('#ratingValue').val(value);
+	            $('#rating').val(value);
 	        });
 		
 		 	
-		 $('form').on('submit', function(e) {
-			    var ratingValue = $('#ratingValue').val();
+		 $('#insertReview').on('click', function(e) {
+			    var ratingValue = $('#rating').val();
 			    if (ratingValue === "0") {
-			        $('#ratingValue').val('1'); // 별점이 설정되지 않은 경우 기본값을 1로 설정
+			        $('#rating').val('1'); // 별점이 설정되지 않은 경우 기본값을 1로 설정
 			    }
 			});
 	});
@@ -207,60 +278,52 @@ margin-left:200px;}
 		</c:forEach>
 	</c:if>
 	<div id="reviewForm">
-		<form action="insertReview" method="get">
-			 <div class="star_rating">
-                <span class="star" data-value="1"></span>
-                <span class="star" data-value="2"></span>
-                <span class="star" data-value="3"></span>
-                <span class="star" data-value="4"></span>
-                <span class="star" data-value="5"></span>
-            </div>
-			
-            <input type="hidden" id="ratingValue" name="rating" value="0">
-			<input type="hidden" name="customer_id" value="중근식"> 
-			
-			<input type="hidden"name="musical_id" value=1>
-			<textarea id="reviewContent" name="content" placeholder="댓글을 입력하세요"></textarea>
+	
+		 <div class="star_rating">
+               <span class="star" data-value="1"></span>
+               <span class="star" data-value="2"></span>
+               <span class="star" data-value="3"></span>
+               <span class="star" data-value="4"></span>
+               <span class="star" data-value="5"></span>
+           </div>
+		
+        <input type="hidden" id="rating"  value="0">
+		<input type="hidden" name="customer_id" id="customer_id" value="test"> 
+		
+		<input type="hidden"name="musical_id" id="musical_id" value='${musical_id }'>
+		<textarea id="content" name="content" placeholder="댓글을 입력하세요"></textarea>
 
 
-			<br> <input type="submit" value="리뷰 제출">
-		</form>
+		<br> <button id="insertReview">리뷰 제출</button>
+	
 	</div>
 	<div><input type="button" value="리뷰작성" id="openReview"></div>
 	
 	<div class="pagination">
-    	<c:if test="${boardVo.page !=1}">
-    		<a href='review${boardVo.makeSearch(1)}'>&lt;&lt;&lt;</a>
-    	</c:if>
-    	<!-- 앞전 page 모양을 클릭하면 pageMarker.startPage에 -1을 처리해준다.-->
-    	<c:if test="${boardVo.prev }">
-    		<a href='review${boardVo.makeSearch(boardVo.startPage-1)}'>&lt;&lt;</a>
-    	</c:if>
-    	<c:if test="${boardVo.page != 1}">
-    		<a href='review${boardVo.makeSearch(boardVo.page-1)}'>&lt;</a>
-    	</c:if>
-    	<c:forEach begin="${boardVo.startPage }" end="${ boardVo.endPage}" var="idx">
-    		<a href='review${boardVo.makeSearch(idx)}' 
-    		 <c:out value="${boardVo.page==idx?' class=active ':'' }"/> >
-    		 ${idx}</a>
-    	</c:forEach>
-    	
-    	
-    	
-    	<c:if test="${boardVo.page != boardVo.totalEndPage}">
-    		<a href='review${boardVo.makeSearch(boardVo.page+1)}'>&gt;</a>
-    	</c:if>
-    	<c:if test="${boardVo.next }">
-    		<a href='review${boardVo.makeSearch(boardVo.endPage+1)}'>&gt;&gt;</a>
-    		
-    	</c:if>
-    	
-    	
-    	<c:if test="${boardVo.page != boardVo.totalEndPage}">
-    		<a href='review${boardVo.makeSearch(boardVo.totalEndPage)}'>&gt;&gt;&gt;</a>
-    	</c:if>
-    	
-    </div>
+    <c:if test="${boardVo.page != 1}">
+        <a href="#" data-page="1">&lt;&lt;&lt;</a>
+    </c:if>
+    <c:if test="${boardVo.prev }">
+        <a href="#" data-page="${boardVo.startPage-1}">&lt;&lt;</a>
+    </c:if>
+    <c:if test="${boardVo.page != 1}">
+        <a href="#" data-page="${boardVo.page-1}">&lt;</a>
+    </c:if>
+    <c:forEach begin="${boardVo.startPage}" end="${boardVo.endPage}" var="idx">
+        <a href="#" data-page="${idx}" class="${boardVo.page == idx ? 'active' : ''}">
+            ${idx}
+        </a>
+    </c:forEach>
+    <c:if test="${boardVo.page != boardVo.totalEndPage}">
+        <a href="#" data-page="${boardVo.page+1}">&gt;</a>
+    </c:if>
+    <c:if test="${boardVo.next }">
+        <a href="#" data-page="${boardVo.endPage+1}">&gt;&gt;</a>
+    </c:if>
+    <c:if test="${boardVo.page != boardVo.totalEndPage}">
+        <a href="#" data-page="${boardVo.totalEndPage}">&gt;&gt;&gt;</a>
+    </c:if>
+</div>
 
 </div>
 </body>

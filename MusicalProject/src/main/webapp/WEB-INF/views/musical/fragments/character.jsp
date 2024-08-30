@@ -27,7 +27,7 @@ border:1px solid white;}
   display: flex;
   flex-direction: column; /* 자식 요소들을 세로로 배치 */
   align-items: center; /* 자식 요소들을 수평으로 가운데 정렬 */
-  min-height: 100vh; /* 전체 화면 높이 */
+  min-height: 100%; /* 전체 화면 높이 */
   text-align: center; /* 텍스트 중앙 정렬 */
 }
 
@@ -50,7 +50,7 @@ border:1px solid white;}
 		<div class="character_list">
 		
 			<div class="character_head">
-				<a href="readCharacter?actor_id=${acdto.actor_id }"><img alt="사진" src="${acdto.actor_url}" width="80" height="80"></a>
+				<a href="/ex/character/readCharacter?actor_id=${acdto.actor_id }"><img alt="사진" src="${acdto.actor_img}" width="80" height="80"></a>
 			</div>	
 			<div class="character_info">
 				<strong>${acdto.character_name}</strong><br	>${acdto.actor_name}
