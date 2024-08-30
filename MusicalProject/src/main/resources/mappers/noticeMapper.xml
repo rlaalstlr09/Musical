@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.human.dao.INoticeDao">
+
+	<sql id='nOpenTimeNull'>
+		<if test="nOpenTime==null">
+			(nGroupKind, nId, nTitle,
+			nContent
+			) VALUES
+			(#{nGroupKind}, nId.nextval,#{nTitle},#{nContent, typeHandler=com.human.Handler.ClobTypeHandler})
+		</if>
+	</sql>
+
+	<sql id='nOpenTime'>
+		<if test="nOpenTime!=null">
+			(nGroupKind, nId, nTitle,
+			nContent,nOpenTime
+			) VALUES
+			(#{nGroupKind}, nId.nextval,#{nTitle},#{nContent, typeHandler=com.human.Handler.ClobTypeHandler},#{nOpenTime})
+		</if>
+	</sql>
+
+	<insert id="create">
+<![CDATA[INSERT INTO notice_board ]]>
+		<include refid="nOpenTimeNull" />
+		<include refid="nOpenTime" />
+	</insert>
+
+
+
+	<sql id='search'>
+		<if test="keyword!=null">
+		 <if test="searchType=='제목내용'">
+			and (
+			nContent LIKE '%'
+			|| #{keyword} || '%'
+			or nTitle LIKE '%' || #{keyword} || '%'
+			)
+		 </if>
+		 <if test="searchType=='제목'">
+			and (
+			nTitle LIKE '%' || #{keyword} || '%'
+			)
+		 </if>
+		 <if test="searchType=='내용'">
+			and (
+			nContent LIKE '%'
+			|| #{keyword} || '%'
+			)
+		 </if>
+		</if>
+	</sql>
+	
+	<sql id='category'>
+		<if test="nGroupKind!=null">
+			<if test="nGroupKind!='전체'">
+				<if test="nGroupKind!=''">
+					and nGroupKind = #{nGroupKind}
+				</if>
+			</if>
+		</if>
+	</sql>
+
+	<select id="listSearch" resultType="com.human.dto.NoticeDto">
+	
+	<![CDATA[SELECT *
+FROM notice_board
+WHERE 1=1]]>
+		<include refid="category" />
+		<include refid="search" />
+<![CDATA[ORDER BY nId DESC
+OFFSET (#{page} - 1) * #{perPageNum} ROWS
+FETCH NEXT #{perPageNum} ROWS ONLY]]>
+	</select>
+	<select id="listSearchCount" resultType="int">
+<![CDATA[ select count(nId) from notice_board where 1=1 ]]>
+		<include refid="search" />
+		<include refid="category" />
+<![CDATA[ and nId > 0 ]]>
+	</select>
+
+	<select id="read" resultType="NoticeDto">
+		select * from notice_board where
+		nId =
+		#{nId}
+	</select>
+
+
+	<sql id='UpnOpenTimeNull'>
+		<if test="nOpenTime==null">
+			,nOpenTime=NULL
+		</if>
+	</sql>
+
+	<sql id='UpnOpenTime'>
+		<if test="nOpenTime!=null">
+			,nOpenTime=#{nOpenTime}
+		</if>
+	</sql>
+
+	<update id="update"> 
+	<![CDATA[update notice_board set
+		nGroupKind=#{nGroupKind},nTitle
+		=#{nTitle},nContent=#{nContent},nUpdateTime=SYSDATE]]>
+		<include refid="UpnOpenTime" />
+		<include refid="UpnOpenTimeNull" />
+		<![CDATA[where nId = #{nId}]]>
+	</update>
+
+
+	<delete id="delete"> delete from notice_board where nId = #{nId} </delete>
+
+	
+
+	<update id="nHitUpdate">update notice_board set nHit=nHit+1 where nId=#{nId}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+

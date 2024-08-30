@@ -1,0 +1,196 @@
+body,input,select,textarea,pre {
+    font-family: "Notosans",-apple-system,BlinkMacSystemFont,Apple SD Gothic Neo,"Malgun Gothic",Arial,sans-serif;
+    font-size: 14px;
+    letter-spacing: -0.03em;
+    color: #242428
+}
+.next{
+	right: 0;
+}
+
+.prev{
+	left: 300px;
+}
+
+.prev ,.next{
+    cursor: pointer;
+    position: absolute;
+    top: 35%;
+    width: auto;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 3px;
+    }
+
+a {
+	
+  text-decoration: none;
+  color: inherit;
+}
+
+.product_grid_unit {
+	flex: 0 0 50%; /* 한 행에 2개 */
+            box-sizing: border-box;
+            padding: 10px;
+            height: 50%; /* 한 페이지에 2행으로 나누기 위해 높이 설정 */
+	padding-left: 40px
+}
+
+.common_wrap {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    min-width: 1180px;
+    min-height: 100%;
+}
+
+.common_container {
+    flex: 1;
+    padding-bottom: 160px
+}
+
+.common_container .inner {
+    padding-top: 50px
+}
+
+.common_section,.common_inner {
+    margin: 0 auto;
+    width: 1120px
+}
+
+/* 메인 콘서트 홀 섹션 */
+.main_concert_hall {
+    overflow: hidden;
+    position: relative;
+    height: 332px;
+    border-radius: 16px;
+    background: #f5f6f9;
+    margin-top: 30px;
+}
+
+
+
+.main_concert_hall .concert_hall_text {
+	position: absolute;
+    top: 30px;
+    left: 30px
+}
+
+.main_concert_hall .concert_hall_link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 315px;
+    height: 100%
+}
+
+.main_concert_hall .product_grid {
+    position: absolute;
+    left: 345px
+}
+
+.main_concert_hall .product_grid_list {
+    margin-top: auto;
+}
+
+.main_concert_hall .product_grid_item {
+    margin: 24px 30px 0 0;
+    width: 315px;
+    height: 142px
+}
+
+.main_concert_hall .product_grid_unit .product_link {
+    display: flex;
+    align-items: center
+}
+
+.main_concert_hall .product_grid_unit .product_imgbox {
+    flex: none;
+    margin-right: 15px;
+    width: 84px;
+    height: 104px
+}
+
+.main_concert_hall .product_grid_unit .product_info {
+    margin-top: 0
+}
+
+.main_concert_hall .product_grid_unit .product_title {
+    display: block;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis
+}
+
+.product_grid_list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -50px -28px 0 0
+}
+
+
+
+.product_grid_item {
+	
+    margin: 50px 28px 0 0;
+    width: 259px
+}
+
+.product_grid_unit .product_link {
+    display: block
+}
+
+.product_grid_unit .product_link:hover .product_img,.product_grid_unit .product_link:focus .product_img {
+    transform: scale(1.1)
+}
+
+.product_grid_unit .product_imgbox {
+    position: relative;
+    overflow: hidden;
+    width: 259px;
+    height: 320px;
+    border-radius: 10px;
+    z-index: 0
+}
+
+.product_grid_unit .product_imgbox::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #242428;
+    border-radius: 10px;
+    box-sizing: border-box;
+    opacity: .1;
+    z-index: 1;
+    content: ""
+}
+
+.product_grid_unit .product_imgbox .product_img {
+    width: 100%;
+    height: 100%;
+    transition: transform .2s cubic-bezier(0.165, 0.84, 0.44, 1)
+}
+
+.product_sideinfo {
+    margin-top: 6px;
+    padding-top: 6px;
+    font-size: 15px;
+    color: #666;
+    border-top: 1px solid #e5e5e5;
+}
+
+.product_period {
+    display: block;
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+    text-overflow: ellipsis;
+}
+

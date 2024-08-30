@@ -9,6 +9,8 @@ public class BoardVo {
 	
 	private int page=1;				//현재 페이지
 	private int perPageNum=10;		//페이지당 데이터 개수
+	private String searchType;		//검색할 컬럼
+	private String keyword;			//검색 내용
 	
 	private int totalCount;			//전체 data갯수
 	private int totalStartPage=1;	//첫 page
@@ -19,9 +21,45 @@ public class BoardVo {
 	private boolean next;			//다음 페이지 목록 이동
 									//pageMaker에서 사용자에게 제공하는 한 화면에서 보여줄 페이지 개수
 	private int displayPageNum = 10;
+	
+	private String fGroupKind; //카테고리1
+	private String nGroupKind; //카테고리2
+	private String categoryType; //키워드검색용 카테고리
 
 	private String sort;  //분류
+	
+	
 
+	public String getSearchType() {
+		return searchType;
+	}
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	public String getfGroupKind() {
+		return fGroupKind;
+	}
+	public void setfGroupKind(String fGroupKind) {
+		this.fGroupKind = fGroupKind;
+	}
+	public String getnGroupKind() {
+		return nGroupKind;
+	}
+	public void setnGroupKind(String nGroupKind) {
+		this.nGroupKind = nGroupKind;
+	}
+	public String getCategoryType() {
+		return categoryType;
+	}
+	public void setCategoryType(String categoryType) {
+		this.categoryType = categoryType;
+	}
 	public int getTotalStartPage() {
 		return totalStartPage;
 	}
@@ -150,6 +188,20 @@ public class BoardVo {
 		UriComponents u=UriComponentsBuilder.newInstance()
 				.queryParam("page", page)
 				.queryParam("perPageNum", perPageNum)
+				.build();
+		return u.toUriString();		
+	}
+	
+	
+	
+	public String makeSearch1(int page) {
+		UriComponents u=UriComponentsBuilder.newInstance()
+				.queryParam("fGroupKind", fGroupKind)
+				.queryParam("nGroupKind", nGroupKind)
+				.queryParam("page", page)
+				.queryParam("perPageNum", perPageNum)
+				.queryParam("searchType", searchType)
+				.queryParam("keyword", keyword)
 				.build();
 		return u.toUriString();		
 	}
