@@ -8,6 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <select id="selectAll" resultType="com.human.dto.CharacterDto">
 select * from character where #{musical_id}=musical_id
 </select>
+
 <insert id="insertCharacter"><!-- 아래 insert문과 같이 써야 sequence값이 같아서 동작함 -->
 insert into character values(character_seq.nextval,#{musical_id},#{character_name})
 
@@ -18,6 +19,7 @@ insert into character values(character_seq.nextval,#{musical_id},#{character_nam
 insert into character values(character_seq.currval,#{actor_id})
 
 </insert>
+
 
 
 
