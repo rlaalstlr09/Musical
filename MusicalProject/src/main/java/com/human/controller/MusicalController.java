@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.human.dto.ActorCharacterDto;
 import com.human.dto.MusicalDto;
 import com.human.dto.MusicalFilterDto;
 import com.human.dto.MusicalScheduleDto;
 import com.human.dto.ReviewDto;
+import com.human.service.IActorCharacterService;
 import com.human.service.IMusicalService;
 import com.human.service.IReviewService;
 import com.human.service.ISeatService;
@@ -37,6 +39,8 @@ public class MusicalController {
 	private ISeatService seatService;
 	@Autowired
 	private IReviewService reviewService;
+	@Autowired
+	private IActorCharacterService actorCharacterService;
 	
 	//뮤지컬 리스트 페이지
 	@RequestMapping("/listAll")
@@ -98,6 +102,9 @@ public class MusicalController {
 		vo.setSort("rating");
 		
 		List<ReviewDto> reviews = reviewService.selectAll(musical_id, vo);
+		
+		//등장인물 별 배우이름 받아옴
+		List<ActorCharacterDto> actorCharacterDto = actorCharacterService.selectAll(musical_id);
 
 		//customer_id 세션에서 받아온걸로 바꾸기
 		Integer isLike = musicalService.selectMusicalLike(musical_id, "test");
@@ -114,6 +121,9 @@ public class MusicalController {
 		
 		//뮤지컬 상세정보에 표출할 평점 높은순 3개
 		model.addAttribute("reviews", reviews);
+
+		//뮤지컬 등장인물 별 배우 이름
+		model.addAttribute("actors", actorCharacterDto);
 
 		return "musical/detail";
 	}
