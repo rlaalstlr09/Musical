@@ -92,7 +92,6 @@ margin-left:200px;}
     /* 기타 필요한 스타일 */
 }
 </style>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$(document).ready(function() {
 		$(document).on('click', '.pagination a', function(e) {

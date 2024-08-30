@@ -39,19 +39,19 @@ div {
 	text-align: center; /* head 안의 텍스트 중앙 정렬 */
 }
 </style>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <script>
 		$(document).ready(function() {
 			// 버튼 클릭 시 모달에 JSP 콘텐츠를 로드
-			$('#openModalButton').click(function() {
+			$('#actor-img').off('click').on('click',function() {
+				let actorId = $(this).data('actor');
 				$.ajax({
-					url : '/ex/review/myReview', // 로드할 JSP 페이지의 URL
+					url : '/ex/character/readCharacter', // 로드할 JSP 페이지의 URL
 					type : 'GET',
+					data: {actor_id : actorId },
 					success : function(response) {
-						$('#modal-body').html(response); // 모달의 콘텐츠를 업데이트
-						$('#myModal').modal('show'); // 모달을 표시
+						$('#actor-modal-body').html(response); // 모달의 콘텐츠를 업데이트
+						$('#actor-modal').modal('show'); // 모달을 표시
 					},
 					error : function(xhr, status, error) {
 						console.error('AJAX 요청 실패:', status, error);
@@ -71,10 +71,10 @@ div {
 		<div class="character_container">
 			<c:forEach items="${List }" var="acdto">
 				<div class="character_list">
-
+	
 					<div class="character_head">
-						<button id="openModalButton" class="btn btn-primary"><img
-							alt="사진" src="${acdto.actor_img}" width="60" height="60"></button>
+						
+						<img alt="사진" id = "actor-img" data-toggle="modal" data-target="#actor-modal" src="${acdto.actor_img}" width="60" height="60" data-actor="${acdto.actor_id }">
 					</div>
 					<div class="character_info">
 						<strong>${acdto.character_name}</strong><br>${acdto.actor_name}
@@ -86,18 +86,18 @@ div {
 		</div>
 	</div>
 
-
-	<div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+	<div id="actor-modal" class="modal fade" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">모달 제목</h5>
+					<h5 class="modal-title">배우 정보</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body" id="modal-body">
+				<div class="modal-body" id="actor-modal-body">
 					<!-- 동적으로 로드될 콘텐츠가 여기에 들어갑니다 -->
 				</div>
 				<div class="modal-footer">
@@ -107,9 +107,6 @@ div {
 			</div>
 		</div>
 	</div>
-
-	
-
 	
 </body>
 </html>

@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
 	$(document).ready(function() {
 		
@@ -36,7 +36,6 @@ display:none;
 </head>
 <body>
 	<div class="all">
-	<h1>배우 정보</h1>
 		<div class="photo">
 		<img src=${actor.actor_img }>
 		</div>
