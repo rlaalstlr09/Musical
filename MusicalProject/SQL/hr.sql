@@ -128,6 +128,8 @@ CREATE TABLE reservation (
    total_cost number,
    reservation_cancel number default 0,
    reservation_time date default sysdate,
+   payment_method VARCHAR2(20) NULL, 
+   merchant_uid nvarchar2(50) NULL ,
     CONSTRAINT fk_reservation_mu_sch
         FOREIGN KEY (mu_sch_id)
         REFERENCES musical_schedule(mu_sch_id),
