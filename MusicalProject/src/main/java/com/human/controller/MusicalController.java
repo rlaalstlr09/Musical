@@ -18,7 +18,9 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.human.dto.MusicalDto;
 import com.human.dto.MusicalFilterDto;
 import com.human.dto.MusicalScheduleDto;
+import com.human.dto.ReviewDto;
 import com.human.service.IMusicalService;
+import com.human.service.IReviewService;
 import com.human.service.ISeatService;
 import com.human.vo.BoardVo;
 
@@ -33,7 +35,8 @@ public class MusicalController {
 	private IMusicalService musicalService;
 	@Autowired
 	private ISeatService seatService;
-
+	@Autowired
+	private IReviewService reviewService;
 	
 	//뮤지컬 리스트 페이지
 	@RequestMapping("/listAll")
@@ -64,15 +67,11 @@ public class MusicalController {
 		} else {
 			filter.setMaxRunningtime(500);
 		}
-		System.out.println(filter);
+		
 
 		// 데이터 가져오기
 		List<MusicalDto> musicalList = musicalService.selectAllMusical(boardVo, keyword, sort, filter);
 		
-		System.out.println(totalCount);
-		System.out.println(boardVo);
-		System.out.println(musicalList);
-
 		// 모델에 데이터와 페이지, 필터링 조건 추가
 		model.addAttribute("musicals", musicalList);
 		model.addAttribute("boardVo", boardVo);
@@ -90,8 +89,15 @@ public class MusicalController {
 				seatService.selectSeatInfo(musical_id));
 
 		List<MusicalScheduleDto> schedules = musicalService.selectMusicalSchedule(musical_id);
-
-		System.out.println(schedules);
+		
+		BoardVo vo = new BoardVo();
+		
+		//최상위 리뷰 3개 표출을 위한 vo 설정
+		vo.setPage(0);
+		vo.setPerPageNum(3);
+		vo.setSort("rating");
+		
+		List<ReviewDto> reviews = reviewService.selectAll(musical_id, vo);
 
 		//customer_id 세션에서 받아온걸로 바꾸기
 		Integer isLike = musicalService.selectMusicalLike(musical_id, "test");
@@ -105,6 +111,9 @@ public class MusicalController {
 
 		// 해당 사용자가 해당 뮤지컬에 좋아요를 눌렀는지 여부
 		model.addAttribute("isLike", isLike);
+		
+		//뮤지컬 상세정보에 표출할 평점 높은순 3개
+		model.addAttribute("reviews", reviews);
 
 		return "musical/detail";
 	}

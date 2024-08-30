@@ -73,8 +73,6 @@ public class CharacterController {
 	@RequestMapping(value = "/deleteActor", method = RequestMethod.GET)
 	public String deleteActor(int actor_id)throws Exception{
 		actorservice.delete(actor_id);
-		
-		
 		return "redirect:/tab/character";
 	}
 	/////////////////////////////////////////////////////////////////

@@ -219,7 +219,13 @@ $(document).ready(
 					src="/ex/musical/venue?venue_name=${musical.venue_name}&hall_name=${musical.hall_name}"
 					width="100%" height="500px" frameborder="0"></iframe>
 			</div>
-			<div id="review">대충 만점 리뷰 3개정도 넣기</div>
+			<div id="review">
+				<c:forEach items = '${reviews}' var = 'review'>
+					<p id="customerId">${review.customer_id } (${review.rating } 점)</p>
+					<p>${review.content}</p>
+				</c:forEach>
+			
+			</div>
 
 			<div id="schedule">
 
