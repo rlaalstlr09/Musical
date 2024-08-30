@@ -10,7 +10,29 @@
 <head>
 <meta charset="UTF-8">
 <title>Musical Details</title>
-
+<style>
+ #actor {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .actor-row {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+        .actor-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            margin: 0.5rem;
+            width: 150px;
+        }
+ 
+</style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -122,7 +144,7 @@ $(document).ready(function() {
             }
         });
     });
- 	
+    
 });
 </script>
 </head>
@@ -264,7 +286,23 @@ $(document).ready(function() {
 					</c:forEach>
 
 				</table>
-				<div id="actor">등장인물 별 배우 목록</div>
+				<div id="actor">
+					<c:set var="previousCharacterName" value="${actors[0].character_name}" />
+					<c:forEach var = "actor" items = "${actors }">
+						<c:if test = "${previousCharacterName ne actor.character_name }">
+							
+							<div class = "actor-row"></div>
+						</c:if>
+						<div class = "actor-info" data-character="${actor.character_name}">
+							<p><img src = "/ex/resources/${actor.actor_img}"></p>
+							<p>${actor.character_name}</p>
+							<p>${actor.actor_name}</p>
+
+						</div>
+						 <c:set var="previousCharacterName" value="${actor.character_name}" />
+					</c:forEach>
+					
+				</div>
 			</div>
 		</div>
 	</div>
