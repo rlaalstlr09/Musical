@@ -147,9 +147,19 @@ margin-left:200px;}
 		});
 		
 		
+		
+			    
+		
+		
+		
+		
 		$('#insertReview').click(function(e){
 			e.preventDefault();
-			
+			var ratingValue = $('#rating').val();
+		    if (ratingValue === "0") {
+		        alert('별점을 설정해주세요');
+		        return
+		    }
 			
 			
 			$.ajax({
@@ -165,13 +175,14 @@ margin-left:200px;}
 				},
 				success:function(response){
 					$('#tab-content').html(response);
-					 $("#reviewForm").toggle();
+					 $("#reviewForm").hide();
 				},
 				error: function(xhr, status, error) {
 	                console.error('AJAX 요청 실패:', status, error);
 			
 				}
 			});
+			
 		});
 		
 			
@@ -204,12 +215,7 @@ margin-left:200px;}
 	        });
 		
 		 	
-		 $('#insertReview').on('click', function(e) {
-			    var ratingValue = $('#rating').val();
-			    if (ratingValue === "0") {
-			        $('#rating').val('1'); // 별점이 설정되지 않은 경우 기본값을 1로 설정
-			    }
-			});
+		
 	});
 </script>
 </head>
