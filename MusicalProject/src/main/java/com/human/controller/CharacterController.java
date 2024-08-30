@@ -75,6 +75,13 @@ public class CharacterController {
 		actorservice.delete(actor_id);
 		return "redirect:/tab/character";
 	}
+	
+	@RequestMapping(value = "/insertActor", method = RequestMethod.GET)//character테이블과 actor_character테이블에 데이터를 동시에 추가 actor_id는 null이어도 됨
+	public void insertActorCharacter(CharacterDto dto)throws Exception {
+		service.insert(dto);
+		service.insertActorCharacter();
+	}
+	
 	/////////////////////////////////////////////////////////////////
 
 	
