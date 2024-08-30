@@ -17,8 +17,7 @@
 <script src="/ex/resources/script/musicalDetail.js"></script>
 <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=f19069c7a5e6ecba64f00927cb2c6594&libraries=services"></script>
 <script>
-$(document).ready(
-		function() {
+$(document).ready(function() {
 	//탭 누르면 실행되는 함수 ajax로 값 받아서 탭 내용 바꿈
 	function loadTabContent(tabId) {
 		$.ajax({
@@ -92,38 +91,38 @@ $(document).ready(
 	loadDefaultTabContent();
 	
 	// 공연장 정보 모달
-	$(document).ready(function() {
-	    $('#openModalLink').click(function(event) {
-	        event.preventDefault(); // 링크 클릭 시 기본 동작 방지
-	        
-	        $.ajax({
-	            url: '/ex/musical/venue', // JSP 파일의 경로
-	            method: 'GET', // GET 메서드 사용
-	            data : {
-	            	venue_name : '${musical.venue_name}',
-	            	hall_name : '${musical.hall_name}'
-	            },
-	            success: function(data) {
-	            	
-	                // AJAX 요청이 성공적으로 완료되면 모달의 내용 업데이트
-	                $('#modal-body-content').html(data);
-	             
-	                $('#myModal').on('shown.bs.modal', function () {
-                        setTimeout(function() {
-                            relayout(); // 지도 크기 변경 후 relayout 호출
-                        }, 0); 
-	                });
-	                // 모달 표시
-	                $('#myModal').modal('show');
-	            },
-	            error: function(jqXHR, textStatus, errorThrown) {
-	                console.error('Error fetching content:', textStatus, errorThrown);
-	                $('#modal-body-content').html('<p>An error occurred while loading the content.</p>');
-	                $('#myModal').modal('show');
-	            }
-	        });
-	    });
-	});
+	
+    $('#openModalLink').off('click').on('click',function(event) {
+        event.preventDefault(); // 링크 클릭 시 기본 동작 방지
+        
+        $.ajax({
+            url: '/ex/musical/venue', // JSP 파일의 경로
+            method: 'GET', // GET 메서드 사용
+            data : {
+            	venue_name : '${musical.venue_name}',
+            	hall_name : '${musical.hall_name}'
+            },
+            success: function(data) {
+            	
+                // AJAX 요청이 성공적으로 완료되면 모달의 내용 업데이트
+                $('#venue-modal-body').html(data);
+             
+                $('#venue-modal').on('shown.bs.modal', function () {
+	                setTimeout(function() {
+	                    relayout(); // 지도 크기 변경 후 relayout 호출
+	                }, 100); 
+                });
+                // 모달 표시
+                $('#venue-modal').modal('show');
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error('Error fetching content:', textStatus, errorThrown);
+                $('#modal-body-content').html('<p>An error occurred while loading the content.</p>');
+                $('#venue-modal').modal('show');
+            }
+        });
+    });
+ 	
 });
 </script>
 </head>
@@ -137,21 +136,21 @@ $(document).ready(
 			<br> 공연 장소 :
 			<!-- Link to open the modal -->
 			<a href="#" class="open-venue-modal" id="openModalLink"
-				data-toggle="modal" data-target="#myModal">${musical.venue_name }&nbsp;${musical.hall_name}</a>
+				data-toggle="modal" data-target="#venue-modal">${musical.venue_name }&nbsp;${musical.hall_name}</a>
 
-			<!-- The Modal -->
-			<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+			<!-- Modal -->
+			<div class="modal fade" id="venue-modal" tabindex="-1" role="dialog"
 				aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div class="modal-dialog modal-lg" role="document">
 					<div class="modal-content modal-lg">
 						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">Venue Details</h5>
+							<h5 class="modal-title" id="exampleModalLabel">공연장 정보</h5>
 							<button type="button" class="close" data-dismiss="modal"
 								aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
-						<div class="modal-body" id="modal-body-content">
+						<div class="modal-body" id="venue-modal-body">
 							<!-- Content will be loaded here -->
 						</div>
 						<div class="modal-footer">
@@ -161,7 +160,8 @@ $(document).ready(
 					</div>
 				</div>
 			</div>
-
+			
+			
 			<br> 공연 기간 :
 			<fmt:formatDate value="${musical.musical_period_start}"
 				pattern="yyyy-MM-dd" />
@@ -170,10 +170,21 @@ $(document).ready(
 				pattern="yyyy-MM-dd" />
 			<br> 상영 시간 : ${musical.musical_runningtime}<br> 연령 제한 :
 			${musical.musical_agelimit}<br>
-			<c:forEach var="seat" items="${musical.seatDtos}">
-		      좌석 등급 : ${seat.seat_grade}
-		      가격 : ${seat.seat_price}<br>
-			</c:forEach>
+			<table>
+				<tr>
+					<th>좌석 등급</th>
+					<th>가격</th>
+				</tr>
+				
+				<c:forEach var="seat" items="${musical.seatDtos}">
+				      <tr>
+				      	<td>${seat.seat_grade}</td>
+				      	<td>${seat.seat_price} 원</td>
+				      </tr>
+				</c:forEach>
+				
+			</table>
+			
 		</div>
 		<div id="like">
 			<a href="#" id="like-button" class="${isLike == 1 ? 'liked' : ''}"
@@ -219,7 +230,13 @@ $(document).ready(
 					src="/ex/musical/venue?venue_name=${musical.venue_name}&hall_name=${musical.hall_name}"
 					width="100%" height="500px" frameborder="0"></iframe>
 			</div>
-			<div id="review">대충 만점 리뷰 3개정도 넣기</div>
+			<div id="review">
+				<c:forEach items = '${reviews}' var = 'review'>
+					<p id="customerId">${review.customer_id } (${review.rating } 점)</p>
+					<p>${review.content}</p>
+				</c:forEach>
+			
+			</div>
 
 			<div id="schedule">
 

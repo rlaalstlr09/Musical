@@ -17,8 +17,7 @@
 <body>
 <div id="map-detail-info"></div>
 <div id="map"></div>
-
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f19069c7a5e6ecba64f00927cb2c6594&libraries=services"></script>
+<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=f19069c7a5e6ecba64f00927cb2c6594&libraries=services"></script>
 <script>
 // 마커를 클릭하면 장소명을 표출할 인포윈도우입니다
 

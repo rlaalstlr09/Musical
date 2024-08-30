@@ -128,6 +128,8 @@ CREATE TABLE reservation (
    total_cost number,
    reservation_cancel number default 0,
    reservation_time date default sysdate,
+   payment_method VARCHAR2(20) NULL, 
+   merchant_uid nvarchar2(50) NULL ,
     CONSTRAINT fk_reservation_mu_sch
         FOREIGN KEY (mu_sch_id)
         REFERENCES musical_schedule(mu_sch_id),
@@ -137,6 +139,7 @@ CREATE TABLE reservation (
     CONSTRAINT fk_reservation_customer
         FOREIGN KEY (customer_id)
         REFERENCES customer(customer_id)
+        ON DELETE CASCADE
 );
 
 create table review(
@@ -148,10 +151,12 @@ create table review(
     review_date date,
     CONSTRAINT fk_review_customer
         FOREIGN KEY (customer_id)
-        REFERENCES customer(customer_id),
+        REFERENCES customer(customer_id)
+        ON DELETE CASCADE,
     CONSTRAINT fk_review_musical
         FOREIGN KEY (musical_id)
         REFERENCES musical(musical_id)
+        ON DELETE CASCADE
 );
 
 create sequence qa_count;
@@ -166,6 +171,7 @@ create table qa(
      CONSTRAINT fk_Q&A_customer
         FOREIGN KEY (customer_id)
         REFERENCES customer(customer_id)
+        ON DELETE CASCADE
 );
 
 create table actor(
@@ -182,15 +188,26 @@ create table character(
 character_id number primary key,
 musical_id number,
 character_name varchar2(50),
-actor_id number,
+
 CONSTRAINT fk_musical
     FOREIGN KEY (musical_id)
-    REFERENCES musical(musical_id),
+    REFERENCES musical(musical_id)
+
+);
+CREATE SEQUENCE character_seq START WITH 1 INCREMENT BY 1;
+
+create table actor_character(
+character_id number,
+actor_id number,
 CONSTRAINT fk_actor
     FOREIGN KEY (actor_id)
     REFERENCES actor(actor_id)
+    ON DELETE CASCADE,
+CONSTRAINT fk_character
+    FOREIGN KEY (character_id)
+    REFERENCES character(character_id)
+    ON DELETE CASCADE
 );
-CREATE SEQUENCE character_seq START WITH 1 INCREMENT BY 1;
 
 create table musical_like(
     musical_id number,
@@ -201,6 +218,7 @@ create table musical_like(
     CONSTRAINT fk_customer_like
         FOREIGN KEY (customer_id)
         REFERENCES customer(customer_id)
+        ON DELETE CASCADE
 );
 
 create sequence reservation_seq
@@ -283,9 +301,13 @@ crud_date date DEFAULT sysdate
 CREATE SEQUENCE admin_seq START WITH 1 INCREMENT BY 1;
 
 
-drop sequence review_seq;
+
 CREATE SEQUENCE review_seq
   START WITH 1
   INCREMENT BY 1
   MINVALUE 1;
 
+
+
+
+--ALTER TABLE character DROP CONSTRAINT fk_actor;
