@@ -8,9 +8,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <select id="selectAll" resultType="com.human.dto.CharacterDto">
 select * from character where #{musical_id}=musical_id
 </select>
-	
-
-
 
 </mapper>
 
