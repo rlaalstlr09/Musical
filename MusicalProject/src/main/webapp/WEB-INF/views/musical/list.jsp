@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
- <link rel="stylesheet" href="../resources/css/styles.css">
+ <link rel="stylesheet" href="/ex/resources/css/styles.css">
 	<style>
 		
         
