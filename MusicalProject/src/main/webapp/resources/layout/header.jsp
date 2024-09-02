@@ -39,8 +39,8 @@
           <li class="has-submenu">
             <a href="#">고객센터</a>
             <ul class="submenu">
-              <li><a href="#">공지사항</a></li>
-              <li><a href="#">QnA</a></li>
+              <li><a href="help/notice">공지사항</a></li>
+              <li><a href="help/faq">F&Q</a></li>
               <li><a href="#">1:1</a></li>
             </ul>
           </li>
@@ -84,8 +84,8 @@
           <li>
             <a href="#">고객센터</a>
             <ul class="submenul">
-              <li><a href="#">공지사항</a></li>
-              <li><a href="#">F&Q</a></li>
+              <li><a href="help/notice">공지사항</a></li>
+              <li><a href="help/faq">F&Q</a></li>
               <li><a href="#">1:1문의사항</a></li>
             </ul>
           </li>
