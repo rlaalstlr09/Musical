@@ -112,7 +112,7 @@ public class CustomerController {
 				result = true;
 			}
 		}
-		return new ResponseEntity<>(result, HttpStatus.OK);
+		return new ResponseEntity<Boolean>(result, HttpStatus.OK);
 	}
 	
 }
