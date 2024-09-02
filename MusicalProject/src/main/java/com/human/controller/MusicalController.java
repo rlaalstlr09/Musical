@@ -55,6 +55,11 @@ public class MusicalController {
 		BoardVo boardVo = new BoardVo();
 		boardVo.setPage(page);
 		boardVo.setPerPageNum(perPageNum);
+		
+		//카테고리별 뮤지컬 개수 (인기순, 오픈순 등등) 고정값으로 넣어서 페이지 전환해도 값 그대로
+		BoardVo categoryVo = new BoardVo();
+		boardVo.setPage(0);
+		boardVo.setPerPageNum(10);
 
 		// 총 데이터 개수와 페이징 데이터 계산
 		int totalCount = musicalService.getTotalCount(keyword, filter);
@@ -78,8 +83,16 @@ public class MusicalController {
 		// 데이터 가져오기
 		List<MusicalDto> musicalList = musicalService.selectAllMusical(boardVo, keyword, sort, filter);
 		
+		//인기순 10개
+		List<MusicalDto> likeMusical = musicalService.selectAllMusical(categoryVo, "", "like", new MusicalFilterDto());
+		
+		//최근 오픈 10개
+		List<MusicalDto> dateMusical = musicalService.selectAllMusical(categoryVo, "", "period", new MusicalFilterDto());
+		
 		// 모델에 데이터와 페이지, 필터링 조건 추가
 		model.addAttribute("musicals", musicalList);
+		model.addAttribute("likeMusicals", likeMusical);
+		model.addAttribute("dateMusicals", dateMusical);
 		model.addAttribute("boardVo", boardVo);
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("filter", filter);

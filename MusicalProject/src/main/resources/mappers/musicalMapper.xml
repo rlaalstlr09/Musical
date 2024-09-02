@@ -35,7 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         ((#{filter.location} is null) or (v.venue_address like '%' || #{filter.location} || '%')) 
 	ORDER BY
 	    CASE
-	        WHEN #{sort, jdbcType=VARCHAR} = 'likes' THEN TO_CHAR(-COALESCE(like_count.total_likes, 0))
+	        WHEN #{sort, jdbcType=VARCHAR} = 'like' THEN TO_CHAR(-COALESCE(like_count.total_likes, 0))
 	        WHEN #{sort, jdbcType=VARCHAR} = 'period' THEN TO_CHAR(m.musical_period_start, 'YYYY-MM-DD')
 	        WHEN #{sort, jdbcType=VARCHAR} = 'title' THEN TO_CHAR(m.musical_title)
 	        ELSE TO_CHAR(m.musical_id)

@@ -20,7 +20,9 @@
     </script>
 </head>
 <body>
+<jsp:include page="../layout/header.jsp"/>
 <div id = container>
+
     <h1>뮤지컬 목록</h1>
     <ul>
     	<li><a href = "#" class="sort-link" data-sort = "">기본정렬</a></li>
@@ -83,7 +85,39 @@
         </div>
     
 	    <script src="/ex/resources/script/musicalList.js"></script>
-    
+	    
+	    <c:forEach var="likeMusical" items="${likeMusicals}">
+            <div class="musical-item">
+                <a href="detail/${likeMusical.musical_id}">
+                    <img src="/ex/resources/${likeMusical.musical_poster}" alt="poster">
+                </a>
+                <div>
+                    <a href="detail/${likeMusical.musical_id}">
+                        <strong>${likeMusical.musical_title}</strong>
+                    </a>
+                </div>
+                <div>${likeMusical.venue_name}&nbsp;${likeMusical.hall_name }</div>
+                <div><fmt:formatDate value="${likeMusical.musical_period_start}" pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${likeMusical.musical_period_end }" pattern = "yyyy-MM-dd"/></div>
+                <div>♥&nbsp;${likeMusical.total_likes }</div>
+            </div>
+    	</c:forEach>
+    	
+    	<c:forEach var="dateMusical" items="${dateMusicals}">
+            <div class="musical-item">
+                <a href="detail/${dateMusical.musical_id}">
+                    <img src="/ex/resources/${dateMusical.musical_poster}" alt="poster">
+                </a>
+                <div>
+                    <a href="detail/${dateMusical.musical_id}">
+                        <strong>${dateMusical.musical_title}</strong>
+                    </a>
+                </div>
+                <div>${dateMusical.venue_name}&nbsp;${dateMusical.hall_name }</div>
+                <div><fmt:formatDate value="${dateMusical.musical_period_start}" pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${dateMusical.musical_period_end }" pattern = "yyyy-MM-dd"/></div>
+                <div>♥&nbsp;${dateMusical.total_likes }</div>
+            </div>
+    	</c:forEach>
+    	
      <div class="musical-grid">
         <c:forEach var="musical" items="${musicals}">
             <div class="musical-item">
@@ -148,5 +182,6 @@
     	 <input type="hidden" id="currentLocation" value="${filter.location}">
     </div>
 </div>
+<jsp:include page="../layout/footer.jsp"/>
 </body>
 </html>

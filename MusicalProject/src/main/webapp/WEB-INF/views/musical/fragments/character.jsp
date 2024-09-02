@@ -43,7 +43,7 @@ div {
 <script>
 		$(document).ready(function() {
 			// 버튼 클릭 시 모달에 JSP 콘텐츠를 로드
-			$('#actor-img').off('click').on('click',function() {
+			$('.actor-img').off('click').on('click',function() {
 				let actorId = $(this).data('actor');
 				$.ajax({
 					url : '/ex/character/readCharacter', // 로드할 JSP 페이지의 URL
@@ -74,7 +74,7 @@ div {
 	
 					<div class="character_head">
 						
-						<img alt="사진" id = "actor-img" data-toggle="modal" data-target="#actor-modal" src="${acdto.actor_img}" width="60" height="60" data-actor="${acdto.actor_id }">
+						<img alt="사진" class = "actor-img" data-toggle="modal" data-target="#actor-modal" src="${acdto.actor_img}" width="60" height="60" data-actor="${acdto.actor_id }">
 					</div>
 					<div class="character_info">
 						<strong>${acdto.character_name}</strong><br>${acdto.actor_name}
