@@ -61,7 +61,7 @@ public class ReservationController {
 	@ResponseBody
 	public List<MusicalScheduleDto> select_date(@RequestParam("date") String date) throws Exception {
 		System.out.println("Fetching schedule for date: " + date);
-		List<MusicalScheduleDto> dtos = mu_schservice.select_Musical_sch(date, 1, 1);
+		List<MusicalScheduleDto> dtos = mu_schservice.select_Musical_sch(date, 11, 1);
 
 		for (MusicalScheduleDto schedule : dtos) {
 

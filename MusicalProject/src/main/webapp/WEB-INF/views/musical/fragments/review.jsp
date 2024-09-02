@@ -41,14 +41,19 @@ display:none;
             pointer-events: none; /* 클릭 이벤트를 비활성화합니다 */
         }
      #starstar{
-     margin-top:10px;
-     margin-bottom:20px;
+     margin-top:0px;
+     margin-bottom:0px;
      }
    
         
     
 .pagination {
   display: inline-block;
+}
+.average-rating{
+text-align:center;
+font-size:1.5em;
+font-weight:bold;
 }
 
 
@@ -81,7 +86,7 @@ display:none;
 display:none;
 }
 .sort-options{
-margin-left:200px;}
+margin-left:800px;}
 
 
 #tab-content {
@@ -90,6 +95,14 @@ margin-left:200px;}
     top: 0;
     width: 100%;
     /* 기타 필요한 스타일 */
+}
+.review_content{
+border:1px pink solid;
+border-radius:5px;
+padding: 15px;
+}
+.review_body{
+margin-top:10px;
 }
 </style>
 <script>
@@ -219,15 +232,9 @@ margin-left:200px;}
 </script>
 </head>
 <body>
-	<h1>리뷰</h1>
+	
 <div class="main"> 
-	<div class="sort-options">
-	    <label for="sort">정렬 기준:</label>
-	    <select id="sort" name="sort">
-	        <option value="date" ${param.sort == 'date' ? 'selected' : ''}>최신순</option>
-	        <option value="rating" ${param.sort == 'rating' ? 'selected' : ''}>평점순</option>
-	    </select>
-	    </div>
+	
 	    <c:if test = "${roundRating == null && avgRating == null }">
 	    	<p>등록된 리뷰가 없습니다.</p>
 	    </c:if>
@@ -249,10 +256,17 @@ margin-left:200px;}
 				<p >${avgRating }</p>
 			</div>
 			</div>
+			<div class="sort-options">
+	    <label for="sort">정렬 기준:</label>
+	    <select id="sort" name="sort">
+	        <option value="date" ${param.sort == 'date' ? 'selected' : ''}>최신순</option>
+	        <option value="rating" ${param.sort == 'rating' ? 'selected' : ''}>평점순</option>
+	    </select>
+	    </div>
 		<c:forEach items="${List }" var="reviewDto">
 			<div class="review_content">
 				<div class="reviw_title">
-					닉네임: ${reviewDto.customer_id}&nbsp;&nbsp;|&nbsp;&nbsp;
+					<div>닉네임: ${reviewDto.customer_id}&nbsp;&nbsp;|&nbsp;&nbsp;
 					<fmt:formatDate pattern="yyyy-MM-dd"
 						value="${reviewDto.review_date}" />
 					&nbsp;&nbsp;|&nbsp;&nbsp; 평점:
@@ -263,9 +277,11 @@ margin-left:200px;}
 	                    <span class="star on" style="width: ${reviewDto.rating >= 4 ? '30px' : '0'};"></span>
 	                    <span class="star on" style="width: ${reviewDto.rating >= 5 ? '30px' : '0'};"></span>
 	                </div>
+	                </div>
+	                <div class="review_body">
 	                <p class="review_text">${reviewDto.content}</p>
 				</div>
-				
+				</div>
 				<div id="updateForm_${reviewDto.review_id}">
 				<form action="updateReview">
 				<input type="hidden" value=${reviewDto.review_id } name="review_id" readonly>

@@ -6,7 +6,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.human.dao.IActorCharacterDao">
 
 <select id="selectAll" resultType="com.human.dto.ActorCharacterDto">
-
 select c.character_name,a.actor_name,a.actor_img,a.actor_id
 from character c
 join actor_character ac

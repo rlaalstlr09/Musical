@@ -13,9 +13,8 @@ join actor_character ac
 on c.character_id = ac.character_id
 join actor a
 on ac.actor_id=a.actor_id
-
-
 where #{musical_id}=c.musical_id
+order by c.character_name
 </select>
 
 
