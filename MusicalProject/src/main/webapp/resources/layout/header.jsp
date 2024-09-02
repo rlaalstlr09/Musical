@@ -40,7 +40,7 @@
             <a href="#">고객센터</a>
             <ul class="submenu">
               <li><a href="help/notice">공지사항</a></li>
-              <li><a href="help/faq">F&Q</a></li>
+              <li><a href="help/faq">FAQ</a></li>
               <li><a href="#">1:1</a></li>
             </ul>
           </li>
@@ -85,7 +85,7 @@
             <a href="#">고객센터</a>
             <ul class="submenul">
               <li><a href="help/notice">공지사항</a></li>
-              <li><a href="help/faq">F&Q</a></li>
+              <li><a href="help/faq">FAQ</a></li>
               <li><a href="#">1:1문의사항</a></li>
             </ul>
           </li>
