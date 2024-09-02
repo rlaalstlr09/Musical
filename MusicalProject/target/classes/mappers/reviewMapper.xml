@@ -22,7 +22,7 @@ FETCH NEXT #{perPageNum} ROWS ONLY
 </select>
 
 <select id="avgRating" resultType="Double">
-select round(avg(rating),1) from review
+select round(avg(rating),1) from review where musical_id=#{musical_id, jdbcType=INTEGER}
 </select>
 
 <insert id="insert" >
@@ -30,7 +30,10 @@ insert into review(review_id,customer_id,musical_id,content,rating,review_date)
  values(review_seq.nextval,#{customer_id},#{musical_id},#{content},#{rating},sysdate)
 </insert>
 <select id="totalCount" resultType="Integer">
-select count(*) from review
+SELECT COUNT(*)
+FROM review
+WHERE (musical_id = #{musical_id} OR #{musical_id} IS NULL)
+  AND (customer_id = #{customer_id} OR #{customer_id} IS NULL)
 </select>
 
 <delete id="delete">
