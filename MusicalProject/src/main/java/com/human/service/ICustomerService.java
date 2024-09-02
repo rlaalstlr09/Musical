@@ -21,7 +21,7 @@ public interface ICustomerService {
 	
 	public boolean selectId(String customer_id) throws Exception;
 	
-	public CustomerDto findCustomerId(String customer_email) throws Exception;
+	public List<CustomerDto> findCustomerId(String customer_email) throws Exception;
 	
 	// 비밀번호 재발급
 	public void newPwUpdate(CustomerDto dto) throws Exception;
