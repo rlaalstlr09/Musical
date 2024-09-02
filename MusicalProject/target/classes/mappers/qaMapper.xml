@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.human.dao.IQaDao">
+
+
+<!-- qa 관리 -->
+<sql id='qa_search'>
+    <if test="keyword!=null">
+            and (
+                qa_id LIKE '%' || #{keyword} || '%'
+                or content LIKE '%' || #{keyword} || '%'
+                or title LIKE '%' || #{keyword} || '%'
+                )
+                        
+    </if>
+	</sql>
+		<sql id='qa_category'>
+    <if test="fGroupKind!=null">
+    <if test="fGroupKind!='전체'">
+    <if test="fGroupKind!=''">
+            and qa_type = #{fGroupKind}
+    </if>
+    </if>
+    </if>
+	</sql>
+	
+	<sql id='qa_display'>
+    <if test="nGroupKind!=null">
+    <if test="nGroupKind!='전체'">
+    <if test="nGroupKind!=''">
+     <if test="nGroupKind=='res_wait'">
+            and display = 0
+            </if>
+            <if test="nGroupKind=='res_comp'">
+            and display = 1
+            </if>
+    </if>
+    </if>
+    </if>
+	</sql>
+	
+	<select id="qa_listSearch" resultType="com.human.dto.QaDto" >
+	<![CDATA[SELECT *
+FROM qa
+WHERE 1=1]]>
+<include refid="qa_category"/>
+<include refid="qa_display"/>
+<include refid="qa_search"/>
+<![CDATA[ORDER BY qa_id DESC
+OFFSET (#{page} - 1) * #{perPageNum} ROWS
+FETCH NEXT #{perPageNum} ROWS ONLY]]>
+</select>
+
+	
+<select id="qa_list" resultType="com.human.dto.QaDto" >
+	<![CDATA[SELECT *
+FROM qa
+WHERE customer_id=#{customer_id}]]>
+<![CDATA[ORDER BY qa_id DESC
+OFFSET (#{vo.page} - 1) * #{vo.perPageNum} ROWS
+FETCH NEXT #{vo.perPageNum} ROWS ONLY]]>
+</select>
+
+	<select id="qa_listSearchCount" resultType="int">
+<![CDATA[ select count(qa_id) from qa where 1=1 ]]>
+		<include refid="qa_search" />
+		<include refid="qa_category"/>
+<![CDATA[ and qa_id > 0 ]]>
+	</select>
+	
+	<select id="qa_listCount" resultType="int">
+<![CDATA[ select count(qa_id) from qa where 1=1 ]]>
+<![CDATA[ and qa_id > 0 and customer_id=#{customer_id} ]]>
+	</select>
+	
+	<update id="res_update"> update qa set response=#{response, jdbcType=VARCHAR},display=#{display}
+		 where qa_id = #{qa_id}
+	</update>
+
+	
+
+</mapper>

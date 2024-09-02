@@ -10,7 +10,8 @@ local.properties
 .settings/
 .loadpath
 .recommenders
-
+/MusicalProject/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
+/MusicalProject/target/m2e-wtp/web-resources/META-INF/maven/com.human/ex/pom.properties
 # External tool builders
 .externalToolBuilders/
 
@@ -55,7 +56,7 @@ local.properties
 .cache-main
 .scala_dependencies
 .worksheet
-
+/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
 # Uncomment this line if you wish to ignore the project description file.
 # Typically, this file would be tracked if it contains build/dependency configurations:
 #.project

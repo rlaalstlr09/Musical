@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.human.dao.IVenue_apiDao">
+
+
+<!--venue_api 관련 -->
+<insert id="venue_api_create">
+INSERT INTO venue_api 
+		( x,y,venue_id, geometry) VALUES
+		( #{x},#{y},#{venue_id},SDO_GEOMETRY(
+            2001, -- 지오메트리 유형
+            8307, -- SRID
+            SDO_POINT_TYPE(#{x}, #{y}, NULL), -- 포인트 유형
+            NULL, -- 요소 정보
+            NULL -- 좌표 배열
+        ))
+</insert>
+
+<select id="getTheaters" resultType="com.human.dto.Venue_apiDto">
+    SELECT venue_name, x, y,a.venue_id,venue_address
+    FROM venue_api a, venue v
+    WHERE SDO_WITHIN_DISTANCE(
+        geometry,
+        SDO_GEOMETRY(
+            2001, 8307, SDO_POINT_TYPE(#{lon}, #{lat}, NULL), NULL, NULL
+        ),
+        CONCAT('distance=', #{distance})
+    ) = 'TRUE' and a.venue_id=v.venue_id
+    </select>
+
+<delete id="venue_api_delete"> delete from venue_api where venue_id = #{venue_id} </delete>
+
+<select id="getTheater" resultType="com.human.dto.MusicalDto">
+    SELECT distinct m.*
+    FROM venue_api a join musical_schedule s
+    on s.venue_id=a.venue_id join musical m
+    on m.musical_id=s.musical_id where a.venue_id=#{venue_id}
+    order by m.musical_id desc
+    </select>
+
+</mapper>
