@@ -89,7 +89,7 @@
               <li><a href="#">1:1문의사항</a></li>
             </ul>
           </li>
-          <li class="specialo"><a href="#">공연장 바로가기</a></li>
+          <li class="specialo"><a href="help/near_map">근처 공연장 보기</a></li>
           <li class="special"><a href="#">로그아웃</a></li>
         </ul>
       </div>
