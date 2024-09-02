@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.human.dao.IQaDao;
+import com.human.dto.CustomerDto;
 import com.human.dto.QaDto;
 
 import com.human.vo.BoardVo;
@@ -38,5 +39,15 @@ public class QaServiceImpl implements IQaService {
 	public int qa_listCount(String customer_id) throws Exception{
 		IQaDao dao = sqlSession.getMapper(IQaDao.class);
 		return dao.qa_listCount(customer_id);
+	}
+	
+	// 추가한 부분
+	public void write(QaDto board) throws Exception{
+		IQaDao dao = sqlSession.getMapper(IQaDao.class);
+		dao.create(board);
+	}
+	public void deleteAll(CustomerDto dto) throws Exception{
+		IQaDao dao = sqlSession.getMapper(IQaDao.class);
+		dao.deleteAll(dto);
 	}
 }
