@@ -37,7 +37,7 @@
             </ul>
           </li>
           <li class="has-submenu">
-            <a href="#">고객센터</a>
+            <a href="help/help_main">고객센터</a>
             <ul class="submenu">
               <li><a href="help/notice">공지사항</a></li>
               <li><a href="help/faq">FAQ</a></li>
@@ -82,7 +82,7 @@
             </ul>
           </li>
           <li>
-            <a href="#">고객센터</a>
+            <a href="help/help_main">고객센터</a>
             <ul class="submenul">
               <li><a href="help/notice">공지사항</a></li>
               <li><a href="help/faq">FAQ</a></li>
