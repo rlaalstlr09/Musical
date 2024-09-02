@@ -50,7 +50,7 @@ public class HomeController {
 	        // 모델에 데이터와 페이지 정보 추가
 	        model.addAttribute("musicalPeriod", musicalPeriod);
 	        
-	        return "index";  // JSP 뷰 이름
+	        return "home";  // JSP 뷰 이름
 	    }
 	  
 	 
