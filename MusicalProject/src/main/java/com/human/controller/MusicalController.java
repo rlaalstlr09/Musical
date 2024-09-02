@@ -47,7 +47,8 @@ public class MusicalController {
 	public String listAll(@RequestParam(value = "page", defaultValue = "1") int page,
 			@RequestParam(value = "perPageNum", defaultValue = "10") int perPageNum,
 			@RequestParam(value = "keyword", defaultValue = "") String keyword,
-			@RequestParam(value = "sort", defaultValue = "") String sort, MusicalFilterDto filter, Model model)
+			@RequestParam(value = "sort", defaultValue = "") String sort, 
+			MusicalFilterDto filter, Model model)
 			throws Exception {
 
 		// BoardVo 객체 생성 및 설정
@@ -72,6 +73,7 @@ public class MusicalController {
 			filter.setMaxRunningtime(500);
 		}
 		
+		System.out.println(filter);
 
 		// 데이터 가져오기
 		List<MusicalDto> musicalList = musicalService.selectAllMusical(boardVo, keyword, sort, filter);

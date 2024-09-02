@@ -36,6 +36,7 @@
                 <tr>
                 	<th>연령 제한</th>
                 	<th>공연시간</th>
+                	<th>지역</th>
                 	<th>공연기간</th>
                 </tr>
                 <tr>
@@ -58,6 +59,19 @@
 						  <option value="151">151분 ~ 180분</option>
 						  <option value="181">180분 ~ </option>
 						</select>
+                	</td>
+                	<td>
+                	<select name = "location" class="form-select"  aria-label="Multiple select example">
+						  <option value = "" selected>전체</option>
+						  <option value = "서울">서울</option>
+						  <option value="경기">경기</option>
+						  <option value="인천">인천</option>
+						  <option value="강원">강원</option>
+						  <option value="경상">경상</option>
+						  <option value="전라">전라</option>
+						  <option value="충청">충청</option>
+					</select>
+                	
                 	</td>
                 	<td>
                 		<input type="date" name = "startDate">
@@ -131,6 +145,7 @@
     	 <input type="hidden" id="currentEndDate" value="${filter.endDate}">
     	 <input type="hidden" id="currentAge" value="${filter.age}">
     	 <input type="hidden" id="currentMinRunningtime" value="${filter.minRunningtime}">
+    	 <input type="hidden" id="currentLocation" value="${filter.location}">
     </div>
 </div>
 </body>

@@ -10,7 +10,8 @@ $(document).ready(function(){
 				startDate : $('[name=startDate]').val(),
 				endDate:$('[name=endDate]').val(),
 				age:$('[name=age]').val(),
-				minRunningtime:$('[name=minRunningtime]').val()
+				minRunningtime:$('[name=minRunningtime]').val(),
+				location : $('[name=location]').val()
 			},
 			success:function(data){
   				$('body').html(data);
@@ -31,7 +32,8 @@ $(document).ready(function(){
                 startDate: $('#currentStartDate').val() ,
                 endDate: $('#currentEndDate').val() ,
                 age: $('#currentAge').val() ,
-                minRunningtime: $('#currentMinRunningtime').val() 
+                minRunningtime: $('#currentMinRunningtime').val(), 
+                location: $('#currentLocation').val() 
             },
 	  			success:function(data){
 	  				$('body').html(data);
