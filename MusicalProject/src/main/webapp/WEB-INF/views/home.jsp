@@ -5,12 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/header.css"> 
+<link rel="stylesheet" href="<%=request.getContextPath()%>/WEB-INF/resources/css/header.css"> 
 
 </head>
 
 <body>
-  <jsp:include page="../../resources/layout/header.jsp"/>
+  <jsp:include page="layout/header.jsp"/>
   
 
   <div id='wrap'>
@@ -31,7 +31,7 @@
 
   </div>
 
-<jsp:include page="../../resources/layout/footer.jsp"></jsp:include>
+<jsp:include page="layout/footer.jsp"/>
 
 </body>
 </html>

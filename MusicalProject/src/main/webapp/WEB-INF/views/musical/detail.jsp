@@ -149,10 +149,11 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
+
 	<div class="container mt-4">
 		<div id="info">
 			<button onclick="location.href='/ex/musical/listAll'">목록</button>
-			<img src="/ex/resources/${musical.musical_poster}" alt="poster"
+			<img src="/ex/resources/img/musical/${musical.musical_poster}" alt="poster"
 				class="img-fluid">
 			<h1>${musical.musical_title}</h1>
 			<br> 공연 장소 :
