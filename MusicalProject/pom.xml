@@ -21,6 +21,40 @@
 		</repository>
 	</repositories>
 	<dependencies>
+		<!-- 랜덤 문자열 생성(임시 비밀번호 발급용 -->
+		<dependency>
+    		<groupId>org.apache.commons</groupId>
+    		<artifactId>commons-lang3</artifactId>
+    		<version>3.12.0</version> 
+		</dependency>
+		<!-- Jackson 라이브러리 (boolean값 변환기) 아디이 중복 확인용 -->
+		<dependency>
+    		<groupId>com.fasterxml.jackson.core</groupId>
+    		<artifactId>jackson-databind</artifactId>
+		    <version>2.13.1</version>
+		</dependency>
+		<!-- Spring Security -->
+		<!-- 4개 추가 -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>4.2.1.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>4.2.1.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>4.2.1.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>4.2.1.RELEASE</version>
+		</dependency>
 		<!-- Existing dependencies -->
 		<!--밑으로 3개 추가 -->
 		<dependency>
