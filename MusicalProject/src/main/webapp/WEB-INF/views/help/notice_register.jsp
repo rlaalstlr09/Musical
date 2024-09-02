@@ -7,46 +7,39 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src='<%=request.getContextPath()%>/resources/script/help_check.js'></script>
-
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/signup.css">	
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/help_sytle.css">
 </head>
 <body>
-	<div class="main">
-		<div class="box-header">
-			<h1 class="box-title">
-				새 공지 글쓰기
-				</h3>
-		</div>
-		<!-- /.box-header -->
-		<!-- action에 경로가 없으면 현재 페이지 주소로 이동한다.-->
+	<div class="container">
+	<button type="submit" class="btn btn-warning" style="" >&lt; 이전</button>
+			<h4>공지 등록</h4>
 		<form role="form" method="post" onsubmit='return checkNotice()'>
 
-			<h3>
-				제목 <input type="text" name='nTitle' placeholder="제목 입력"
+			<label>제목</label>
+				 <input type="text" name='nTitle' placeholder="제목 입력" required
 					style="width: 100%">
-			</h3>
-			<h2>
-				카테고리<select name="nGroupKind">
+			<label>카테고리</label>
+				<select name="nGroupKind" required>
 					<option value="티켓오픈">티켓오픈</option>
 					<option value="스포츠">스포츠</option>
 					<option value="변경/취소">변경/취소</option>
 					<option value="시스템관련">시스템관련</option>
 					<option value="기타">기타</option>
-				</select>
-			</h2>
+				</select>			
 			
 			<div id="datetimeContainer">
-			<h2>오픈 시간
-    <input type="datetime-local" id="nOpenTime" name="nOpenTime">
-			</h2>
+			<label>오픈 시간</label>
+    <input type="datetime-local" id="nOpenTime" name="nOpenTime" required>
+			
 			</div>
-			<h2>
-				내용
-				<textarea name="nContent" rows="8" style="width: 100%"
+			<label>내용</label>
+				<textarea name="nContent" rows="18" style="width: 100%" required
 					placeholder="내용 입력"></textarea>
-			</h2>
+			
 			
 			<!-- /.box-body -->
-			<button type="submit" class="btn btn-primary">글쓰기</button>
+			<button type="submit" class="signup">등록</button>
 
 		</form>
 	</div>
