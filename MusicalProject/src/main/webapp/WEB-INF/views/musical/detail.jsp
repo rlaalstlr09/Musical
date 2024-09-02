@@ -149,7 +149,7 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-
+<jsp:include page="../layout/header.jsp"/>
 	<div class="container mt-4">
 		<div id="info">
 			<button onclick="location.href='/ex/musical/listAll'">목록</button>
@@ -249,9 +249,10 @@ $(document).ready(function() {
 			<div id="detail">포스터, 상세정보 표시</div>
 
 			<div id="venue">
-				<iframe
-					src="/ex/musical/venue?venue_name=${musical.venue_name}&hall_name=${musical.hall_name}"
-					width="100%" height="500px" frameborder="0"></iframe>
+				<jsp:include page="fragments/venue.jsp">
+				    <jsp:param name="venue_name" value="${musical.venue_name}" />
+				    <jsp:param name="hall_name" value="${musical.hall_name}" />
+				</jsp:include>
 			</div>
 			<div id="review">
 				<c:forEach items = '${reviews}' var = 'review'>
@@ -307,5 +308,6 @@ $(document).ready(function() {
 			</div>
 		</div>
 	</div>
+	<jsp:include page="../layout/footer.jsp"/>
 </body>
 </html>

@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/WEB-INF/resources/css/header.css"> 
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/header.css"> 
 
 </head>
 

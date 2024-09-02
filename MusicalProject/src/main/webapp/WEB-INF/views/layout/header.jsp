@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/header.css"> 
+<link rel="stylesheet" href="/ex/resources/css/header.css"> 
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   
 </head>
@@ -14,14 +14,14 @@
     <div class="header-container">
       <div class="logo">
         <a href="#">
-          <img src="<%=request.getContextPath()%>/resources/img/bora_logo.png" alt="home"> </a>
+          <img src="/ex/resources/img/bora_logo.png" alt="home"> </a>
       </div>
 
       <div class="search">
         <input type="text" placeholder="Search...">
         <button type="submit">
-          <img id="default-icon" src="<%=request.getContextPath()%>/resources/img/search_logo.png" alt="Search Icon">
-          <img id="scroll-icon" src="<%=request.getContextPath()%>/resources/img/search_logo_black.png" alt="Search Icon">
+          <img id="default-icon" src="/ex/resources/img/search_logo.png" alt="Search Icon">
+          <img id="scroll-icon" src="/ex/resources/img/search_logo_black.png" alt="Search Icon">
         </button>
       </div>
 
@@ -95,6 +95,6 @@
       </div>
     </div>
   </header>
-<script src="<%=request.getContextPath()%>/resources/script/header.js"></script>
+<script src="/ex/resources/script/header.js"></script>
 </body>
 </html>
