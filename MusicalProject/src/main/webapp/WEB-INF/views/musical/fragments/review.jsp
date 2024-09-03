@@ -8,9 +8,12 @@
 <title>rivew_page</title>
 <style>
 
+
 .review_content {
 	margin-top: 40px;
-	margin-bottom: 40px
+	margin-bottom: 40px;
+	font-size:1.1em;
+	
 }
 #reviewForm{
 display:none;
@@ -44,7 +47,9 @@ display:none;
      margin-top:0px;
      margin-bottom:0px;
      }
-   
+   .sttar{
+   margin-top:0px;
+   }
         
     
 .pagination {
@@ -270,7 +275,7 @@ margin-top:10px;
 					<fmt:formatDate pattern="yyyy-MM-dd"
 						value="${reviewDto.review_date}" />
 					&nbsp;&nbsp;|&nbsp;&nbsp; 평점:
-					 <div class="star_rating read-only">
+					 <div class="star_rating read-only sttar">
 	                    <span class="star on " style="width: ${reviewDto.rating >= 1 ? '30px' : '0'};"></span>
 	                    <span class="star on" style="width: ${reviewDto.rating >= 2 ? '30px' : '0'};"></span>
 	                    <span class="star on" style="width: ${reviewDto.rating >= 3 ? '30px' : '0'};"></span>
