@@ -4,6 +4,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,6 +29,7 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -65,8 +68,10 @@ import com.human.vo.BoardVo;
 @Controller
 @RequestMapping("/admin/*")
 public class AdminController {
-	@Resource(name="uploadPath")
-	private String uploadPath;
+//	@Resource(name="uploadPath")
+//	private String uploadPath;
+	
+	
 	
 	@Autowired
 	private IAdminService service;
@@ -98,6 +103,16 @@ public class AdminController {
 	@Autowired
 	private IMusicalScheduleService mu_schservice;
 		
+	public String uploadPath() throws UnsupportedEncodingException {
+		String uploadsDir = "C:/sts-bundle/common/apache-tomcat-9.0.90/webapps/ROOT/upload"; //톰캣서버 기본 경로
+		File uploadDir = new File(uploadsDir);
+        if (!uploadDir.exists()) {
+            uploadDir.mkdirs();
+        }
+    String uploadPath = URLDecoder.decode(uploadsDir, "UTF-8");
+    return uploadPath;
+	}
+    
 	@RequestMapping(value = "/admin_main", method = RequestMethod.GET)
 	public String admin_main() {
 		return "admin/admin_main";
@@ -149,7 +164,7 @@ public class AdminController {
 	private String uploadFile(String originalFilename, byte[] bytes) throws Exception {
 		UUID uid=UUID.randomUUID();
 		String savedName=uid.toString()+"_"+originalFilename;
-		File target=new File(uploadPath,savedName);
+		File target=new File(uploadPath(),savedName);
 		FileCopyUtils.copy(bytes, target);
 		return savedName;
 	}
