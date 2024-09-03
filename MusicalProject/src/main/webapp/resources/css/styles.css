@@ -1,77 +1,184 @@
-
 body {
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
 }
 
-#container{
-			padding: 0 20%;
-		}
-.musical-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2열 */
-    gap: 16px; /* 항목 간의 간격 */
-}
-.musical-item {
-    border: 1px solid #ccc;
-    padding: 16px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-.musical-item img {
-    width: 100%;
-    height: auto;
-}
-.pagination{
-	text-align : center;
-}
-.hidden{
-	display:none;
+#container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
+/* 헤더 및 네비게이션 */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+header a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0 15px;
+}
+
+/* 필터 버튼 및 패널 */
 .filter-button {
-    display: block;
-    width: 10%;
-    padding: 10px;
     background-color: #007bff;
     color: white;
     border: none;
-    border-radius: 5px;
+    padding: 10px;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 .filter-panel {
-    display: none; /* 숨김 상태 */
-    background-color: #f8f9fa;
+    display: none;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+}
+
+.filter-panel table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.filter-panel th, .filter-panel td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.filter-panel select, .filter-panel input[type="date"] {
+    width: 100%;
+    padding: 5px;
+    margin: 5px 0;
+}
+
+/* 뮤지컬 목록 */
+.musical-item {
     border: 1px solid #ddd;
     border-radius: 5px;
-    padding: 15px;
-    margin-top: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    max-height: 0; /* 초기 최대 높이 설정 */
-    overflow: hidden;
-    transition: max-height 0.5s ease-out; /* 애니메이션 */
-}
-
-.filter-panel.show {
-    display: block; /* 표시 상태 */
-    max-height: 500px; /* 최대 높이 설정 */
-}
-
-.filter-option {
-    margin-bottom: 10px;
-}
-
-.apply-button {
-    display: block;
-    width: 100%;
+    margin-bottom: 20px;
     padding: 10px;
-    background-color: #28a745;
+    background-color: #fff;
+    text-align: center;
+}
+
+.musical-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.musical-item a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.musical-item div {
+    margin: 5px 0;
+}
+
+/* 인기 및 최근 오픈 뮤지컬 섹션 */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+    margin: 0;
+}
+
+ul li {
+    display: inline;
+    margin-right: 15px;
+}
+
+ul li a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+/* 그리드 레이아웃 */
+.musical-grid {
+  	display: grid;
+   grid-template-columns: repeat(6, 1fr);
+   gap: 20px;
+}
+
+.musical-like {
+    display: flex;
+  	flex-wrap: nowrap;
+    gap: 5px;
+}
+
+.musical-date {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 5px;
+}
+
+.musical-item {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    text-align: center;
+    flex: 0 0 auto; /* 각 아이템이 기본 너비를 가지게 합니다. */
+    width: 200px; /* 원하는 너비로 조정 */
+    box-sizing: border-box; /* 패딩과 테두리의 크기를 포함 */
+    padding: 10px;
+}
+
+/* 검색 박스 */
+#search {
+    margin: 20px 0;
+    text-align: center;
+}
+
+#search input[type="text"] {
+    padding: 10px;
+    width: 200px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#search button {
+    background-color: #007bff;
     color: white;
     border: none;
+    padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
 }
 
- .form-select {
-	overflow: visible; /* 기본 스크롤 제거 */
-	height: auto; /* 높이를 자동으로 조정 */
- }
+/* 페이지 네비게이션 */
+.pagination {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.pagination a {
+    text-decoration: none;
+    color: #007bff;
+    padding: 10px;
+    margin: 0 5px;
+}
+
+.pagination a.active {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.pagination input[type="hidden"] {
+    display: none;
+}

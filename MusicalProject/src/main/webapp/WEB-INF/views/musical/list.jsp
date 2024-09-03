@@ -31,98 +31,105 @@
     	<li><a href = "#" class="sort-link" data-sort = "period">공연날짜순</a></li>
     </ul>
     
-     <button class="filter-button">필터</button>
-	    	  
-        <div class="filter-panel">
-            <table>
-                <tr>
-                	<th>연령 제한</th>
-                	<th>공연시간</th>
-                	<th>지역</th>
-                	<th>공연기간</th>
-                </tr>
-                <tr>
-                	<td>
-                		<select name = "age" class="form-select"  aria-label="Multiple select example">
-						  <option value="0" selected>전체</option>
-						  <option value="5">5세 이상</option>
-						  <option value="7">7세 이상</option>
-						  <option value="12">12세 이상</option>
-						  <option value="15">15세 이상</option>
-						  <option value="18">18세 이상</option>
-						</select>
-                	</td>
-                	<td>
-                		<select name = "minRunningtime" class="form-select"  aria-label="Multiple select example">
-						  <option value = "0" selected>전체</option>
-						  <option value="1"> ~ 90분</option>
-						  <option value="91">91분 ~ 120분</option>
-						  <option value="121">121분 ~ 150분</option>
-						  <option value="151">151분 ~ 180분</option>
-						  <option value="181">180분 ~ </option>
-						</select>
-                	</td>
-                	<td>
-                	<select name = "location" class="form-select"  aria-label="Multiple select example">
-						  <option value = "" selected>전체</option>
-						  <option value = "서울">서울</option>
-						  <option value="경기">경기</option>
-						  <option value="인천">인천</option>
-						  <option value="강원">강원</option>
-						  <option value="경상">경상</option>
-						  <option value="전라">전라</option>
-						  <option value="충청">충청</option>
+   <button class="filter-button">필터</button>
+   	  
+	<div class="filter-panel">
+		<table>
+			<tr>
+				<th>연령 제한</th>
+				<th>공연시간</th>
+				<th>지역</th>
+				<th>공연기간</th>
+			</tr>
+			<tr>
+              	<td>
+					<select name = "age" class="form-select"  aria-label="Multiple select example">
+						<option value="0" selected>전체</option>
+						<option value="5">5세 이상</option>
+						<option value="7">7세 이상</option>
+						<option value="12">12세 이상</option>
+						<option value="15">15세 이상</option>
+						<option value="18">18세 이상</option>
 					</select>
-                	
-                	</td>
-                	<td>
-                		<input type="date" name = "startDate">
-                		<input type="date" name = "endDate">
-                	</td>
-                </tr>
-            </table>
-            <button class="filter">적용</button>
-        </div>
-    
-	    <script src="/ex/resources/script/musicalList.js"></script>
-	    
+              	</td>
+              	<td>
+              		<select name = "minRunningtime" class="form-select"  aria-label="Multiple select example">
+						<option value = "0" selected>전체</option>
+						<option value="1"> ~ 90분</option>
+						<option value="91">91분 ~ 120분</option>
+						<option value="121">121분 ~ 150분</option>
+						<option value="151">151분 ~ 180분</option>
+						<option value="181">180분 ~ </option>
+					</select>
+              	</td>
+              	<td>
+              	<select name = "location" class="form-select"  aria-label="Multiple select example">
+					<option value = "" selected>전체</option>
+					<option value = "서울">서울</option>
+					<option value="경기">경기</option>
+					<option value="인천">인천</option>
+					<option value="강원">강원</option>
+					<option value="경상">경상</option>
+					<option value="전라">전라</option>
+					<option value="충청">충청</option>
+				</select>
+              	
+              	</td>
+              	<td>
+              		<input type="date" name = "startDate">
+              		<input type="date" name = "endDate">
+              	</td>
+              </tr>
+		</table>
+		<button class="filter">적용</button>
+	</div>
+  
+   <script src="/ex/resources/script/musicalList.js"></script>
+   <h2>인기 뮤지컬</h2>
+   <div class="musical-like">
+   	
 	    <c:forEach var="likeMusical" items="${likeMusicals}">
-            <div class="musical-item">
-                <a href="detail/${likeMusical.musical_id}">
-                    <img src="/ex/resources/${likeMusical.musical_poster}" alt="poster">
-                </a>
-                <div>
-                    <a href="detail/${likeMusical.musical_id}">
-                        <strong>${likeMusical.musical_title}</strong>
-                    </a>
-                </div>
-                <div>${likeMusical.venue_name}&nbsp;${likeMusical.hall_name }</div>
-                <div><fmt:formatDate value="${likeMusical.musical_period_start}" pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${likeMusical.musical_period_end }" pattern = "yyyy-MM-dd"/></div>
-                <div>♥&nbsp;${likeMusical.total_likes }</div>
-            </div>
-    	</c:forEach>
-    	
-    	<c:forEach var="dateMusical" items="${dateMusicals}">
-            <div class="musical-item">
-                <a href="detail/${dateMusical.musical_id}">
-                    <img src="/ex/resources/${dateMusical.musical_poster}" alt="poster">
-                </a>
-                <div>
-                    <a href="detail/${dateMusical.musical_id}">
-                        <strong>${dateMusical.musical_title}</strong>
-                    </a>
-                </div>
-                <div>${dateMusical.venue_name}&nbsp;${dateMusical.hall_name }</div>
-                <div><fmt:formatDate value="${dateMusical.musical_period_start}" pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${dateMusical.musical_period_end }" pattern = "yyyy-MM-dd"/></div>
-                <div>♥&nbsp;${dateMusical.total_likes }</div>
-            </div>
-    	</c:forEach>
-    	
-     <div class="musical-grid">
+			<div class="musical-item">
+			    <a href="detail/${likeMusical.musical_id}">
+			        <img src="/ex/resources/img/musical/${likeMusical.musical_poster}" alt="poster">
+			    </a>
+			    <div>
+			        <a href="detail/${likeMusical.musical_id}">
+			            <strong>${likeMusical.musical_title}</strong>
+			        </a>
+			    </div>
+			    <div>${likeMusical.venue_name}&nbsp;${likeMusical.hall_name }</div>
+			    <div><fmt:formatDate value="${likeMusical.musical_period_start}" pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${likeMusical.musical_period_end }" pattern = "yyyy-MM-dd"/></div>
+			    <div>♥&nbsp;${likeMusical.total_likes }</div>
+			</div>
+	   	</c:forEach>
+  	</div>
+  	<h2>최근 오픈</h2>
+  	<div class="musical-date">
+  		
+	   	<c:forEach var="dateMusical" items="${dateMusicals}">
+			<div class="musical-item">
+			    <a href="detail/${dateMusical.musical_id}">
+			        <img src="/ex/resources/img/musical/${dateMusical.musical_poster}" alt="poster">
+			    </a>
+			    <div>
+			        <a href="detail/${dateMusical.musical_id}">
+			            <strong>${dateMusical.musical_title}</strong>
+			        </a>
+			    </div>
+			    <div>${dateMusical.venue_name}&nbsp;${dateMusical.hall_name }</div>
+			    <div><fmt:formatDate value="${dateMusical.musical_period_start}" pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${dateMusical.musical_period_end }" pattern = "yyyy-MM-dd"/></div>
+			    <div>♥&nbsp;${dateMusical.total_likes }</div>
+			</div>
+	   	</c:forEach>
+  	</div>
+	<h2>전체 뮤지컬</h2>
+   	<div class="musical-grid">
+   	
         <c:forEach var="musical" items="${musicals}">
             <div class="musical-item">
                 <a href="detail/${musical.musical_id}">
-                    <img src="/ex/resources/${musical.musical_poster}" alt="poster">
+                    <img src="/ex/resources/img/musical/${musical.musical_poster}" alt="poster">
                 </a>
                 <div>
                     <a href="detail/${musical.musical_id}">

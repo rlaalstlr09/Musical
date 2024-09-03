@@ -8,16 +8,17 @@
 <script>
 	$(document).ready(function() {
 		
-		 $("#updateActor").click(function() {
-             $("#updateForm").toggle();
-         });
-		 
+		$("#updateActor").click(function() {
+			$("#updateForm").toggle();
+		});
+ 
 		 $(".deleteActor").click(function() {
-				var actor_id = $(this).data('actor-id');
-				if (confirm('정말로 삭제하시겠습니까?')) {
-					window.location.href = "deleteActor?actor_id=" + actor_id;
-				}
-			});
+			var actor_id = $(this).data('actor-id');
+			var musical_id = $(this).data('musical-id');
+			if (confirm('정말로 삭제하시겠습니까?')) {
+				window.location.href = "/ex/character/deleteActor?actor_id=" + actor_id + "&musical_id=" + musical_id;
+			}
+		});
 		
 		 	
 		 
@@ -60,7 +61,8 @@ display:none;
 				<input type="submit" value="수정하기">
 			</form>
 		</div>
-		<button id="updateActor" >수정하기</button> <button class="deleteActor" data-actor-id=${actor.actor_id }>삭제하기</button>
+		<button id="updateActor" >수정하기</button> 
+		<button class="deleteActor" data-actor-id=${actor.actor_id } data-musical-id = ${musical_id }>삭제하기</button>
 	</div>
 </body>
 </html>
