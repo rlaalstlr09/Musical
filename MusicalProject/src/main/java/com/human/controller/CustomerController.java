@@ -2,6 +2,8 @@
 package com.human.controller;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 
@@ -62,7 +64,7 @@ public class CustomerController {
 	public String searchId(HttpServletRequest request, Model model, CustomerDto dto, @RequestParam("customer_email") String customer_email) throws Exception{
 		try {
 			dto.setCustomer_email(customer_email);
-			CustomerDto customer_id = customerService.findCustomerId(customer_email);
+			List<CustomerDto> customer_id = customerService.findCustomerId(customer_email);
 			model.addAttribute("findId",customer_id);
 		} catch(Exception e) {
 			model.addAttribute("msg", "오류가 발생되었습니다.");

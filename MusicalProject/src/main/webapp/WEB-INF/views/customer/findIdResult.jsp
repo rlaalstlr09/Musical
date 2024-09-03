@@ -78,7 +78,9 @@
 			<p class="inquiry">조회결과가 없습니다.</p>
 			</c:when>
 			<c:otherwise>
-				<p>${findId.customer_id }</p>
+				<c:forEach var="findId" items="${findId }">
+					<p>${findId.customer_id }</p>
+				</c:forEach>
 			</c:otherwise>
 		</c:choose>			
 	</div>

@@ -54,17 +54,17 @@ public class ReviewServiceImpl implements IReviewService {
 	}
 	
 	@Override
-	public Integer totalCount() throws Exception {
+	public Integer totalCount(Integer musical_id,String customer_id) throws Exception {
 		IReviewDao dao=sqlSession.getMapper(IReviewDao.class);
-		dao.totalCount();
-		return dao.totalCount();
+		dao.totalCount(musical_id,customer_id);
+		return dao.totalCount(musical_id,customer_id);
 	}
 	
 	@Override
-	public Double avgRating() throws Exception {
+	public Double avgRating(Integer musical_id) throws Exception {
 		IReviewDao dao=sqlSession.getMapper(IReviewDao.class);
-		dao.avgRating();
-		return dao.avgRating();
+		dao.avgRating(musical_id);
+		return dao.avgRating(musical_id);
 	}
 
 }

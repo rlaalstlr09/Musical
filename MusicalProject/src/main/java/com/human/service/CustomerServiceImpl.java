@@ -66,7 +66,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	}
 	
 	@Override
-	public CustomerDto findCustomerId(String customer_email) throws Exception{
+	public List<CustomerDto> findCustomerId(String customer_email) throws Exception{
 		ICustomerDao dao = sqlSession.getMapper(ICustomerDao.class);
 		return dao.findCustomerId(customer_email);
 	}

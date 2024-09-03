@@ -5,7 +5,21 @@ public class ActorCharacterDto {
 	private String actor_name;
 	private String actor_img;
 	private Integer actor_id;
+	private Integer character_id;
 	
+	
+	
+	public ActorCharacterDto(Integer actor_id, Integer character_id) {
+		super();
+		this.actor_id = actor_id;
+		this.character_id = character_id;
+	}
+	public Integer getCharacter_id() {
+		return character_id;
+	}
+	public void setCharacter_id(Integer character_id) {
+		this.character_id = character_id;
+	}
 	public Integer getActor_id() {
 		return actor_id;
 	}

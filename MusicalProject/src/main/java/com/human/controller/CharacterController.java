@@ -26,6 +26,7 @@ import com.human.service.ActorServiceImpl;
 import com.human.service.CharacterServiceImpl;
 
 import com.human.service.ReviewServiceImpl;
+import com.human.service.WorksServiceImpl;
 import com.human.vo.BoardVo;
 
 /**
@@ -42,6 +43,8 @@ public class CharacterController {
 	CharacterServiceImpl service;
 	@Autowired
 	ActorServiceImpl actorService;
+	@Autowired
+	WorksServiceImpl worksService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(CharacterController.class);
 	
@@ -54,9 +57,16 @@ public class CharacterController {
 	public String readCharacter(Model model,Integer actor_id, Integer musical_id)throws Exception{
 		
 		ActorDto dto=actorService.select(actor_id);
-		model.addAttribute("musical_id", musical_id);
+
+		
+
+		ArrayList<WorksDto> wdto=worksService.selectAll(actor_id);
+		model.addAttribute("worksList",wdto);
+    model.addAttribute("musical_id", musical_id);
 		model.addAttribute("actor",dto);
 		System.out.println(dto);
+		System.out.println(wdto);		
+		
 		
 		return "musical/fragments/readCharacter";
 	}

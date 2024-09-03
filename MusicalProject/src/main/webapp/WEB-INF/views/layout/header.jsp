@@ -37,10 +37,10 @@
             </ul>
           </li>
           <li class="has-submenu">
-            <a href="help/help_main">고객센터</a>
+            <a href="<%=request.getContextPath()%>/help/help_main">고객센터</a>
             <ul class="submenu">
-              <li><a href="help/notice">공지사항</a></li>
-              <li><a href="help/faq">FAQ</a></li>
+              <li><a href="<%=request.getContextPath()%>/help/notice">공지사항</a></li>
+              <li><a href="<%=request.getContextPath()%>/help/faq">FAQ</a></li>
               <li><a href="#">1:1</a></li>
             </ul>
           </li>
@@ -82,14 +82,14 @@
             </ul>
           </li>
           <li>
-            <a href="help/help_main">고객센터</a>
+            <a href="<%=request.getContextPath()%>/help/help_main">고객센터</a>
             <ul class="submenul">
-              <li><a href="help/notice">공지사항</a></li>
-              <li><a href="help/faq">FAQ</a></li>
+              <li><a href="<%=request.getContextPath()%>/help/notice">공지사항</a></li>
+              <li><a href="<%=request.getContextPath()%>/help/faq">FAQ</a></li>
               <li><a href="#">1:1문의사항</a></li>
             </ul>
           </li>
-          <li class="specialo"><a href="help/near_map">근처 공연장 보기</a></li>
+          <li class="specialo"><a href="<%=request.getContextPath()%>/help/near_map">근처 공연장 보기</a></li>
           <li class="special"><a href="#">로그아웃</a></li>
         </ul>
       </div>

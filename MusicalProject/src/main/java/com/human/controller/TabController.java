@@ -35,12 +35,12 @@ public class TabController {
 	ActorCharacterServiceImpl ACService;
 
 	@RequestMapping("/review")
-	public String reviewTab(Model model, @RequestParam(value = "musical_id") Integer musical_id,
+	public String reviewTab(Model model, @RequestParam(value = "musical_id") Integer musical_id,@RequestParam(value = "customer_id", defaultValue ="") String customer_id,
 			@RequestParam(value = "page", defaultValue = "1") int page,
 			@RequestParam(value = "perPageNum", defaultValue = "10") int perPageNum,
 			@RequestParam(value = "sort", defaultValue = "date") String sort) throws Exception {
 
-		Double avgRating = rService.avgRating();
+		Double avgRating = rService.avgRating(musical_id);
 
 		BoardVo vo = new BoardVo();
 		vo.setSort(sort);
@@ -51,8 +51,9 @@ public class TabController {
 		if (avgRating != null)
 			roundRating = Math.round(avgRating);
 
-		vo.setTotalCount(rService.totalCount());
+		vo.setTotalCount(rService.totalCount(musical_id,customer_id));
 		ArrayList<ReviewDto> dto = rService.selectAll(musical_id, vo);
+		
 		System.out.println(dto);
 		System.out.println(musical_id);
 		model.addAttribute("List", dto);
@@ -60,6 +61,7 @@ public class TabController {
 		model.addAttribute("boardVo", vo);
 		model.addAttribute("roundRating", roundRating);
 		model.addAttribute("musical_id", musical_id);
+		model.addAttribute("customer_id", customer_id);
 		return "musical/fragments/review";
 
 	}
