@@ -10,6 +10,7 @@
 		
 		$("#updateActor").click(function() {
 			$("#updateForm").toggle();
+			$("#updateActor").toggle();
 		});
  
 		 $(".deleteActor").click(function() {
@@ -68,13 +69,14 @@ display:none;
 			</div>
 		</div>
 		<div id="updateForm">
-			<form action="updateActor">
+			<form action="/ex/character/updateActor">
 				<input type="number" value="${actor.actor_id}"name="actor_id" readonly>
 				<input type="text" value="${actor.actor_name}"name="actor_name">
 				<input type="date" value="<fmt:formatDate value='${actor.birthday}' pattern='yyyy-MM-dd'/>"name="birthday">
 				<input type="number" value="${actor.height}"name="height">
 				<input type="number" value="${actor.weight}"name="weight">
 				<input type="text" value="${actor.actor_img}"name="actor_img"><br>
+				<input type="hidden" value="${musical_id }" name="musical_id">
 				<input type="submit" value="수정" >
 			</form>
 		</div>
