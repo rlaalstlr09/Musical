@@ -45,7 +45,7 @@ public class MusicalController {
 	//뮤지컬 리스트 페이지
 	@RequestMapping("/listAll")
 	public String listAll(@RequestParam(value = "page", defaultValue = "1") int page,
-			@RequestParam(value = "perPageNum", defaultValue = "10") int perPageNum,
+			@RequestParam(value = "perPageNum", defaultValue = "36") int perPageNum,
 			@RequestParam(value = "keyword", defaultValue = "") String keyword,
 			@RequestParam(value = "sort", defaultValue = "") String sort, 
 			MusicalFilterDto filter, Model model)

@@ -71,6 +71,7 @@ public class TabController {
 		ArrayList<ActorCharacterDto>dto=ACService.selectAll(musical_id);
 		
 		model.addAttribute("List",dto);
+		model.addAttribute("musical_id", musical_id);
 		System.out.println(dto);
 		
 		return "musical/fragments/character";

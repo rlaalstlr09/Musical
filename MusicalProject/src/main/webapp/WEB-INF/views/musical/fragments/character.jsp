@@ -48,7 +48,10 @@ div {
 				$.ajax({
 					url : '/ex/character/readCharacter', // 로드할 JSP 페이지의 URL
 					type : 'GET',
-					data: {actor_id : actorId },
+					data: {
+						actor_id : actorId,
+						musical_id : '${musical_id}'
+					},
 					success : function(response) {
 						$('#actor-modal-body').html(response); // 모달의 콘텐츠를 업데이트
 						$('#actor-modal').modal('show'); // 모달을 표시
