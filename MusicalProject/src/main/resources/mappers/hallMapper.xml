@@ -15,6 +15,49 @@ select * from hall where hall_id=#{param1}
 select * from hall where venue_id=#{param1} 
 </select>
 
+<!--admin hall 관리 -->	
+
+
+<sql id='venue_id'>
+    <if test="fGroupKind!=null">
+            and venue_id=#{fGroupKind}
+    </if>   
+</sql>
+
+<select id="hall_listSearch" resultType="com.human.dto.HallDto" >	
+	<![CDATA[SELECT *
+FROM hall
+WHERE 1=1]]>
+<include refid="venue_id"/>
+<![CDATA[ORDER BY hall_id DESC
+OFFSET (#{page} - 1) * #{perPageNum} ROWS
+FETCH NEXT #{perPageNum} ROWS ONLY]]>
+</select>
+
+<select id="hall_listSearchCount" resultType="int">
+<![CDATA[ select count(hall_id) from hall where 1=1 ]]>
+<include refid="venue_id" />
+<![CDATA[ and hall_id > 0 ]]>
+</select>
+
+<update id="hall_update"> update hall set venue_id=#{venue_id},
+		hall_name =#{hall_name},hall_total_seat=#{hall_total_seat} where hall_id = #{hall_id}
+</update>
+	
+<delete id="hall_delete"> delete from hall where hall_id = #{hall_id} </delete>
+<delete id="hall_vanuedelete"> delete from hall where hall_id = #{hall_id} </delete>
+<insert id="hall_create">
+INSERT INTO hall 
+		( hall_id, hall_name, hall_total_seat,venue_id) VALUES
+			( hall_seq.nextval,#{hall_name},#{hall_total_seat},#{venue_id})
+</insert>
+
+<select id="hall_read" resultType="HallDto">
+		select * from hall where
+		hall_id =
+		#{hall_id}
+	</select>
+
 
 </mapper>
 

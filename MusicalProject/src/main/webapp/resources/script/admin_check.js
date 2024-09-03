@@ -1,3 +1,33 @@
+$(document).ready(function() {
+
+function checkRequiredFields(){
+			var allFilled = true;
+			
+			$("input[required]").each(function(){
+				if($(this).val() === ''){
+					allFilled = false;
+					return false;
+				}
+			});
+			
+						
+			$("textarea[required]").each(function(){
+				if($(this).val() === ''){
+					allFilled = false;
+					return false;
+				}
+			});
+			
+			if(allFilled){
+				$(".signup").addClass("active").prop("disabled",false);		
+			}else{
+				$(".signup").removeClass("active").prop("disabled",true);
+			}
+		}
+		$("input[required]").on("input",checkRequiredFields);
+		$("textarea[required]").on("input",checkRequiredFields);
+});
+
 function checkActor() {
 	  var isValid = true;
         

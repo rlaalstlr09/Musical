@@ -114,6 +114,81 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="musical_list" resultType="com.human.dto.MusicalDto">
 	select musical_id,musical_title from musical 
 	</select>
+	
+	<!--admin 뮤지컬 관리 -->
+
+<sql id='musical_search'>
+    <if test="keyword!=null">
+    <if test="keyword!=''">
+    <if test="searchType!=''">
+    <if test="searchType=='title'">
+            and (musical_title LIKE '%' || #{keyword} || '%')                        
+    </if>
+    <if test="searchType=='agelimit'">
+            and (musical_agelimit LIKE '%' || #{keyword} || '%')                        
+    </if>  </if>  </if></if>
+</sql>
+
+<sql id='musical_period'>
+    <if test="fGroupKind!=null">
+    <if test="fGroupKind!=''">
+    <if test="nGroupKind!=null">
+    <if test="nGroupKind!=''">
+            <![CDATA[and TO_CHAR(musical_period_start, 'YYYYMM') >= #{fGroupKind}
+            and TO_CHAR(musical_period_end, 'YYYYMM') <= #{nGroupKind}]]>
+    </if>    </if></if></if>
+</sql>
+
+<select id="musical_listSearch" resultType="com.human.dto.MusicalDto" >	
+	<![CDATA[SELECT *
+FROM musical
+WHERE 1=1]]>
+<include refid="musical_search"/>
+<include refid="musical_period"/>
+<![CDATA[ORDER BY musical_id DESC
+OFFSET (#{page} - 1) * #{perPageNum} ROWS
+FETCH NEXT #{perPageNum} ROWS ONLY]]>
+</select>
+
+<select id="musical_listSearch_excel" resultType="com.human.dto.MusicalDto" >	
+	<![CDATA[SELECT *
+FROM musical
+WHERE 1=1]]>
+<include refid="musical_search"/>
+<include refid="musical_period"/>
+ORDER BY musical_id DESC
+</select>
+
+<select id="musical_listSearchCount" resultType="int">
+<![CDATA[ select count(musical_id) from musical where 1=1 ]]>
+<include refid="musical_search" />
+<include refid="musical_period"/>
+<![CDATA[ and musical_id > 0 ]]>
+</select>
+
+<update id="musical_update"> update musical set musical_title=#{musical_title},musical_poster
+		=#{musical_poster},musical_period_start=#{musical_period_start},musical_agelimit=#{musical_agelimit},
+		musical_period_end =#{musical_period_end},musical_runningtime=#{musical_runningtime} 
+		where musical_id = #{musical_id}
+</update>
+	
+<delete id="musical_delete"> delete from musical where musical_id = #{mId} </delete>
+
+<insert id="musical_create">
+INSERT INTO musical 
+		( musical_id, musical_title, musical_poster,
+			musical_period_start,musical_period_end,
+			musical_runningtime,musical_agelimit) VALUES
+			( musical_seq.nextval,#{musical_title},#{musical_poster},#{musical_period_start},#{musical_period_end}
+			,#{musical_runningtime},#{musical_agelimit})
+</insert>
+
+<select id="musical_read" resultType="MusicalDto">
+		select * from musical where
+		musical_id =
+		#{musical_id}
+	</select>
+	
 </mapper>
 
 

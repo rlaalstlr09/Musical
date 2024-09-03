@@ -6,14 +6,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>QA 관리</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/notice.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src='<%=request.getContextPath()%>/resources/script/admin_qa.js'></script>
 
 </head>
 <body>
-
+<jsp:include page="../layout/header.jsp"/>
 	<div id="wrap">
 		<div id="contents">
 			<div id="content">

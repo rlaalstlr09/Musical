@@ -19,4 +19,9 @@ public interface IReviewDao {
 	public Integer totalCount(@Param("musical_id") Integer musical_id,@Param("customer_id") String customer_id) throws Exception;
 	public Double avgRating(@Param("musical_id") Integer musical_id) throws Exception;
 	
+	//admin관련	
+	public List<ReviewDto> review_listSearch(BoardVo vo) throws Exception;
+	public int review_listSearchCount(BoardVo vo) throws Exception;
+	public ReviewDto review_read(Integer review_id) throws Exception;
+	public List<ReviewDto> review_listAll(BoardVo vo) throws Exception;
 }

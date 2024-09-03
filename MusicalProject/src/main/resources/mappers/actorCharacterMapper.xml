@@ -17,8 +17,12 @@ where #{musical_id}=c.musical_id
 order by c.character_name
 </select>
 
-
-
+<!-- admin관련 -->
+<insert id="actor_character_create">
+INSERT INTO actor_character 
+		( actor_id,character_id) VALUES
+			( #{actor_id},#{character_id})
+</insert>
 
 
 </mapper>

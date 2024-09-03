@@ -22,6 +22,51 @@ update actor set actor_id=#{actor_id},actor_name=#{actor_name},birthday=#{birthd
 delete actor where actor_id=#{actor_id}
 </delete>
 
+<!--admin actor 관리 -->
+
+
+<sql id='actor_search'>
+    <if test="keyword!=null">
+    <if test="keyword!=''">
+            and (actor_name LIKE '%' || #{keyword} || '%')       
+    </if>  </if>  
+    </sql>
+<select id="actor_listSearch" resultType="com.human.dto.ActorDto" >	
+	<![CDATA[SELECT *
+FROM actor
+WHERE 1=1]]>
+<include refid="actor_search"/>
+<![CDATA[ORDER BY actor_id DESC
+OFFSET (#{page} - 1) * #{perPageNum} ROWS
+FETCH NEXT #{perPageNum} ROWS ONLY]]>
+</select>
+
+<select id="actor_listSearchCount" resultType="int">
+<![CDATA[ select count(actor_id) from actor where 1=1 ]]>
+<include refid="actor_search" />
+<![CDATA[ and actor_id > 0 ]]>
+</select>		
+
+
+<insert id="actor_create">
+INSERT INTO actor 
+		( actor_id, actor_name, birthday,height,weight,actor_img) VALUES
+			( actor_seq.nextval,#{actor_name},#{birthday},#{height},#{weight},#{actor_img})
+</insert>
+
+<select id="actor_read" resultType="com.human.dto.ActorDto" >	
+SELECT *
+FROM actor
+WHERE actor_id=#{actor_id}
+</select>
+	
+<select id="actor_all" resultType="com.human.dto.ActorDto" >	
+SELECT *
+FROM actor
+ORDER BY actor_id DESC
+</select>
+
+
 </mapper>
 
 

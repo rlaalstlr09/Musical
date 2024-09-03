@@ -17,4 +17,8 @@ public interface ISeatDao {
 	
 	public List<SeatDto> selectSeatInfo(Integer musical_id) throws Exception;
 
+	//admin관련
+	public void seat_venueAlldelete(Integer venue_id) throws Exception;
+	public void seat_hallAlldelete(Integer hall_id) throws Exception;
+	public void seat_Alldelete(Integer musical_id) throws Exception;
 }

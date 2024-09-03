@@ -14,4 +14,8 @@ public interface IReservationService {
 	public void reservation_cancel(int reservation_id) throws Exception;
 	public int reser_seq() throws Exception;
 
+	//admin관련
+	public List<ReservationDto> reservation_venuecheck(Integer venue_id) throws Exception;
+	public List<ReservationDto> reservation_hallcheck(Integer hall_id) throws Exception;
+	public List<ReservationDto> reservation_musical_check(Integer musical_id) throws Exception;
 }

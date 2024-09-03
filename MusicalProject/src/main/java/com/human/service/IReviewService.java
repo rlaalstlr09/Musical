@@ -18,4 +18,10 @@ public interface IReviewService {
 	public Integer totalCount(Integer musical_id,String customer_id) throws Exception;
 	public Double avgRating(Integer musical_id) throws Exception;
 
+	//admin관련	
+	public List<ReviewDto> review_listSearch(BoardVo vo) throws Exception;
+	public int review_listSearchCount(BoardVo vo) throws Exception;
+	public ReviewDto review_read(Integer review_id) throws Exception;
+	public List<ReviewDto> review_listAll(BoardVo vo) throws Exception;
+
 }

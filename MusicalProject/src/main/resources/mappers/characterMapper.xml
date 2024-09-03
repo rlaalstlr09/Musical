@@ -21,7 +21,63 @@ insert into character values(character_seq.currval,#{actor_id})
 </insert>
 
 
+<!-- character 관리 -->
+<select id="character_read" resultType="com.human.dto.CharacterDto" >	
+SELECT c.*,actor_name FROM character c join actor a on c.actor_id=a.actor_id
+WHERE musical_id=#{musical_id}
+ORDER BY character_id DESC
+OFFSET (#{vo.page} - 1) * #{vo.perPageNum} ROWS
+FETCH NEXT #{vo.perPageNum} ROWS ONLY
+</select>
 
+<select id="character_listSearchCount" resultType="int">
+<![CDATA[ select count(character_id) from character where musical_id = #{musical_id} ]]>
+<![CDATA[ and character_id > 0 ]]>
+</select>	
+	
+<update id="character_update"> update character set character_name=#{character_name}
+		actor_id = #{actor_id} where character_id = #{character_id}
+</update>
+	
+<delete id="character_delete"> delete from character where character_id = #{character_id} </delete>
+<delete id="character_Alldelete"> delete from character where musical_id = #{musical_id} </delete>
+<delete id="character_actor_delete"> delete from character where actor_id = #{actor_id} </delete>
+<insert id="character_create" parameterType="java.util.List">
+    INSERT INTO character (character_id, musical_id, character_name, actor_id)
+        SELECT character_seq.nextval, musical_id, character_name, actor_id from(
+        <foreach collection="list" item="character" separator="UNION ALL">
+        SELECT #{character.musical_id} AS musical_id, #{character.character_name} AS character_name, 
+        #{character.actor_id} AS actor_id FROM dual
+    </foreach>
+    ) character
+</insert>
+
+
+
+<select id="character_id" resultType="int" >
+select character_id from character where musical_id = #{musical_id} and 
+actor_id = #{actor_id} and character_name=#{character_name}
+</select>
+
+<select id="character_actor" resultType="com.human.dto.CharacterDto" >	
+SELECT c.*,musical_title
+FROM character c, musical m
+WHERE actor_id=#{actor_id} and c.musical_id=m.musical_id
+ORDER BY character_id DESC
+OFFSET (#{vo.page} - 1) * #{vo.perPageNum} ROWS
+FETCH NEXT #{vo.perPageNum} ROWS ONLY
+</select>
+
+<select id="character_actor_listSearchCount" resultType="int">
+<![CDATA[ select count(character_id) from character where actor_id=#{actor_id} ]]>
+<![CDATA[ and character_id > 0 ]]>
+</select>	
+
+<select id="character_read_delete" resultType="com.human.dto.CharacterDto" >	
+SELECT *
+FROM character 
+WHERE character_id=#{character_id}
+</select>
 
 </mapper>
 

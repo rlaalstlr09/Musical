@@ -36,7 +36,16 @@ update musical_schedule set seat_count =#{param1} where mu_sch_id= #{param2}
     )
 </insert>
 
+<!-- admin 조인 삭제 관련 -->
+
+
+<delete id="musical_schedule_Alldelete"> delete from musical_schedule where musical_id = #{musical_id} </delete>
+
+<delete id="musical_schedule_venuedelete"> delete from musical_schedule where venue_id = #{venue_id} </delete>
+<delete id="musical_schedule_halldelete"> delete from musical_schedule where hall_id = #{hall_id} </delete>
 </mapper>
+
+
 
 
 

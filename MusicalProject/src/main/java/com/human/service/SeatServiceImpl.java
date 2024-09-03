@@ -74,5 +74,18 @@ public class SeatServiceImpl implements ISeatService{
 		
 		return dao.selectSeatInfo(musical_id);
 	}
-
+	
+	//admin작업
+	public void seat_Alldelete(Integer musical_id) throws Exception{
+		ISeatDao dao = sqlSession.getMapper(ISeatDao.class);
+		dao.seat_Alldelete(musical_id);		
+	}
+	public void seat_venueAlldelete(Integer venue_id) throws Exception{
+		ISeatDao dao = sqlSession.getMapper(ISeatDao.class);
+		dao.seat_venueAlldelete(venue_id);		
+	}
+	public void seat_hallAlldelete(Integer hall_id) throws Exception{
+		ISeatDao dao = sqlSession.getMapper(ISeatDao.class);
+		dao.seat_hallAlldelete(hall_id);		
+	}
 }

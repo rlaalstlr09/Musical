@@ -11,4 +11,9 @@ public interface IMusicalScheduleService {
 
 	public void mu_sch_seat_update(String seat_count , int mu_sch_id) throws Exception;
 	public void insert_mu_sch(MusicalScheduleDto mu_schdto) throws Exception;
+
+	//admin관련
+	public void musical_schedule_Alldelete(Integer musical_id) throws Exception;
+	public void musical_schedule_venuedelete(Integer venue_id) throws Exception;
+	public void musical_schedule_halldelete(Integer hall_id) throws Exception;
 }

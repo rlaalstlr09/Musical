@@ -44,6 +44,72 @@ delete review where review_id=#{review_id}
 update review set review_id=#{review_id},customer_id=#{customer_id},musical_id=#{musical_id},content=#{content},rating=#{rating},review_date=#{review_date}
 </update>
 
+<!-- admin 리뷰 관리 -->
+
+
+<select id="review_listAll" resultType="com.human.dto.ReviewDto" >
+SELECT r.*,musical_title
+FROM review r, musical m
+WHERE r.musical_id=m.musical_id
+</select>
+<sql id='search'>
+    <if test="keyword!=null">
+            and (content LIKE '%' || #{keyword} || '%')                        
+    </if>
+</sql>
+	
+<sql id='join_musical_id'>
+    <if test="searchType!=null">
+    <if test="searchType!='전체'">
+    <if test="searchType!=''">
+            and r.musical_id = #{searchType}
+    </if>  </if>    </if>
+</sql>
+
+<sql id='customer_id'>
+    <if test="nGroupKind!=null">
+    <if test="nGroupKind!='전체'">
+    <if test="nGroupKind!=''">
+            and customer_id = #{nGroupKind}
+    </if>    </if>    </if>
+</sql>
+	
+	
+<select id="review_listSearch" resultType="com.human.dto.ReviewDto" >	
+	<![CDATA[SELECT r.*,musical_title
+FROM review r, musical m
+WHERE r.musical_id=m.musical_id]]>
+<include refid="join_musical_id"/>
+<include refid="customer_id"/>
+<include refid="search"/>
+<![CDATA[ORDER BY review_id DESC
+OFFSET (#{page} - 1) * #{perPageNum} ROWS
+FETCH NEXT #{perPageNum} ROWS ONLY]]>
+</select>
+
+<sql id='musical_id'>
+    <if test="searchType!=null">
+    <if test="searchType!='전체'">
+    <if test="searchType!=''">
+            and musical_id = #{searchType}
+    </if>  </if>    </if>
+</sql>
+
+<select id="review_listSearchCount" resultType="int">
+<![CDATA[ select count(review_id) from review where 1=1 ]]>
+		<include refid="search" />
+<include refid="musical_id"/>
+<include refid="customer_id"/>
+<![CDATA[ and review_id > 0 ]]>
+</select>
+
+<select id="review_read" resultType="com.human.dto.ReviewDto" >	
+SELECT *
+FROM review
+WHERE review_id=#{review_id}
+</select>
+
+
 </mapper>
 
 

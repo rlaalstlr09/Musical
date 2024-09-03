@@ -54,5 +54,20 @@ public class ReservationImpl implements IReservationService{
 		
 		
 	}
+	
+	
+	//admin관련
+	public List<ReservationDto> reservation_musical_check(Integer musical_id) throws Exception{
+		IReservationDao dao = sqlSession.getMapper(IReservationDao.class);
+		return dao.reservation_musical_check(musical_id);		
+	}
+	public List<ReservationDto> reservation_venuecheck(Integer venue_id) throws Exception{
+		IReservationDao dao = sqlSession.getMapper(IReservationDao.class);
+		return dao.reservation_venuecheck(venue_id);		
+	}
+	public List<ReservationDto> reservation_hallcheck(Integer hall_id) throws Exception{
+		IReservationDao dao = sqlSession.getMapper(IReservationDao.class);
+		return dao.reservation_hallcheck(hall_id);		
+	}
 
 }

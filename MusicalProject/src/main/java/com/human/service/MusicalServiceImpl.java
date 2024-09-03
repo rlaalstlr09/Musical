@@ -84,4 +84,34 @@ public class MusicalServiceImpl implements IMusicalService {
 		return dao.musical_list();
 	}
 	
+	//admin관련
+	public void musical_create(MusicalDto musical) throws Exception{
+		IMusicalDao dao = sqlSession.getMapper(IMusicalDao.class);
+		dao.musical_create(musical);
+	}
+	public MusicalDto musical_read(Integer musical_id) throws Exception{
+		IMusicalDao dao = sqlSession.getMapper(IMusicalDao.class);
+		return dao.musical_read(musical_id);		
+	}
+	public void musical_update(MusicalDto musical) throws Exception{
+		IMusicalDao dao = sqlSession.getMapper(IMusicalDao.class);
+		dao.musical_update(musical);
+	}
+	public void musical_delete(Integer mId) throws Exception{
+		IMusicalDao dao = sqlSession.getMapper(IMusicalDao.class);
+		dao.musical_delete(mId);
+	}
+	public List<MusicalDto> musical_listSearch(BoardVo vo) throws Exception{
+		IMusicalDao dao = sqlSession.getMapper(IMusicalDao.class);
+		return dao.musical_listSearch(vo);
+	}
+
+	public List<MusicalDto> musical_listSearch_excel(BoardVo vo) throws Exception{
+		IMusicalDao dao = sqlSession.getMapper(IMusicalDao.class);
+		return dao.musical_listSearch_excel(vo);
+	}
+	public int musical_listSearchCount(BoardVo vo) throws Exception{
+		IMusicalDao dao = sqlSession.getMapper(IMusicalDao.class);
+		return dao.musical_listSearchCount(vo);
+	}
 }

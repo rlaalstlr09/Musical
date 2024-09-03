@@ -34,5 +34,18 @@ public class MusicalScheduleServiceImpl implements IMusicalScheduleService{
 		IMusicalScheduleDao dao=sqlSession.getMapper(IMusicalScheduleDao.class);
 		dao.insert_mu_sch(mu_schdto);
 	}
-
+	
+	//admin 삭제 관련
+	public void musical_schedule_Alldelete(Integer musical_id) throws Exception{
+		IMusicalScheduleDao dao = sqlSession.getMapper(IMusicalScheduleDao.class);
+		dao.musical_schedule_Alldelete(musical_id);		
+	}
+	public void musical_schedule_venuedelete(Integer venue_id) throws Exception{
+		IMusicalScheduleDao dao = sqlSession.getMapper(IMusicalScheduleDao.class);
+		dao.musical_schedule_Alldelete(venue_id);		
+	}
+	public void musical_schedule_halldelete(Integer hall_id) throws Exception{
+		IMusicalScheduleDao dao = sqlSession.getMapper(IMusicalScheduleDao.class);
+		dao.musical_schedule_halldelete(hall_id);		
+	}
 }

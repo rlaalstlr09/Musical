@@ -38,7 +38,19 @@ select count(*) from reservation where customer_id=#{param1}
     SELECT reservation_seq.NEXTVAL FROM dual
 </select>
 
-
+<!-- admin 관리자메뉴 삭제 기능 관련 -->
+<select id="reservation_musical_check" resultType="com.human.dto.ReservationDto" >	
+select r.* from reservation r join musical_schedule s on s.mu_sch_id=r.mu_sch_id
+where s.musical_id=#{musical_id}
+</select>
+<select id="reservation_venuecheck" resultType="com.human.dto.ReservationDto" >
+    select * from reservation where mu_sch_id in (
+select mu_sch_id from musical_schedule where venue_id= #{venue_id} )
+</select>
+<select id="reservation_hallcheck" resultType="com.human.dto.ReservationDto" >
+    select * from reservation where mu_sch_id in (
+select mu_sch_id from musical_schedule where hall_id= #{hall_id} )
+</select>
 
 
 </mapper>

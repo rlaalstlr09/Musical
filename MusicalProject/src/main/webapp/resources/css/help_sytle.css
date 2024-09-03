@@ -23,3 +23,12 @@ background-color: transparent;
 .container {
 	max-width: 860px;
 }
+.viewBtn{
+	margin-top: 15px;
+    width: 50px;
+    padding: 2px;
+    font-size: 13px;
+    background: #0080ff;
+    border: 1px solid #242428;
+    color: #fff;
+}

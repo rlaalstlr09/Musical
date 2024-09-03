@@ -8,38 +8,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공지사항</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src='<%=request.getContextPath()%>/resources/script/notice.js'></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/signup.css">	
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/help_sytle.css">
 <script>
 	$(document).ready(function() {
 
-		var formObj = $("form[role='form']");
-
-		console.log(formObj);
-
-		$(".btn-warning").on("click", function() {
-			formObj.attr("action", "notice_modify");
-			formObj.submit();
-		});
-
-		$(".btn-danger").on("click", function() {
-			formObj.attr("action", "notice_remove");
-			formObj.submit();
-		});
-
-		$(".btn-primary").on("click", function() {
-			self.location = "notice";
-		});
+		
 
 	});
 </script>
 </head>
 <body>
+<jsp:include page="../layout/header.jsp"/>
 <div class="main">
 
 	<form role="form" method="get">
 		<input type='hidden' name='nId' value="${noticeDto.nId}">
 	</form>
+	
 	<h2>
 		카테고리 <input type="text" name='nGroupKind' style="width: 100%"
 			value="${noticeDto.nGroupKind}" readonly="readonly">
@@ -63,14 +52,13 @@
 	</h2>
 
 
-	<!-- /.box-body -->
+	<button type="submit" class="btn btn-primary">수정</button>
 	<div class="box-footer">
 		<!--  <sec:authorize access="hasRole('ROLE_ADMIN')"> -->
-		<button type="submit" class="btn btn-warning">수정</button>
+		<button type="submit" class="btn btn-warning">전체글보기</button>
 		<button type="submit" class="btn btn-danger">삭제</button>		
 		<!-- </sec:authorize> -->
-		<button type="submit" class="btn btn-primary">전체글보기</button>
-		</form>
+		
 	</div>
 </div>
 </body>
