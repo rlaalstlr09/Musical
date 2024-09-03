@@ -1,5 +1,6 @@
 package com.human.dto;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -29,6 +30,16 @@ public class MusicalDto {
 	
 	public MusicalDto() {}
 
+	//뮤지컬 날짜포맷 이쁘게 보이게
+	public String getFormattedMusical_period_start() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+        return sdf.format(musical_period_start);
+    }
+	
+	public String getFormattedMusical_period_end() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+        return sdf.format(musical_period_end);
+    }
 	
 	//뮤지컬 리스트 출력을 위한 생성자
 	public MusicalDto(Integer musical_id, String musical_title, String musical_poster, Date musical_period_start,
