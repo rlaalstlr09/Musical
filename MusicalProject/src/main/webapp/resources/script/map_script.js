@@ -138,7 +138,7 @@ window.onload = () => {
     	                    <div class="product_grid_unit">
     	                        <a class="product_link" href="detail/${musical.musical_id}">
     	                            <div class="product_imgbox">
-    	                                <img class="product_img" src="${contextPath}/resources/poster/${musical.musical_poster}">
+    	                                <img class="product_img" src="/upload/${musical.musical_poster}">
     	                            </div>
     	                            <div class="product_info">
     	                                <span class="product_title">${musical.musical_title}</span>
