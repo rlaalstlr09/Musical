@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,6 +48,8 @@ public class CharacterController {
 	@Autowired
 	WorksServiceImpl worksService;
 	
+	
+	
 	private static final Logger logger = LoggerFactory.getLogger(CharacterController.class);
 	
 	/**
@@ -57,13 +61,14 @@ public class CharacterController {
 	public String readCharacter(Model model,Integer actor_id, Integer musical_id)throws Exception{
 		
 		ActorDto dto=actorService.select(actor_id);
-
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
 
 		ArrayList<WorksDto> wdto=worksService.selectAll(actor_id);
 		model.addAttribute("worksList",wdto);
-    model.addAttribute("musical_id", musical_id);
+		model.addAttribute("musical_id", musical_id);
 		model.addAttribute("actor",dto);
+		model.addAttribute("auth",auth);
 		System.out.println(dto);
 		System.out.println(wdto);		
 		
