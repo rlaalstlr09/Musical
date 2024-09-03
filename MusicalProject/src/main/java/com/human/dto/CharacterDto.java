@@ -10,8 +10,45 @@ public class CharacterDto {
 	private String character_name;
 	private int actor_id;
 	
+	//관리자메뉴 조인테이블
+	private String actor_name;
+	private String musical_title;
 	
+	public CharacterDto(int character_id, int musical_id, String character_name, int actor_id, String actor_name,
+			String musical_title) {
+		super();
+		this.character_id = character_id;
+		this.musical_id = musical_id;
+		this.character_name = character_name;
+		this.actor_id = actor_id;
+		this.actor_name = actor_name;
+		this.musical_title = musical_title;
+	}
 	
+	public String getActor_name() {
+		return actor_name;
+	}
+
+
+
+	public void setActor_name(String actor_name) {
+		this.actor_name = actor_name;
+	}
+
+
+
+	public String getMusical_title() {
+		return musical_title;
+	}
+
+
+
+	public void setMusical_title(String musical_title) {
+		this.musical_title = musical_title;
+	}
+
+
+
 	public int getCharacter_id() {
 		return character_id;
 	}
