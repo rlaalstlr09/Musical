@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,6 +48,8 @@ public class CharacterController {
 	@Autowired
 	WorksServiceImpl worksService;
 	
+	
+	
 	private static final Logger logger = LoggerFactory.getLogger(CharacterController.class);
 	
 	/**
@@ -57,13 +61,14 @@ public class CharacterController {
 	public String readCharacter(Model model,Integer actor_id, Integer musical_id)throws Exception{
 		
 		ActorDto dto=actorService.select(actor_id);
-
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
 
 		ArrayList<WorksDto> wdto=worksService.selectAll(actor_id);
 		model.addAttribute("worksList",wdto);
-    model.addAttribute("musical_id", musical_id);
+		model.addAttribute("musical_id", musical_id);
 		model.addAttribute("actor",dto);
+		model.addAttribute("auth",auth);
 		System.out.println(dto);
 		System.out.println(wdto);		
 		
@@ -71,14 +76,14 @@ public class CharacterController {
 		return "musical/fragments/readCharacter";
 	}
 	@RequestMapping(value = "/updateActor", method = RequestMethod.GET)
-	public String updateActor(Model model,ActorDto dto)throws Exception{
+	public String updateActor(ActorDto dto,int musical_id)throws Exception{
 		
 		
 		
 		actorService.update(dto);
 		System.out.println(dto);
 		
-		return "redirect:/character/readCharacter?actor_id="+dto.getActor_id();
+		return "redirect:/musical/detail/" + musical_id;
 	}
 	@RequestMapping(value = "/deleteActor", method = RequestMethod.GET)
 	public String deleteActor(int actor_id, int musical_id)throws Exception{
@@ -86,13 +91,16 @@ public class CharacterController {
 		return "redirect:/musical/detail/" + musical_id;
 	}
 	
+	
+	
+	
 	@RequestMapping(value = "/insertActor", method = RequestMethod.GET)//character테이블과 actor_character테이블에 데이터를 동시에 추가 actor_id는 null이어도 됨
 	public void insertActorCharacter(CharacterDto dto)throws Exception {
 		service.insert(dto);
 		service.insertActorCharacter();
 	}
 	
-	/////////////////////////////////////////////////////////////////
+	
 
 	
 
