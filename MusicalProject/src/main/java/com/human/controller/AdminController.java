@@ -22,6 +22,7 @@ import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -71,7 +72,8 @@ public class AdminController {
 //	@Resource(name="uploadPath")
 //	private String uploadPath;
 	
-	
+	@Autowired
+	private ServletContext servletContext;
 	
 	@Autowired
 	private IAdminService service;
@@ -565,11 +567,12 @@ public class AdminController {
 	
 	@RequestMapping("/admin_files")
 	public String listFiles(Model model,BoardVo vo) throws Exception {
-		String directoryPath = "C:/sts-bundle/workspring/customerService/src/main/webapp/resources/scan";
+		String resourcesFolderPath = servletContext.getRealPath("/resources");
+		String directoryPath = resourcesFolderPath+"/scan";
 		if(vo.getSearchType()!=null) {
 			if(!vo.getSearchType().equals("")) {
 				String folder=vo.getSearchType();
-				directoryPath = "C:/sts-bundle/workspring/customerService/src/main/webapp/resources/"+folder;
+				directoryPath = resourcesFolderPath+"/"+folder;
 			}
 		}
         File directory = new File(directoryPath);
@@ -603,12 +606,13 @@ public class AdminController {
 
     @RequestMapping("/admin_fileRemove")
     public String removeFile(@RequestParam("fileName") String fileName, @RequestParam("searchType") String searchType) {
-    	String directoryPath = "C:/sts-bundle/workspring/customerService/src/main/webapp/resources/scan";
+    	String resourcesFolderPath = servletContext.getRealPath("/resources");
+    	String directoryPath = resourcesFolderPath + "/scan";
 		
 		if(searchType!=null) {
 			if(!searchType.equals("")) {
 				String folder=searchType;
-				directoryPath = "C:/sts-bundle/workspring/customerService/src/main/webapp/resources/"+folder;
+				directoryPath = resourcesFolderPath+"/"+folder;
 			}
 		}
         File file = new File(directoryPath + File.separator + fileName);
@@ -620,12 +624,13 @@ public class AdminController {
 
     @RequestMapping("/admin_fileView")
     public void viewFile(@RequestParam("fileName") String fileName, HttpServletResponse response, @RequestParam("searchType") String searchType) throws IOException {
-    	String directoryPath = "C:/sts-bundle/workspring/customerService/src/main/webapp/resources/scan";
+    	String resourcesFolderPath = servletContext.getRealPath("/resources");
+    	String directoryPath = resourcesFolderPath+"/scan";
 		
 		if(searchType!=null) {
 			if(!searchType.equals("")) {
 				String folder=searchType;
-				directoryPath = "C:/sts-bundle/workspring/customerService/src/main/webapp/resources/"+folder;
+				directoryPath = resourcesFolderPath+"/"+folder;
 			}
 		}
         File file = new File(directoryPath + File.separator + fileName);
@@ -742,9 +747,10 @@ public class AdminController {
     }
 	
 	public void moveFile(String fileName, String searchType) throws IOException {
-		if(searchType.equals("scan")) {
-			String sourceDirectoryPath = "C:/sts-bundle/workspring/customerService/src/main/webapp/resources/scan";
-            String targetDirectoryPath = "C:/sts-bundle/workspring/customerService/src/main/webapp/resources/document";
+		String resourcesFolderPath = servletContext.getRealPath("/resources");
+		if(searchType.equals("scan")) {			
+			String sourceDirectoryPath = resourcesFolderPath+"/scan";
+            String targetDirectoryPath = resourcesFolderPath+"/document";
 
             File sourceFile = new File(sourceDirectoryPath + File.separator + fileName);
             File targetFile = new File(targetDirectoryPath + File.separator + fileName);
@@ -753,7 +759,7 @@ public class AdminController {
                 sourceFile.renameTo(targetFile);
             }
 		}
-		String directoryPath = "C:/sts-bundle/workspring/customerService/src/main/webapp/resources/document";
+		String directoryPath = resourcesFolderPath+"/document";
 		
         File file = new File(directoryPath + File.separator + fileName);
 
@@ -810,7 +816,7 @@ public class AdminController {
 	
 	@RequestMapping("/admin_filesView")
 	public void viewFiles(@RequestParam("fileNames") String fileNames, HttpServletResponse response, @RequestParam("searchType") String searchType) throws IOException {
-	    String baseDirectoryPath = "C:/sts-bundle/workspring/customerService/src/main/webapp/resources";
+		String baseDirectoryPath = servletContext.getRealPath("/resources");
 	    String directoryPath = baseDirectoryPath + "/scan"; // 기본 디렉토리 경로
 
 	    if (searchType != null && !searchType.isEmpty()) {
