@@ -13,7 +13,8 @@
 <br>
 <div id='wrap'>
 <a href='inform'>예매도움 받기</a>
-<a href='qa_admin'>1:1 상담 </a>
+<a href='<%=request.getContextPath()%>/member/write'>1:1 상담 </a>
+<a href='<%=request.getContextPath()%>/member/qa_list'>1:1 문의내역 </a>
 <a href='faq'>FAQ보기</a>
 <a href='notice'>티켓소식</a>
 <a href='near_map'>내주변 뮤지컬정보</a>

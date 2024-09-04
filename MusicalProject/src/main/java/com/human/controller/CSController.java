@@ -128,7 +128,7 @@ public class CSController {
 		return "redirect:/help/notice";
 	}
 
-	@RequestMapping(value = "/notice_remove", method = RequestMethod.GET)
+	@RequestMapping(value = "/notice_remove", method = RequestMethod.POST)
 	public String notice_remove(@RequestParam("nId") int nId, RedirectAttributes rttr) throws Exception {
 		nservice.delete(nId);
 		rttr.addFlashAttribute("msg", "success");

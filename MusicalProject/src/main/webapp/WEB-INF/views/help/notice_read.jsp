@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page session="false"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <fmt:setLocale value="ko" />
 <!DOCTYPE html>
 <html>
@@ -52,12 +53,13 @@
 	</h2>
 
 
-	<button type="submit" class="btn btn-primary">수정</button>
+	<button type="submit" class="btn btn-warning">전체글보기</button>
 	<div class="box-footer">
-		<!--  <sec:authorize access="hasRole('ROLE_ADMIN')"> -->
-		<button type="submit" class="btn btn-warning">전체글보기</button>
+		 <sec:authorize access="hasRole('ROLE_ADMIN')">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		<button type="submit" class="btn btn-primary">수정</button>
 		<button type="submit" class="btn btn-danger">삭제</button>		
-		<!-- </sec:authorize> -->
+		</sec:authorize> 
 		
 	</div>
 </div>
