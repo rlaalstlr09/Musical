@@ -42,6 +42,7 @@ $(document).ready(function(){
 		
 		$(".btn-danger").on("click", function(){
 			formObj.attr("action", "faq_remove");
+			formObj.attr("method", "post");
 			formObj.submit();
 		});
 	  		  

@@ -83,7 +83,7 @@ public class CSController {
 		return "redirect:/help/faq";
 	}
 
-	@RequestMapping(value = "/faq_remove", method = RequestMethod.GET)
+	@RequestMapping(value = "/faq_remove", method = RequestMethod.POST)
 	public String remove(@RequestParam("fId") int fId, RedirectAttributes rttr) throws Exception {
 		service.delete(fId);
 		rttr.addFlashAttribute("msg", "success");

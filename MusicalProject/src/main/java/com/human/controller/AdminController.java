@@ -142,9 +142,9 @@ public class AdminController {
 	}
 	
 	
-	@RequestMapping(value = "/admin_main", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String admin_main() {
-		return "admin/admin_main";
+		return "admin/admin";
 	}
 	
 	@RequestMapping(value = "/admin_musical", method = RequestMethod.GET)
