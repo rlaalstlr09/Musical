@@ -142,10 +142,6 @@ public class AdminController {
 	}
 	
 	
-	@RequestMapping(value = "/admin", method = RequestMethod.GET)
-	public String admin_main() {
-		return "admin/admin";
-	}
 	
 	@RequestMapping(value = "/admin_musical", method = RequestMethod.GET)
 	public String admin_musical(BoardVo vo, Model model) throws Exception {
