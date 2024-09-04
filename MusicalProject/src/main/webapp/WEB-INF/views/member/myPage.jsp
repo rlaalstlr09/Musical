@@ -86,26 +86,26 @@ body {
 </style>
 <body>
 	<div class="container">
-		<div class="header">
-			<h1>마이페이지</h1>
-		</div>
-		<div class="profile-info">아이디:
-			${pageContext.request.userPrincipal.name }</div>
-
-		<div class="links">
-			<a
-				href="/ex/member/read?customer_id=${pageContext.request.userPrincipal.name }">회원
-				정보</a> <a href="/ex/member/write">1:1 문의하기</a> <a
-				href="/ex/member/qa_list?customer_id=${pageContext.request.userPrincipal.name }">문의
-				내용보기</a> <a href="remove">회원탈퇴</a>
-		</div>
-		<div class="logout-button">
-			<form:form
-				action="${pageContext.request.contextPath}/customer/logout"
-				method="POST">
-				<input type="submit" value="로그아웃" />
-			</form:form>
-		</div>
+			<div class="header">
+				<h1>마이페이지</h1>
+			</div>
+			<div class="profile-info">아이디:
+				${pageContext.request.userPrincipal.name }</div>
+	
+			<div class="links">
+					<a href="/ex/member/read?customer_id=${pageContext.request.userPrincipal.name }">회원 정보</a>
+					<a href="/ex/member/write">1:1 문의하기</a> 
+					<a href="/ex/member/qa_list?customer_id=${pageContext.request.userPrincipal.name }">문의 내용보기</a> 
+					<a href="/ex/review/myReview">내가 쓴 리뷰</a>
+					<a href="remove">회원탈퇴</a>
+			</div>
+			<div class="logout-button">
+				<form:form
+					action="${pageContext.request.contextPath}/customer/logout"
+					method="POST">
+					<input type="submit" value="로그아웃" />
+				</form:form>
+			</div>
 	</div>
 </body>
 </html>
