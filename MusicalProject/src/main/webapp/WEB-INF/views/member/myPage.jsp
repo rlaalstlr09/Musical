@@ -114,6 +114,7 @@ body{
 		<a href="remove" class="a">회원탈퇴</a>
 	</div>
 	<div class="container">
+
 		<div class="profile-info">아이디:
 			${pageContext.request.userPrincipal.name }</div>
 
@@ -121,6 +122,7 @@ body{
 			<a href="/ex/member/read?customer_id=${pageContext.request.userPrincipal.name }">회원 정보</a> 
 			<a href="/ex/member/write">1:1문의</a> 
 			<a href="/ex/member/qa_list?customer_id=${pageContext.request.userPrincipal.name }">1:1문의내역</a> 
+      <a href="/ex/review/myReview">내가 쓴 리뷰</a>
 			<a href="#">장바구니</a>
 			<a href="remove">회원탈퇴</a>
 		</div>
@@ -131,6 +133,7 @@ body{
 				<input type="submit" value="로그아웃" />
 			</form:form>
 		</div>
+
 	</div>
 </body>
 </html>
