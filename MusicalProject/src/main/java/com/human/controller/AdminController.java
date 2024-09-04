@@ -81,8 +81,6 @@ public class AdminController {
 //			tiff파일은 등록하면 자동으로 pdf로 변환됨
 //			뮤지컬 등 추가,수정 작업을 할 때 view버튼을 누르고 문서를 참고해 작업을 할 수 있게 설계함
 //			여러개의 문서가 등록되면 슬라이드로 넘기면서 볼 수 있음
-
-
 	
 	@Autowired
 	private ServletContext servletContext;
@@ -118,7 +116,10 @@ public class AdminController {
 	private IMusicalScheduleService mu_schservice;
 		
 	public String posterUploadPath() throws UnsupportedEncodingException {
-		String uploadsDir = "C:/sts-bundle/common/apache-tomcat-9.0.90/webapps/ROOT/poster"; //톰캣서버 기본 경로로 포스터 업로드 경로 설정, 이곳에 저장해야 src로 불러올때 편하다.
+		String severPath = servletContext.getRealPath("/");
+		String parentparentPath = new File(severPath).getParent();
+		String parentPath = new File(parentparentPath).getParent();
+		String uploadsDir = parentPath+"\\webapps\\ROOT\\poster"; //톰캣서버 기본 경로로 포스터 업로드 경로 설정, 이곳에 저장해야 src로 불러올때 편하다.
 		File uploadDir = new File(uploadsDir);
         if (!uploadDir.exists()) {
             uploadDir.mkdirs();
@@ -128,7 +129,10 @@ public class AdminController {
 	}
     
 	public String actorUploadPath() throws UnsupportedEncodingException {
-		String uploadsDir = "C:/sts-bundle/common/apache-tomcat-9.0.90/webapps/ROOT/actor"; //톰캣서버 기본 경로로 포스터 업로드 경로 설정
+		String severPath = servletContext.getRealPath("/");
+		String parentparentPath = new File(severPath).getParent();
+		String parentPath = new File(parentparentPath).getParent();
+		String uploadsDir = parentPath+"\\webapps\\ROOT\\actor"; //톰캣서버 기본 경로로 포스터 업로드 경로 설정
 		File uploadDir = new File(uploadsDir);
         if (!uploadDir.exists()) {
             uploadDir.mkdirs();
