@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,11 +31,17 @@
         <ul>
           <li><span class="new-menu"><span class="hash"># </span> Musical</span></li>
           <li class="has-submenu">
-            <a href="#">로그인</a>
+            <a href="customer/login">로그인</a>
             <ul class="submenu">
-              <li><a href="#">로그인</a></li>
-              <li><a href="#">마이페이지</a></li>
-              <li><a href="#">로그아웃</a></li>
+              <li><a href="customer/login">로그인</a></li>
+              <li><a href="member/myPage">마이페이지</a></li>
+              <sec:authorize access="isAuthenticated()">
+              	<form:form action="${pageContext.request.contextPath }/customer/logout" method="POST">
+              		<li>
+              			<input type="submit" value="로그아웃">
+              		</li>
+              	</form:form>
+              </sec:authorize>
             </ul>
           </li>
           <li class="has-submenu">
@@ -45,7 +53,7 @@
             </ul>
           </li>
           <li class="has-submenu">
-            <a href="#">회원가입</a>
+            <a href="customer/joinUs">회원가입</a>
           </li>
         </ul>
       </nav>
@@ -63,14 +71,14 @@
           <li>
             <a href="#">Home</a>
             <ul class="submenul">
-              <li><a href="#">로그인</a></li>
+              <li><a href="customer/login">로그인</a></li>
             </ul>
           </li>
           <li>
-            <a href="#">마이페이지</a>
+            <a href="member/myPage">마이페이지</a>
             <ul class="submenul">
               <li><a href="#">장바구니</a></li>
-              <li><a href="#">회원정보수정</a></li>
+              <li><a href="member/read?customer_id=${pageContext.request.userPrincipal.name }">회원정보수정</a></li>
             </ul>
           </li>
           <li>
@@ -90,7 +98,11 @@
             </ul>
           </li>
           <li class="specialo"><a href="<%=request.getContextPath()%>/help/near_map">근처 공연장 보기</a></li>
-          <li class="special"><a href="#">로그아웃</a></li>
+            <sec:authorize access="isAuthenticated()">
+          <form:form action="${pageContext.request.contextPath }/customer/logout" method="POST">
+          <li class="special"><input type="submit" value="로그아웃"></li>
+          </form:form>
+          </sec:authorize>
         </ul>
       </div>
     </div>
