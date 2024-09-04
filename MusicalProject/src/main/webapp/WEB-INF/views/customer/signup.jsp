@@ -148,7 +148,7 @@
 </head>
 <body>
 <div class="container">
-	<a href="/ex/customer">사이트 이름</a>
+	<a href="/ex/">사이트 이름</a>
 	<h4>정보 입력</h4><hr>
 		<form action="/ex/customer/insert" method="post">
 			아이디<input type="text" name="customer_id" id="customer_id" required
