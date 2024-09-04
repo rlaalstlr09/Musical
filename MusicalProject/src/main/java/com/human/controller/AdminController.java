@@ -43,6 +43,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.human.dto.ActorCharacterDto;
 import com.human.dto.ActorDto;
 import com.human.dto.AdminDto;
 import com.human.dto.CharacterDto;
@@ -69,8 +70,19 @@ import com.human.vo.BoardVo;
 @Controller
 @RequestMapping("/admin/*")
 public class AdminController {
-//	@Resource(name="uploadPath")
-//	private String uploadPath;
+//	기능설명 : 뮤지컬,배우,극장,홀 - 추가,수정, 삭제
+//			리뷰 - 삭제
+//			극장관리에서 각 극장별 홀을 편집할 수 있음
+//			배역은 개별 뮤지컬 배역 상세보기 페이지에서 추가,수정,삭제
+//			뮤지컬 엑셀파일 다운로드 기능
+//			문서함은 팩스로 오는 스캔문서를 모아놓은 곳으로 문서함의 문서를 뮤지컬,극장,배우등 항목에 추가하여 전자 문서화 하는 기능으로
+//			요즘 회사들은 종이문서를 없애고 전자문서화를 추진하고 있는 추세여서 기능을 추가하였음
+//			아직 저장되지 않은 문서는 스캔문서함(팩스로 오는 문서or직접 스캔하면 저장되는 문서함)에 있고 문서를 등록하면 등록문서함으로 폴더를 옮김
+//			tiff파일은 등록하면 자동으로 pdf로 변환됨
+//			뮤지컬 등 추가,수정 작업을 할 때 view버튼을 누르고 문서를 참고해 작업을 할 수 있게 설계함
+//			여러개의 문서가 등록되면 슬라이드로 넘기면서 볼 수 있음
+
+
 	
 	@Autowired
 	private ServletContext servletContext;
@@ -105,8 +117,8 @@ public class AdminController {
 	@Autowired
 	private IMusicalScheduleService mu_schservice;
 		
-	public String uploadPath() throws UnsupportedEncodingException {
-		String uploadsDir = "C:/sts-bundle/common/apache-tomcat-9.0.90/webapps/ROOT/upload"; //톰캣서버 기본 경로
+	public String posterUploadPath() throws UnsupportedEncodingException {
+		String uploadsDir = "C:/sts-bundle/common/apache-tomcat-9.0.90/webapps/ROOT/poster"; //톰캣서버 기본 경로로 포스터 업로드 경로 설정, 이곳에 저장해야 src로 불러올때 편하다.
 		File uploadDir = new File(uploadsDir);
         if (!uploadDir.exists()) {
             uploadDir.mkdirs();
@@ -115,6 +127,17 @@ public class AdminController {
     return uploadPath;
 	}
     
+	public String actorUploadPath() throws UnsupportedEncodingException {
+		String uploadsDir = "C:/sts-bundle/common/apache-tomcat-9.0.90/webapps/ROOT/actor"; //톰캣서버 기본 경로로 포스터 업로드 경로 설정
+		File uploadDir = new File(uploadsDir);
+        if (!uploadDir.exists()) {
+            uploadDir.mkdirs();
+        }
+    String uploadPath = URLDecoder.decode(uploadsDir, "UTF-8");
+    return uploadPath;
+	}
+	
+	
 	@RequestMapping(value = "/admin_main", method = RequestMethod.GET)
 	public String admin_main() {
 		return "admin/admin_main";
@@ -145,7 +168,7 @@ public class AdminController {
 	
 	@RequestMapping(value = "/musical_register", method = RequestMethod.POST)
 	public String musical_registPOST(MusicalDto musical,MultipartFile file,String searchType,String fileName,BoardVo vo ,Model model, RedirectAttributes rttr) throws Exception {
-		String savedName=uploadFile(file.getOriginalFilename(),file.getBytes());
+		String savedName=posterUploadFile(file.getOriginalFilename(),file.getBytes());
 		musical.setMusical_poster(savedName);
 		musicalService.musical_create(musical);
 		if(!fileName.equals("")) {
@@ -163,10 +186,18 @@ public class AdminController {
 	}
 	
 	
-	private String uploadFile(String originalFilename, byte[] bytes) throws Exception {
+	private String posterUploadFile(String originalFilename, byte[] bytes) throws Exception {
 		UUID uid=UUID.randomUUID();
 		String savedName=uid.toString()+"_"+originalFilename;
-		File target=new File(uploadPath(),savedName);
+		File target=new File(posterUploadPath(), savedName);
+		FileCopyUtils.copy(bytes, target);
+		return savedName;
+	}
+	
+	private String actorUploadFile(String originalFilename, byte[] bytes) throws Exception {
+		UUID uid=UUID.randomUUID();
+		String savedName=uid.toString()+"_"+originalFilename;
+		File target=new File(actorUploadPath(), savedName);
 		FileCopyUtils.copy(bytes, target);
 		return savedName;
 	}
@@ -227,7 +258,7 @@ public class AdminController {
 	
 	@RequestMapping(value = "/musical_modify", method = RequestMethod.POST)
 	public String admin_musical_modifyPOST(MusicalDto musical,MultipartFile file,RedirectAttributes rttr) throws Exception {
-		String savedName=uploadFile(file.getOriginalFilename(),file.getBytes());
+		String savedName=posterUploadFile(file.getOriginalFilename(),file.getBytes());
 		musical.setMusical_poster(savedName);
 		System.out.println(musical.getMusical_id());
 		musicalService.musical_update(musical);
@@ -293,7 +324,9 @@ public class AdminController {
 	        @RequestParam("actor_id") int actor_id,
 	        RedirectAttributes rttr) throws Exception {
 		CharacterDto dto = new CharacterDto(character_id,musical_id,character_name,actor_id);
+		ActorCharacterDto acdto = new ActorCharacterDto(character_id,actor_id);
 		characterService.character_update(dto);    
+		acService.actor_character_update(acdto);
 	    
 	    return "success";  // 성공 메시지 반환 (뷰가 아닌 단순 텍스트로)
 	}
@@ -517,7 +550,7 @@ public class AdminController {
 	@RequestMapping(value = "/actor_register", method = RequestMethod.POST)
 	public String actor_registPOST(ActorDto actor,String searchType,MultipartFile file,
 			 String fileName,BoardVo vo ,Model model, RedirectAttributes rttr) throws Exception {
-		String savedName=uploadFile(file.getOriginalFilename(),file.getBytes());
+		String savedName=actorUploadFile(file.getOriginalFilename(),file.getBytes());
 		actor.setActor_img(savedName);
 		actorService.actor_create(actor);
 		if(!fileName.equals("")) {
@@ -546,7 +579,7 @@ public class AdminController {
 	
 	@RequestMapping(value = "/actor_modify", method = RequestMethod.POST)
 	public String admin_actor_modifyPOST(ActorDto actor,MultipartFile file,RedirectAttributes rttr) throws Exception {
-		String savedName=uploadFile(file.getOriginalFilename(),file.getBytes());
+		String savedName=actorUploadFile(file.getOriginalFilename(),file.getBytes());
 		actor.setActor_img(savedName);
 		actorService.update(actor);		
 		rttr.addFlashAttribute("msg", "success");
@@ -558,7 +591,6 @@ public class AdminController {
 	public String admin_actor_remove(int actor_id, String reason) throws Exception {
 		AdminDto dto=AdminDto.withoutFileName("actor",actor_id,actorService.actor_read(actor_id).getActor_name(),"table_delete",reason);
 		file_register(dto);
-		characterService.character_actor_delete(actor_id);
 		actorService.delete(actor_id);	
 		return "success";
 	}	
@@ -567,7 +599,7 @@ public class AdminController {
 	
 	@RequestMapping("/admin_files")
 	public String listFiles(Model model,BoardVo vo) throws Exception {
-		String resourcesFolderPath = servletContext.getRealPath("/resources");
+		String resourcesFolderPath = servletContext.getRealPath("/resources/static");
 		String directoryPath = resourcesFolderPath+"/scan";
 		if(vo.getSearchType()!=null) {
 			if(!vo.getSearchType().equals("")) {
@@ -606,7 +638,7 @@ public class AdminController {
 
     @RequestMapping("/admin_fileRemove")
     public String removeFile(@RequestParam("fileName") String fileName, @RequestParam("searchType") String searchType) {
-    	String resourcesFolderPath = servletContext.getRealPath("/resources");
+    	String resourcesFolderPath = servletContext.getRealPath("/resources/static");
     	String directoryPath = resourcesFolderPath + "/scan";
 		
 		if(searchType!=null) {
@@ -624,7 +656,7 @@ public class AdminController {
 
     @RequestMapping("/admin_fileView")
     public void viewFile(@RequestParam("fileName") String fileName, HttpServletResponse response, @RequestParam("searchType") String searchType) throws IOException {
-    	String resourcesFolderPath = servletContext.getRealPath("/resources");
+    	String resourcesFolderPath = servletContext.getRealPath("/resources/static");
     	String directoryPath = resourcesFolderPath+"/scan";
 		
 		if(searchType!=null) {
@@ -747,7 +779,7 @@ public class AdminController {
     }
 	
 	public void moveFile(String fileName, String searchType) throws IOException {
-		String resourcesFolderPath = servletContext.getRealPath("/resources");
+		String resourcesFolderPath = servletContext.getRealPath("/resources/static");
 		if(searchType.equals("scan")) {			
 			String sourceDirectoryPath = resourcesFolderPath+"/scan";
             String targetDirectoryPath = resourcesFolderPath+"/document";
@@ -816,7 +848,7 @@ public class AdminController {
 	
 	@RequestMapping("/admin_filesView")
 	public void viewFiles(@RequestParam("fileNames") String fileNames, HttpServletResponse response, @RequestParam("searchType") String searchType) throws IOException {
-		String baseDirectoryPath = servletContext.getRealPath("/resources");
+		String baseDirectoryPath = servletContext.getRealPath("/resources/static");
 	    String directoryPath = baseDirectoryPath + "/scan"; // 기본 디렉토리 경로
 
 	    if (searchType != null && !searchType.isEmpty()) {

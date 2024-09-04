@@ -16,6 +16,7 @@
 		justify-content: center;
 		align-items: center;
 		background-color: #f5f5f5;
+		min-height: 60vh;
 		margin: 0;
 	}
 	.site{
@@ -107,25 +108,12 @@
 		font-size: 15px;
 		margin-bottom: 10px;
 	}
-	@media (max-width: 400px){
-		form{
-			padding: 20px;
-		}
-		.site{
-			font-size: 18px;
-			margin-bottom: 15px;
-		}
-		.search_id, .search_pw, .joinUs{
-			display: block;
-			margin-bottom: 10px;
-		}
-	}
 </style>
 <body>
     <c:if test="${param.logout != null}">
         <p>로그아웃 하였습니다.</p>
 </c:if>
-<h3><a href="/ex/customer" class="site">사이트 이름</a></h3>
+<h3><a href="/ex/" class="site">사이트 이름</a></h3>
 <c:url value="/login" var="loginUrl" />
 <form name="frmLogin" action="${loginUrl}" method="POST">
 

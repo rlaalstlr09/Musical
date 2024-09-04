@@ -21,7 +21,7 @@
 				<div class="board_qna">
 					<div id="List-wrapper">
 	
-			<img src='/upload/${list.musical_poster }'  width='250px'>
+			<img src='/poster/${list.musical_poster }'  width='250px'>
 				
 					<h2>${list.musical_title } 배역/출연 배우 정보</h2>
 					

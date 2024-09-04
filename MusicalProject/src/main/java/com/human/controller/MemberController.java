@@ -163,6 +163,6 @@ public class MemberController {
 		List<QaDto> List = qaService.qa_list(vo, customer_id);
 		model.addAttribute("list",List);
 		vo.setTotalCount(qaService.qa_listCount(customer_id));
-		return "/qna/qa_list";
+		return "/member/qa_list";
 	}
 }

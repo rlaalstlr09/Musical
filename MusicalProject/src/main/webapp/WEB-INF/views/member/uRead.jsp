@@ -8,7 +8,60 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-
+body{
+	margin: 0;
+	font-family: Arial, sans-serif;
+	background-color: #f0f0f0;
+	color: #333;
+}
+.sidebar{
+	width: 250px;
+	background-color: #fff;
+	color: #000;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	left: 0;
+	padding-top: 20px;
+	border-right: 1px solid #ddd;
+	box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+.sidebar .mypage{
+	text-align: center;
+	margin-bottom: 30px;
+	font-size: 1.5em;
+	padding-bottom: 10px;
+	color: #333;
+}
+.sidebar a{
+	display: block;
+	color: #555;
+	text-decoration: none;
+	padding: 15px 20px;
+	font-size: 1em;
+	transition: background-color 0.3s ease;
+	border-bottom: 1px solid #eee;
+}
+.sidebar .a:hover{
+	background-color: #f7f7f7;
+	color: #333;
+}
+.container{
+	margin-left: 250px;
+	width: calc(100% - 250px);
+	padding: 20px;
+	background-color: #f8f8f8;
+	min-height: 100vh;
+}
+.profile-info{
+	background-color: #f8f8f8;
+	color: #333;
+	padding: 15px;
+	margin-top: 20px;
+	font-size: 1.1em;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+}
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
@@ -75,16 +128,28 @@
 </script>
 </head>
 <body>
-	<h2>회원 정보수정</h2>
-	<form action="/ex/member/update" method="post">
-	ID: <input type="text" name="customer_id" value="${customerDto.customer_id }" readonly><hr><br>
-	전화번호: <input type="text" name="customer_phone" value="${customerDto.customer_phone }" ><hr><br>
-	이메일: <input type="text" name="customer_email" value="${customerDto.customer_email }" ><hr><br>
-	주소: <input type="text" name="customer_address" value="${customerDto.customer_address }" ><hr><br>
-	생년월일: <input type="text"  id="customer_birth" value="${customerDto.customer_birth }" readonly>
-	<input type="hidden" name="customer_birth" id="updateBirth" value="${customerDto.customer_birth }">
-	<input type="date" id="birth" value="${customerDto.customer_birth }" ><hr><br>
-	<input type="submit" value="전송">
-	</form>
+	<div class="sidebar">
+		<a href="myPage" class="mypage">마이페이지</a>
+		<a href="/ex/member/read?customer_id=${pageContext.request.userPrincipal.name }" class="a">회원 정보</a>
+		<a href="/ex/member/write" class="a">1:1문의</a>
+		<a href="/ex/member/qa_list?customer_id=${pageContext.request.userPrincipal.name }" class="a">1:1문의내역</a>
+		<a href="#" class="a">장바구니</a>
+		<a href="remove" class="a">회원탈퇴</a>
+	</div>
+		<div class="container">
+			<h2>회원 정보수정</h2>
+			<div class="profile-info">
+				<form action="/ex/member/update" method="post">
+				ID: <input type="text" name="customer_id" value="${customerDto.customer_id }" readonly><hr><br>
+				전화번호: <input type="text" name="customer_phone" value="${customerDto.customer_phone }" ><hr><br>
+				이메일: <input type="text" name="customer_email" value="${customerDto.customer_email }" ><hr><br>
+				주소: <input type="text" name="customer_address" value="${customerDto.customer_address }" ><hr><br>
+				생년월일: <input type="text"  id="customer_birth" value="${customerDto.customer_birth }" readonly>
+				<input type="hidden" name="customer_birth" id="updateBirth" value="${customerDto.customer_birth }">
+				<input type="date" id="birth" value="${customerDto.customer_birth }" ><hr><br>
+				<input type="submit" value="전송">
+				</form>
+		</div>
+	</div>
 </body>
 </html>

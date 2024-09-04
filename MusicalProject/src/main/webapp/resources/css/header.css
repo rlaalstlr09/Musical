@@ -177,6 +177,25 @@ body {
     background-color: #555;
 }
 
+.submenu input { /* input추가 (로그아웃) */
+	color: white;
+	padding: 10px 10px;
+	display: block;
+	text-align: center;
+	background-color: transparent; /* input배경 투명으로 설정 */
+	border: 0;
+	width: 100%;
+	font-size: 16px;
+	
+}
+
+.submenu input:hover {
+	background-color: #555;
+	text-decoration: underline; /* input 텍스트에 밑줄 추가 */
+	cursor: pointer;
+	
+}
+
 .has-submenu:hover .submenu {
 
     display: flex;
@@ -392,6 +411,27 @@ input[id="menuicon"]:checked + label + div{
   
   .menu li a:hover {
     background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .menu li input { /* 메뉴 input요소 추가 (로그아웃) */
+  	color: white;
+  	font-size: 15px;
+  	display: block;
+  	padding: 10px 15px;
+  	border-radius: 5px;
+  	background-color: transparent;
+  	transition: background-color 0.3s ease;
+  	width: 100%;
+  	height: 50px;
+  	border: 0;
+  	text-align: left;
+  	padding-left: 21px;
+  	cursor: pointer;
+  	
+  }
+  
+  .menu li input:hover {
+  	background-color: rgba(255, 255, 255, 0.2);
   }
   
   .submenul {
