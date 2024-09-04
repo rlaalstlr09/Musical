@@ -56,20 +56,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		}
 	</select>
 
-<!-- admin 관리자 삭제 기능 관련 -->
-
-<delete id="seat_Alldelete"> delete from seat where musical_id = #{musical_id} </delete>
-<delete id="seat_venueAlldelete"> DELETE FROM seat
-WHERE hall_id IN (
-    SELECT hall_id
-    FROM hall
-    WHERE venue_id = #{venue_id} )</delete>
-
-
-<delete id="seat_hallAlldelete"> DELETE FROM seat
-WHERE hall_id = #{hall_id} </delete>
-
-
 
 </mapper>
 

@@ -7,8 +7,8 @@ public class BoardVo {
 	
 	// category 추가할 것
 	
-	private int page=1;				//현재 페이지
-	private int perPageNum=10;		//페이지당 데이터 개수
+	private int page;				//현재 페이지
+	private int perPageNum;		//페이지당 데이터 개수
 	private String searchType;		//검색할 컬럼
 	private String keyword;			//검색 내용
 	

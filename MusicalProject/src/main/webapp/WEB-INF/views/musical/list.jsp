@@ -14,9 +14,9 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+ 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 <script src="/ex/resources/script/musicalList.js"></script>
 </head>
 <body>
@@ -87,39 +87,47 @@
   
    
    <h2>인기 뮤지컬</h2>
-   <div class="musical-like">
-  		
-	   	<c:forEach var="likeMusical" items="${likeMusicals}">
-		   	<a class = "link-container" href="detail/${likeMusical.musical_id}">
-				<div class="musical-img-item" data-poster="/ex/resources/img/musical/${likeMusical.musical_poster}">
-				    
-			       <strong>${likeMusical.musical_title}</strong>
-			        
-				   <p>${likeMusical.venue_name}&nbsp;${likeMusical.hall_name }</p>
-				   <p><fmt:formatDate value="${likeMusical.musical_period_start}" pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${likeMusical.musical_period_end }" pattern = "yyyy-MM-dd"/></p>
-				   <p>♥&nbsp;${likeMusical.total_likes }</p>
-					
-				</div>
-			</a>
-	   	</c:forEach>
-  	</div>
+   <div class="swiper-container musical-like">
+	    <div class="swiper-wrapper">
+	        <c:forEach var="likeMusical" items="${likeMusicals}">
+	            <div class="swiper-slide">
+	                <a class="link-container" href="detail/${likeMusical.musical_id}">
+	                    <div class="musical-img-item" data-poster="/ex/resources/img/musical/${likeMusical.musical_poster}">
+	                        <strong>${likeMusical.musical_title}</strong>
+	                        <p>${likeMusical.venue_name}&nbsp;${likeMusical.hall_name}</p>
+	                        <p><fmt:formatDate value="${likeMusical.musical_period_start}" pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${likeMusical.musical_period_end}" pattern="yyyy-MM-dd"/></p>
+	                        <p>♥&nbsp;${likeMusical.total_likes}</p>
+	                    </div>
+	                </a>
+	            </div>
+	        </c:forEach>
+	    </div>
+	    <!-- 추가 네비게이션 -->
+	    <div class="swiper-pagination page-like"></div>
+	    <div class="swiper-button-next next-like"></div>
+	    <div class="swiper-button-prev prev-like"></div>
+    </div>
   	<h2>최근 오픈</h2>
-  	<div class="musical-date">
-  		
-	   	<c:forEach var="dateMusical" items="${dateMusicals}">
-		   	<a class = "link-container" href="detail/${dateMusical.musical_id}">
-				<div class="musical-img-item" data-poster="/ex/resources/img/musical/${likeMusical.musical_poster}">
-				    
-			       <strong>${dateMusical.musical_title}</strong>
-			        
-				   <p>${dateMusical.venue_name}&nbsp;${dateMusical.hall_name }</p>
-				   <p><fmt:formatDate value="${dateMusical.musical_period_start}" pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${dateMusical.musical_period_end }" pattern = "yyyy-MM-dd"/></p>
-				   <p>♥&nbsp;${dateMusical.total_likes }</p>
-					
-				</div>
-			</a>
-	   	</c:forEach>
-  	</div>
+  	<div class="swiper-container musical-date">
+	    <div class="swiper-wrapper">
+	        <c:forEach var="dateMusical" items="${dateMusicals}">
+	            <div class="swiper-slide">
+	                <a class="link-container" href="detail/${dateMusical.musical_id}">
+	                    <div class="musical-img-item" data-poster="/ex/resources/img/musical/${dateMusical.musical_poster}">
+	                        <strong>${dateMusical.musical_title}</strong>
+	                        <p>${dateMusical.venue_name}&nbsp;${dateMusical.hall_name}</p>
+	                        <p><fmt:formatDate value="${dateMusical.musical_period_start}" pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${dateMusical.musical_period_end}" pattern="yyyy-MM-dd"/></p>
+	                        <p>♥&nbsp;${dateMusical.total_likes}</p>
+	                    </div>
+	                </a>
+	            </div>
+	        </c:forEach>
+	    </div>
+	    <!-- 추가 네비게이션 -->
+	    <div class="swiper-pagination page-date"></div>
+	    <div class="swiper-button-next next-date"></div>
+	    <div class="swiper-button-prev prev-date"></div>
+    </div>
 	<h2>전체 뮤지컬</h2>
    	<div class="musical-grid">
    	
