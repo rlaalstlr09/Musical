@@ -43,6 +43,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.human.dto.ActorCharacterDto;
 import com.human.dto.ActorDto;
 import com.human.dto.AdminDto;
 import com.human.dto.CharacterDto;
@@ -323,7 +324,9 @@ public class AdminController {
 	        @RequestParam("actor_id") int actor_id,
 	        RedirectAttributes rttr) throws Exception {
 		CharacterDto dto = new CharacterDto(character_id,musical_id,character_name,actor_id);
+		ActorCharacterDto acdto = new ActorCharacterDto(character_id,actor_id);
 		characterService.character_update(dto);    
+		acService.actor_character_update(acdto);
 	    
 	    return "success";  // 성공 메시지 반환 (뷰가 아닌 단순 텍스트로)
 	}
@@ -588,7 +591,6 @@ public class AdminController {
 	public String admin_actor_remove(int actor_id, String reason) throws Exception {
 		AdminDto dto=AdminDto.withoutFileName("actor",actor_id,actorService.actor_read(actor_id).getActor_name(),"table_delete",reason);
 		file_register(dto);
-		characterService.character_actor_delete(actor_id);
 		actorService.delete(actor_id);	
 		return "success";
 	}	

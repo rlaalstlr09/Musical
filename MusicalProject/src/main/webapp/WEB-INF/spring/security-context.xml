@@ -15,7 +15,6 @@
 	<csrf disabled="true"/>
 		<intercept-url pattern="/customer/customer" access="permitAll" />
 		<intercept-url pattern="/member/**" access="hasAnyRole('MEMBER,ADMIN')" />
-		<intercept-url pattern="/admin/**" access="hasAnyRole('ADMIN')" />
 
 		<form-login login-page="/customer/login"
 			authentication-success-handler-ref="LoginSuccess"

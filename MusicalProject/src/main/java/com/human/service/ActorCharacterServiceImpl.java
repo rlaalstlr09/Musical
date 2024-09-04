@@ -53,5 +53,9 @@ public class ActorCharacterServiceImpl implements IActorCharacterService {
 		dao.actor_character_create(actor_id,character_id);
 	}
 	
-
+	public void actor_character_update(ActorCharacterDto dto) throws Exception {
+		IActorCharacterDao dao=sqlSession.getMapper(IActorCharacterDao.class);
+		dao.actor_character_update(dto);	
+	}
+	
 }

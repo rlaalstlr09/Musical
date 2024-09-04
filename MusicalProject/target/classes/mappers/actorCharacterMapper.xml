@@ -24,6 +24,11 @@ INSERT INTO actor_character
 			( #{actor_id},#{character_id})
 </insert>
 
+<update id="actor_character_update">
+update actor_character set 
+		actor_id = #{actor_id} where character_id = #{character_id}
+</update>
+
 
 </mapper>
 
