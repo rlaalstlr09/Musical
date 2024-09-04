@@ -16,7 +16,7 @@
 		<div id="contents">
 			<div id="content">
 				<div class="board_qna">
-				<img src='<%=request.getContextPath()%>/resources/poster/${actor_read.actor_img }'  width='250px'>
+				<img src='/actor/${actor_read.actor_img }'  width='250px'>
 				<h1>${actor_read.actor_name } 필모그래피 목록</h1>
 					
 					<input type="hidden" id="actor_id" value="${actor_read.actor_id }">
