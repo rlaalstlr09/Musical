@@ -62,7 +62,7 @@ public class CharacterController {
 
 		ArrayList<WorksDto> wdto=worksService.selectAll(actor_id);
 		model.addAttribute("worksList",wdto);
-    model.addAttribute("musical_id", musical_id);
+		model.addAttribute("musical_id", musical_id);
 		model.addAttribute("actor",dto);
 		System.out.println(dto);
 		System.out.println(wdto);		

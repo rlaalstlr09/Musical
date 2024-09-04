@@ -146,7 +146,7 @@ public class MusicalController {
 	//공연장 정보
 	@GetMapping("/venue")
 	public String getVenue(MusicalDto musicalDto, Model model) {
-		model.addAttribute("name", musicalDto);
+		model.addAttribute("param", musicalDto);
 		return "musical/fragments/venue";
 	}
 

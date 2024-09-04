@@ -37,6 +37,9 @@ $(document).ready(function(){
             },
 	  			success:function(data){
 	  				$('body').html(data);
+	  				$('a.sort-link').removeClass('active');
+	  		         
+	  		        $('[data-sort="' + sortId + '"]').addClass('active');
 	  			},
 	  			error:function(error){
 	  				console.error('Error loading content : ', error);
@@ -45,6 +48,7 @@ $(document).ready(function(){
 	}
 	 $('a.sort-link').click(function(event) {
          event.preventDefault(); // 기본 동작 방지
+         
          var sortId = $(this).data('sort'); // 'data-sort' 속성에서 정렬 기준 가져오기
          sort(sortId);
      });
@@ -65,4 +69,42 @@ $(document).ready(function(){
         }
     });
 	
+    
+    
+    $('.musical_like').slick({
+    	  centerMode: true,
+    	  centerPadding: '60px',
+    	  slidesToShow: 3,
+    	  responsive: [
+    	    {
+    	      breakpoint: 768,
+    	      settings: {
+    	        arrows: false,
+    	        centerMode: true,
+    	        centerPadding: '40px',
+    	        slidesToShow: 3
+    	      }
+    	    },
+    	    {
+    	      breakpoint: 480,
+    	      settings: {
+    	        arrows: false,
+    	        centerMode: true,
+    	        centerPadding: '40px',
+    	        slidesToShow: 1
+    	      }
+    	    }
+    	  ]
+    	});
+   
+    $('.musical-img-item').each(function() {
+        var posterUrl = $(this).data('poster'); // jQuery의 .data() 메서드를 사용하여 data-poster 값을 가져옵니다
+        $(this).css({
+            'background-image': 'url(' + posterUrl + ')',
+            'background-size': 'cover',
+            'background-position': 'center',
+            'background-repeat': 'no-repeat',
+            'padding': '20px' // 스타일 조정
+        });
+    });
 });
