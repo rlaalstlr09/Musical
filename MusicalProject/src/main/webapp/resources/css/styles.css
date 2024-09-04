@@ -26,6 +26,40 @@ header a {
     padding: 0 15px;
 }
 
+/* 정렬 스타일 */
+.sort-container {
+    display: flex;
+    justify-content: center; /* 가운데 정렬 */
+    margin: 20px 0; /* 상하 여백 */
+}
+
+.sort-options {
+    list-style: none; /* 기본 리스트 스타일 제거 */
+    padding: 0; /* 패딩 제거 */
+    margin: 0; /* 마진 제거 */
+    display: flex; /* 가로 배치 */
+}
+
+.sort-options li {
+    margin: 0 10px; /* 아이템 간의 간격 조절 */
+}
+
+.sort-link {
+    text-decoration: none; /* 밑줄 제거 */
+    color: #333; /* 링크 색상 */
+    font-size: 16px; /* 폰트 사이즈 */
+    padding: 10px 15px; /* 패딩 추가 */
+    border-radius: 5px; /* 둥근 모서리 */
+    transition: background-color 0.3s, color 0.3s; /* 부드러운 색상 전환 효과 */
+}
+
+.sort-link:hover,
+.sort-link:focus,
+.sort-link.active {
+    background-color: #007bff; /* 배경색 변화 */
+    color: #fff; /* 글자색 변화 */
+}
+
 /* 필터 버튼 및 패널 */
 .filter-button {
     background-color: #007bff;
@@ -51,7 +85,7 @@ header a {
 
 .filter-panel th, .filter-panel td {
     padding: 10px;
-    border: 1px solid #ddd;
+    
 }
 
 .filter-panel select, .filter-panel input[type="date"] {
@@ -60,20 +94,14 @@ header a {
     margin: 5px 0;
 }
 
-/* 뮤지컬 목록 */
-.musical-item {
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    padding: 10px;
-    background-color: #fff;
-    text-align: center;
+.filter-panel.show {
+    display: block; /* 표시 상태 */
+    max-height: 500px; /* 최대 높이 설정 */
 }
-
-.musical-item img {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
+/* 뮤지컬 목록 */
+.card.musical-item {
+   width : 300px;
+   height : 550px;
 }
 
 .musical-item a {
@@ -82,9 +110,14 @@ header a {
     font-weight: bold;
 }
 
-.musical-item div {
-    margin: 5px 0;
+.musical-item img{
+	height: 360px;
 }
+
+.hidden{
+	display:none;
+}
+
 
 /* 인기 및 최근 오픈 뮤지컬 섹션 */
 h1 {
@@ -128,15 +161,25 @@ ul li a {
     gap: 5px;
 }
 
-.musical-item {
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #fff;
-    text-align: center;
-    flex: 0 0 auto; /* 각 아이템이 기본 너비를 가지게 합니다. */
-    width: 200px; /* 원하는 너비로 조정 */
-    box-sizing: border-box; /* 패딩과 테두리의 크기를 포함 */
-    padding: 10px;
+
+ .link-container {
+    display: block; /* <a> 태그를 블록처럼 동작하도록 설정 */
+    color: inherit;       
+}
+
+.link-container:hover{
+    display: block; /* <a> 태그를 블록처럼 동작하도록 설정 */
+    color: inherit;       
+    text-decoration: none;
+}
+
+.musical-img-item{
+	display : flex;
+	flex-direction: column; /* 세로 방향으로 정렬 */
+    justify-content: flex-end;
+	width : 250px;
+	height : 350px;
+	color : white;
 }
 
 /* 검색 박스 */
@@ -182,3 +225,4 @@ ul li a {
 .pagination input[type="hidden"] {
     display: none;
 }
+

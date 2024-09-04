@@ -35,10 +35,12 @@
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="/ex/resources/script/musicalDetail.js"></script>
+
+<!-- <script src="/ex/resources/script/musicalDetail.js"></script>  -->
 <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=f19069c7a5e6ecba64f00927cb2c6594&libraries=services"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
+var $ = jQuery.noConflict();
 $(document).ready(function() {
 	//탭 누르면 실행되는 함수 ajax로 값 받아서 탭 내용 바꿈
 	function loadTabContent(tabId) {
@@ -49,7 +51,7 @@ $(document).ready(function() {
 			},
 			method : 'GET',
 			success : function(data) {
-				$('#tab-content').html(data);
+				$('.card-body').html(data);
 			},
 			error : function(error) {
 				console.error('Error loading content:', error);
@@ -139,7 +141,7 @@ $(document).ready(function() {
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.error('Error fetching content:', textStatus, errorThrown);
-                $('#modal-body-content').html('<p>An error occurred while loading the content.</p>');
+                $('#venue-modal-body').html('<p>An error occurred while loading the content.</p>');
                 $('#venue-modal').modal('show');
             }
         });
@@ -149,7 +151,7 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-<jsp:include page="../layout/header.jsp"/>
+
 	<div class="container mt-4">
 		<div id="info">
 			<button onclick="location.href='/ex/musical/listAll'">목록</button>
@@ -219,18 +221,22 @@ $(document).ready(function() {
 		<div>
 			<a href="#">예매하기</a>
 		</div>
-		<div id="tab">
-			<ul class="nav nav-tabs" id="myTab" role="tablist">
-				<li class="nav-item"><a class="nav-link active"
-					id="chararcter-tab" data-toggle="tab" href="#character" role="tab">배우
-						정보</a></li>
-				<li class="nav-item"><a class="nav-link" id="review-tab"
-					data-toggle="tab" href="#review" role="tab">리뷰</a></li>
-				<li class="nav-item"><a class="nav-link" id="qna-tab"
-					data-toggle="tab" href="#qna" role="tab">Q&A</a></li>
-			</ul>
+		<div class = "card text-center">
+			<div id="tab" class = "card-header">
+				<ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+					<li class="nav-item">
+						<a class="nav-link active" id="chararcter-tab" data-toggle="tab" href="#character" role="tab">배우 정보</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab">리뷰</a></li>
+					<li class="nav-item">
+						<a class="nav-link" id="qna-tab" data-toggle="tab" href="#qna" role="tab">Q&A</a>
+					</li>
+				</ul>
+			</div>
+			<div class = "card-body">
+			</div>
 		</div>
-		<div id="tab-content"></div>
 		<div id="musiscal-detail">
 			<h4>공연 상세</h4>
 			<div id="notice">
@@ -253,6 +259,7 @@ $(document).ready(function() {
 				    <jsp:param name="venue_name" value="${musical.venue_name}" />
 				    <jsp:param name="hall_name" value="${musical.hall_name}" />
 				</jsp:include>
+				
 			</div>
 			<div id="review">
 				<c:forEach items = '${reviews}' var = 'review'>
@@ -308,6 +315,6 @@ $(document).ready(function() {
 			</div>
 		</div>
 	</div>
-	<jsp:include page="../layout/footer.jsp"/>
+
 </body>
 </html>
