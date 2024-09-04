@@ -77,12 +77,20 @@ public class MusicalServiceImpl implements IMusicalService {
 		dao.deleteLike(musical_id, customer_id);
 	}
 	
+	
 	@Override
 	public List<MusicalDto> musical_list() throws Exception {
 		// TODO Auto-generated method stub
 		IMusicalDao dao =sqlSession.getMapper(IMusicalDao.class);
 		return dao.musical_list();
 	}
+	@Override
+	public String musical_title(int musical_id) throws Exception {
+		// TODO Auto-generated method stub
+		IMusicalDao dao =sqlSession.getMapper(IMusicalDao.class);
+		return dao.musical_title(musical_id);
+	}
+	
 	
 	//admin관련
 	public void musical_create(MusicalDto musical) throws Exception{
@@ -114,4 +122,7 @@ public class MusicalServiceImpl implements IMusicalService {
 		IMusicalDao dao = sqlSession.getMapper(IMusicalDao.class);
 		return dao.musical_listSearchCount(vo);
 	}
+
+
+
 }

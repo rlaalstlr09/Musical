@@ -4,8 +4,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.human.dao.IVenueDao">
+
 <select id="venue_list" resultType="com.human.dto.VenueDto">
 select * from venue 
+</select>
+<select id="venue_name" resultType="String">
+select venue_name from venue  where venue_id=#{param1}
 </select>
 
 <select id = "selectVenueHallName" resultType = "com.human.dto.VenueDto">
