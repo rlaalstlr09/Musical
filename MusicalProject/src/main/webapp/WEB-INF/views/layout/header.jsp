@@ -16,14 +16,14 @@
     <div class="header-container">
       <div class="logo">
         <a href="#">
-          <img src="/ex/resources/img/bora_logo.png" alt="home"> </a>
+          <img src="${pageContext.request.contextPath }/resources/img/bora_logo.png" alt="home"> </a>
       </div>
 
       <div class="search">
         <input type="text" placeholder="Search...">
         <button type="submit">
-          <img id="default-icon" src="/ex/resources/img/search_logo.png" alt="Search Icon">
-          <img id="scroll-icon" src="/ex/resources/img/search_logo_black.png" alt="Search Icon">
+          <img id="default-icon" src="${pageContext.request.contextPath }/resources/img/search_logo.png" alt="Search Icon">
+          <img id="scroll-icon" src="${pageContext.request.contextPath }/resources/img/search_logo_black.png" alt="Search Icon">
         </button>
       </div>
 
@@ -31,10 +31,10 @@
         <ul>
           <li><span class="new-menu"><span class="hash"># </span> Musical</span></li>
           <li class="has-submenu">
-            <a href="customer/login">로그인</a>
+            <a href="${pageContext.request.contextPath }/customer/login">로그인</a>
             <ul class="submenu">
-              <li><a href="customer/login">로그인</a></li>
-              <li><a href="member/myPage">마이페이지</a></li>
+              <li><a href="${pageContext.request.contextPath }/customer/login">로그인</a></li>
+              <li><a href="${pageContext.request.contextPath }/member/myPage">마이페이지</a></li>
               <sec:authorize access="isAuthenticated()">
               	<form:form action="${pageContext.request.contextPath }/customer/logout" method="POST">
               		<li>
@@ -45,15 +45,15 @@
             </ul>
           </li>
           <li class="has-submenu">
-            <a href="<%=request.getContextPath()%>/help/help_main">고객센터</a>
+            <a href="${pageContext.request.contextPath }/help/help_main">고객센터</a>
             <ul class="submenu">
-              <li><a href="<%=request.getContextPath()%>/help/notice">공지사항</a></li>
-              <li><a href="<%=request.getContextPath()%>/help/faq">FAQ</a></li>
-              <li><a href="#">1:1</a></li>
+              <li><a href="${pageContext.request.contextPath }/help/notice">공지사항</a></li>
+              <li><a href="${pageContext.request.contextPath }/help/faq">FAQ</a></li>
+              <li><a href="${pageContext.request.contextPath }/member/qa_list">1:1</a></li>
             </ul>
           </li>
           <li class="has-submenu">
-            <a href="customer/joinUs">회원가입</a>
+            <a href="${pageContext.request.contextPath }/customer/joinUs">회원가입</a>
           </li>
         </ul>
       </nav>
@@ -71,14 +71,14 @@
           <li>
             <a href="#">Home</a>
             <ul class="submenul">
-              <li><a href="customer/login">로그인</a></li>
+              <li><a href="${pageContext.request.contextPath }/customer/login">로그인</a></li>
             </ul>
           </li>
           <li>
-            <a href="member/myPage">마이페이지</a>
+            <a href="${pageContext.request.contextPath }/member/myPage">마이페이지</a>
             <ul class="submenul">
               <li><a href="#">장바구니</a></li>
-              <li><a href="member/read?customer_id=${pageContext.request.userPrincipal.name }">회원정보수정</a></li>
+              <li><a href="${pageContext.request.contextPath }/member/read?customer_id=${pageContext.request.userPrincipal.name }">회원정보수정</a></li>
             </ul>
           </li>
           <li>
@@ -90,14 +90,14 @@
             </ul>
           </li>
           <li>
-            <a href="<%=request.getContextPath()%>/help/help_main">고객센터</a>
+            <a href="${pageContext.request.contextPath }/help/help_main">고객센터</a>
             <ul class="submenul">
-              <li><a href="<%=request.getContextPath()%>/help/notice">공지사항</a></li>
-              <li><a href="<%=request.getContextPath()%>/help/faq">FAQ</a></li>
-              <li><a href="#">1:1문의사항</a></li>
+              <li><a href="${pageContext.request.contextPath }/help/notice">공지사항</a></li>
+              <li><a href="${pageContext.request.contextPath }/help/faq">FAQ</a></li>
+              <li><a href="${pageContext.request.contextPath }/member/qa_list">1:1문의사항</a></li>
             </ul>
           </li>
-          <li class="specialo"><a href="<%=request.getContextPath()%>/help/near_map">근처 공연장 보기</a></li>
+          <li class="specialo"><a href="${pageContext.request.contextPath }/help/near_map">근처 공연장 보기</a></li>
             <sec:authorize access="isAuthenticated()">
           <form:form action="${pageContext.request.contextPath }/customer/logout" method="POST">
           <li class="special"><input type="submit" value="로그아웃"></li>
