@@ -11,6 +11,7 @@
 <a href='admin_actor'>배우정보 관리</a>
 <a href='admin_review'>리뷰 관리</a>
 <br>
+<a href='qa_admin'>문의 관리</a>
 <a href='admin_venue'>극장 관리</a>
 <a href='admin_files'>스캔파일 목록</a>
 </body>
