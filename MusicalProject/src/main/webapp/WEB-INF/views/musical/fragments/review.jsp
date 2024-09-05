@@ -250,10 +250,10 @@ margin-left:10px;
 	                musical_id: $('#musical_id').val() // 음악 ID
 	            },
 	            success: function(response) {
-	                $('#tab-content').html(response); // 받은 데이터를 콘텐츠에 업데이트
+	                $('.card-body').html(response); // 받은 데이터를 콘텐츠에 업데이트
 
 	                $('html, body').animate({
-	                    scrollTop: $('#tab-content').offset().top
+	                    scrollTop: $('.card-body').offset().top
 	                }, 5); // 500ms 동안 스크롤 이동
 	            },
 	            error: function(xhr, status, error) {
@@ -274,7 +274,7 @@ margin-left:10px;
 					musical_id : '${musical_id}'	
 				},
 				success:function(response){
-					$('#tab-content').html(response);
+					$('.card-body').html(response);
 				},
 				error: function(xhr, status, error) {
 	                console.error('AJAX 요청 실패:', status, error);

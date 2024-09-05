@@ -154,6 +154,8 @@ public class MusicalController {
 	@PostMapping("/like")
 	public RedirectView likeToggle(@RequestParam("customer_id") String customer_id, @RequestParam("musical_id") Integer musical_id, HttpServletRequest request) {
 	    
+		System.out.println(customer_id);
+		
 		//로그인 안한 상태. 로그인페이지로 리다이렉트하게 바꾸셈
 		if (customer_id == null || customer_id.trim().isEmpty()) {
 			 
