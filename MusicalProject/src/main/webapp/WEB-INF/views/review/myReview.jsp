@@ -8,9 +8,36 @@
 <title>my_rivew_page</title>
 <style>
 
+.main{
+	margin-left: 280px;
+	width: calc(100% - 280px);
+	padding: 20px;
+	
+}
+
 .review_content {
-	margin-top: 40px;
-	margin-bottom: 40px
+    margin-top: 20px; /* 여백 줄이기 */
+    margin-bottom: 20px; /* 여백 줄이기 */
+    background-color: #ffffff; /* 배경색 */
+    padding: 20px; /* 내부 여백 */
+    border: 1px solid #ddd; /* 테두리 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 */
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* 부드러운 전환 효과 */
+    width:500px; 
+}
+
+.review_content:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* 호버 시 그림자 효과 */
+    transform: translateY(-5px); /* 호버 시 약간 위로 이동 */
+}
+
+/* 리뷰 제목 */
+.reviw_title {
+    margin-bottom: 10px; /* 제목과 내용 사이 여백 */
+    font-size: 1.1em; /* 제목 폰트 크기 */
+    font-weight: bold; /* 제목 굵게 */
+    color: #333; /* 제목 색상 */
 }
 #reviewForm{
 display:none;
@@ -19,10 +46,7 @@ display:none;
         display: inline-flex;
         flex-direction: row;
     }
-.avg_main{
- display: inline-flex;
-  flex-direction: row;
-}
+
     .star_rating .star {
         width: 30px;
         height: 30px;
@@ -80,35 +104,82 @@ display:none;
 [id^="updateForm"]{
 display:none;
 }
-.sort-options{
-margin-left:200px;}
+body{
+	margin: 0;
+	font-family: Arial, sans-serif;
+	background-color: #f0f0f0;
+	color: #333;
+}
+.sidebar{
+	width: 250px;
+	background-color: #fff;
+	color: #000;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	left: 0;
+	padding-top: 20px;
+	border-right: 1px solid #ddd;
+	box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+.sidebar .mypage{
+	text-align: center;
+	margin-bottom: 30px;
+	font-size: 1.5em;
+	padding-bottom: 10px;
+	color: #333;
+}
+.sidebar a{
+	display: block;
+	color: #555;
+	text-decoration: none;
+	padding: 15px 20px;
+	font-size: 1em;
+	transition: background-color 0.3s ease;
+	border-bottom: 1px solid #eee;
+}
+.sidebar .a:hover{
+	background-color: #f7f7f7;
+	color: #333;
+}
+h{
+text-align:center;
+}
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$(document).ready(function() {
-		$('#sort').change(function(){
-			var sortBy=$(this).val();
-			$.ajax({
-				
-				url:'/10CustomerHobby/review/review',
-				type:'GET',
-				data:{sort:sortBy},
-				success:function(response){
-					$('body').html(response);
-				},
-				error: function(xhr, status, error) {
+		
+		$(document).on('click', '.pagination a', function(e) {
+	        e.preventDefault(); // 기본 링크 동작 방지
+
+	        var page = $(this).data('page'); // 클릭한 페이지 번호
+	        loadPage(page);
+	    });
+			
+		 
+		
+		function loadPage(page) {
+	        $.ajax({
+	            url: '/ex/review/myReview', // 페이지 로드 요청 URL
+	            type: 'GET',
+	            data: {
+	                page: page, // 현재 페이지 번호
+	                
+	                customer_id: $('#customer_id').val() // 음악 ID
+	            },
+	            success: function(response) {
+	                $('body').html(response); // 받은 데이터를 콘텐츠에 업데이트
+
+	               
+	            },
+	            error: function(xhr, status, error) {
 	                console.error('AJAX 요청 실패:', status, error);
-			
-				}
-			});
-		});
+	            }
+	        });
+	    }
 		
-			
-		 	
-		
-		 $("#openReview").click(function() {
-             $("#reviewForm").toggle();
-         });
+		 
 		 
 		 $(".updateReview").click(function() {
              var updateForm="#updateForm_"+$(this).data("id");
@@ -143,27 +214,30 @@ margin-left:200px;}
 </script>
 </head>
 <body>
-	<h1>리뷰</h1>
+	
+<div class="sidebar">
+		<a href="/ex/member/myPage" class="mypage">마이페이지</a>
+		<a href="/ex/member/read?customer_id=${pageContext.request.userPrincipal.name }" class="a">회원 정보</a>
+		<a href="/ex/member/write" class="a">1:1문의</a>
+		<a href="/ex/member/qa_list?customer_id=${pageContext.request.userPrincipal.name }" class="a">1:1문의내역</a>
+		<a href="/ex/review/myReview?customer_id=${pageContext.request.userPrincipal.name }">내가 쓴 리뷰</a>
+		<a href="#" class="a">장바구니</a>
+		<a href="remove" class="a">회원탈퇴</a>
+	</div>
 <div class="main"> 
-	<div class="sort-options">
-	    <label for="sort">정렬 기준:</label>
-	    <select id="sort" name="sort">
-	        <option value="date" ${param.sort == 'date' ? 'selected' : ''}>최신순</option>
-	        <option value="rating" ${param.sort == 'rating' ? 'selected' : ''}>평점순</option>
-	    </select>
-	    </div>
-	    <c:if test = "${roundRating == null && avgRating == null }">
+	<h1>내가 쓴 리뷰</h1>
+	    <c:if test = "${boardVo.totalCount == 0 }">
 	    	<p>등록된 리뷰가 없습니다.</p>
 	    </c:if>
-	    <c:if test="${roundRating ne null && avgRating ne null }">
+	    <c:if test="${roundRating ne 0}">
 		    
 		<c:forEach items="${List }" var="reviewDto">
 			<div class="review_content">
 				<div class="reviw_title">
-					닉네임: ${reviewDto.customer_id}&nbsp;&nbsp;|&nbsp;&nbsp;
+					${reviewDto.musical_title}&nbsp;&nbsp;|&nbsp;&nbsp;
 					<fmt:formatDate pattern="yyyy-MM-dd"
 						value="${reviewDto.review_date}" />
-					&nbsp;&nbsp;|&nbsp;&nbsp; 평점:
+					&nbsp;&nbsp;|&nbsp;&nbsp; 
 					 <div class="star_rating read-only">
 	                    <span class="star on " style="width: ${reviewDto.rating >= 1 ? '30px' : '0'};"></span>
 	                    <span class="star on" style="width: ${reviewDto.rating >= 2 ? '30px' : '0'};"></span>
@@ -176,8 +250,9 @@ margin-left:200px;}
 				
 				<div id="updateForm_${reviewDto.review_id}">
 				<form action="updateReview">
-				<input type="hidden" value=${reviewDto.review_id } name="review_id" readonly>
-				<input type="hidden" value=${reviewDto.customer_id } name="customer_id">
+				<input type="hidden" value=${reviewDto.review_id } name="review_id" >
+				<input type="text" value=${reviewDto.musical_title } name="musical_title" >
+				<input type="hidden" value=${reviewDto.customer_id } id="customer_id" name="customer_id">
 				<input type="hidden" value=${reviewDto.musical_id } name="musical_id">
 				<input type="text" value=${reviewDto.content } name="content">
 				<input type="hidden" value=${reviewDto.rating } name="rating">
@@ -194,38 +269,30 @@ margin-left:200px;}
 	
 	
 	<div class="pagination">
-    	<c:if test="${boardVo.page !=1}">
-    		<a href='review${boardVo.makeSearch(1)}'>&lt;&lt;&lt;</a>
-    	</c:if>
-    	<!-- 앞전 page 모양을 클릭하면 pageMarker.startPage에 -1을 처리해준다.-->
-    	<c:if test="${boardVo.prev }">
-    		<a href='review${boardVo.makeSearch(boardVo.startPage-1)}'>&lt;&lt;</a>
-    	</c:if>
-    	<c:if test="${boardVo.page != 1}">
-    		<a href='review${boardVo.makeSearch(boardVo.page-1)}'>&lt;</a>
-    	</c:if>
-    	<c:forEach begin="${boardVo.startPage }" end="${ boardVo.endPage}" var="idx">
-    		<a href='review${boardVo.makeSearch(idx)}' 
-    		 <c:out value="${boardVo.page==idx?' class=active ':'' }"/> >
-    		 ${idx}</a>
-    	</c:forEach>
-    	
-    	
-    	
-    	<c:if test="${boardVo.page != boardVo.totalEndPage}">
-    		<a href='review${boardVo.makeSearch(boardVo.page+1)}'>&gt;</a>
-    	</c:if>
-    	<c:if test="${boardVo.next }">
-    		<a href='review${boardVo.makeSearch(boardVo.endPage+1)}'>&gt;&gt;</a>
-    		
-    	</c:if>
-    	
-    	
-    	<c:if test="${boardVo.page != boardVo.totalEndPage}">
-    		<a href='review${boardVo.makeSearch(boardVo.totalEndPage)}'>&gt;&gt;&gt;</a>
-    	</c:if>
-    	
-    </div>
+    <c:if test="${boardVo.page != 1}">
+        <a href="#" data-page="1">&lt;&lt;&lt;</a>
+    </c:if>
+    <c:if test="${boardVo.prev }">
+        <a href="#" data-page="${boardVo.startPage-1}">&lt;&lt;</a>
+    </c:if>
+    <c:if test="${boardVo.page != 1}">
+        <a href="#" data-page="${boardVo.page-1}">&lt;</a>
+    </c:if>
+    <c:forEach begin="${boardVo.startPage}" end="${boardVo.endPage}" var="idx">
+        <a href="#" data-page="${idx}" class="${boardVo.page == idx ? 'active' : ''}">
+            ${idx}
+        </a>
+    </c:forEach>
+    <c:if test="${boardVo.page != boardVo.totalEndPage}">
+        <a href="#" data-page="${boardVo.page+1}">&gt;</a>
+    </c:if>
+    <c:if test="${boardVo.next }">
+        <a href="#" data-page="${boardVo.endPage+1}">&gt;&gt;</a>
+    </c:if>
+    <c:if test="${boardVo.page != boardVo.totalEndPage}">
+        <a href="#" data-page="${boardVo.totalEndPage}">&gt;&gt;&gt;</a>
+    </c:if>
+</div>
 
 </div>
 </body>

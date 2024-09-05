@@ -42,12 +42,14 @@ public class ReviewController {
 	
 	
 	@RequestMapping(value = "/myReview", method = RequestMethod.GET)
-	public String myReview(Model model, @RequestParam(value = "musical_id" ,defaultValue="") Integer musical_id,@RequestParam(value="customer_id",defaultValue="1") String customer_id,@RequestParam(value="page",defaultValue="1") int page,
-			@RequestParam(value="perPageNum",defaultValue="10") int perPageNum)throws Exception{
+	public String myReview(Model model,@RequestParam(value="customer_id",defaultValue="1") String customer_id,@RequestParam(value="page",defaultValue="1") int page,
+		@RequestParam(value="perPageNum",defaultValue="10") int perPageNum)throws Exception{
+		System.out.println(customer_id);
 		BoardVo vo=new BoardVo();
 		vo.setPage(page);
 		vo.setPerPageNum(perPageNum);
-		vo.setTotalCount(rService.totalCount(musical_id,customer_id));
+		vo.setTotalCount(rService.myTotalCount(customer_id));
+		
 		ArrayList<ReviewDto>dto=rService.selectMyReview(customer_id,vo);
 		System.out.println(dto);
 		model.addAttribute("List",dto);
