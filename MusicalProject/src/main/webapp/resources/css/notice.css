@@ -77,7 +77,7 @@ a {
     background: #fff;
 }
 
-#searchBtn,.newBtn, #submit, .hall_newBtn, .addBtn {
+#searchBtn,.newBtn, #submit, .hall_newBtn, .addBtn, .res_modify, .res_remove, .res_register {
 	margin-left: 1px;
     width: 80px;
     padding: 4px 11px;
@@ -135,7 +135,7 @@ border-top: 1px solid #242428;
 #content{
 	width: 980px;
     margin: 0 auto;
-    padding-top: 60px;
+    padding-top: 20px;
 }
 .board_qna {
 	clear: both;
@@ -179,16 +179,6 @@ border-top: 1px solid #242428;
 	font-weight: bold;
 }
 
-#res_state::after {
-            content: '▼'; /* Unicode character for down arrow */
-            font-size: 16px; /* Adjust size of arrow */
-            color: #000; /* Set color of arrow */
-            position: absolute; /* Position arrow */
-            right: 10px; /* Position arrow inside the select box */
-            top: 50%; /* Center vertically */
-            transform: translateY(-50%); /* Center vertically */
-            pointer-events: none; /* Prevent arrow from interfering with clicks */
-}
 
 
 .tb_board .admin_table td{
@@ -235,29 +225,6 @@ border-top: 1px solid #242428;
 	box-sizing: border-box;
 }
 
-.icon-q {
-	width: 20px;
-	height: 20px;
-	display: block;
-	position: absolute;
-	top: 0;
-	left: 0;
-	font-size: 0;
-	background: url(../img/board/question.png) no-repeat;
-	background-size: 20px 20px;
-}
-
-.icon-a {
-	width: 20px;
-	height: 20px;
-	display: block;
-	position: absolute;
-	top: 0;
-	left: 0;
-	font-size: 0;
-	background: url(../img/board/answer.png) no-repeat;
-	background-size: 20px 20px;
-}
 
 .tb_board .show .q-cus {
 	position: relative;
@@ -339,33 +306,7 @@ border-top: 1px solid #242428;
 	height: 100%;
 }
 
-/* The Modal (background) */
-.black_overlay{
-    display: none;
-    position: absolute;
-        top: 0%;
-        left: 0%;
-        width: 100%;
-        height: 100%;
-        background-color: black;
-        z-index:1001;
-        -moz-opacity: 0.8;
-        opacity:.80;
-        filter: alpha(opacity=80);
-    }
-.white_content {
-        display: none;
-        position: absolute;
-        top: 25%;
-        left: 25%;
-        width: 50%;
-        height: 10%;
-        padding: 35px 16px;
-        border: 0;
-        background-color: white;
-        z-index:1002;
-        overflow: auto;
-    }
+
 #light p{
 	margin-top: 20px;
 }

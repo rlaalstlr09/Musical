@@ -31,9 +31,18 @@
         <ul>
           <li><span class="new-menu"><span class="hash"># </span> Musical</span></li>
           <li class="has-submenu">
+          <sec:authorize access="isAnonymous()">
             <a href="${pageContext.request.contextPath }/customer/login">로그인</a>
+          </sec:authorize>
+          <sec:authorize access="isAuthenticated()">
+             <form:form action="${pageContext.request.contextPath }/customer/logout" method="POST">
+              	<input type="submit" value="로그아웃">
+             </form:form>
+          </sec:authorize>
             <ul class="submenu">
+            <sec:authorize access="isAnonymous()">
               <li><a href="${pageContext.request.contextPath }/customer/login">로그인</a></li>
+            </sec:authorize>
               <li><a href="${pageContext.request.contextPath }/member/myPage">마이페이지</a></li>
               <sec:authorize access="isAuthenticated()">
               	<form:form action="${pageContext.request.contextPath }/customer/logout" method="POST">
@@ -49,11 +58,16 @@
             <ul class="submenu">
               <li><a href="${pageContext.request.contextPath }/help/notice">공지사항</a></li>
               <li><a href="${pageContext.request.contextPath }/help/faq">FAQ</a></li>
-              <li><a href="${pageContext.request.contextPath }/member/qa_list">1:1</a></li>
+              <li><a href="${pageContext.request.contextPath }/member/qa_list?customer_id=${pageContext.request.userPrincipal.name }">1:1</a></li>
             </ul>
           </li>
           <li class="has-submenu">
+          <sec:authorize access="isAnonymous()">
             <a href="${pageContext.request.contextPath }/customer/joinUs">회원가입</a>
+          </sec:authorize>
+          <sec:authorize access="isAuthenticated()">
+          	<a href="${pageContext.request.contextPath }/member/read?customer_id=${pageContext.request.userPrincipal.name }">회원정보</a>
+          </sec:authorize>
           </li>
         </ul>
       </nav>
@@ -71,7 +85,9 @@
           <li>
             <a href="#">Home</a>
             <ul class="submenul">
+            <sec:authorize access="isAnonymous()">
               <li><a href="${pageContext.request.contextPath }/customer/login">로그인</a></li>
+            </sec:authorize>
             </ul>
           </li>
           <li>
@@ -94,7 +110,7 @@
             <ul class="submenul">
               <li><a href="${pageContext.request.contextPath }/help/notice">공지사항</a></li>
               <li><a href="${pageContext.request.contextPath }/help/faq">FAQ</a></li>
-              <li><a href="${pageContext.request.contextPath }/member/qa_list">1:1문의사항</a></li>
+              <li><a href="${pageContext.request.contextPath }/member/qa_list?customer_id=${pageContext.request.userPrincipal.name }">1:1문의사항</a></li>
             </ul>
           </li>
           <li class="specialo"><a href="${pageContext.request.contextPath }/help/near_map">근처 공연장 보기</a></li>

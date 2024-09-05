@@ -22,6 +22,12 @@ public class VenueServiceImpl implements IVenueService {
 		IVenueDao dao=sqlSession.getMapper(IVenueDao.class);
 		return dao.venue_list();
 	}
+	@Override
+	public String venue_name(int venue_id) throws Exception {
+		// TODO Auto-generated method stub
+		IVenueDao dao=sqlSession.getMapper(IVenueDao.class);
+		return dao.venue_name(venue_id);
+	}
 	
 	//admin 작업
 	public void venue_create(VenueDto venue) throws Exception{
@@ -48,4 +54,6 @@ public class VenueServiceImpl implements IVenueService {
 		IVenueDao dao = sqlSession.getMapper(IVenueDao.class);
 		return dao.venue_read(venue_id);		
 	}
+
+
 }

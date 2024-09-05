@@ -34,6 +34,26 @@ public class MusicalScheduleServiceImpl implements IMusicalScheduleService{
 		IMusicalScheduleDao dao=sqlSession.getMapper(IMusicalScheduleDao.class);
 		dao.insert_mu_sch(mu_schdto);
 	}
+	@Override
+	public MusicalScheduleDto select_mu_sch_id(int mu_sch_id) throws Exception {
+		// TODO Auto-generated method stub
+		IMusicalScheduleDao dao = sqlSession.getMapper(IMusicalScheduleDao.class);
+		return dao.select_mu_sch_id(mu_sch_id);
+	}
+	@Override
+	public MusicalScheduleDto mu_sch_info(int mu_sch_id) throws Exception {
+		// TODO Auto-generated method stub
+		IMusicalScheduleDao dao = sqlSession.getMapper(IMusicalScheduleDao.class);
+		return dao.mu_sch_info(mu_sch_id);
+	}
+	@Override
+	public void mu_sch_update(MusicalScheduleDto mu_sch_dto) throws Exception {
+		// TODO Auto-generated method stub
+		IMusicalScheduleDao dao = sqlSession.getMapper(IMusicalScheduleDao.class);
+		dao.mu_sch_update(mu_sch_dto);		
+	}
+	
+	
 	
 	//admin 삭제 관련
 	public void musical_schedule_Alldelete(Integer musical_id) throws Exception{

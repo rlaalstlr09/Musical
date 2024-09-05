@@ -40,7 +40,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="seat_cancel">
 		update seat set seat_reservation=0 where seat_reservation=#{param1}
 	</update>
-
+	<select id="seat_check" resultType="int">
+		select seat_reservation from seat where seat_id=#{param1}
+	</select>
 
 	<select id="seat_create_seq" resultType="int">
   	  SELECT seat_create_seq.NEXTVAL FROM dual

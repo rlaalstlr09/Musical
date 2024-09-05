@@ -57,9 +57,9 @@ body{
 <body>
 	<div class="sidebar">
 		<h2>마이페이지</h2>
-		<a href="/ex/member/read?customer_id=${pageContext.request.userPrincipal.name }">회원 정보</a>
-		<a href="/ex/member/write">1:1문의</a>
-		<a href="/ex/member/qa_list?customer_id=${pageContext.request.userPrincipal.name }">1:1문의내역</a>
+		<a href="read?customer_id=${pageContext.request.userPrincipal.name }">회원 정보</a>
+		<a href="write">1:1문의</a>
+		<a href="qa_list?customer_id=${pageContext.request.userPrincipal.name }">1:1문의내역</a>
 		<a href="#">장바구니</a>
 		<a href="remove">회원탈퇴</a>
 	</div>
@@ -70,7 +70,7 @@ body{
             ${errorMessage}
         </div>
   	</c:if>
-	<form action="/ex/member/nowPwCheck" method="post">
+	<form action="nowPwCheck" method="post">
 		<div>
 			<label>아이디</label>
 			<input type="text" name="customer_id"

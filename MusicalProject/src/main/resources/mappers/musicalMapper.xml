@@ -122,6 +122,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="musical_list" resultType="com.human.dto.MusicalDto">
 	select musical_id,musical_title from musical 
 	</select>
+	<select id="musical_title" resultType="String">
+	select musical_title from musical  where musical_id=#{param1}
+	</select>
 	
 	<!--admin 뮤지컬 관리 -->
 

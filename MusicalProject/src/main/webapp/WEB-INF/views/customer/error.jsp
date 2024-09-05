@@ -13,7 +13,7 @@
 <br> : 권한 없음
 <h2>${SPRING_SECURITY_403_EXCEPTION.message }</h2>
 
-<a href="/ex/customer/customer">사용자 페이지로 이동</a>
+<a href="${pageContext.request.contextPath }/customer/customer">사용자 페이지로 이동</a>
 
 </body>
 </html>

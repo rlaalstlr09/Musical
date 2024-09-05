@@ -50,7 +50,7 @@ if (result == 'success') {
 
 					<div class="cs_board">
 						<ul class="list_board_sort">
-							<li class="_cat02" data-cat="02"><a href="faq"
+							<li class="_cat02" data-cat="02"><a href="faq?fGroupKind=전체"
 								class="link_tab _faqCategory">전체</a></li>
 							<li class="_cat06" data-cat="06"><a
 								href="faq?fGroupKind=예매/취소"  class="link_tab _faqCategory">예매/취소</a></li>

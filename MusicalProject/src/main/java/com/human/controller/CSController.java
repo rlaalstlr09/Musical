@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.human.dto.FaqDto;
 import com.human.dto.MusicalDto;
@@ -36,11 +36,14 @@ public class CSController {
 	@Autowired
 	private IVenue_apiService venue_apiservice;
 	
-	@Autowired
-	private IQaService aservice;
+	
+	
 
 	@RequestMapping(value = "/help_main", method = RequestMethod.GET)
-	public String help_main() {
+	public String help_main(BoardVo vo, Model model) throws Exception{
+		vo.setPerPageNum(3);
+		List<NoticeDto> searchList = nservice.listSearch(vo);
+		model.addAttribute("list", searchList);	
 		return "help/help_main";
 	}
 	
@@ -135,41 +138,7 @@ public class CSController {
 		return "redirect:/help/notice";
 	}
 	
-	@RequestMapping(value = "/qa_admin", method = RequestMethod.GET)
-	public String qa_admin(BoardVo vo, Model model) throws Exception {
-		List<QaDto> searchList = aservice.qa_listSearch(vo);
-		model.addAttribute("list", searchList);
-		vo.setTotalCount(aservice.qa_listSearchCount(vo));
-		return "/help/qa_admin";
-	}	
 	
-	@RequestMapping(value = "/qa_list", method = RequestMethod.GET)
-	public String qa_list(BoardVo vo, Model model) throws Exception {
-		String customer_id="admin";
-		List<QaDto> List = aservice.qa_list(vo,customer_id);
-		model.addAttribute("list", List);
-		vo.setTotalCount(aservice.qa_listCount(customer_id));
-		return "/help/qa_list";
-	}	
-	
-	@RequestMapping(value = "/res_register", method = RequestMethod.POST)
-	@ResponseBody
-	public String res_register(@RequestParam("qa_id") int qa_id,
-	     @RequestParam("response_input") String response) throws Exception {	    
-	    int display=1;
-	    aservice.res_update(qa_id,response,display);   	    
-	    return "success";  
-	}
-	
-	@RequestMapping(value = "/res_remove", method = RequestMethod.POST)
-	@ResponseBody
-	public String res_remove(@RequestParam("qa_id") int qa_id) throws Exception {
-	    System.out.println(qa_id);
-	    int display=0;
-	    String response=null;
-	    aservice.res_update(qa_id,null,display);   	    
-	    return "success";  
-	}
 	
 	@RequestMapping("/getTheaters")	
     @ResponseBody
