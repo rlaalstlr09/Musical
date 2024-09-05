@@ -267,6 +267,7 @@ margin-top:10px;
 	            success: function(response) {
 	                $('.card-body').html(response); // 받은 데이터를 콘텐츠에 업데이트
 
+
 	              $('html, body').animate({
 	                    scrollTop: $('.card-body').offset().top
 	                }, 5); // 500ms 동안 스크롤 이동
