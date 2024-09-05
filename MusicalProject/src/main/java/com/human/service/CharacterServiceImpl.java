@@ -80,10 +80,7 @@ public class CharacterServiceImpl implements ICharacterService {
 		ICharacterDao dao = sqlSession.getMapper(ICharacterDao.class);
 		dao.character_delete(character_id);
 	}
-	public void character_actor_delete(Integer actor_id) throws Exception{
-		ICharacterDao dao = sqlSession.getMapper(ICharacterDao.class);
-		dao.character_actor_delete(actor_id);
-	}
+	
 	public void character_Alldelete(Integer musical_id) throws Exception{
 		ICharacterDao dao = sqlSession.getMapper(ICharacterDao.class);
 		dao.character_Alldelete(musical_id);

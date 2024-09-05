@@ -9,28 +9,29 @@
 <head>
  <link rel="stylesheet" href="/ex/resources/css/styles.css">
 	<style>
-		
-        
     </style>
     <title>뮤지컬 목록</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-  
-    	   
-    </script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+ 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+<script src="/ex/resources/script/musicalList.js"></script>
 </head>
 <body>
-<jsp:include page="../layout/header.jsp"/>
+
 <div id = container>
 
     <h1>뮤지컬 목록</h1>
-    <ul>
-    	<li><a href = "#" class="sort-link" data-sort = "">기본정렬</a></li>
-    	<li><a href = "#" class="sort-link" data-sort = "title">이름순</a></li>
-    	<li><a href = "#" class="sort-link" data-sort = "likes">좋아요순</a></li>
-    	<li><a href = "#" class="sort-link" data-sort = "period">공연날짜순</a></li>
-    </ul>
-    
+     <div class="sort-container">
+	    <ul class="sort-options">
+	    	<li><a href = "#" class="sort-link" data-sort = "">기본정렬</a></li>
+	    	<li><a href = "#" class="sort-link" data-sort = "title">이름순</a></li>
+	    	<li><a href = "#" class="sort-link" data-sort = "like">좋아요순</a></li>
+	    	<li><a href = "#" class="sort-link" data-sort = "period">공연날짜순</a></li>
+	    </ul>
+    </div>
    <button class="filter-button">필터</button>
    	  
 	<div class="filter-panel">
@@ -84,61 +85,66 @@
 		<button class="filter">적용</button>
 	</div>
   
-   <script src="/ex/resources/script/musicalList.js"></script>
+   
    <h2>인기 뮤지컬</h2>
-   <div class="musical-like">
-   	
-	    <c:forEach var="likeMusical" items="${likeMusicals}">
-			<div class="musical-item">
-			    <a href="detail/${likeMusical.musical_id}">
-			        <img src="/ex/resources/img/musical/${likeMusical.musical_poster}" alt="poster">
-			    </a>
-			    <div>
-			        <a href="detail/${likeMusical.musical_id}">
-			            <strong>${likeMusical.musical_title}</strong>
-			        </a>
-			    </div>
-			    <div>${likeMusical.venue_name}&nbsp;${likeMusical.hall_name }</div>
-			    <div><fmt:formatDate value="${likeMusical.musical_period_start}" pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${likeMusical.musical_period_end }" pattern = "yyyy-MM-dd"/></div>
-			    <div>♥&nbsp;${likeMusical.total_likes }</div>
-			</div>
-	   	</c:forEach>
-  	</div>
+   <div class="swiper-container musical-like">
+	    <div class="swiper-wrapper">
+	        <c:forEach var="likeMusical" items="${likeMusicals}">
+	            <div class="swiper-slide">
+	                <a class="link-container" href="detail/${likeMusical.musical_id}">
+	                    <div class="musical-img-item" data-poster="/ex/resources/img/musical/${likeMusical.musical_poster}">
+	                        <strong>${likeMusical.musical_title}</strong>
+	                        <p>${likeMusical.venue_name}&nbsp;${likeMusical.hall_name}</p>
+	                        <p><fmt:formatDate value="${likeMusical.musical_period_start}" pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${likeMusical.musical_period_end}" pattern="yyyy-MM-dd"/></p>
+	                        <p>♥&nbsp;${likeMusical.total_likes}</p>
+	                    </div>
+	                </a>
+	            </div>
+	        </c:forEach>
+	    </div>
+	    <!-- 추가 네비게이션 -->
+	    <div class="swiper-pagination page-like"></div>
+	    <div class="swiper-button-next next-like"></div>
+	    <div class="swiper-button-prev prev-like"></div>
+    </div>
   	<h2>최근 오픈</h2>
-  	<div class="musical-date">
-  		
-	   	<c:forEach var="dateMusical" items="${dateMusicals}">
-			<div class="musical-item">
-			    <a href="detail/${dateMusical.musical_id}">
-			        <img src="/ex/resources/img/musical/${dateMusical.musical_poster}" alt="poster">
-			    </a>
-			    <div>
-			        <a href="detail/${dateMusical.musical_id}">
-			            <strong>${dateMusical.musical_title}</strong>
-			        </a>
-			    </div>
-			    <div>${dateMusical.venue_name}&nbsp;${dateMusical.hall_name }</div>
-			    <div><fmt:formatDate value="${dateMusical.musical_period_start}" pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${dateMusical.musical_period_end }" pattern = "yyyy-MM-dd"/></div>
-			    <div>♥&nbsp;${dateMusical.total_likes }</div>
-			</div>
-	   	</c:forEach>
-  	</div>
+  	<div class="swiper-container musical-date">
+	    <div class="swiper-wrapper">
+	        <c:forEach var="dateMusical" items="${dateMusicals}">
+	            <div class="swiper-slide">
+	                <a class="link-container" href="detail/${dateMusical.musical_id}">
+	                    <div class="musical-img-item" data-poster="/ex/resources/img/musical/${dateMusical.musical_poster}">
+	                        <strong>${dateMusical.musical_title}</strong>
+	                        <p>${dateMusical.venue_name}&nbsp;${dateMusical.hall_name}</p>
+	                        <p><fmt:formatDate value="${dateMusical.musical_period_start}" pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${dateMusical.musical_period_end}" pattern="yyyy-MM-dd"/></p>
+	                        <p>♥&nbsp;${dateMusical.total_likes}</p>
+	                    </div>
+	                </a>
+	            </div>
+	        </c:forEach>
+	    </div>
+	    <!-- 추가 네비게이션 -->
+	    <div class="swiper-pagination page-date"></div>
+	    <div class="swiper-button-next next-date"></div>
+	    <div class="swiper-button-prev prev-date"></div>
+    </div>
 	<h2>전체 뮤지컬</h2>
    	<div class="musical-grid">
    	
         <c:forEach var="musical" items="${musicals}">
-            <div class="musical-item">
+            <div class="card musical-item">
                 <a href="detail/${musical.musical_id}">
-                    <img src="/ex/resources/img/musical/${musical.musical_poster}" alt="poster">
+                    <img src="/ex/resources/img/musical/${musical.musical_poster}" class = "card-img-top" alt="poster">
                 </a>
-                <div>
+                <div class = "card-body">
                     <a href="detail/${musical.musical_id}">
-                        <strong>${musical.musical_title}</strong>
+                        <strong class = "card-title">${musical.musical_title}</strong>
                     </a>
+                
+	                <p class = "card-text">${musical.venue_name}&nbsp;${musical.hall_name }</p>
+	                <p class = "card-text"><fmt:formatDate value="${musical.musical_period_start}" pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${musical.musical_period_end }" pattern = "yyyy-MM-dd"/></p>
+	                <p class = "card-text">♥&nbsp;${musical.total_likes }</p>
                 </div>
-                <div>${musical.venue_name}&nbsp;${musical.hall_name }</div>
-                <div><fmt:formatDate value="${musical.musical_period_start}" pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${musical.musical_period_end }" pattern = "yyyy-MM-dd"/></div>
-                <div>♥&nbsp;${musical.total_likes }</div>
             </div>
         </c:forEach>
     </div>
@@ -189,6 +195,6 @@
     	 <input type="hidden" id="currentLocation" value="${filter.location}">
     </div>
 </div>
-<jsp:include page="../layout/footer.jsp"/>
+
 </body>
 </html>

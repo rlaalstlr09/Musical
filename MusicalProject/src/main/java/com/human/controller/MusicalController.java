@@ -44,8 +44,8 @@ public class MusicalController {
 	
 	//뮤지컬 리스트 페이지
 	@RequestMapping("/listAll")
-	public String listAll(@RequestParam(value = "page", defaultValue = "1") int page,
-			@RequestParam(value = "perPageNum", defaultValue = "36") int perPageNum,
+	public String listAll(@RequestParam(value = "page", defaultValue = "0") int page,
+			@RequestParam(value = "perPageNum", defaultValue = "25") int perPageNum,
 			@RequestParam(value = "keyword", defaultValue = "") String keyword,
 			@RequestParam(value = "sort", defaultValue = "") String sort, 
 			MusicalFilterDto filter, Model model)
@@ -58,8 +58,8 @@ public class MusicalController {
 		
 		//카테고리별 뮤지컬 개수 (인기순, 오픈순 등등) 고정값으로 넣어서 페이지 전환해도 값 그대로
 		BoardVo categoryVo = new BoardVo();
-		boardVo.setPage(0);
-		boardVo.setPerPageNum(10);
+		categoryVo.setPage(0);
+		categoryVo.setPerPageNum(10);
 
 		// 총 데이터 개수와 페이징 데이터 계산
 		int totalCount = musicalService.getTotalCount(keyword, filter);
@@ -146,7 +146,7 @@ public class MusicalController {
 	//공연장 정보
 	@GetMapping("/venue")
 	public String getVenue(MusicalDto musicalDto, Model model) {
-		model.addAttribute("name", musicalDto);
+		model.addAttribute("param", musicalDto);
 		return "musical/fragments/venue";
 	}
 
@@ -174,5 +174,10 @@ public class MusicalController {
 	        e.printStackTrace();
 	        return new RedirectView("/ex/musical/listAll");
 	    }
+	}
+	
+	@GetMapping("/test")
+	public String getTest(Model model) {
+		return "musical/test";
 	}
 }

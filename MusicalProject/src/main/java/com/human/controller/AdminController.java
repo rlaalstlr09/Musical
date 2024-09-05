@@ -43,6 +43,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.human.dto.ActorCharacterDto;
 import com.human.dto.ActorDto;
 import com.human.dto.AdminDto;
 import com.human.dto.CharacterDto;
@@ -80,8 +81,6 @@ public class AdminController {
 //			tiff파일은 등록하면 자동으로 pdf로 변환됨
 //			뮤지컬 등 추가,수정 작업을 할 때 view버튼을 누르고 문서를 참고해 작업을 할 수 있게 설계함
 //			여러개의 문서가 등록되면 슬라이드로 넘기면서 볼 수 있음
-
-
 	
 	@Autowired
 	private ServletContext servletContext;
@@ -117,7 +116,10 @@ public class AdminController {
 	private IMusicalScheduleService mu_schservice;
 		
 	public String posterUploadPath() throws UnsupportedEncodingException {
-		String uploadsDir = "C:/sts-bundle/common/apache-tomcat-9.0.90/webapps/ROOT/poster"; //톰캣서버 기본 경로로 포스터 업로드 경로 설정, 이곳에 저장해야 src로 불러올때 편하다.
+		String severPath = servletContext.getRealPath("/");
+		String parentparentPath = new File(severPath).getParent();
+		String parentPath = new File(parentparentPath).getParent();
+		String uploadsDir = parentPath+"\\webapps\\ROOT\\poster"; //톰캣서버 기본 경로로 포스터 업로드 경로 설정, 이곳에 저장해야 src로 불러올때 편하다.
 		File uploadDir = new File(uploadsDir);
         if (!uploadDir.exists()) {
             uploadDir.mkdirs();
@@ -127,7 +129,10 @@ public class AdminController {
 	}
     
 	public String actorUploadPath() throws UnsupportedEncodingException {
-		String uploadsDir = "C:/sts-bundle/common/apache-tomcat-9.0.90/webapps/ROOT/actor"; //톰캣서버 기본 경로로 포스터 업로드 경로 설정
+		String severPath = servletContext.getRealPath("/");
+		String parentparentPath = new File(severPath).getParent();
+		String parentPath = new File(parentparentPath).getParent();
+		String uploadsDir = parentPath+"\\webapps\\ROOT\\actor"; //톰캣서버 기본 경로로 포스터 업로드 경로 설정
 		File uploadDir = new File(uploadsDir);
         if (!uploadDir.exists()) {
             uploadDir.mkdirs();
@@ -137,10 +142,6 @@ public class AdminController {
 	}
 	
 	
-	@RequestMapping(value = "/admin_main", method = RequestMethod.GET)
-	public String admin_main() {
-		return "admin/admin_main";
-	}
 	
 	@RequestMapping(value = "/admin_musical", method = RequestMethod.GET)
 	public String admin_musical(BoardVo vo, Model model) throws Exception {
@@ -323,7 +324,9 @@ public class AdminController {
 	        @RequestParam("actor_id") int actor_id,
 	        RedirectAttributes rttr) throws Exception {
 		CharacterDto dto = new CharacterDto(character_id,musical_id,character_name,actor_id);
+		ActorCharacterDto acdto = new ActorCharacterDto(character_id,actor_id);
 		characterService.character_update(dto);    
+		acService.actor_character_update(acdto);
 	    
 	    return "success";  // 성공 메시지 반환 (뷰가 아닌 단순 텍스트로)
 	}
@@ -588,7 +591,6 @@ public class AdminController {
 	public String admin_actor_remove(int actor_id, String reason) throws Exception {
 		AdminDto dto=AdminDto.withoutFileName("actor",actor_id,actorService.actor_read(actor_id).getActor_name(),"table_delete",reason);
 		file_register(dto);
-		characterService.character_actor_delete(actor_id);
 		actorService.delete(actor_id);	
 		return "success";
 	}	

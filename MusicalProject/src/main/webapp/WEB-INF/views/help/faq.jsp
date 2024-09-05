@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -87,12 +88,13 @@ if (result == 'success') {
 									<tr class="hide">
 
 										<td colspan="3"><pre><c:out value="${boardDtos.fContent}" escapeXml="false" /></pre> 
-										<!--  <sec:authorize access="hasRole('ROLE_ADMIN')"> -->
+										 <sec:authorize access="hasRole('ROLE_ADMIN')">
 											<form role='form' method="get">
+											<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 												<input name="fId" type="hidden" value="${boardDtos.fId}">
 												<button type="submit" class="btn btn-warning">수정</button>
 												<button type="submit" class="btn btn-danger">삭제</button>
-											</form> <!-- </sec:authorize> -->
+											</form>  </sec:authorize> 
 											</td>
 									</tr>
 								</c:forEach>

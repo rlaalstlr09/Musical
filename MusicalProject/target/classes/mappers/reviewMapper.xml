@@ -62,7 +62,7 @@ WHERE r.musical_id=m.musical_id
     <if test="searchType!=null">
     <if test="searchType!='전체'">
     <if test="searchType!=''">
-            and r.musical_id = #{searchType}
+            and m.musical_title = #{searchType}
     </if>  </if>    </if>
 </sql>
 
@@ -91,12 +91,12 @@ FETCH NEXT #{perPageNum} ROWS ONLY]]>
     <if test="searchType!=null">
     <if test="searchType!='전체'">
     <if test="searchType!=''">
-            and musical_id = #{searchType}
+            and m.musical_title = #{searchType}
     </if>  </if>    </if>
 </sql>
 
 <select id="review_listSearchCount" resultType="int">
-<![CDATA[ select count(review_id) from review where 1=1 ]]>
+<![CDATA[ select count(review_id) from review r, musical m where 1=1 ]]>
 		<include refid="search" />
 <include refid="musical_id"/>
 <include refid="customer_id"/>
