@@ -137,6 +137,18 @@ body {
     text-align: center;
 }
 
+.has-submenu input{ /* input요소 추가  */
+	padding: 0;
+	color: inherit;
+	border: none;
+	background: none;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.has-submenu input:hover{
+	text-decoration: underline;
+}
 
 .submenu {
     display: none;
