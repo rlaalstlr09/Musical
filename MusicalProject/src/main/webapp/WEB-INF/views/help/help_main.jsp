@@ -9,6 +9,7 @@
 </head>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/help_main.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/script/faq.js"></script>
 <script>
 $(function() {
 	var article = (".tb_board .show");
@@ -27,6 +28,7 @@ $(function() {
 				}
 			});
 });
+
 </script>
 <body>
 <jsp:include page="../layout/header.jsp"/>
@@ -37,7 +39,7 @@ $(function() {
 			<div id='search_help'>
 			<label>질문 검색</label>
 			<input type="text" name="keyword" id="keywordInput" placeholder="궁금하신 점을 검색해보세요!">
-			<button id="searchBtn">검색</button>
+			<button class="searchBtn" id="searchBtn">검색</button>
 			</div>
 		</div>
 		<ul class="help_link">
