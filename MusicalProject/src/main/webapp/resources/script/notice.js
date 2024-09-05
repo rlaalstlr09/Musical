@@ -28,4 +28,22 @@ $(document).ready(function() {
 				location.href = "notice_register";
 			
 		});
+	
+		var formObj = $("form[role='form']");
+
+
+		$(".btn-primary").on("click", function() {
+			formObj.attr("action", "notice_modify");
+			formObj.submit();
+		});
+
+		$(".btn-danger").on("click", function() {
+			formObj.attr("action", "notice_remove");
+			formObj.attr("method", "post");	
+			formObj.submit();
+		});
+
+		$(".go_notice").on("click", function() {
+			window.history.back();
+		});
 });

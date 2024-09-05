@@ -6,10 +6,37 @@ $(document).ready(function() {
 			window.history.back();
 		});
 		
+		function checkRequiredFields(){
+			var allFilled = true;
+			
+			$("input[required]").each(function(){
+				if($(this).val() === ''){
+					allFilled = false;
+					return false;
+				}
+			});
+			
+						
+			$("textarea[required]").each(function(){
+				if($(this).val() === ''){
+					allFilled = false;
+					return false;
+				}
+			});
+			
+			if(allFilled){
+				$(".signup").addClass("active").prop("disabled",false);		
+			}else{
+				$(".signup").removeClass("active").prop("disabled",true);
+			}
+		}
+		$("input[required]").on("input",checkRequiredFields);
+		$("textarea[required]").on("input",checkRequiredFields);
 });
 
 function checkFaq() {
 	  var isValid = true;
+	  
     
     if($("input[name='fTitle']").val().trim() === "") {
             alert("제목을 입력해주세요.");

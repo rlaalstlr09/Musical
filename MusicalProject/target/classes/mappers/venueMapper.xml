@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.human.dao.IVenueDao">
+
+<select id="venue_list" resultType="com.human.dto.VenueDto">
+select * from venue 
+</select>
+<select id="venue_name" resultType="String">
+select venue_name from venue  where venue_id=#{param1}
+</select>
+
+<select id = "selectVenueHallName" resultType = "com.human.dto.VenueDto">
+select *
+from venue v 
+join hall h
+on v.venue_id = h.venue_id
+where v.venue_id = #{venue_id}
+and h.hall_id = #{hall_id}
+</select>
+
+<!-- admin 극장 관리 -->
+
+<sql id='venue_search'>
+    <if test="keyword!=null">
+    <if test="keyword!=''">
+            and (venue_name LIKE '%' || #{keyword} || '%')                        
+    </if>  </if>  
+</sql>
+
+<sql id='venue_address'>
+    <if test="nGroupKind!=null">
+            and (venue_address LIKE '%' || #{nGroupKind} || '%')  
+    </if>  
+</sql>
+
+
+<select id="venue_listSearch" resultType="com.human.dto.VenueDto" >	
+	<![CDATA[SELECT *
+FROM venue
+WHERE 1=1]]>
+<include refid="venue_search"/>
+<include refid="venue_address"/>
+<![CDATA[ORDER BY venue_id DESC
+OFFSET (#{page} - 1) * #{perPageNum} ROWS
+FETCH NEXT #{perPageNum} ROWS ONLY]]>
+</select>
+
+<select id="venue_listSearchCount" resultType="int">
+<![CDATA[ select count(venue_id) from venue where 1=1 ]]>
+<include refid="venue_search" />
+<![CDATA[ and venue_id > 0 ]]>
+</select>
+
+<update id="venue_update"> update venue set venue_address=#{venue_address},
+venue_name=#{venue_name} where venue_id = #{venue_id}
+</update>
+	
+<delete id="venue_delete"> delete from venue where venue_id = #{venue_id} </delete>
+
+<insert id="venue_create">
+INSERT INTO venue 
+		( venue_id, venue_name, venue_address) VALUES
+			( venue_seq.nextval,#{venue_name},#{venue_address})
+</insert>
+
+<select id="venue_read" resultType="VenueDto">
+		select * from venue where
+		venue_id =
+		#{venue_id}
+	</select>
+
+
+</mapper>
+
+

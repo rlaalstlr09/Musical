@@ -10,15 +10,20 @@
 	margin: 1px;
 	margin-bottom: 15px;
 	text-align: center;
-	width: 80%;
-	border: 1px solid lightgray;
+	width: 100%;
+	
+	
+}
+.actor-img{
+border-radius: 50%;
 }
 
 .character_container {
-	width: 50%;
+	width: 80%;
 	display: grid;
 	grid-template-columns: repeat(5, 1fr); /* 5개의 열 */
 	text-align: center;
+	gap:25px;
 }
 
 div {
@@ -43,12 +48,15 @@ div {
 <script>
 		$(document).ready(function() {
 			// 버튼 클릭 시 모달에 JSP 콘텐츠를 로드
-			$('#actor-img').off('click').on('click',function() {
+			$('.actor-img').off('click').on('click',function() {
 				let actorId = $(this).data('actor');
 				$.ajax({
 					url : '/ex/character/readCharacter', // 로드할 JSP 페이지의 URL
 					type : 'GET',
-					data: {actor_id : actorId },
+					data: {
+						actor_id : actorId,
+						musical_id : '${musical_id}'
+					},
 					success : function(response) {
 						$('#actor-modal-body').html(response); // 모달의 콘텐츠를 업데이트
 						$('#actor-modal').modal('show'); // 모달을 표시
@@ -74,7 +82,7 @@ div {
 	
 					<div class="character_head">
 						
-						<img alt="사진" id = "actor-img" data-toggle="modal" data-target="#actor-modal" src="${acdto.actor_img}" width="60" height="60" data-actor="${acdto.actor_id }">
+						<img alt="사진" class = "actor-img" data-toggle="modal" data-target="#actor-modal" src="${acdto.actor_img}" width="100" height="100" data-actor="${acdto.actor_id }">
 					</div>
 					<div class="character_info">
 						<strong>${acdto.character_name}</strong><br>${acdto.actor_name}

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+	xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+
+	<beans:bean id="LoginSuccess"
+		class="com.human.Handler.LoginRedirectHandler" />
+
+	<!-- URL 설정 -->
+	<http use-expressions="true">
+	<csrf disabled="true"/>
+		<intercept-url pattern="/customer/customer" access="permitAll" />
+		<intercept-url pattern="/member/**" access="hasAnyRole('MEMBER,ADMIN')" />
+		<intercept-url pattern="/admin/**" access="hasAnyRole('ADMIN')" />
+		<intercept-url pattern="/help/notice_register" access="hasAnyRole('ADMIN')" />
+		<intercept-url pattern="/help/notice_modify" access="hasAnyRole('ADMIN')" />
+		<intercept-url pattern="/help/faq_modify" access="hasAnyRole('ADMIN')" />
+		<intercept-url pattern="/help/faq_register" access="hasAnyRole('ADMIN')" />
+
+		<form-login login-page="/customer/login"
+			authentication-success-handler-ref="LoginSuccess"
+			default-target-url="/customer/customer"
+			authentication-failure-url="/customer/login?error"
+			username-parameter="customer_id" password-parameter="customer_pw" />
+		<logout logout-url="/customer/logout" invalidate-session="true" 
+			delete-cookies="remember-me, JSESSIONID"/>
+        <!-- 자동 로그인 -->			
+		<remember-me data-source-ref="dataSource" token-validity-seconds="31536000" />
+		<!--화면 없이 해당 주소로 오면 session이 지워지고 로그아웃이 진행됨 -->
+		<!-- 에러 났을 때 에러 처리하는 페이지 -->
+		<access-denied-handler error-page="/customer/error" />
+	</http>
+
+	<!-- BCryptPasswordEncoder 클래스 빈 추가  -->
+	<beans:bean id="bcryptPasswordEncoder" 
+	             class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	
+	<!-- provider -->
+	<authentication-manager>
+		<authentication-provider>
+		  <!-- 로그인 시 비밀번호를 암호화해서 DB에서 조회한 비밀번호와 비교 -->
+		    <password-encoder ref="bcryptPasswordEncoder"/>
+		    
+			<jdbc-user-service
+				authorities-by-username-query="select customer_id, authority from authorities where customer_id = ?"
+				users-by-username-query="select customer_id, customer_pw, enabled from customer where customer_id = ?"
+				role-prefix="" data-source-ref="dataSource"/>
+		</authentication-provider>
+	</authentication-manager>	
+
+</beans:beans>

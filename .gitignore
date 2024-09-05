@@ -117,9 +117,9 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-
+/Musical/MusicalProject/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
 *.properties
-
+/Musical/.gitignore
 root-context.xml
 
 servers/*

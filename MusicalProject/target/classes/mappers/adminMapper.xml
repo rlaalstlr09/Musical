@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.human.dao.IAdminDao">
+
+
+	
+	
+
+<!-- admin 관리 -->
+<insert id="admin_create">
+INSERT INTO admin 
+		( manage_id, table_name,table_id,table_content, table_crud,crud_reason,fileName) VALUES
+		( admin_seq.nextval,#{table_name},#{table_id},#{table_content,jdbcType=VARCHAR},#{table_crud},
+		#{crud_reason},#{fileName, jdbcType=VARCHAR})
+</insert>
+
+<select id="admin_file_read" resultType="AdminDto">
+select fileName from admin where table_id=#{table_id} and table_name=#{table_name} and table_crud=#{table_crud}
+</select>
+
+
+
+</mapper>

@@ -2,7 +2,7 @@ package com.human.service;
 
 import java.util.ArrayList;
 
-
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,6 +48,14 @@ public class ActorCharacterServiceImpl implements IActorCharacterService {
 		
 	}
 	
+	public void actor_character_create(@Param("actor_id") Integer actor_id,@Param("character_id") Integer character_id) throws Exception{
+		IActorCharacterDao dao = sqlSession.getMapper(IActorCharacterDao.class);
+		dao.actor_character_create(actor_id,character_id);
+	}
 	
-
+	public void actor_character_update(ActorCharacterDto dto) throws Exception {
+		IActorCharacterDao dao=sqlSession.getMapper(IActorCharacterDao.class);
+		dao.actor_character_update(dto);	
+	}
+	
 }

@@ -4,8 +4,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.human.dao.IQaDao">
-
-
+<!-- qa글쓰기 -->
+<insert id="create">
+ 	insert into qa(qa_id,customer_id,qa_type,title,content)
+	values (qa_count.nextval,#{customer_id},#{qa_type},#{title},#{content})
+</insert>
+<!-- 회원 탈퇴시 삭제용 -->
+<delete id="deleteAll">
+delete qa where customer_id = #{customer_id}
+</delete>
 <!-- qa 관리 -->
 <sql id='qa_search'>
     <if test="keyword!=null">

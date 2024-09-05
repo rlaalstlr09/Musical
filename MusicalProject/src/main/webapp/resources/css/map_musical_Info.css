@@ -7,6 +7,9 @@ body,input,select,textarea,pre {
 .next{
 	right: 0;
 }
+#wrap {
+	margin-top: 150px;
+}
 
 .prev{
 	left: 300px;
