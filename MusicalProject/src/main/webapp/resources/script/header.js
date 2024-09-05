@@ -48,6 +48,21 @@ $(document).ready(function () {
   // 페이지 로드 시 헤더의 고정 상태를 설정
   $(window).trigger('scroll'); // 페이지 로드 시 스크롤 이벤트를 강제로 발생시켜 상태를 설정
 });
+ // 페이지 로드시 고정 상태 확인
+  if ($(window).scrollTop() > scrollTrigger) {
+    $header.addClass('sticky');
+    changeHeaderColor(true);  // 고정된 헤더 색상 변경
+  }
+
+  // 색상을 변경하는 함수
+  function changeHeaderColor(isSticky) {
+    if (isSticky) {
+      $header.css('background-color', '#000');  // 헤더 색상을 검정으로 변경
+    } else {
+      $header.css('background-color', 'transparent');  // 기본 색상으로 변경
+    }
+  }
+});
 
   document.querySelector('.close-btn').addEventListener('click', function() {
   document.querySelector('.slidebar').classList.add('hide');
