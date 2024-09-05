@@ -43,7 +43,7 @@ $(document).ready(function() {
 			formObj.submit();
 		});
 
-		$(".btn-warning").on("click", function() {
-			self.location = "notice";
+		$(".go_notice").on("click", function() {
+			window.history.back();
 		});
 });
