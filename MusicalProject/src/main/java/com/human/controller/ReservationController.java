@@ -65,6 +65,7 @@ public class ReservationController {
 	public void reservation(Model model) throws Exception {
 		System.out.println("reservation");
 	}
+	
 
 	////////////////////////// 극장 venue_id과 musical_id 는 현재 1로 고정 추후 뮤지컬 리스트 받으면
 	////////////////////////// request르 받아서 구현
