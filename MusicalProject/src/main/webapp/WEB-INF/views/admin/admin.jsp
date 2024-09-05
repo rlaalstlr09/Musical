@@ -14,5 +14,6 @@
 <a href='qa_admin'>문의 관리</a>
 <a href='admin_venue'>극장 관리</a>
 <a href='admin_files'>스캔파일 목록</a>
+<a href='admin_users'>회원관리</a>
 </body>
 </html>

@@ -15,7 +15,7 @@
 	<csrf disabled="true"/>
 		<intercept-url pattern="/customer/customer" access="permitAll" />
 		<intercept-url pattern="/member/**" access="hasAnyRole('MEMBER,ADMIN')" />
-		<intercept-url pattern="/admin/**" access="hasAnyRole('ADMIN')" />
+		<intercept-url pattern="/admin/**" access="hasAnyRole('ADMIN,SUPERADMIN')" />
 		<intercept-url pattern="/help/notice_register" access="hasAnyRole('ADMIN')" />
 		<intercept-url pattern="/help/notice_modify" access="hasAnyRole('ADMIN')" />
 		<intercept-url pattern="/help/faq_modify" access="hasAnyRole('ADMIN')" />

@@ -4,6 +4,7 @@ package com.human.service;
 import java.util.List;
 
 import com.human.dto.CustomerDto;
+import com.human.vo.BoardVo;
 
 public interface ICustomerService {
 	
@@ -32,4 +33,8 @@ public interface ICustomerService {
 	public CustomerDto nowPwCheck(String customer_id) throws Exception;
 	
 //	public void authoritiesUpdate(CustomerDto dto) throws Exception;
+	
+	//관리자 관련
+	public List<CustomerDto> customer_listSearch(BoardVo vo) throws Exception;
+	public int customer_listSearchCount(BoardVo vo) throws Exception;
 }
