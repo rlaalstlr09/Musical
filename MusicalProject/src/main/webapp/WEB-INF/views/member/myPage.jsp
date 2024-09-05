@@ -107,9 +107,9 @@ body{
 <body>
 	<div class="sidebar">
 		<a href="myPage" class="mypage">마이페이지</a>
-		<a href="/ex/member/read?customer_id=${pageContext.request.userPrincipal.name }" class="a">회원 정보</a>
-		<a href="/ex/member/write" class="a">1:1문의</a>
-		<a href="/ex/member/qa_list?customer_id=${pageContext.request.userPrincipal.name }" class="a">1:1문의내역</a>
+		<a href="read?customer_id=${pageContext.request.userPrincipal.name }" class="a">회원 정보</a>
+		<a href="write" class="a">1:1문의</a>
+		<a href="qa_list?customer_id=${pageContext.request.userPrincipal.name }" class="a">1:1문의내역</a>
 		<a href="#" class="a">장바구니</a>
 		<a href="remove" class="a">회원탈퇴</a>
 	</div>
@@ -119,10 +119,10 @@ body{
 			${pageContext.request.userPrincipal.name }</div>
 
 		<div class="links">
-			<a href="/ex/member/read?customer_id=${pageContext.request.userPrincipal.name }">회원 정보</a> 
-			<a href="/ex/member/write">1:1문의</a> 
-			<a href="/ex/member/qa_list?customer_id=${pageContext.request.userPrincipal.name }">1:1문의내역</a> 
-      <a href="/ex/review/myReview">내가 쓴 리뷰</a>
+			<a href="read?customer_id=${pageContext.request.userPrincipal.name }">회원 정보</a> 
+			<a href="write">1:1문의</a> 
+			<a href="qa_list?customer_id=${pageContext.request.userPrincipal.name }">1:1문의내역</a> 
+      		<a href="${pageContext.request.contextPath }/review/myReview">내가 쓴 리뷰</a>
 			<a href="#">장바구니</a>
 			<a href="remove">회원탈퇴</a>
 		</div>

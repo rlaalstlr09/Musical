@@ -113,7 +113,7 @@
     <c:if test="${param.logout != null}">
         <p>로그아웃 하였습니다.</p>
 </c:if>
-<h3><a href="/ex/" class="site">사이트 이름</a></h3>
+<h3><a href="${pageContext.request.contextPath }/" class="site">사이트 이름</a></h3>
 <c:url value="/login" var="loginUrl" />
 <form name="frmLogin" action="${loginUrl}" method="POST">
 

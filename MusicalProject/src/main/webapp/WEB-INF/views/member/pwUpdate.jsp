@@ -84,14 +84,14 @@ window.onload = function() {
 <body>
 	<div class="sidebar">
 		<h2>마이페이지</h2>
-		<a href="/ex/member/read?customer_id=${pageContext.request.userPrincipal.name }">회원 정보</a>
-		<a href="/ex/member/write">1:1문의</a>
-		<a href="/ex/member/qa_list?customer_id=${pageContext.request.userPrincipal.name }">1:1문의내역</a>
+		<a href="read?customer_id=${pageContext.request.userPrincipal.name }">회원 정보</a>
+		<a href="write">1:1문의</a>
+		<a href="qa_list?customer_id=${pageContext.request.userPrincipal.name }">1:1문의내역</a>
 		<a href="#">장바구니</a>
 		<a href="remove">회원탈퇴</a>
 	</div>
 	<div class="container">
-	<form action="/ex/member/pwUpdate" method="post">
+	<form action="pwUpdate" method="post">
 		<input type="hidden" name="customer_id" value="${customerDto.customer_id }">
 		<div>
 			<label>새 비밀번호</label>

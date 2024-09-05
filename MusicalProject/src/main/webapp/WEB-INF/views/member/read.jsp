@@ -98,9 +98,9 @@ body{
 <body>
 	<div class="sidebar">
 		<a href="myPage" class="mypage">마이페이지</a>
-		<a href="/ex/member/read?customer_id=${pageContext.request.userPrincipal.name }" class="a">회원 정보</a>
-		<a href="/ex/member/write" class="a">1:1문의</a>
-		<a href="/ex/member/qa_list?customer_id=${pageContext.request.userPrincipal.name }" class="a">1:1문의내역</a>
+		<a href="read?customer_id=${pageContext.request.userPrincipal.name }" class="a">회원 정보</a>
+		<a href="write" class="a">1:1문의</a>
+		<a href="qa_list?customer_id=${pageContext.request.userPrincipal.name }" class="a">1:1문의내역</a>
 		<a href="#" class="a">장바구니</a>
 		<a href="remove" class="a">회원탈퇴</a>
 	</div>
@@ -113,8 +113,8 @@ body{
 			주소: ${customerDto.customer_address }<hr><br>
 			생년월일: <fmt:formatDate pattern="yyyy년 MM월 dd일" value="${customerDto.customer_birth }" /><hr><br>
 			<div class="button-group">
-				<a href="/ex/member/update?customer_id=${customerDto.customer_id }&customer_birth=${customerDto.customer_birth }">수정</a>
-				<a href="/ex/member/nowPwCheck?customer_id=${customerDto.customer_id }">비밀번호 변경</a>
+				<a href="update?customer_id=${customerDto.customer_id }&customer_birth=${customerDto.customer_birth }">수정</a>
+				<a href="nowPwCheck?customer_id=${customerDto.customer_id }">비밀번호 변경</a>
 			</div>
 		</div>
 	</div>
