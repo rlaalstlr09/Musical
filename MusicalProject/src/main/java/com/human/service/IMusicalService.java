@@ -20,6 +20,7 @@ public interface IMusicalService {
 	
 	
 	public List<MusicalDto> musical_list() throws Exception;
+	public String musical_title(int musical_id) throws Exception;
 	
 	//admin관련
 	public void musical_create(MusicalDto musical) throws Exception;

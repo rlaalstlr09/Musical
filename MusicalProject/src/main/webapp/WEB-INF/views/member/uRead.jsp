@@ -130,16 +130,16 @@ body{
 <body>
 	<div class="sidebar">
 		<a href="myPage" class="mypage">마이페이지</a>
-		<a href="/ex/member/read?customer_id=${pageContext.request.userPrincipal.name }" class="a">회원 정보</a>
-		<a href="/ex/member/write" class="a">1:1문의</a>
-		<a href="/ex/member/qa_list?customer_id=${pageContext.request.userPrincipal.name }" class="a">1:1문의내역</a>
+		<a href="read?customer_id=${pageContext.request.userPrincipal.name }" class="a">회원 정보</a>
+		<a href="write" class="a">1:1문의</a>
+		<a href="qa_list?customer_id=${pageContext.request.userPrincipal.name }" class="a">1:1문의내역</a>
 		<a href="#" class="a">장바구니</a>
 		<a href="remove" class="a">회원탈퇴</a>
 	</div>
 		<div class="container">
 			<h2>회원 정보수정</h2>
 			<div class="profile-info">
-				<form action="/ex/member/update" method="post">
+				<form action="update" method="post">
 				ID: <input type="text" name="customer_id" value="${customerDto.customer_id }" readonly><hr><br>
 				전화번호: <input type="text" name="customer_phone" value="${customerDto.customer_phone }" ><hr><br>
 				이메일: <input type="text" name="customer_email" value="${customerDto.customer_email }" ><hr><br>

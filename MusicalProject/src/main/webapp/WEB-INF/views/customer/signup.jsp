@@ -148,9 +148,9 @@
 </head>
 <body>
 <div class="container">
-	<a href="/ex/">사이트 이름</a>
+	<a href="${pageContext.request.contextPath }/">사이트 이름</a>
 	<h4>정보 입력</h4><hr>
-		<form action="/ex/customer/insert" method="post">
+		<form action="${pageContext.request.contextPath }/customer/insert" method="post">
 			아이디<input type="text" name="customer_id" id="customer_id" required
 				placeholder="4~20자 영문,숫자" pattern="^[a-zA-Z0-9]+$">
 			<span id="idCheck"></span><hr>

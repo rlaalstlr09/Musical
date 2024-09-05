@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page session="false"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <fmt:setLocale value="ko" />
 <!DOCTYPE html>
 <html>
@@ -23,41 +24,34 @@
 </head>
 <body>
 <jsp:include page="../layout/header.jsp"/>
-<div class="main">
-
+<div class="container">
 	<form role="form" method="get">
 		<input type='hidden' name='nId' value="${noticeDto.nId}">
 	</form>
-	
-	<h2>
-		카테고리 <input type="text" name='nGroupKind' style="width: 100%"
-			value="${noticeDto.nGroupKind}" readonly="readonly">
-	</h2>
-
-	</h2>
-	<h1>제목</h1>
-	<h2>
-		<input type="text" name='nTitle' style="width: 100%"
+	<input type="text" name='nTitle' style="width: 100%" class='read_title'
 			value="${noticeDto.nTitle}" readonly="readonly">
-	</h2>
+			
+	<label>${noticeDto.nGroupKind} | <fmt:formatDate value="${noticeDto.nWriteTime}" pattern="yyyy.MM.dd(E) HH:mm" />
 	<c:if test="${not empty noticeDto.nOpenTime}">
-	오픈일 : <fmt:formatDate value="${noticeDto.nOpenTime}" pattern="yyyy.MM.dd(E) HH:mm" /><br/>
+	 | 오픈일 <fmt:formatDate value="${noticeDto.nOpenTime}" pattern="yyyy.MM.dd(E) HH:mm" /><br/>
 	</c:if>
-등록일 : <fmt:formatDate value="${noticeDto.nWriteTime}" pattern="yyyy.MM.dd(E) HH:mm" />|
-조회수 : ${noticeDto.nHit}<br/>
-	<h2>
-		내용
-		<textarea style="width: 100%" name="nContent" rows="3"
+	</label>
+<label>조회수 : ${noticeDto.nHit} </label> 
+<br>
+	<hr>
+	<br>
+		<textarea name="nContent" rows="3" class='read_board'
 			readonly="readonly">${noticeDto.nContent}</textarea>
-	</h2>
+	
+<hr>
 
-
-	<button type="submit" class="btn btn-primary">수정</button>
 	<div class="box-footer">
-		<!--  <sec:authorize access="hasRole('ROLE_ADMIN')"> -->
-		<button type="submit" class="btn btn-warning">전체글보기</button>
+	<button type="submit" class="go_notice" id='go_notice'>뒤로 가기</button>
+		 <sec:authorize access="hasRole('ROLE_ADMIN')">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		<button type="submit" class="btn btn-primary">수정</button>
 		<button type="submit" class="btn btn-danger">삭제</button>		
-		<!-- </sec:authorize> -->
+		</sec:authorize> 
 		
 	</div>
 </div>

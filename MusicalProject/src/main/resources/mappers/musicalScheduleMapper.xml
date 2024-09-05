@@ -10,10 +10,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 select * from musical_schedule where mu_sch_date=#{param1} and venue_id=#{param2} and musical_id=#{param3}
 </select>
 
+<select id="select_mu_sch_id" resultType="com.human.dto.MusicalScheduleDto">
+select * from musical_schedule where mu_sch_id = #{param1}
+</select>
+
 
 <update id="mu_sch_seat_update">
 update musical_schedule set seat_count =#{param1} where mu_sch_id= #{param2}
 </update>
+
+<select id="mu_sch_info" resultType="com.human.dto.MusicalScheduleDto">
+select * from musical_schedule where mu_sch_id=#{param1} 
+</select>
+
 
 
 <insert id="insert_mu_sch">  
@@ -35,6 +44,19 @@ update musical_schedule set seat_count =#{param1} where mu_sch_id= #{param2}
         #{seat_count}
     )
 </insert>
+
+
+    <update id="mu_sch_update">
+        UPDATE musical_schedule
+        SET 
+            musical_id = #{musical_id},
+            venue_id = #{venue_id},
+            mu_sch_date = #{mu_sch_date},
+            mu_sch_time = #{mu_sch_time},
+            hall_id = #{hall_id},
+            seat_count = #{seat_count}
+        WHERE mu_sch_id = #{mu_sch_id}
+    </update>
 
 <!-- admin 조인 삭제 관련 -->
 

@@ -40,7 +40,7 @@ $(function() {
 
 				<div class="board_qna">
 				<h1 id="qna_head">나의 QA</h1>
-				<h3><a href="/ex/member/myPage">마이페이지</a></h3>
+				<h3><a href="myPage">마이페이지</a></h3>
 					<div id="qnaList-wrapper">
 						<table cellspacing="0" border="0" class="tb_board tb_qna">
 							<colgroup>

@@ -71,31 +71,61 @@ $(document).ready(function(){
 	
     
     
-    $('.musical_like').slick({
-    	  centerMode: true,
-    	  centerPadding: '60px',
-    	  slidesToShow: 3,
-    	  responsive: [
-    	    {
-    	      breakpoint: 768,
-    	      settings: {
-    	        arrows: false,
-    	        centerMode: true,
-    	        centerPadding: '40px',
-    	        slidesToShow: 3
-    	      }
-    	    },
-    	    {
-    	      breakpoint: 480,
-    	      settings: {
-    	        arrows: false,
-    	        centerMode: true,
-    	        centerPadding: '40px',
-    	        slidesToShow: 1
-    	      }
-    	    }
-    	  ]
-    	});
+    var swiper1 = new Swiper('.musical-like', {
+    	direction : 'horizontal',
+        slidesPerView: 3, // 화면에 보여질 슬라이드 수
+        spaceBetween: 30, // 슬라이드 간의 간격
+        loop:true,
+        effect:'coverflow',
+        navigation: {
+            nextEl: '.next-like',
+            prevEl: '.prev-like',
+        },
+        pagination: {
+            el: '.page-like',
+            clickable: true,
+        },
+        autoplay: {
+            delay: 5000, // 자동 슬라이드 전환 간격 (밀리초 단위)
+        },
+        breakpoints: {
+            // 반응형 설정
+            768: {
+                slidesPerView: 2,
+            },
+            480: {
+                slidesPerView: 1,
+            }
+        }
+    });
+    
+    var swiper2 = new Swiper('.musical-date', {
+    	direction : 'horizontal',
+        slidesPerView: 3, // 화면에 보여질 슬라이드 수
+        spaceBetween: 30, // 슬라이드 간의 간격
+        loop:true,
+        effect:'coverflow',
+        navigation: {
+            nextEl: '.next-date',
+            prevEl: '.prev-date',
+        },
+        pagination: {
+            el: '.page-date',
+            clickable: true,
+        },
+        autoplay: {
+            delay: 5000, // 자동 슬라이드 전환 간격 (밀리초 단위)
+        },
+        breakpoints: {
+            // 반응형 설정
+            768: {
+                slidesPerView: 2,
+            },
+            480: {
+                slidesPerView: 1,
+            }
+        }
+    });
    
     $('.musical-img-item').each(function() {
         var posterUrl = $(this).data('poster'); // jQuery의 .data() 메서드를 사용하여 data-poster 값을 가져옵니다

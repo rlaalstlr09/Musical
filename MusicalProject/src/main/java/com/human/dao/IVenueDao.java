@@ -7,6 +7,7 @@ import com.human.vo.BoardVo;
 
 public interface IVenueDao {
 	public List<VenueDto> venue_list() throws Exception;
+	public String venue_name(int venue_id) throws Exception;
 	
 	//admin관련
 	public void venue_create(VenueDto venue) throws Exception;

@@ -39,10 +39,11 @@ $(document).ready(function() {
 
 		$(".btn-danger").on("click", function() {
 			formObj.attr("action", "notice_remove");
+			formObj.attr("method", "post");	
 			formObj.submit();
 		});
 
-		$(".btn-warning").on("click", function() {
-			self.location = "notice";
+		$(".go_notice").on("click", function() {
+			window.history.back();
 		});
 });
