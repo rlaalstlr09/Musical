@@ -53,3 +53,9 @@ $(document).ready(function () {
   document.querySelector('.slidebar').classList.add('hide');
   document.getElementById('menuicon').checked = false; // 메뉴 아이콘의 체크 상태를 해제
 });
+
+  document.addEventListener('DOMContentLoaded', function() {
+	  // 체크박스의 상태를 기본값으로 초기화합니다 (체크 해제 상태)
+	  document.getElementById('menuicon').checked = false;
+	});
+  
