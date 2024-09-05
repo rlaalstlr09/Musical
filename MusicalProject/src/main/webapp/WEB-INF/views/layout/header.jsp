@@ -49,7 +49,7 @@
             <ul class="submenu">
               <li><a href="${pageContext.request.contextPath }/help/notice">공지사항</a></li>
               <li><a href="${pageContext.request.contextPath }/help/faq">FAQ</a></li>
-              <li><a href="${pageContext.request.contextPath }/member/qa_list">1:1</a></li>
+              <li><a href="${pageContext.request.contextPath }/member/qa_list?customer_id=${pageContext.request.userPrincipal.name }">1:1</a></li>
             </ul>
           </li>
           <li class="has-submenu">
@@ -94,7 +94,7 @@
             <ul class="submenul">
               <li><a href="${pageContext.request.contextPath }/help/notice">공지사항</a></li>
               <li><a href="${pageContext.request.contextPath }/help/faq">FAQ</a></li>
-              <li><a href="${pageContext.request.contextPath }/member/qa_list">1:1문의사항</a></li>
+              <li><a href="${pageContext.request.contextPath }/member/qa_list?customer_id=${pageContext.request.userPrincipal.name }">1:1문의사항</a></li>
             </ul>
           </li>
           <li class="specialo"><a href="${pageContext.request.contextPath }/help/near_map">근처 공연장 보기</a></li>
