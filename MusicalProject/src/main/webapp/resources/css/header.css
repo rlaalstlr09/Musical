@@ -36,7 +36,10 @@ body {
     height: 100px;
     /* 헤더 높이 조정 */
 }
-
+/* 고정된 헤더 색상 */
+.header-background.sticky {
+  background-color: #eeeeee; /* 검정색으로 변경 */
+}
 .header-background.sticky .search input {
     border-bottom: 2px solid #5d5c5cfb;
     /* 스크롤 시 밑줄 색상 변경 */
