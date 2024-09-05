@@ -41,19 +41,7 @@ public class ReviewController {
 	private static final Logger logger = LoggerFactory.getLogger(ReviewController.class);
 	
 	
-	@RequestMapping(value = "/myReview", method = RequestMethod.GET)
-	public String myReview(Model model, @RequestParam(value = "musical_id" ,defaultValue="") Integer musical_id,@RequestParam(value="customer_id",defaultValue="1") String customer_id,@RequestParam(value="page",defaultValue="1") int page,
-			@RequestParam(value="perPageNum",defaultValue="10") int perPageNum)throws Exception{
-		BoardVo vo=new BoardVo();
-		vo.setPage(page);
-		vo.setPerPageNum(perPageNum);
-		vo.setTotalCount(rService.totalCount(musical_id,customer_id));
-		ArrayList<ReviewDto>dto=rService.selectMyReview(customer_id,vo);
-		System.out.println(dto);
-		model.addAttribute("List",dto);
-		model.addAttribute("boardVo",vo);
-		return "review/myReview";
-	}
+	
 	
 	@RequestMapping(value = "/updateReview", method = RequestMethod.GET)
 	public String updateReview()throws Exception{
