@@ -37,7 +37,7 @@ body {
     /* 헤더 높이 조정 */
 }
 /* 고정된 헤더 색상 */
-.header-background.sticky {
+.header-container-background.sticky {
   background-color: #eeeeee; /* 검정색으로 변경 */
 }
 .header-background.sticky .search input {
