@@ -95,7 +95,7 @@
 <a href='admin_admin'>관리내역</a>
 <br>
 <a href='${pageContext.request.contextPath}/reser_admin/reservation_list_admin'>예약내역리스트 관리자</a>
-<a href='${pageContext.request.contextPath}/reser_admin/mu_sch_adim'>스케줄 추가</a>
+<a href='${pageContext.request.contextPath}/reser_admin/mu_sch_admin'>스케줄 추가</a>
 
 </div>
 </div>

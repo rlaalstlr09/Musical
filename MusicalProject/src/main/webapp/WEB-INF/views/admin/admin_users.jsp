@@ -31,9 +31,8 @@ if (result == 'success') {
 					<div id="qnaList-wrapper">
 						<table class="tb_board tb_qna">
 							<colgroup>
-								<col width="20%">
-								<col width="30%">
-								<col width="10%">
+								<col width="25%">
+								<col width="35%">
 								<col width="10%">
 								<col width="10%">
 								<col width="10%">
@@ -47,7 +46,6 @@ if (result == 'success') {
 									<th scope="col" style='text-align: center;'>상태</th>
 									<th scope="col" style='text-align: center;'>권한</th>
 									<th scope="col" style='text-align: center;'>수정</th>
-									<th scope="col" style='text-align: center;'>삭제</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -77,9 +75,7 @@ if (result == 'success') {
 										</c:if>
 										</td>
 										<td style='text-align: center;'><button class="modifyBtn"
-												value="${boardDtos.customer_id }">수정</button></td>
-										<td style='text-align: center;'><button class="deleteBtn"
-												value="${boardDtos.customer_id }">삭제</button></td>
+												value="${boardDtos.customer_id }">수정</button></td>										
 									</tr>
 								</c:forEach>
 							</tbody>
