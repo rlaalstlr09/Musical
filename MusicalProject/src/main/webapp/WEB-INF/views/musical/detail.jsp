@@ -11,6 +11,12 @@
 <meta charset="UTF-8">
 <title>Musical Details</title>
 <style>
+
+.container{
+	display:flex;
+	flex-direction: column;
+	gap: 50px;
+}
  #actor {
             display: flex;
             flex-wrap: wrap;
@@ -18,6 +24,7 @@
         .actor-row {
             display: flex;
             flex-wrap: wrap;
+            text-align : center;
             width: 100%;
         }
         .actor-info {
@@ -31,7 +38,57 @@
             margin: 0.5rem;
             width: 150px;
         }
- 
+	.info{
+		display:flex;
+		width : 100%;
+		gap : 5%;
+	}
+	.button-container{
+		position: relative;
+		flex:1;
+	}
+	
+	.img-fluid{
+		width : 250px;
+		height : 400px;
+	}
+	
+	.musical-detail-info{
+		position:relative;
+		line-height: 2em;
+	}
+	
+	.seat-table{
+		min-width:250px;
+	}
+	
+	.seat-price{
+		text-align : right;
+	}
+	
+	.list{
+		display : inline-block;
+		position: absolute;
+		top : 0;
+		right : 0;
+	}
+	
+	.reservation{
+		display:inline-block;
+		position: absolute;
+		top : 90%;
+		right : 0;
+	}
+	
+	#openModalLink, .nav-link{
+		text-decoration: none;
+		color: #000;  
+	}
+	
+	#openModalLink:hover, .nav-link:hover{
+		text-decoration: none;
+		color: #000;
+	}
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -153,79 +210,90 @@ $(document).ready(function() {
 <body>
 
 	<div class="container mt-4">
-		<div id="info">
-			<button onclick="location.href='/ex/musical/listAll'">목록</button>
-			<img src="/ex/resources/img/musical/${musical.musical_poster}" alt="poster"
-				class="img-fluid">
-			<h1>${musical.musical_title}</h1>
-			<br> 공연 장소 :
-			<!-- Link to open the modal -->
-			<a href="#" class="open-venue-modal" id="openModalLink"
-				data-toggle="modal" data-target="#venue-modal">${musical.venue_name }&nbsp;${musical.hall_name}</a>
-
-			<!-- Modal -->
-			<div class="modal fade" id="venue-modal" tabindex="-1" role="dialog"
-				aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-lg" role="document">
-					<div class="modal-content modal-lg">
-						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">공연장 정보</h5>
-							<button type="button" class="close" data-dismiss="modal"
-								aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body" id="venue-modal-body">
-							<!-- Content will be loaded here -->
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary"
-								data-dismiss="modal">Close</button>
+		<div class="info">
+			<div class ="musical-poster">
+				<img src="/ex/resources/img/musical/${musical.musical_poster}" alt="poster"
+					class="img-fluid">
+				
+				<div class="like">
+					<a href="#" id="like-button" class="${isLike == 1 ? 'liked' : ''}"
+						data-customer="${pageContext.request.userPrincipal.name }"
+						data-musical="${musical.musical_id }"> ${isLike == 1 ? '♥' : '♡'}
+		
+					</a> <span id="total-likes">${musical.total_likes }</span>
+				</div>
+			</div>
+			<div class = "musical-detail-info">
+				<h1>${musical.musical_title}</h1>
+				
+				<br> 공연 장소 :
+				<!-- Link to open the modal -->
+				<a href="#" class="open-venue-modal" id="openModalLink"
+					data-toggle="modal" data-target="#venue-modal">${musical.venue_name }&nbsp;${musical.hall_name} ▶</a>
+				
+				<!-- Modal -->
+				<div class="modal fade" id="venue-modal" tabindex="-1" role="dialog"
+					aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-lg" role="document">
+						<div class="modal-content modal-lg">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">공연장 정보</h5>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body" id="venue-modal-body">
+								<!-- Content will be loaded here -->
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary"
+									data-dismiss="modal">Close</button>
+							</div>
 						</div>
 					</div>
 				</div>
+				
+				
+				<br> 공연 기간 :
+				<fmt:formatDate value="${musical.musical_period_start}" pattern="yyyy-MM-dd" />
+				~
+				<fmt:formatDate value="${musical.musical_period_end}" pattern="yyyy-MM-dd" />
+				<br> 상영 시간 : ${musical.musical_runningtime}<br> 연령 제한 :
+				${musical.musical_agelimit}<br>
+				<table class= "seat-table">
+					<tr>
+						<th class = "seat-grade">좌석 등급</th>
+						<th class = "seat-price">가격</th>
+					</tr>
+					
+					<c:forEach var="seat" items="${musical.seatDtos}">
+					      <tr>
+					      	<td class = "seat-grade">${seat.seat_grade}</td>
+					      	<td class = "seat-price">${seat.seat_price} 원</td>
+					      </tr>
+					</c:forEach>
+					
+				</table>
+				
 			</div>
 			
-			
-			<br> 공연 기간 :
-			<fmt:formatDate value="${musical.musical_period_start}"
-				pattern="yyyy-MM-dd" />
-			~
-			<fmt:formatDate value="${musical.musical_period_end}"
-				pattern="yyyy-MM-dd" />
-			<br> 상영 시간 : ${musical.musical_runningtime}<br> 연령 제한 :
-			${musical.musical_agelimit}<br>
-			<table>
-				<tr>
-					<th>좌석 등급</th>
-					<th>가격</th>
-				</tr>
+			<div class = "button-container">
+				<button class="list" onclick="location.href='/ex/musical/listAll'">목록</button>
+				<a class = "reservation" href="#">예매하기</a>
 				
-				<c:forEach var="seat" items="${musical.seatDtos}">
-				      <tr>
-				      	<td>${seat.seat_grade}</td>
-				      	<td>${seat.seat_price} 원</td>
-				      </tr>
-				</c:forEach>
-				
-			</table>
-			
+			</div>
 		</div>
-		<div id="like">
-			<a href="#" id="like-button" class="${isLike == 1 ? 'liked' : ''}"
-				data-customer="${customer_id }"
-				data-musical="${musical.musical_id }"> ${isLike == 1 ? '♥' : '♡'}
-
-			</a> <span id="total-likes">${musical.total_likes }</span>
-		</div>
-		<div>
-			<a href="#">예매하기</a>
-		</div>
+		
+		
 		<div class = "card text-center">
 			<div id="tab" class = "card-header">
 				<ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
 					<li class="nav-item">
 						<a class="nav-link active" id="chararcter-tab" data-toggle="tab" href="#character" role="tab">배우 정보</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" id="sale-tab" data-toggle="tab" href="#sale" role="tab">판매 정보</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab">리뷰</a></li>
@@ -282,15 +350,13 @@ $(document).ready(function() {
 					<c:forEach var="schedule" items="${schedules }">
 						<c:if test="${schedule.mu_sch_date ne previousDate}">
 							<tr>
-								<td><fmt:formatDate value="${schedule.mu_sch_date}"
-										pattern="yyyy-MM-dd" /></td>
+								<td><fmt:formatDate value="${schedule.mu_sch_date}" pattern="yyyy-MM-dd" /></td>
 								<td>${schedule.dayOfWeekInKorean}</td>
 							</tr>
 							<c:set var="previousDate" value="${schedule.mu_sch_date}" />
 						</c:if>
 						<tr>
-							<td><fmt:formatDate value="${schedule.mu_sch_time}"
-									pattern="HH:mm" /></td>
+							<td><fmt:formatDate value="${schedule.mu_sch_time}" pattern="HH:mm" /></td>
 						</tr>
 					</c:forEach>
 
@@ -299,12 +365,12 @@ $(document).ready(function() {
 					<c:set var="previousCharacterName" value="${actors[0].character_name}" />
 					<c:forEach var = "actor" items = "${actors }">
 						<c:if test = "${previousCharacterName ne actor.character_name }">
-							
-							<div class = "actor-row"></div>
+							<div class = "actor-row">
+								<p>${actor.character_name}</p>
+							</div>
 						</c:if>
 						<div class = "actor-info" data-character="${actor.character_name}">
 							<p><img src = "/ex/resources/${actor.actor_img}"></p>
-							<p>${actor.character_name}</p>
 							<p>${actor.actor_name}</p>
 
 						</div>

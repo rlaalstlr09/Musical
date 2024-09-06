@@ -23,31 +23,27 @@ body {
 
 /* 리뷰 내용 스타일 */
 .review_content {
-    margin-top: 20px; /* 상단 여백 증가 */
-    margin-bottom: 20px; /* 하단 여백 증가 */
-    font-size: 1.1em; /* 글씨 크기 증가 */
-    border: 1px solid #f4f4f4; /* 경계 색상 변경 */
-    border-radius: 8px; /* 경계 반경 변경 */
-    padding: 15px; /* 내부 여백 증가 */
-    background-color: #fff; /* 배경 색상 변경 */
+    margin-top: 20px; /* 여백 줄이기 */
+    margin-bottom: 20px; /* 여백 줄이기 */
+    background-color: #ffffff; /* 배경색 */
+    padding: 5px;20px;20px;20px; /* 내부 여백 */
+    border: 1px solid #ddd; /* 테두리 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 */
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* 부드러운 전환 효과 */
 }
 
-.review_content .review_title {
-    display: flex; /* 플렉스 박스 사용 */
-    justify-content: space-between; /* 제목과 내용 사이에 공간 분배 */
-    align-items: center; /* 수직 중앙 정렬 */
-    border-bottom: 1px solid #ddd; /* 하단 경계 추가 */
-    padding-bottom: 10px; /* 하단 패딩 추가 */
+.review_content:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* 호버 시 그림자 효과 */
+    transform: translateY(-5px); /* 호버 시 약간 위로 이동 */
 }
 
-.review_content .review_body {
-    margin-top: 10px; /* 상단 여백 추가 */
-}
-.review_content {
-	margin-top: 40px;
-	margin-bottom: 40px;
-	font-size:1.1em;
-	
+/* 리뷰 제목 */
+.reviw_title {
+    margin-bottom: 10px; /* 제목과 내용 사이 여백 */
+    font-size: 1.1em; /* 제목 폰트 크기 */
+    font-weight: bold; /* 제목 굵게 */
+    color: #333; /* 제목 색상 */
 }
 #reviewForm{
 display:none;
@@ -57,22 +53,32 @@ display:none;
         flex-direction: row;
     }
 .avg_main{
- display: inline-flex;
+ display: flex;
   flex-direction: row;
+  justify-content: center;
+ 
 }
     .star_rating .star {
         width: 25px;
-        height: 25px;
+        height: 27px;
         margin-right: 0px;
         background: url('/ex/resources/img/star.png') no-repeat;
         background-size: cover;
         cursor: pointer;
     }
+     .star.big_star{
+     width:80px;
+     height:80px;
+     }
 
     .star_rating .star.on {
         background: url('/ex/resources/img/full_star.png') no-repeat;
         background-size: cover;
     }
+	.star.on.big_star{
+	height:30px;
+	}
+
 
 	.star_rating.read-only .star {
             pointer-events: none; /* 클릭 이벤트를 비활성화합니다 */
@@ -106,9 +112,9 @@ font-weight:bold;
 }
 
 .pagination a.active {
-  background-color: #4CAF50;
+  background-color: #000;
   color: white;
-  border: 1px solid #4CAF50;
+  border: 1px solid #fff;
 }
 
 .pagination a:hover:not(.active) {background-color: #ddd;}
@@ -129,20 +135,16 @@ display:none;
 margin-left:800px;}
 
 
-#tab-content {
+.card-body {
     /* 탭 부분이 고정된 위치에 있거나 페이지 상단에 있을 때 */
     position: relative; /* 또는 fixed */
     top: 0;
     width: 100%;
     /* 기타 필요한 스타일 */
 }
-.review_content{
-border:2px lightgray solid;
-border-radius:5px;
-padding: 0px;
-}
+
 .review_body{
-margin-top:10px;
+margin-top:20px;
 }
 
 #reviewForm {
@@ -179,18 +181,27 @@ margin-top:10px;
 
 /* 리뷰 작성 버튼 스타일 */
 #openReview {
-    background-color: #4CAF50; /* 버튼 배경 색상 변경 */
+    background-color: #000; /* 버튼 배경 색상 변경 */
     color: white; /* 버튼 텍스트 색상 변경 */
     border: none; /* 경계 제거 */
-    padding: 10px 20px; /* 패딩 추가 */
+    padding: 20px 20px 20px 17px; /* 패딩 추가 */
     border-radius: 5px; /* 경계 반경 추가 */
     cursor: pointer; /* 커서 모양 변경 */
-    font-size: 1em; /* 글씨 크기 설정 */
+    font-size: 17px; 
+    width:100px;
+    height:50px;
+    line-height: 17px; /* 버튼 높이와 동일하게 설정하여 텍스트 수직 중앙 정렬 */
+    text-align: center;
+}
+#open-Review {
+    position: absolute;
+    right:50px; /* 오른쪽 끝으로 배치 */
+    
+}
+#openReview:hover {
+    background-color: lightpink; /* 버튼 호버 시 배경 색상 변경 */
 }
 
-#openReview:hover {
-    background-color: #45a049; /* 버튼 호버 시 배경 색상 변경 */
-}
 
 /* 업데이트 폼 스타일 */
 [id^="updateForm"] {
@@ -219,17 +230,21 @@ margin-top:10px;
     justify-content: space-between; /* 두 요소를 양쪽 끝으로 정렬 */
     align-items: center; /* 수직 정렬을 중앙으로 */
    
-    border-bottom: 1px solid #ddd; /* 하단 경계 추가 */
+    
 }
 .nick_name{
 font-size:85%;
 margin-right:10px;
+
 }
 .review_text{
 font-size:80%;
 margin-left:10px;
+text-align:left;
+margin-top:10px;
 }
 </style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$(document).ready(function() {
 		$(document).on('click', '.pagination a', function(e) {
@@ -250,10 +265,11 @@ margin-left:10px;
 	                musical_id: $('#musical_id').val() // 음악 ID
 	            },
 	            success: function(response) {
-	                $('#tab-content').html(response); // 받은 데이터를 콘텐츠에 업데이트
+	                $('.card-body').html(response); // 받은 데이터를 콘텐츠에 업데이트
 
-	                $('html, body').animate({
-	                    scrollTop: $('#tab-content').offset().top
+
+	              $('html, body').animate({
+	                    scrollTop: $('.card-body').offset().top
 	                }, 5); // 500ms 동안 스크롤 이동
 	            },
 	            error: function(xhr, status, error) {
@@ -274,7 +290,7 @@ margin-left:10px;
 					musical_id : '${musical_id}'	
 				},
 				success:function(response){
-					$('#tab-content').html(response);
+					$('.card-body').html(response);
 				},
 				error: function(xhr, status, error) {
 	                console.error('AJAX 요청 실패:', status, error);
@@ -311,7 +327,7 @@ margin-left:10px;
 					
 				},
 				success:function(response){
-					$('#tab-content').html(response);
+					$('.card-body').html(response);
 					 $("#reviewForm").hide();
 				},
 				error: function(xhr, status, error) {
@@ -326,7 +342,14 @@ margin-left:10px;
 		 	
 		
 		 $("#openReview").click(function() {
-             $("#reviewForm").toggle();
+             $("#reviewForm").show();
+             
+             var offset = 500; // 하단에서 위로 이동할 거리 (픽셀 단위)
+             var scrollToPosition = $('.card-body').offset().top + $('.card-body').outerHeight() - offset;
+
+             $('html, body').animate({
+                 scrollTop: scrollToPosition
+             }, 500);
          });
 		 
 		 $(".updateReview").click(function() {
@@ -367,19 +390,22 @@ margin-left:10px;
 		    <div class="average-rating">
 		    <p>총 ${boardVo.totalCount }개의 리뷰가 등록되었습니다</p>
 				<div class="avg_main">
-				<p>평균 평점:</p>
+				<p>평균 평점:</p>&nbsp;
+				<p >${avgRating }</p>&nbsp;&nbsp;
 				<div class="star_rating read-only" id="starstar">
 						
-						 <span class="star on " style="width: ${roundRating >= 1 ? '30px' : '0'};"></span>
-						 <span class="star on " style="width: ${roundRating >= 2 ? '30px' : '0'};"></span>
-						 <span class="star on " style="width: ${roundRating >= 3 ? '30px' : '0'};"></span>
-						 <span class="star on " style="width: ${roundRating >= 4 ? '30px' : '0'};"></span>
-						 <span class="star on " style="width: ${roundRating >= 5 ? '30px' : '0'};"></span>
+						 <span class="star on big_star" style="width: ${roundRating >= 1 ? '30px' : '0'};"></span>
+						 <span class="star on big_star" style="width: ${roundRating >= 2 ? '30px' : '0'};"></span>
+						 <span class="star on big_star" style="width: ${roundRating >= 3 ? '30px' : '0'};"></span>
+						 <span class="star on big_star" style="width: ${roundRating >= 4 ? '30px' : '0'};"></span>
+						 <span class="star on big_star" style="width: ${roundRating >= 5 ? '30px' : '0'};"></span>
 						
 					
 				</div>
-				<p >${avgRating }</p>
+				
+				<div id="open-Review"><input type="button" value="리뷰작성" id="openReview"></div>
 			</div>
+			
 			</div>
 			<div class="sort-options">
 	    <label for="sort">정렬 기준:</label>
@@ -431,11 +457,11 @@ margin-left:10px;
 	<div id="reviewForm">
 	
 		 <div class="star_rating">
-               <span class="star" data-value="1"></span>
-               <span class="star" data-value="2"></span>
-               <span class="star" data-value="3"></span>
-               <span class="star" data-value="4"></span>
-               <span class="star" data-value="5"></span>
+               <span class="star big_star" data-value="1"></span>
+               <span class="star big_star" data-value="2"></span>
+               <span class="star big_star" data-value="3"></span>
+               <span class="star big_star" data-value="4"></span>
+               <span class="star big_star" data-value="5"></span>
            </div>
 		
         <input type="hidden" id="rating"  value="0">
@@ -448,7 +474,7 @@ margin-left:10px;
 		<br> <button id="insertReview">리뷰 제출</button>
 	
 	</div>
-	<div><input type="button" value="리뷰작성" id="openReview"></div>
+	
 	
 	<div class="pagination">
     <c:if test="${boardVo.page != 1}">

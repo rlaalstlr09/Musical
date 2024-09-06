@@ -16,9 +16,10 @@ FETCH NEXT #{vo.perPageNum} ROWS ONLY
 </select>
 
 <select id="selectMyReview" parameterType="map" resultType="com.human.dto.ReviewDto">
-select * from review where customer_id=#{customer_id}
-OFFSET (#{page}-1) * #{perPageNum} ROWS
-FETCH NEXT #{perPageNum} ROWS ONLY
+select m.musical_title,r.* from review r join musical m 
+on r.musical_id=m.musical_id where customer_id=#{customer_id} order by r.musical_id
+OFFSET (#{vo.page}-1) * #{vo.perPageNum} ROWS
+FETCH NEXT #{vo.perPageNum} ROWS ONLY
 </select>
 
 <select id="avgRating" resultType="Double">
@@ -29,12 +30,17 @@ select round(avg(rating),1) from review where musical_id=#{musical_id, jdbcType=
 insert into review(review_id,customer_id,musical_id,content,rating,review_date)
  values(review_seq.nextval,#{customer_id},#{musical_id},#{content},#{rating},sysdate)
 </insert>
-<select id="totalCount" resultType="Integer">
-SELECT COUNT(*)
-FROM review
-WHERE (musical_id = #{musical_id} OR #{musical_id} IS NULL)
-  AND (customer_id = #{customer_id} OR #{customer_id} IS NULL)
+
+
+<select id="totalCount" parameterType="map" resultType="Integer">
+SELECT COUNT(*) FROM review WHERE musical_id = #{musical_id}
+  
 </select>
+
+<select id="myTotalCount" parameterType="String" resultType="Integer">
+SELECT COUNT(*) FROM review WHERE customer_id = #{customer_id} 
+</select>
+
 
 <delete id="delete">
 delete review where review_id=#{review_id}

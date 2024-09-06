@@ -29,8 +29,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <if test="fGroupKind!=null">
     <if test="fGroupKind!='전체'">
     <if test="fGroupKind!=''">
+    <if test="fGroupKind!='undefined'">
             and fGroupKind = #{fGroupKind}
-    </if>
+    </if></if>
     </if>
     </if>
 	</sql>
@@ -52,8 +53,6 @@ FETCH NEXT #{perPageNum} ROWS ONLY]]>
 		<include refid="category"/>
 <![CDATA[ and fId > 0 ]]>
 	</select>
-	<!-- bGroupKind, bId, bTitle, bName, bwritetime,bHit, bLike, bGroup,bStep,bIndent -->
-	<!-- <insert id="reply"> insert into board( bGroupKind,bId) </insert> -->
 	<select id="read" resultType="FaqDto">
 		select * from faq_board where fId =
 		#{fId}

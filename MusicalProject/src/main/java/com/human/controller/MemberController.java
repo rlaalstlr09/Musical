@@ -4,6 +4,7 @@ package com.human.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -29,9 +30,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.human.dto.AuthoritiesDto;
 import com.human.dto.CustomerDto;
 import com.human.dto.QaDto;
+import com.human.dto.ReviewDto;
 import com.human.service.IAuthoritiesService;
 import com.human.service.ICustomerService;
 import com.human.service.IQaService;
+import com.human.service.IReviewService;
+
 import com.human.vo.BoardVo;
 
 // 회원 관련 컨트롤러
@@ -46,7 +50,9 @@ public class MemberController {
 	private IAuthoritiesService authoritiesService;
 	@Autowired
 	private IQaService qaService;
-
+	@Autowired
+	private IReviewService rService;
+	
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
 	@RequestMapping(value = "member/update", method = RequestMethod.POST)
@@ -164,5 +170,21 @@ public class MemberController {
 		model.addAttribute("list",List);
 		vo.setTotalCount(qaService.qa_listCount(customer_id));
 		return "/member/qa_list";
+	}
+	
+	@RequestMapping(value = "member/myReview", method = RequestMethod.GET)
+	public String myReview(Model model,@RequestParam(value="customer_id",defaultValue="1") String customer_id,@RequestParam(value="page",defaultValue="1") int page,
+		@RequestParam(value="perPageNum",defaultValue="10") int perPageNum)throws Exception{
+		System.out.println(customer_id);
+		BoardVo vo=new BoardVo();
+		vo.setPage(page);
+		vo.setPerPageNum(perPageNum);
+		vo.setTotalCount(rService.myTotalCount(customer_id));
+		
+		ArrayList<ReviewDto>dto=rService.selectMyReview(customer_id,vo);
+		System.out.println(dto);
+		model.addAttribute("List",dto);
+		model.addAttribute("boardVo",vo);
+		return "/member/myReview";
 	}
 }

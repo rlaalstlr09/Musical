@@ -20,6 +20,7 @@ import com.human.dto.ReviewDto;
 import com.human.service.ActorCharacterServiceImpl;
 import com.human.service.IMusicalService;
 import com.human.service.ISeatService;
+import com.human.service.MusicalServiceImpl;
 import com.human.service.ReviewServiceImpl;
 import com.human.vo.BoardVo;
 
@@ -33,6 +34,8 @@ public class TabController {
 	ReviewServiceImpl rService;
 	@Autowired
 	ActorCharacterServiceImpl ACService;
+	@Autowired
+	MusicalServiceImpl musicalService;
 
 	@RequestMapping("/review")
 	public String reviewTab(Model model, @RequestParam(value = "musical_id") Integer musical_id,@RequestParam(value = "customer_id", defaultValue ="") String customer_id,
@@ -67,7 +70,7 @@ public class TabController {
 	}
 	
 	@RequestMapping(value = "/character", method = RequestMethod.GET)
-	public String selectAll(Integer musical_id, Model model)throws Exception{
+	public String characterTab(Integer musical_id, Model model)throws Exception{
 		ArrayList<ActorCharacterDto>dto=ACService.selectAll(musical_id);
 		
 		model.addAttribute("List",dto);
@@ -75,5 +78,17 @@ public class TabController {
 		System.out.println(dto);
 		
 		return "musical/fragments/character";
+	}
+	
+	
+	@RequestMapping(value = "/sale", method = RequestMethod.GET)
+	public String saleTab(Integer musical_id, Model model)throws Exception{
+		ArrayList<ActorCharacterDto> actors = ACService.selectAll(musical_id);
+		MusicalDto musical = musicalService.selectMusicalId(musical_id);
+		
+		model.addAttribute("actors",actors);
+		model.addAttribute("musical", musical);
+		
+		return "musical/fragments/saleInfo";
 	}
 }

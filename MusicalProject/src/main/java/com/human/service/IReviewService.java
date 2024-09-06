@@ -16,6 +16,7 @@ public interface IReviewService {
 	public void delete(int review_id) throws Exception;
 	public void update(ReviewDto dto) throws Exception;	
 	public Integer totalCount(Integer musical_id,String customer_id) throws Exception;
+	public Integer myTotalCount(String customer_id) throws Exception;
 	public Double avgRating(Integer musical_id) throws Exception;
 
 	//admin관련	
