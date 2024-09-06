@@ -21,7 +21,7 @@ public class MusicalScheduleDto {
 	}
 
 
-	public MusicalScheduleDto(Integer mu_sch_id, Integer musical_id, Integer venue_id, Date mu_sch_date, String mu_sch_time,
+	public MusicalScheduleDto(Integer mu_sch_id, Integer musical_id, Integer venue_id, String mu_sch_date, String mu_sch_time,
 			Integer hall_id, String seat_count) {
 		super();
 		this.mu_sch_id = mu_sch_id;
