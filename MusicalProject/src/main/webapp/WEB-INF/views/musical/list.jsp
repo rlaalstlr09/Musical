@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
- <link rel="stylesheet" href="/ex/resources/css/styles.css">
+ <link rel="stylesheet" href="/ex/resources/css/musical_list.css">
 	<style>
     </style>
     <title>뮤지컬 목록</title>
@@ -17,7 +17,7 @@
  
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<script src="/ex/resources/script/musicalList.js"></script>
+<script src="/ex/resources/script/musical_list.js"></script>
 </head>
 <body>
 

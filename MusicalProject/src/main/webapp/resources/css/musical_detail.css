@@ -1,0 +1,117 @@
+
+.container{
+	display:flex;
+	flex-direction: column;
+	gap: 50px;
+}
+ #actor {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .actor-row {
+            display: flex;
+            flex-wrap: wrap;
+            text-align : center;
+            width: 100%;
+        }
+        .actor-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            margin: 0.5rem;
+            width: 150px;
+        }
+        
+    /* 뮤지컬 상세보기 전체 (포스터, 상세정보) */
+	.info{
+		display:flex;
+		width : 100%;
+		gap : 5%;
+	}
+	
+	/* 목록, 예매하기 버튼 */
+	.button-container{
+		position: relative;
+		flex:1;
+	}
+	
+	/* 뮤지컬 목록 버튼 */
+	.list{
+		display : inline-block;
+		position: absolute;
+		top : 0;
+		right : 0;
+	}
+	
+	/* 예매하기 버튼 */
+	.reservation{
+		display:inline-block;
+		position: absolute;
+		top : 90%;
+		right : 0;
+	}
+	
+	/* 뮤지컬 포스터 */
+	.img-fluid{
+		width : 250px;
+		height : 400px;
+	}
+	
+	/* 뮤지컬 상세정보 */
+	.musiscal-detail{
+		display : flex;
+		flex-direction: column;
+		gap : 30px;
+	}
+	
+	.musical-detail-info{
+		position:relative;
+		line-height: 2em;
+	}
+	
+	/* 좌석 등급별 가격 테이블 */
+	.seat-table{
+		min-width:250px;
+	}
+	
+	.seat-price{
+		text-align : right;
+	}
+	
+	/* 공연 스케쥴 */
+	.schedule-grid{
+		display : grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap : 10px;
+	}
+	
+	.schedule-detail{
+		display : flex;
+		flex-direction: column;
+		gap : 5px;
+	}
+	
+	.schedule-date{
+		display : flex;
+		gap : 3px;
+	}
+	
+	.schedule-date div{
+		flex : 1;
+		box-sizing : border-box;
+		
+	}
+	
+	#openModalLink, .nav-link{
+		text-decoration: none;
+		color: #000;  
+	}
+	
+	#openModalLink:hover, .nav-link:hover{
+		text-decoration: none;
+		color: #000;
+	}
