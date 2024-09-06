@@ -76,7 +76,7 @@ h1 {
 <body>
 	<div class="container">
 		<h1>스케줄 변경</h1>
-		<form action="${pageContext.request.contextPath}/admin//mu_sch_update_admin" method="post">
+		<form action="${pageContext.request.contextPath}/reser_admin//mu_sch_update_admin" method="post">
 			<input type="text" id="mu_sch_id" name="mu_sch_id" value="${mu_sch_dto.mu_sch_id }">
 			<div class="form-group">
 				<label for="venue_id">공연장:</label> 
