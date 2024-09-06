@@ -1,9 +1,4 @@
-
-	
-	    
-	
-	
-	$(document).ready(function() {
+$(document).ready(function() {
 		$('#searchBtn').on("click",function(event) {
 									window.location.href = "admin_users?"
 											+ "&page=1"
@@ -12,15 +7,84 @@
 											+ $("select[name='search_keyword']")
 													.val() + "&keyword="
 											+ $('#keywordInput').val();
-								})
-								
-		
-		$('.modifyBtn').on("click",function(event) {
-			window.location.href = "users_modify?users_id="+$(this).val();
 		})
 		
+		const $modal = $('#modal');
+		let cssLoaded = false;						
+		// CSS 파일을 동적으로 추가하는 함수
+		function loadModalCSS() {
+        if (!cssLoaded) {
+            $('head').append('<link rel="stylesheet" type="text/css" href="'+contextPath+'/resources/css/signup.css" id="modal-css">');
+            cssLoaded = true;
+        	}
+		}
+		// CSS 파일을 동적으로 제거하는 함수
+		function removeModalCSS() {
+        $('#modal-css').remove();
+        cssLoaded = false;
+    	}						
+		
+		$('.modifyBtn').on("click",function(event) {
+			loadModalCSS();
+			let cId=$(this).val();
+			$('#cid').val(cId);
+			let statusText = $('#' + cId).text().trim();
+			if(statusText=='활동'){
+				$('#enabled').val('1');
+			}else if(statusText=='휴면'){
+				$('#enabled').val('0');
+			}
+			let authorityText = $('.' + cId).text().trim();
+			
+			console.log(cId+' : '+authorityText)
+			if(authorityText=='회원'){
+				$('#authority').val('ROLE_MEMBER');
+			}else if(authorityText=='관리자'){
+				$('#authority').val('ROLE_ADMIN');
+			}
+			
+			$modal.show();	
+			
+			$('.signup').on("click",function(event) {
+				let enabled= $('#enabled').val();
+				let authority= $('#authority').val();
+				if(confirm("정말 수정하시겠습니까?")){
+					$.ajax({
+	                    type: "POST",
+	                    url: "users_modify",
+	                    data: {
+	                    	customer_id: cId,
+	                    	enabled: enabled,
+	                    	authority: authority
+	                    },
+	                    success: function(response) {
+	                    	if (response === "success") {
+	                            alert("회원정보가 성공적으로 수정되었습니다.");
+	                            $modal.hide();			
+	            				removeModalCSS();
+	                            location.reload();
+	                        }
+	                    },
+	                    error: function(xhr, status, error) {
+	                        alert("수정 중 오류가 발생했습니다. 다시 시도해주세요.");
+	                        console.error("Error: " + error);
+	                    }
+	                });		
+				}
+			});
+			
+		});
+		
+		
+		
+		$('.close').on("click",function(event) {
+			$modal.hide();
+			removeModalCSS();
+		});
+		
+		
 						// 삭제 버튼 클릭 시 처리
-		$('.deleteBtn').on("click",function(event) {
+		$('.Btn').on("click",function(event) {
 											// 현재 클릭된 버튼을 저장
 											var $button = $(this);
 											var usersId = $button.val();
@@ -41,7 +105,7 @@
         "</td>" +
     "</tr>";
 
-												// 삭제 버튼 아래에 폼 삽입
+												//  버튼 아래에 폼 삽입
 												$button.closest('tr').after(formHtml);
 
 												// 제출 버튼 클릭 시 처리

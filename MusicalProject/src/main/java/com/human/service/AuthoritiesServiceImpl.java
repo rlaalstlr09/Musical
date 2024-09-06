@@ -27,4 +27,8 @@ public class AuthoritiesServiceImpl implements IAuthoritiesService {
 		dao.delete(dto);
 	}
 	
+	public void authorityUpdate(AuthoritiesDto dto) throws Exception{
+		IAuthoritiesDao dao = sqlSession.getMapper(IAuthoritiesDao.class);
+		dao.authorityUpdate(dto);
+	}
 }

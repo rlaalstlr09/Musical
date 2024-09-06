@@ -9,4 +9,6 @@ public interface IAuthoritiesService {
 	 
 	public void delete(AuthoritiesDto dto) throws Exception;
 	
+	public void authorityUpdate(AuthoritiesDto dto) throws Exception;
+	
 }

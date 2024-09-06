@@ -36,4 +36,5 @@ public interface ICustomerDao {
 	//관리자 관련
 	public List<CustomerDto> customer_listSearch(BoardVo vo) throws Exception;
 	public int customer_listSearchCount(BoardVo vo) throws Exception;
+	public void enabledUpdate(CustomerDto dto) throws Exception;
 }

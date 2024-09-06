@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,13 +11,71 @@
 <title>회원 정보 관리</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/notice.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src='<%=request.getContextPath()%>/resources/script/admin_users.js'></script>
 <script>
 var result = '${msg}';
 if (result == 'success') {
 	alert("처리가 완료되었습니다.");
 }
+var contextPath = '<%= request.getContextPath() %>';
 </script>
+<script src='<%=request.getContextPath()%>/resources/script/admin_users.js'></script>
+
+<style>
+button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* 모달 스타일 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+</style>
 </head>
 <body>
 <jsp:include page="../layout/header.jsp"/>
@@ -55,15 +114,15 @@ if (result == 'success') {
 										<td>${boardDtos.customer_id }</td>
 										<td style='text-align: center;'>${boardDtos.customer_email}</td>
 										<td style='text-align: center;'><fmt:formatDate value="${boardDtos.customer_birth }" pattern="yyyy.MM.dd"/></td>
-										<td style='text-align: center;'>
-										<c:if test="${boardDtos.enabled  == 1}">
+										<td id='${boardDtos.customer_id }' style='text-align: center;'>
+										<c:if test="${boardDtos.enabled  eq 1}">
 										활동
 										</c:if>
-										<c:if test="${boardDtos.enabled  == 0}">
+										<c:if test="${boardDtos.enabled  eq 0}">
 										휴면
 										</c:if>
 										</td>
-										<td style='margin: 0 auto;'>
+										<td class='${boardDtos.customer_id }' style='margin: 0 auto;'>
 										<c:if test="${boardDtos.authority == 'ROLE_MEMBER'}">
 										회원
 										</c:if>
@@ -74,8 +133,19 @@ if (result == 'success') {
 										사장
 										</c:if>
 										</td>
-										<td style='text-align: center;'><button class="modifyBtn"
-												value="${boardDtos.customer_id }">수정</button></td>										
+										<td style='text-align: center;'>
+										<c:if test="${boardDtos.authority == 'ROLE_MEMBER'}">
+										<button class="modifyBtn"
+												value="${boardDtos.customer_id }">수정</button>
+										</c:if>
+										<c:if test="${boardDtos.authority == 'ROLE_ADMIN'}">
+										<sec:authorize access="hasRole('SUPERADMIN')">
+										<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+										<button class="modifyBtn"
+												value="${boardDtos.customer_id }">수정</button>
+										</sec:authorize>
+										</c:if>
+										</td>										
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -121,18 +191,32 @@ if (result == 'success') {
 								value="${boardVo.keyword}">
 							<button id="searchBtn">ID검색</button>
 						</div>
-						
-						
 					</div>
-
-
 				</div>
-
 			</div>
-
 		</div>
-
 	</div>
-
+ <!-- 모달 창 -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h4>상태 수정</h4>
+            <label>ID</label><input type="text" id='cid' name='customer_id' readonly>
+            <label>상태</label>
+            <select name='enabled' id="enabled">
+    		<option value="1">활동</option>
+        	<option value="0">휴면</option>
+        	</select>
+        	<sec:authorize access="hasRole('SUPERADMIN')">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        	<label>권한</label>
+            <select name='authority' id="authority">
+    		<option value="ROLE_MEMBER">회원</option>
+        	<option value="ROLE_ADMIN">관리자</option>
+        	</select>
+        	</sec:authorize>
+        	<button type="button" class="signup">저장</button>            
+        </div>
+    </div>
 </body>
 </html>

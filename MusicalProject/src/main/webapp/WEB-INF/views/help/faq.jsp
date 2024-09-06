@@ -88,7 +88,7 @@ if (result == 'success') {
 									<tr class="hide">
 
 										<td colspan="3"><pre><c:out value="${boardDtos.fContent}" escapeXml="false" /></pre> 
-										 <sec:authorize access="hasRole('ROLE_ADMIN')">
+										 <sec:authorize access="hasRole('ROLE_ADMIN,SUPERADMIN')">
 											<form role='form' method="get">
 											<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 												<input name="fId" type="hidden" value="${boardDtos.fId}">
@@ -143,9 +143,10 @@ if (result == 'success') {
 							
 						</script>
 					</div>
-					<!--  <sec:authorize access="hasRole('ROLE_ADMIN')"> -->
+					<sec:authorize access="hasRole('ROLE_ADMIN,SUPERADMIN')">
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 					<button class="newBtn">새글</button>
-					<!-- </sec:authorize> -->
+					</sec:authorize> 
 				</div>
 
 			</div>

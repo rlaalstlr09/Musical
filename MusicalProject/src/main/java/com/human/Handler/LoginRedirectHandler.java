@@ -29,6 +29,10 @@ public class LoginRedirectHandler implements AuthenticationSuccessHandler {
 			response.sendRedirect("/ex/admin/admin");
 			return;
 		}
+		if(roleNames.contains("ROLE_SUPERADMIN")) {
+			response.sendRedirect("/ex/admin/admin");
+			return;
+		}
 		if(roleNames.contains("ROLE_MEMBER")) {
 			response.sendRedirect("/ex/member/myPage");
 			return;

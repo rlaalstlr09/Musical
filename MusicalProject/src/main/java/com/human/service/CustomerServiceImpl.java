@@ -107,4 +107,9 @@ public class CustomerServiceImpl implements ICustomerService {
 		ICustomerDao dao = sqlSession.getMapper(ICustomerDao.class);
 		return dao.customer_listSearchCount(vo);
 	}
+	
+	public void enabledUpdate(CustomerDto dto) throws Exception{
+		ICustomerDao dao = sqlSession.getMapper(ICustomerDao.class);
+		dao.enabledUpdate(dto);
+	}
 }
