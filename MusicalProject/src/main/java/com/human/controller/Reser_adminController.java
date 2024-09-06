@@ -8,6 +8,8 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -30,7 +32,7 @@ import com.human.service.IVenueService;
 import com.human.vo.PageVo;
 
 @Controller
-@RequestMapping(value = "/admin")
+@RequestMapping(value = "/reser_admin")
 public class Reser_adminController {
 	private static final Logger logger = LoggerFactory.getLogger(Reser_adminController.class);
 
@@ -50,21 +52,13 @@ public class Reser_adminController {
 	@Autowired
 	private IMusicalService musicalservice;
 	
-	
-    private boolean checkadmin(HttpSession session) {
-        String id = (String) session.getAttribute("id");
-        return "admin".equals(id);
-    }
-	
+
 	
 	//////////////////// 뮤지컬 스케줄 바꾸기
 	@RequestMapping(value = "/mu_sch_update_admin", method = RequestMethod.GET)
 	public String mu_sch_update_admin(@RequestParam("mu_sch_id") int mu_sch_id, Model model, HttpSession session) throws Exception {
-		if (!checkadmin(session)) {
-			return "redirect:/";
-		}
 
-		System.out.println(session.getAttribute("id"));
+
 		MusicalScheduleDto dto = mu_schservice.select_mu_sch_id(mu_sch_id);
 		List<VenueDto> venuedtos = venueservice.venue_list();
 		List<HallDto> halldtos = hallservice.hall_list_venue(dto.getVenue_id());
@@ -96,10 +90,7 @@ public class Reser_adminController {
 			@RequestParam(value = "startDate", required = false) String startDate,
 			@RequestParam(value = "endDate", required = false) String endDate,
 			Model model,PageVo vo, HttpSession session) throws Exception {
-		
-		if (!checkadmin(session)) {
-			return "redirect:/";
-		}
+
 	    if (status == null) {
 	        status = 3; 
 	    }
@@ -135,7 +126,7 @@ public class Reser_adminController {
 		model.addAttribute("startPage", vo.getStartPage());
 		model.addAttribute("totalendPage", vo.getTotalendPage());
 		
-		return "admin/reservation_list_admin";
+		return "reser_admin/reservation_list_admin";
 		
 	}
 	
@@ -166,26 +157,20 @@ public class Reser_adminController {
 	
 	@RequestMapping(value = "/reservation_mu_sch_admin", method = RequestMethod.GET)
 	public String reservation_mu_sch_admin(@RequestParam("mu_sch_id") int mu_sch_id, Model model,HttpSession session) throws Exception {
-		if (!checkadmin(session)) {
-			return "redirect:/";
-		}
-		
+
 		System.out.println("seat_select");
 		List<SeatDto> dtos = seatservice.seat_select(mu_sch_id);
 		System.out.print(dtos.toString());
 
 		model.addAttribute("mu_sch_id", mu_sch_id);
 		model.addAttribute("seatdtos", dtos);
-		return "admin/reservation_mu_sch_admin";
+		return "reser_admin/reservation_mu_sch_admin";
 	}
 
 	
 	@RequestMapping(value = "/reservation_mu_sch_seat_admin", method = RequestMethod.GET)
 	public String reservation_mu_sch_seat_admin(@RequestParam("mu_sch_id") int mu_sch_id, Model model,HttpSession session) throws Exception {
-		if (!checkadmin(session)) {
-			return "redirect:/";
-		}
-		
+
 		System.out.println("reservation_mu_sch_seat_admin");
 		List<SeatDto> dtos = seatservice.seat_select(mu_sch_id);
 		//model.addAttribute("mu_sch_id", mu_sch_id);
@@ -193,7 +178,7 @@ public class Reser_adminController {
 		List<ReservationDto> dtolists=reservationservice.reservation_mu_sch_id(mu_sch_id);
 		model.addAttribute("seatdtos", dtos);
 		model.addAttribute("reservationdtos", dtolists);
-		return "admin/reservation_mu_sch_seat_admin";
+		return "reser_admin/reservation_mu_sch_seat_admin";
 	}
 	
 	
@@ -218,14 +203,10 @@ public class Reser_adminController {
 		
 	@RequestMapping(value = "/mu_sch_admin", method = RequestMethod.GET)
 	public String mu_sch_admin(Model model,HttpSession session) throws Exception {
-		if (!checkadmin(session)) {
-			return "redirect:/";
-		}
-		
 		System.out.println("mu_sch_admin");
 		model.addAttribute("musicaldtos", musicalservice.musical_list());
 		model.addAttribute("venuedtos",venueservice.venue_list() );
-		return "admin/mu_sch_admin";
+		return "reser_admin/mu_sch_admin";
 	}
 	@RequestMapping(value = "/mu_sch_admin", method = RequestMethod.POST)
 	public String mu_sch_adminDB(@ModelAttribute MusicalScheduleDto mu_schdto,Model model) throws Exception {
