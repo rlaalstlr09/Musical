@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.human.dao.ICustomerDao">
+<insert id="insert">
+insert into customer values(#{customer_id},#{customer_pw},#{customer_phone},#{customer_email}
+,#{customer_address},#{customer_birth},1)
+</insert>
+<select id="selectAll" resultType="CustomerDto">
+select * from customer
+</select>
+<select id="selectName" resultType="CustomerDto">
+select * from customer where customer_id=#{customer_id}
+</select>
+<select id="selectId" resultType="boolean">
+select count(*) from customer where customer_id=#{customer_id}
+</select>
+<update id="update">
+update customer set
+customer_phone=#{customer_phone},customer_email=#{customer_email},
+customer_address=#{customer_address},customer_birth=#{customer_birth}
+where customer_id=#{customer_id}
+</update>
+<update id="pwUpdate">
+update customer set
+customer_pw=#{customer_pw}
+where customer_id=#{customer_id}
+</update>
+<delete id="delete">
+delete customer where customer_id=#{customer_id}
+</delete>
+<select id="findCustomerId" resultType="CustomerDto">
+select * from customer
+where customer_email = #{customer_email}
+</select>
+<select id="pwCheck" resultType="Integer">
+select
+count(*) from customer
+where customer_id = #{customer_id} and customer_email = #{customer_email}
+</select>
+<update id="newPwUpdate">
+update customer
+set
+customer_pw = #{customer_pw}
+where customer_id = #{customer_id} and customer_email = #{customer_email}
+</update>
+<select id="nowPwCheck" resultType="CustomerDto">
+select customer_pw from customer
+where customer_id = #{customer_id}
+</select>
+
+<!-- 관리자 관련 -->
+<sql id='customer_search'>
+    <if test="keyword!=null">
+    <if test="keyword!=''">
+            and (c.customer_id LIKE '%' || #{keyword} || '%')       
+    </if>  </if>  
+    </sql>
+<select id="customer_listSearch" resultType="com.human.dto.CustomerDto" >	
+	<![CDATA[SELECT c.*,authority
+FROM customer c, authorities a
+WHERE c.customer_id=a.customer_id]]>
+<include refid="customer_search"/>
+<![CDATA[ORDER BY c.customer_id DESC
+OFFSET (#{page} - 1) * #{perPageNum} ROWS
+FETCH NEXT #{perPageNum} ROWS ONLY]]>
+</select>
+
+<select id="customer_listSearchCount" resultType="int">
+<![CDATA[ select count(c.customer_id) from customer c where 1=1 ]]>
+<include refid="customer_search" />
+</select>	
+
+<update id="enabledUpdate">
+update customer set
+enabled=#{enabled}
+where customer_id=#{customer_id}
+</update>
+
+</mapper>

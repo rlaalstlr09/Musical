@@ -1,54 +1,102 @@
-
 body {
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
 }
 
-#container{
-			padding: 0 20%;
-		}
-.musical-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2열 */
-    gap: 16px; /* 항목 간의 간격 */
-}
-.musical-item {
-    border: 1px solid #ccc;
-    padding: 16px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-.musical-item img {
-    width: 100%;
-    height: auto;
-}
-.pagination{
-	text-align : center;
-}
-.hidden{
-	display:none;
+#container {
+	display:flex;
+	flex-direction: column; 
+	justify-content:center;
+	align-items:center;
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    gap : 50px;
 }
 
+/* 헤더 및 네비게이션 */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+header a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0 15px;
+}
+
+/* 정렬 스타일 */
+.sort-container {
+    display: flex;
+    justify-content: center; /* 가운데 정렬 */
+    margin: 20px 0; /* 상하 여백 */
+}
+
+.sort-options {
+    list-style: none; /* 기본 리스트 스타일 제거 */
+    padding: 0; /* 패딩 제거 */
+    margin: 0; /* 마진 제거 */
+    display: flex; /* 가로 배치 */
+}
+
+.sort-options li {
+    margin: 0 10px; /* 아이템 간의 간격 조절 */
+}
+
+.sort-link {
+    text-decoration: none; /* 밑줄 제거 */
+    color: #333; /* 링크 색상 */
+    font-size: 16px; /* 폰트 사이즈 */
+    padding: 10px 15px; /* 패딩 추가 */
+    border-radius: 5px; /* 둥근 모서리 */
+    transition: background-color 0.3s, color 0.3s; /* 부드러운 색상 전환 효과 */
+}
+
+.sort-link:hover,
+.sort-link:focus,
+.sort-link.active {
+    background-color: #007bff; /* 배경색 변화 */
+    color: #fff; /* 글자색 변화 */
+}
+
+/* 필터 버튼 및 패널 */
 .filter-button {
-    display: block;
-    width: 10%;
-    padding: 10px;
     background-color: #007bff;
     color: white;
     border: none;
-    border-radius: 5px;
+    padding: 10px;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 .filter-panel {
-    display: none; /* 숨김 상태 */
-    background-color: #f8f9fa;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 15px;
+    display: none;
     margin-top: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    max-height: 0; /* 초기 최대 높이 설정 */
-    overflow: hidden;
-    transition: max-height 0.5s ease-out; /* 애니메이션 */
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+}
+
+.filter-panel table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.filter-panel th, .filter-panel td {
+    padding: 10px;
+    
+}
+
+.filter-panel select, .filter-panel input[type="date"] {
+    width: 100%;
+    padding: 5px;
+    margin: 5px 0;
 }
 
 .filter-panel.show {
@@ -56,22 +104,152 @@ body {
     max-height: 500px; /* 최대 높이 설정 */
 }
 
-.filter-option {
-    margin-bottom: 10px;
+
+
+/* 뮤지컬 목록 */
+
+
+.card.musical-item {
+   width : 300px;
+   height : 550px;
 }
 
-.apply-button {
-    display: block;
-    width: 100%;
+.musical-item a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.musical-item img{
+	height: 360px;
+}
+
+
+.hidden{
+	display:none;
+}
+
+
+
+/* 인기 및 최근 오픈 뮤지컬 섹션 */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+    margin: 0;
+}
+
+ul li {
+    display: inline;
+    margin-right: 15px;
+}
+
+ul li a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+/* 그리드 레이아웃 */
+.musical-grid {
+  	display: grid;
+   grid-template-columns: repeat(5, 1fr);
+   gap: 20px;
+}
+
+.swiper {
+    width: 90%;
+    height: 500px; /* 높이 조정 */
+}
+
+/* Swiper 슬라이드 스타일 */
+.swiper-slide {
+    background-color: transparent; /* 슬라이드 배경 색상 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #333;
+    padding: 50px 20px;     
+}
+
+.swiper-slide-active {
+   padding : 0;
+    
+}
+
+ .link-container {
+    display: flex; 
+    width : 100%;
+	height : 100%;
+    color: inherit;  
+}
+
+.link-container:hover{
+    color: inherit;       
+    text-decoration: none;
+}
+
+.musical-img-item{
+	display : flex;
+	flex-direction: column; /* 세로 방향으로 정렬 */
+    justify-content: flex-end;
+	width : 100%;
+	height : 100%;
+	color : white;
+	padding-left:10px;
+}
+
+.page-date, .page-like{
+	bottom:-50px;
+}
+
+
+/* 검색 박스 */
+#search {
+    margin: 20px 0;
+    text-align: center;
+}
+
+#search input[type="text"] {
     padding: 10px;
-    background-color: #28a745;
+    width: 200px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#search button {
+    background-color: #007bff;
     color: white;
     border: none;
+    padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
 }
 
- .form-select {
-	overflow: visible; /* 기본 스크롤 제거 */
-	height: auto; /* 높이를 자동으로 조정 */
- }
+/* 페이지 네비게이션 */
+.pagination {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.pagination a {
+    text-decoration: none;
+    color: #007bff;
+    padding: 10px;
+    margin: 0 5px;
+}
+
+.pagination a.active {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.pagination input[type="hidden"] {
+    display: none;
+}
+

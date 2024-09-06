@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nearby Theaters</title>
+    <title>근처 극장 보기</title>
     <script type="text/javascript">
     var contextPath = '${pageContext.request.contextPath}';
 </script>
@@ -21,11 +21,13 @@
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.min.js"></script>
 </head>
 <body>
-    <h1 style="margin: 20px auto; text-align: left;">Nearby Theaters</h1>
+<jsp:include page="../layout/header.jsp"/>
+<div id='wrap'>
+    <h1 style="margin: 20px auto; text-align: center;">근처 극장 보기</h1>
     <div id="map" style="width:800px;height:400px;margin: 0 auto;"></div>
    
     
    <div class="common_wrap"></div>
-    
+    </div>
 </body>
 </html>

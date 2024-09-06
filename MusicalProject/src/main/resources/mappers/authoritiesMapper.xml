@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 사용자 권한  -->
+<mapper namespace="com.human.dao.IAuthoritiesDao">
+<insert id="insert">
+insert into authorities (customer_id,authority)
+values (#{customer_id}, 'ROLE_MEMBER')
+</insert>
+<delete id="delete">
+delete authorities where customer_id=#{customer_id}
+</delete>
+
+<!-- 관리자 관련 -->
+<update id="authorityUpdate">
+update authorities set
+authority=#{authority}
+where customer_id=#{customer_id}
+</update>
+
+</mapper>

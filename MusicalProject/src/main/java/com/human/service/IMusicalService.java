@@ -20,4 +20,14 @@ public interface IMusicalService {
 	
 	
 	public List<MusicalDto> musical_list() throws Exception;
+	public String musical_title(int musical_id) throws Exception;
+	
+	//admin관련
+	public void musical_create(MusicalDto musical) throws Exception;
+	public MusicalDto musical_read(Integer musical_id) throws Exception;
+	public void musical_update(MusicalDto musical) throws Exception;
+	public void musical_delete(Integer mId) throws Exception;
+	public List<MusicalDto> musical_listSearch(BoardVo vo) throws Exception;
+	public List<MusicalDto> musical_listSearch_excel(BoardVo vo) throws Exception;
+	public int musical_listSearchCount(BoardVo vo) throws Exception;
 }

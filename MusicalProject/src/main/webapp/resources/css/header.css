@@ -1,0 +1,530 @@
+body {
+    padding: 0;
+    width: 100%;
+    font-family: Arial, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* 기본 헤더 스타일 */
+.header-background {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0);
+    /* 초기 배경 투명 */
+    transition: all 0.3s ease;
+    position: fixed;
+    top: 0;
+    /* 화면 상단에 위치 */
+    z-index: 1000;
+
+    color: #ffffff;
+    /* 초기 텍스트 색상 */
+
+}
+
+
+/* 스크롤 시 헤더가 고정될 때의 스타일 */
+.header-background.sticky {
+    background-color: #eeeeee;
+    /* 스크롤 시 배경색 흰색으로 변경 */
+    color: #000000;
+    /* 스크롤 시 텍스트 색상 변경 */
+    box-shadow: 0 2px 1px rgba(217, 216, 216, 0.3);
+    /* 그림자 추가 */
+    height: 100px;
+    /* 헤더 높이 조정 */
+}
+/* 고정된 헤더 색상 */
+.header-container-background.sticky {
+  background-color: #eeeeee; /* 검정색으로 변경 */
+}
+.header-background.sticky .search input {
+    border-bottom: 2px solid #5d5c5cfb;
+    /* 스크롤 시 밑줄 색상 변경 */
+}
+
+/* 헤더 내부 콘텐츠의 스타일 */
+.header-container {
+    position: absolute;
+    top: 15px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    /* 좌우 패딩 추가 */
+    z-index: 2;
+    background: #b2b2b2;
+    /* 초기 배경 투명 */
+    height: 85px;
+    color: inherit;
+    /* 상위 요소의 텍스트 색상 상속 */
+}
+
+/* 로고 이미지 스타일 */
+
+.logo img {
+    width: 170px;
+    /* 원하는 너비로 설정 */
+    height: auto;
+    /* 비율에 맞게 높이 자동 조절 */
+    display: block;
+    /* 이미지 주위 여백 제거 */
+    margin-left: 25px;
+    margin-top: 10px;
+}
+
+
+.logo {
+    margin-top: 0px;
+    /* 상단 여백 20px */
+    margin-bottom: 20px;
+    /* 하단 여백 20px */
+}
+
+
+
+.navigation ul {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    justify-content: space-around;
+    /* 항목 간의 간격을 일정하게 조정 */
+
+
+}
+
+.navigation li {
+    margin: -15px;
+    /* 모든 항목 간의 간격을 20px로 설정 */
+    width: 120px;
+    /* 각 메뉴 항목의 고정 너비 설정 */
+    text-align: center;
+    /* 텍스트를 가운데 정렬 */
+    left: 50px;
+
+}
+
+.navigation a {
+    color: inherit;
+    /* 상위 요소의 텍스트 색상 상속 */
+    text-decoration: none;
+    font-size: 16px;
+    display: block;
+    padding: 0px;
+
+}
+
+
+.navigation {
+    display: flex;
+    justify-content: flex-start;
+    /* 항목들을 왼쪽으로 정렬 */
+    align-items: center;
+    margin-right: 120px;
+    /* 내비게이션 항목들을 왼쪽으로 이동 */
+}
+
+
+
+.navigation a:hover {
+    text-decoration: underline;
+}
+
+/* 서브메뉴 스타일 */
+.has-submenu {
+    margin: 0 -15px;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 100;
+    background-color: #333;
+    padding: 0px;
+    list-style-type: none;
+    width: auto;
+    min-width: 100px;
+    white-space: nowrap;
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    /* 항목들이 부모의 너비를 기준으로 정렬되도록 */
+}
+
+
+
+.submenu li {
+    margin: 0;
+
+}
+
+.submenu a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 10px;
+    display: block;
+    text-align: center;
+
+}
+
+.submenu a:hover {
+    background-color: #555;
+}
+
+.has-submenu:hover .submenu {
+
+    display: flex;
+    opacity: 1;
+
+}
+
+/* 검색창 초기 상태에서 검색 아이콘 숨김 */
+.scroll-icon {
+    display: none;
+    /* 검은색 이미지 숨기기 */
+}
+
+.search {
+    display: flex;
+    position: fixed;
+    /* 상대 위치 지정 */
+    top: 15px;
+    /* 원하는 만큼 아래로 이동 */
+    left: 225px;
+
+}
+
+.search input {
+    width: 250px;
+    padding: 10px 0;
+    border: none;
+    /* 상자 모양의 테두리 제거 */
+    border-bottom: 2px solid #ffffff;
+    /* 밑줄만 남김 */
+    outline: none;
+    /* 포커스 시 나타나는 기본 테두리 제거 */
+    background: none;
+    font-size: 16px;
+    color: #595959;
+    /* 텍스트 색상 */
+    margin-top: 15px;
+
+}
+
+.search button {
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+
+}
+
+.search button img {
+    width: 30px;
+    /* 아이콘의 크기 */
+    height: 30px;
+    /* 아이콘의 크기 */
+
+    background-color: transparent;
+    border: none;
+    /* 테두리 제거 */
+    margin-left: -50px;
+    /* 왼쪽으로 10px 이동 */
+    margin-top: 15px;
+
+
+}
+
+
+.new-menu {
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+    /* 글씨 색상 */
+    font-size: 20px;
+    /* 글씨 크기 */
+    padding: 0px 0px;
+    /* 내부 여백 */
+    cursor: pointer;
+    /* 마우스를 올렸을 때 포인터 모양 */
+    margin-left: 40px;
+    /* 오른쪽으로 20px 이동 */
+
+
+}
+
+.new-menu .hash {
+    margin-right: 5px;
+    /* #과 Musical 사이의 간격 조정 */
+}
+
+.header-background.sticky .new-menu {
+    color: #6a6a6a;
+    /* 스크롤 시 글자 색상 검정으로 변경 */
+    font-weight: 700;
+
+}
+
+.new-menu:hover {}
+
+/* 이미지 필터를 적용하기 위한 스타일 */
+.image-span img,
+.logo img {}
+
+/* 스크롤 후 적용될 필터 */
+.header-background.sticky .logo img {
+    filter: brightness(30%) contrast(50%) grayscale(50%);
+    /* 진한 검정색으로 변환 */
+    /* 이미지를 검정색으로 변환 */
+}
+
+/* 스크롤 후 검색 로고 톤다운 효과 */
+.header-background.sticky .search button img {
+    filter: brightness(80%) contrast(50%) saturate(30%);
+    /* 더 어둡고, 대비와 채도를 줄여 톤다운 효과 */
+}
+
+/**/
+
+input[id="menuicon"] {
+    display: none;
+}
+
+input[id="menuicon"]+label {
+    display: block;
+    width: 25px;
+    height: 20px;
+    position: fixed;
+    /* 화면에 고정되도록 수정 */
+    cursor: pointer;
+    top: 42px;
+    /* 원하는 위치로 수정 */
+    left: 60px;
+    /* 원하는 위치로 수정 */
+
+}
+
+input[id="menuicon"]+label span {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    border-radius: 30px;
+    background: white;
+    transition: all 0.35s;
+}
+
+input[id="menuicon"]+label span:nth-child(1) {
+    top: 0;
+}
+
+input[id="menuicon"]+label span:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+input[id="menuicon"]+label span:nth-child(3) {
+    bottom: 0;
+}
+
+/**/
+input[id="menuicon"]:checked+label span:nth-child(1) {
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+}
+
+input[id="menuicon"]:checked+label span:nth-child(2) {
+    opacity: 0;
+}
+
+input[id="menuicon"]:checked+label span:nth-child(3) {
+    bottom: 50%;
+    transform: translateY(50%) rotate(-45deg);
+}
+
+/* 스크롤 시 활성화된 스타일 */
+.header-background.sticky input[id="menuicon"]+label span {
+    background: rgb(96, 96, 96);
+    /* 스크롤 시 검정색으로 변경 */
+}
+
+div[class="slidebar"] {
+    width: 230px;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    ;
+    position: fixed;
+    top: 0;
+    left: -300px;
+    z-index: 1;
+    transition: all.35s;
+}
+
+input[id="menuicon"]:checked+label+div {
+    left: 0px;
+}
+
+.sidebar {
+    width: 50px;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+
+}
+
+/* 슬라이드바 내부 메뉴들의 z-index를 더 높게 설정 */
+.slidebar .menu {
+    position: relative;
+    z-index: 3;
+    /* 가상 요소보다 더 높은 z-index 설정 */
+}
+
+.menu {
+    list-style-type: none;
+    padding: 20px 0;
+    margin: 50px 0 0 0;
+
+
+}
+
+.menu li {
+
+    margin-bottom: 15px;
+
+}
+
+.menu li a {
+
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    display: block;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+
+}
+
+.menu li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.submenul {
+    list-style-type: none;
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+.submenul li {
+    margin-bottom: 10px;
+}
+
+.submenul li a {
+    text-decoration: none;
+    color: #ccc;
+    /* 서브 메뉴는 조금 더 연한 색상 */
+    font-size: 14px;
+    /* 서브 메뉴의 글씨 크기를 작게 설정 */
+    display: block;
+    padding: 5px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.submenul li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    /* 서브 메뉴 호버 시 색상 */
+}
+
+
+/* 공연장 바로가기와 로그아웃에 대한 스타일링 */
+.menu li.special {
+    margin-top: 30px;
+    /* 간격 조절: 위쪽에 여백을 추가 */
+}
+
+
+.menu li.special a {
+    font-size: 15px;
+    /* 텍스트 크기 조절 */
+    padding: 15px 20px;
+    /* 패딩 조절로 버튼 크기 조절 */
+}
+
+/* 닫기 버튼 스타일 */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 30px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    z-index: 2000;
+    /* 닫기 버튼이 메뉴 위에 표시되도록 설정 */
+}
+
+.close-btn:hover {
+    color: #ccc;
+    /* 닫기 버튼 호버 시 색상 변경 */
+}
+
+/* 슬라이드바 기본 상태 */
+.slidebar {
+    width: 230px;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    top: 0;
+    left: -230px;
+    /* 화면에서 숨김 */
+    z-index: 1;
+    transition: left 0.35s ease;
+    /* 슬라이드 애니메이션 */
+}
+
+/* 슬라이드바 윗부분을 더 진하게 만들기 위한 ::before 가상 요소 */
+.slidebar::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    /* 상단 부분의 높이 설정 */
+    background: rgba(0, 0, 0, 0.7);
+    /* 더 진한 배경색 설정 */
+    z-index: 0;
+    /* 슬라이드바 내용보다 위에 표시 */
+}
+
+/* 슬라이드바가 열렸을 때 */
+input[id="menuicon"]:checked+label+.slidebar {
+    left: 0;
+    /* 슬라이드바를 화면에 표시 */
+}
+
+/* 슬라이드바 닫기 애니메이션 */
+.slidebar.hide {
+    left: -230px;
+    /* 다시 숨김 */
+    transition: left 0.35s ease;
+}

@@ -12,15 +12,15 @@ var result = '${msg}';
 	    // 시작 년도와 끝나는 년도 셀렉트 박스 채우기
 	     $('#startYear, #endYear').append(new Option('선택',''));
 	    for (let year = currentYear-5; year <= currentYear+3; year++) {
-	    	var startclassName = $('#startYear').attr('class');
-	    	var endclassName = $('#endYear').attr('class');
+	    	var startnameName = $('#startYear').attr('name');
+	    	var endnameName = $('#endYear').attr('name');
 	    	let option1 = new Option(year, year);
 	    	let option2 = new Option(year, year);
-	    	console.log(endclassName);
-	    	if(startclassName == year){	    		
+	    	console.log(endnameName);
+	    	if(startnameName == year){	    		
 	    		$(option1).attr('selected', 'selected');
 	    	}
-	    	if(endclassName == year){	    		
+	    	if(endnameName == year){	    		
 	    		$(option2).attr('selected', 'selected');
 	    	}
 	    	$('#startYear').append(option1);
@@ -56,14 +56,7 @@ var result = '${msg}';
 	
 	$(document).ready(function() {
 		$('#searchBtn').on("click",function(event) {
-									alert("admin_musical"
-											+ '${boardVo.makePage(1)}'
-											+ "&fGroupKind=" + $('#startYear').val() + $('#startMonth').val()
-											+ '&searchType='
-											+ $('select[name="search_keyword"]')
-													.val() + "&keyword="
-											+ $('#keywordInput').val());
-
+									
 									window.location.href = "admin_musical?"
 											+ "&page=1"
 							            	+ "&perPageNum=10"							            	

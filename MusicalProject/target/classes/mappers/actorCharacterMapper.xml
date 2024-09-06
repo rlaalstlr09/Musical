@@ -13,13 +13,21 @@ join actor_character ac
 on c.character_id = ac.character_id
 join actor a
 on ac.actor_id=a.actor_id
-
-
 where #{musical_id}=c.musical_id
+order by c.character_name
 </select>
 
+<!-- admin관련 -->
+<insert id="actor_character_create">
+INSERT INTO actor_character 
+		( actor_id,character_id) VALUES
+			( #{actor_id},#{character_id})
+</insert>
 
-
+<update id="actor_character_update">
+update actor_character set 
+		actor_id = #{actor_id} where character_id = #{character_id}
+</update>
 
 
 </mapper>

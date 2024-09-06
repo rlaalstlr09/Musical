@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.human.dto.ActorCharacterDto;
 import com.human.dto.MusicalDto;
 import com.human.dto.MusicalFilterDto;
 import com.human.dto.MusicalScheduleDto;
 import com.human.dto.ReviewDto;
+import com.human.service.IActorCharacterService;
 import com.human.service.IMusicalService;
 import com.human.service.IReviewService;
 import com.human.service.ISeatService;
@@ -37,19 +39,27 @@ public class MusicalController {
 	private ISeatService seatService;
 	@Autowired
 	private IReviewService reviewService;
+	@Autowired
+	private IActorCharacterService actorCharacterService;
 	
 	//뮤지컬 리스트 페이지
 	@RequestMapping("/listAll")
-	public String listAll(@RequestParam(value = "page", defaultValue = "1") int page,
-			@RequestParam(value = "perPageNum", defaultValue = "10") int perPageNum,
+	public String listAll(@RequestParam(value = "page", defaultValue = "0") int page,
+			@RequestParam(value = "perPageNum", defaultValue = "25") int perPageNum,
 			@RequestParam(value = "keyword", defaultValue = "") String keyword,
-			@RequestParam(value = "sort", defaultValue = "") String sort, MusicalFilterDto filter, Model model)
+			@RequestParam(value = "sort", defaultValue = "") String sort, 
+			MusicalFilterDto filter, Model model)
 			throws Exception {
 
 		// BoardVo 객체 생성 및 설정
 		BoardVo boardVo = new BoardVo();
 		boardVo.setPage(page);
 		boardVo.setPerPageNum(perPageNum);
+		
+		//카테고리별 뮤지컬 개수 (인기순, 오픈순 등등) 고정값으로 넣어서 페이지 전환해도 값 그대로
+		BoardVo categoryVo = new BoardVo();
+		categoryVo.setPage(0);
+		categoryVo.setPerPageNum(10);
 
 		// 총 데이터 개수와 페이징 데이터 계산
 		int totalCount = musicalService.getTotalCount(keyword, filter);
@@ -68,12 +78,21 @@ public class MusicalController {
 			filter.setMaxRunningtime(500);
 		}
 		
+		System.out.println(filter);
 
 		// 데이터 가져오기
 		List<MusicalDto> musicalList = musicalService.selectAllMusical(boardVo, keyword, sort, filter);
 		
+		//인기순 10개
+		List<MusicalDto> likeMusical = musicalService.selectAllMusical(categoryVo, "", "like", new MusicalFilterDto());
+		
+		//최근 오픈 10개
+		List<MusicalDto> dateMusical = musicalService.selectAllMusical(categoryVo, "", "period", new MusicalFilterDto());
+		
 		// 모델에 데이터와 페이지, 필터링 조건 추가
 		model.addAttribute("musicals", musicalList);
+		model.addAttribute("likeMusicals", likeMusical);
+		model.addAttribute("dateMusicals", dateMusical);
 		model.addAttribute("boardVo", boardVo);
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("filter", filter);
@@ -98,6 +117,9 @@ public class MusicalController {
 		vo.setSort("rating");
 		
 		List<ReviewDto> reviews = reviewService.selectAll(musical_id, vo);
+		
+		//등장인물 별 배우이름 받아옴
+		List<ActorCharacterDto> actorCharacterDto = actorCharacterService.selectAll(musical_id);
 
 		//customer_id 세션에서 받아온걸로 바꾸기
 		Integer isLike = musicalService.selectMusicalLike(musical_id, "test");
@@ -115,13 +137,16 @@ public class MusicalController {
 		//뮤지컬 상세정보에 표출할 평점 높은순 3개
 		model.addAttribute("reviews", reviews);
 
+		//뮤지컬 등장인물 별 배우 이름
+		model.addAttribute("actors", actorCharacterDto);
+
 		return "musical/detail";
 	}
 
 	//공연장 정보
 	@GetMapping("/venue")
 	public String getVenue(MusicalDto musicalDto, Model model) {
-		model.addAttribute("name", musicalDto);
+		model.addAttribute("param", musicalDto);
 		return "musical/fragments/venue";
 	}
 
@@ -129,6 +154,8 @@ public class MusicalController {
 	@PostMapping("/like")
 	public RedirectView likeToggle(@RequestParam("customer_id") String customer_id, @RequestParam("musical_id") Integer musical_id, HttpServletRequest request) {
 	    
+		System.out.println(customer_id);
+		
 		//로그인 안한 상태. 로그인페이지로 리다이렉트하게 바꾸셈
 		if (customer_id == null || customer_id.trim().isEmpty()) {
 			 
@@ -149,5 +176,10 @@ public class MusicalController {
 	        e.printStackTrace();
 	        return new RedirectView("/ex/musical/listAll");
 	    }
+	}
+	
+	@GetMapping("/test")
+	public String getTest(Model model) {
+		return "musical/test";
 	}
 }

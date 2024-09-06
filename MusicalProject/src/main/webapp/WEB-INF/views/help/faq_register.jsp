@@ -6,41 +6,40 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>FAQ 등록</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src='<%=request.getContextPath()%>/resources/script/help_check.js'></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/signup.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/help_sytle.css">	
 </head>
 <body>
-<div class="main">
-	<div class="box-header">
-		<h1 class="box-title">
-			새 글쓰기
-			</h3>
-	</div>
+<jsp:include page="../layout/header.jsp"/>
+<div class="container">
+<button type="submit" class="btn btn-warning" style="" >&lt; 이전</button>
+		<h4>FAQ 등록</h4>
+	
 	<!-- /.box-header -->
 	<!-- action에 경로가 없으면 현재 페이지 주소로 이동한다.-->
 	<form role="form" method="post" onsubmit='return checkFaq()'>
 
-		<h3>
-			제목 <input type="text" name='fTitle' placeholder="제목 입력"
+		<label>제목</label> <input type="text" name='fTitle' required placeholder="제목 입력"
 				style="width: 100%">
-		</h3>
-		<h2>
-			카테고리<select name="fGroupKind">
+		
+		<label>카테고리</label><select name="fGroupKind" required>
 				<option value="예매/취소">예매/취소</option>
 				<option value="결제">결제</option>
 				<option value="회원">회원</option>
 				<option value="기타">기타</option>
 			</select>
-		</h2>
-		<h2>
-			내용
-			<textarea name="fContent" rows="8" style="width: 100%"
+		
+		<label>내용</label>
+			<textarea name="fContent" rows="18" style="width: 100%" required
 				placeholder="내용 입력"></textarea>
-		</h2>
+		
 		<!-- /.box-body -->
-		<button type="submit" class="btn btn-primary">글쓰기</button>
+		<button type="submit" class="signup">등록</button>
 
 	</form>
+</div>
 </body>
 </html>

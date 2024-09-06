@@ -25,7 +25,7 @@ $(document).ready(function(){
 	  
 	  
 	  
-	  $('.newBtn').on("click",function(event){
+	  $(document).on("click", ".newBtn", function(event){
 		  var qa_id= $(this).val();
 		  if($('.response_write').length>0){
 			  $('.response_write').remove();

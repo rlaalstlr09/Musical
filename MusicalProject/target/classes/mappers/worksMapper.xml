@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.human.dao.IWorksDao">
+
+<select id="selectAll" resultType="com.human.dto.WorksDto">
+
+SELECT
+    a.actor_id,
+   
+    m.musical_poster,
+    m.musical_title,
+    m.musical_period_start,
+    m.musical_period_end,
+    c.character_name
+FROM
+    actor a
+JOIN
+    actor_Character ac ON a.actor_id = ac.actor_id
+JOIN
+    character c ON ac.character_id = c.character_id
+JOIN
+    musical m ON c.musical_id = m.musical_id
+WHERE
+    a.actor_id = #{actor_id}
+</select>
+
+
+
+
+
+</mapper>
+
+
+
+
+
+
+
+
+

@@ -54,17 +54,41 @@ public class ReviewServiceImpl implements IReviewService {
 	}
 	
 	@Override
-	public Integer totalCount() throws Exception {
+	public Integer totalCount(Integer musical_id,String customer_id) throws Exception {
 		IReviewDao dao=sqlSession.getMapper(IReviewDao.class);
-		dao.totalCount();
-		return dao.totalCount();
+		
+		return dao.totalCount(musical_id,customer_id);
 	}
 	
 	@Override
-	public Double avgRating() throws Exception {
+	public Integer myTotalCount(String customer_id) throws Exception {
 		IReviewDao dao=sqlSession.getMapper(IReviewDao.class);
-		dao.avgRating();
-		return dao.avgRating();
+		
+		return dao.myTotalCount(customer_id);
+	}
+	
+	
+	@Override
+	public Double avgRating(Integer musical_id) throws Exception {
+		IReviewDao dao=sqlSession.getMapper(IReviewDao.class);
+		return dao.avgRating(musical_id);
 	}
 
+	//admin관련
+	public List<ReviewDto> review_listSearch(BoardVo vo) throws Exception{
+		IReviewDao dao = sqlSession.getMapper(IReviewDao.class);
+		return dao.review_listSearch(vo);
+	}	
+	public int review_listSearchCount(BoardVo vo) throws Exception{
+		IReviewDao dao = sqlSession.getMapper(IReviewDao.class);
+		return dao.review_listSearchCount(vo);
+	}
+	public ReviewDto review_read(Integer review_id) throws Exception{
+		IReviewDao dao = sqlSession.getMapper(IReviewDao.class);
+		return dao.review_read(review_id);
+	}	
+	public List<ReviewDto> review_listAll(BoardVo vo) throws Exception{
+		IReviewDao dao = sqlSession.getMapper(IReviewDao.class);
+		return dao.review_listAll(vo);
+	}
 }

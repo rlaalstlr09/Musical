@@ -3,12 +3,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <fmt:setLocale value="ko" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공지사항</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/notice.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/script/notice.js"></script>
@@ -20,7 +21,7 @@ if (result == 'success') {
 </script>
 </head>
 <body>
-
+<jsp:include page="../layout/header.jsp"/>
 	<div id="wrap">
 		<div id="contents">
 			<div id="content">
@@ -67,7 +68,7 @@ if (result == 'success') {
 								<c:forEach items="${list }" var='boardDtos' varStatus='status'>
 									<tr class="item">
 										<td>${boardDtos.nGroupKind }</td>
-										<td><a href="notice_read?nId=${boardDtos.nId}">${boardDtos.nTitle }</td>
+										<td><a href="notice_read?nId=${boardDtos.nId}">${boardDtos.nTitle }</a></td>
 
 										<td><c:if test="${not empty boardDtos.nOpenTime}">
 오픈 : <fmt:formatDate value="${boardDtos.nOpenTime}" pattern="yyyy.MM.dd(E) HH:mm" />
@@ -136,9 +137,10 @@ ${boardDtos.formattedNWriteTime}
 						</div>
 						
 					</div>
-					<!--  <sec:authorize access="hasRole('ROLE_ADMIN')"> -->
+					 <sec:authorize access="hasRole('ROLE_ADMIN')"> 
+					 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 					<button class="newBtn">새 글</button>
-					<!-- </sec:authorize> -->
+					</sec:authorize>
 				</div>
 
 			</div>

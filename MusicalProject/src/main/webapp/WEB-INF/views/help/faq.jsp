@@ -2,11 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>자주 묻는 질문</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/notice.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/script/faq.js"></script>
@@ -18,7 +19,7 @@ if (result == 'success') {
 </script>
 </head>
 <body>
-
+<jsp:include page="../layout/header.jsp"/>
 	<div id="wrap">
 		<div id="contents">
 			<div id="content">
@@ -49,7 +50,7 @@ if (result == 'success') {
 
 					<div class="cs_board">
 						<ul class="list_board_sort">
-							<li class="_cat02" data-cat="02"><a href="faq"
+							<li class="_cat02" data-cat="02"><a href="faq?fGroupKind=전체"
 								class="link_tab _faqCategory">전체</a></li>
 							<li class="_cat06" data-cat="06"><a
 								href="faq?fGroupKind=예매/취소"  class="link_tab _faqCategory">예매/취소</a></li>
@@ -87,12 +88,13 @@ if (result == 'success') {
 									<tr class="hide">
 
 										<td colspan="3"><pre><c:out value="${boardDtos.fContent}" escapeXml="false" /></pre> 
-										<!--  <sec:authorize access="hasRole('ROLE_ADMIN')"> -->
+										 <sec:authorize access="hasRole('ROLE_ADMIN')">
 											<form role='form' method="get">
+											<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 												<input name="fId" type="hidden" value="${boardDtos.fId}">
 												<button type="submit" class="btn btn-warning">수정</button>
 												<button type="submit" class="btn btn-danger">삭제</button>
-											</form> <!-- </sec:authorize> -->
+											</form>  </sec:authorize> 
 											</td>
 									</tr>
 								</c:forEach>

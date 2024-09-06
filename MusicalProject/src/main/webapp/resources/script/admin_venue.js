@@ -59,32 +59,32 @@
 	                    var paginationHtml = '';
 
 	                    if (boardVo.page != 1) {
-	                        paginationHtml += '<a href="#" onclick="makeSearch1('+venue_id+',1,this)">&lt;&lt;&lt;</a>';
+	                        paginationHtml += '<a href="#" onclick="makeSearch('+venue_id+',1,this)">&lt;&lt;&lt;</a>';
 	                    }
 
 	                    if (boardVo.prev) {
-	                        paginationHtml += '<a href="#" onclick="makeSearch1('+venue_id+','+(boardVo.startPage - 1)+',this)">&lt;&lt;</a>';
+	                        paginationHtml += '<a href="#" onclick="makeSearch('+venue_id+','+(boardVo.startPage - 1)+',this)">&lt;&lt;</a>';
 	                    }
 
 	                    if (boardVo.page != 1) {
-	                        paginationHtml += '<a href="#" onclick="makeSearch1('+venue_id+','+(boardVo.page - 1)+',this)">&lt;</a>';
+	                        paginationHtml += '<a href="#" onclick="makeSearch('+venue_id+','+(boardVo.page - 1)+',this)">&lt;</a>';
 	                    }
 
 	                    for (var idx = boardVo.startPage; idx <= boardVo.endPage; idx++) {
-	                        paginationHtml += '<a href="#" onclick="makeSearch1('+venue_id+','+idx+',this)"' +
+	                        paginationHtml += '<a href="#" onclick="makeSearch('+venue_id+','+idx+',this)"' +
 	                            (idx == boardVo.page ? ' class="active"' : '') + '>' + idx + '</a>';
 	                    }
 
 	                    if (boardVo.page != boardVo.totalEndPage) {
-	                        paginationHtml += '<a href="#" onclick="makeSearch1('+venue_id+','+(boardVo.page + 1)+',this)">&gt;</a>';
+	                        paginationHtml += '<a href="#" onclick="makeSearch('+venue_id+','+(boardVo.page + 1)+',this)">&gt;</a>';
 	                    }
 
 	                    if (boardVo.next) {
-	                        paginationHtml += '<a href="#" onclick="makeSearch1('+venue_id+','+(boardVo.endPage + 1)+',this)">&gt;&gt;</a>';
+	                        paginationHtml += '<a href="#" onclick="makeSearch('+venue_id+','+(boardVo.endPage + 1)+',this)">&gt;&gt;</a>';
 	                    }
 
 	                    if (boardVo.page != boardVo.totalEndPage) {
-	                        paginationHtml += '<a href="#" onclick="makeSearch1('+venue_id+','+(boardVo.totalEndPage)+',this)">&gt;&gt;&gt;</a>';
+	                        paginationHtml += '<a href="#" onclick="makeSearch('+venue_id+','+(boardVo.totalEndPage)+',this)">&gt;&gt;&gt;</a>';
 	                    }
 
 	                    tableHtml += 
