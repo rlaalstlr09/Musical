@@ -159,10 +159,11 @@ create table review(
         ON DELETE CASCADE
 );
 create sequence qa_count;
+drop table qa;
 create table qa(
     qa_id number,
     customer_id nvarchar2(50),
-    musical_id number,
+    musical_id number default null,
     qa_type nvarchar2(50),
     title nvarchar2(500),
     content varchar2(4000),
