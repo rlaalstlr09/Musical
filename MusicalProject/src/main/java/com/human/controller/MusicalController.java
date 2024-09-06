@@ -6,6 +6,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -152,14 +154,14 @@ public class MusicalController {
 
 	//뮤지컬 좋아요 누르면 동작
 	@PostMapping("/like")
-	public RedirectView likeToggle(@RequestParam("customer_id") String customer_id, @RequestParam("musical_id") Integer musical_id, HttpServletRequest request) {
+	public ResponseEntity<String> likeToggle(@RequestParam("customer_id") String customer_id, @RequestParam("musical_id") Integer musical_id, HttpServletRequest request) {
 	    
 		System.out.println(customer_id);
 		
 		//로그인 안한 상태. 로그인페이지로 리다이렉트하게 바꾸셈
 		if (customer_id == null || customer_id.trim().isEmpty()) {
 			 
-            return new RedirectView("/ex/musical/listAll");
+            return new ResponseEntity<String>("redirect", HttpStatus.OK);
 	    }
 
 	    try {
@@ -169,12 +171,12 @@ public class MusicalController {
 	        } else {
 	            musicalService.insertLike(musical_id, customer_id);
 	        }
-	        return new RedirectView("/ex/musical/detail/" + musical_id);
+	        return new ResponseEntity<String>("success", HttpStatus.OK);
 	        
 	        
 	    } catch (Exception e) {
 	        e.printStackTrace();
-	        return new RedirectView("/ex/musical/listAll");
+	        return new ResponseEntity<String>("failed", HttpStatus.OK);
 	    }
 	}
 	
