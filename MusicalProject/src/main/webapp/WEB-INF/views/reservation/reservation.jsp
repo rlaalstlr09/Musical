@@ -312,7 +312,7 @@
                                         if (session_id === "admin") {
                                             const td6 = document.createElement('td');
                                             const adminlink = document.createElement('a');
-                                            adminlink.href = `${pageContext.request.contextPath}/admin/mu_sch_update_admin?mu_sch_id=` + dto.mu_sch_id;
+                                            adminlink.href = `${pageContext.request.contextPath}/reser_admin/mu_sch_update_admin?mu_sch_id=` + dto.mu_sch_id;
                                             adminlink.textContent = '스케줄 변동 수정';
                                             td6.appendChild(adminlink);
                                             row.appendChild(td6);

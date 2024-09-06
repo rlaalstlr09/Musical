@@ -144,7 +144,7 @@ $(document).ready(function() {
     $("#venue_id").change(function() {
         var venue_id = $(this).val();
         $.ajax({
-            url: '${pageContext.request.contextPath}/admin/venue_select',
+            url: '${pageContext.request.contextPath}/reser_admin/venue_select',
             type: "GET",
             data: { venue_id: venue_id  },
             success: function(halls) {
