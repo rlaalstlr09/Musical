@@ -34,7 +34,7 @@ CREATE TABLE authorities (
         FOREIGN KEY (customer_id)
         REFERENCES customer(customer_id)
 );
-
+insert into authorities values('admin','ROLE_SUPERADMIN');
 
 create table persistent_logins(
     username nvarchar2(50) not null,

@@ -77,7 +77,7 @@ h1 {
 <jsp:include page="../layout/admin_header.jsp"/>
 	<div class="container">
 		<h1>Musical Schedule 입력</h1>
-		<form action="${pageContext.request.contextPath}/admin//mu_sch_admin" method="post">
+		<form action="${pageContext.request.contextPath}/reser_admin/mu_sch_admin" method="post">
 			<div class="form-group">
 				<label for="venue_id">공연장:</label> 
 				<select id="venue_id" name="venue_id" required>
