@@ -11,7 +11,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src='<%=request.getContextPath()%>/resources/script/actor_read.js'></script>
 <body>
-	
+<jsp:include page="../layout/admin_header.jsp"/>
 <div id="wrap">
 		<div id="contents">
 			<div id="content">

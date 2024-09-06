@@ -154,6 +154,7 @@ button:hover {
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+<jsp:include page="../layout/admin_header.jsp"/>
     <h1>예약내역</h1>
 
     <!-- 필터 폼 -->

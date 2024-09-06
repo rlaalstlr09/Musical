@@ -241,11 +241,11 @@ strong {
     font-size: 13px;
 }
 
-.hide {
+dl .hide {
 	display: none;
 }
 
-.show {
+dl .show {
 	display: block;
 	background-color: #f8f8f8;
 }

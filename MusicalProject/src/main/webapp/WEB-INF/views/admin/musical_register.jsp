@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/help_sytle.css">
 </head>
 <body>
+<jsp:include page="../layout/admin_header.jsp"/>
 <div class="container">
 	<button type="submit" class="btn btn-warning" style="" >&lt; 이전</button>
 <br>

@@ -74,6 +74,7 @@ h1 {
 
 </head>
 <body>
+<jsp:include page="../layout/admin_header.jsp"/>
 	<div class="container">
 		<h1>Musical Schedule 입력</h1>
 		<form action="${pageContext.request.contextPath}/admin//mu_sch_admin" method="post">

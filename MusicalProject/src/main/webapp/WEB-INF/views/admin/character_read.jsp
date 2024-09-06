@@ -14,7 +14,7 @@
 <script src='<%=request.getContextPath()%>/resources/script/character_read.js'></script>
 
 <body>
-	
+<jsp:include page="../layout/admin_header.jsp"/>
 <div id="wrap">
 		<div id="contents">
 			<div id="content">

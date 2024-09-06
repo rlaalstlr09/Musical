@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/notice.css">
 </head>
 <body>
-<jsp:include page="../layout/header.jsp"/>
+<jsp:include page="../layout/admin_header.jsp"/>
 <div id="wrap">
 <div id='content'>
 <div class='noticeBox'>

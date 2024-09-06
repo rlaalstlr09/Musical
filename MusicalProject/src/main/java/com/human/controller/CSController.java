@@ -51,6 +51,11 @@ public class CSController {
 	public String near_map() {
 		return "help/near_map";
 	}
+	
+	@RequestMapping(value = "/inform", method = RequestMethod.GET)
+	public String inform() {
+		return "help/inform";
+	}
 
 	@RequestMapping(value = "/faq", method = RequestMethod.GET)
 	public String faq(BoardVo vo, Model model) throws Exception {
