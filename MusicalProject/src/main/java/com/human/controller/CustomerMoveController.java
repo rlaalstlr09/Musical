@@ -42,7 +42,7 @@ public class CustomerMoveController {
 	}
 	@RequestMapping(value = "/admin/admin" , method = RequestMethod.GET)
 	public String admin(Locale locale, Model model) {
-		return "/admin/admin";
+		return "redirect:/admin/admin_main";
 	}
 	@RequestMapping(value = "/member/remove", method = RequestMethod.GET)
 	public String remove(Locale locale, Model model) {

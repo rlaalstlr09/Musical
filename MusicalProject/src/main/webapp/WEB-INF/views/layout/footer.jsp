@@ -15,7 +15,7 @@
         <a href='#' target='_blank'>이용약관</a> |
         <a href='#' target='_blank'>청소년보호정책</a>|
         <a href='#' target='_blank'>티켓이용안내</a>|        
-        <a href='<%=request.getContextPath()%>/admin/admin' target='_blank'>ADMIN</a>|
+        <a href='<%=request.getContextPath()%>/admin/admin_main' target='_blank'>ADMIN</a>|
       </nav>
        <div class="footer-left">
       <p>

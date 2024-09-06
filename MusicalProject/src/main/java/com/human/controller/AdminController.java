@@ -150,9 +150,21 @@ public class AdminController {
     return uploadPath;
 	}
 	
+	@RequestMapping(value = "/admin_admin", method = RequestMethod.GET)
+	public String admin_admin(BoardVo vo, Model model) throws Exception {
+		List<AdminDto> searchList = service.admin_listSearch(vo);
+		model.addAttribute("list", searchList);
+		vo.setTotalCount(service.admin_listSearchCount(vo));
+		return "admin/admin_admin";
+	}
 	
 	@RequestMapping(value = "/admin_main", method = RequestMethod.GET)
-	public String admin_main() {
+	public String admin_main(BoardVo vo, Model model) throws Exception {
+		vo.setPerPageNum(5);
+		List<QaDto> searchList = qaservice.qa_listSearch(vo);
+		model.addAttribute("list", searchList);
+		List<AdminDto> asearchList = service.admin_listSearch(vo);
+		model.addAttribute("alist", asearchList);
 		return "admin/admin";
 	}
 	

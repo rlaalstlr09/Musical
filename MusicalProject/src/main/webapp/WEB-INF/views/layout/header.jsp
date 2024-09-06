@@ -15,7 +15,7 @@
 <header class="header-background">
     <div class="header-container">
       <div class="logo">
-        <a href="#">
+        <a href="${pageContext.request.contextPath }/">
           <img src="${pageContext.request.contextPath }/resources/img/bora_logo.png" alt="home"> </a>
       </div>
 
