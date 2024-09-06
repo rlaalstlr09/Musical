@@ -47,6 +47,7 @@ import com.human.dto.ActorCharacterDto;
 import com.human.dto.ActorDto;
 import com.human.dto.AdminDto;
 import com.human.dto.CharacterDto;
+import com.human.dto.CustomerDto;
 import com.human.dto.HallDto;
 import com.human.dto.MusicalDto;
 import com.human.dto.QaDto;
@@ -55,6 +56,7 @@ import com.human.dto.VenueDto;
 import com.human.dto.Venue_apiDto;
 import com.human.service.IAdminService;
 import com.human.service.ICharacterService;
+import com.human.service.ICustomerService;
 import com.human.service.IHallService;
 import com.human.service.IMusicalScheduleService;
 import com.human.service.IMusicalService;
@@ -118,6 +120,9 @@ public class AdminController {
 	private ISeatService seatservice;
 	@Autowired
 	private IMusicalScheduleService mu_schservice;
+	
+	@Autowired
+	private ICustomerService customerService;
 		
 	public String posterUploadPath() throws UnsupportedEncodingException {
 		String severPath = servletContext.getRealPath("/");
@@ -145,9 +150,21 @@ public class AdminController {
     return uploadPath;
 	}
 	
+	@RequestMapping(value = "/admin_admin", method = RequestMethod.GET)
+	public String admin_admin(BoardVo vo, Model model) throws Exception {
+		List<AdminDto> searchList = service.admin_listSearch(vo);
+		model.addAttribute("list", searchList);
+		vo.setTotalCount(service.admin_listSearchCount(vo));
+		return "admin/admin_admin";
+	}
 	
 	@RequestMapping(value = "/admin_main", method = RequestMethod.GET)
-	public String admin_main() {
+	public String admin_main(BoardVo vo, Model model) throws Exception {
+		vo.setPerPageNum(5);
+		List<QaDto> searchList = qaservice.qa_listSearch(vo);
+		model.addAttribute("list", searchList);
+		List<AdminDto> asearchList = service.admin_listSearch(vo);
+		model.addAttribute("alist", asearchList);
 		return "admin/admin";
 	}
 	
@@ -630,6 +647,13 @@ public class AdminController {
 		return "success";
 	}	
 	
+	@RequestMapping(value = "/admin_users", method = RequestMethod.GET)
+	public String admin_users(BoardVo vo, Model model) throws Exception {
+		List<CustomerDto> searchList = customerService.customer_listSearch(vo);
+		model.addAttribute("list", searchList);
+		vo.setTotalCount(customerService.customer_listSearchCount(vo));
+		return "admin/admin_users";
+	}
 
 	
 	@RequestMapping("/admin_files")

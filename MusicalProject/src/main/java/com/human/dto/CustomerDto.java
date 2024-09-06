@@ -15,7 +15,31 @@ public class CustomerDto {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date customer_birth;
 	private String authority;
+	private int enabled;
 	
+	
+	
+	public CustomerDto(String customer_id, String customer_pw, String customer_phone, String customer_email,
+			String customer_address, Date customer_birth, String authority, int enabled) {
+		super();
+		this.customer_id = customer_id;
+		this.customer_pw = customer_pw;
+		this.customer_phone = customer_phone;
+		this.customer_email = customer_email;
+		this.customer_address = customer_address;
+		this.customer_birth = customer_birth;
+		this.authority = authority;
+		this.enabled = enabled;
+	}
+
+	public int getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(int enabled) {
+		this.enabled = enabled;
+	}
+
 	@Override
 	public String toString() {
 		return "CustomerDto [customer_id=" + customer_id + ", customer_pw=" + customer_pw + ", customer_phone="

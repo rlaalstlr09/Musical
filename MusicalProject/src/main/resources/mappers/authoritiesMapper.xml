@@ -11,4 +11,12 @@ values (#{customer_id}, 'ROLE_MEMBER')
 <delete id="delete">
 delete authorities where customer_id=#{customer_id}
 </delete>
+
+<!-- 관리자 관련 -->
+<update id="authorityUpdate">
+update authorities set
+authority=#{authority}
+where customer_id=#{customer_id}
+</update>
+
 </mapper>

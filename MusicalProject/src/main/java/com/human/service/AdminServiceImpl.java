@@ -39,6 +39,14 @@ public class AdminServiceImpl implements IAdminService {
 		return dao.admin_file_read(table_id,table_name,table_crud);
 	}
 	
+	public List<AdminDto> admin_listSearch(BoardVo vo) throws Exception{
+		IAdminDao dao = sqlSession.getMapper(IAdminDao.class);
+		return dao.admin_listSearch(vo);
+	}
+	public int admin_listSearchCount(BoardVo vo) throws Exception{
+		IAdminDao dao = sqlSession.getMapper(IAdminDao.class);
+		return dao.admin_listSearchCount(vo);
+	}
 
 
 

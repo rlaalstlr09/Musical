@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.human.dao.ICustomerDao;
 import com.human.dto.CustomerDto;
+import com.human.vo.BoardVo;
 
 @Service
 public class CustomerServiceImpl implements ICustomerService {
@@ -95,4 +96,15 @@ public class CustomerServiceImpl implements ICustomerService {
 //		ICustomerDao dao = sqlSession.getMapper(ICustomerDao.class);
 //		dao.authoritiesUpdate(dto);
 //	}
+	
+	//관리자 관련
+	public List<CustomerDto> customer_listSearch(BoardVo vo) throws Exception{
+		ICustomerDao dao = sqlSession.getMapper(ICustomerDao.class);
+		return dao.customer_listSearch(vo);
+	}
+	
+	public int customer_listSearchCount(BoardVo vo) throws Exception{
+		ICustomerDao dao = sqlSession.getMapper(ICustomerDao.class);
+		return dao.customer_listSearchCount(vo);
+	}
 }
