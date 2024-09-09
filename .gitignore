@@ -124,3 +124,5 @@ root-context.xml
 
 servers/*
 # End of https://www.toptal.com/developers/gitignore/api/java,eclipse,windows
+MusicalProject/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
+*.MF

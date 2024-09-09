@@ -15,8 +15,8 @@
 			name="driverClassName" />
 		<property value="jdbc:oracle:thin:@localhost:1521:xe"
 			name="url" />
-		<property value="c##musical" name="username" />
-		<property value="musical" name="password" />
+		<property value="hr" name="username" />
+		<property value="hr" name="password" />
 	</bean>
 
 
