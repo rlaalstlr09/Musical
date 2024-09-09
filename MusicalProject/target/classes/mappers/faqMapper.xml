@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		fGroupKind, fId, fTitle,
 		fContent
 		) VALUES (
-		#{fGroupKind}, fId.nextval,
+		#{fGroupKind}, faq_board_seq.nextval,
 		#{fTitle}, #{fContent}
 		)
 	</insert>
