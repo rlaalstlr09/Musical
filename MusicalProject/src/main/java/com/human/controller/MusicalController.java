@@ -64,8 +64,8 @@ public class MusicalController {
 		categoryVo.setPerPageNum(10);
 
 		// 총 데이터 개수와 페이징 데이터 계산
-		
-		
+		int totalCount = musicalService.getTotalCount(keyword, filter);
+		boardVo.setTotalCount(totalCount);
 
 		// 상영시간 필터를 위해 최소 상영시간에 따른 최대 상영시간 계산
 		if (filter.getMinRunningtime() == 1) {
@@ -80,9 +80,6 @@ public class MusicalController {
 			filter.setMaxRunningtime(500);
 		}
 		
-		int totalCount = musicalService.getTotalCount(keyword, filter);
-		boardVo.setTotalCount(totalCount);
-		System.out.println(totalCount);
 		System.out.println(filter);
 
 		// 데이터 가져오기
