@@ -13,7 +13,8 @@
     <title>뮤지컬 목록</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
  
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
@@ -82,54 +83,63 @@
     
    	  
 	<div class="filter-panel">
-		<table>
-			<tr>
-				<th>연령 제한</th>
-				<th>공연시간</th>
-				<th>지역</th>
-				<th>공연기간</th>
-			</tr>
-			<tr>
-              	<td>
-					<select name = "age" class="form-select"  aria-label="Multiple select example">
-						<option value="0" selected>전체</option>
-						<option value="5">5세 이상</option>
-						<option value="7">7세 이상</option>
-						<option value="12">12세 이상</option>
-						<option value="15">15세 이상</option>
-						<option value="18">18세 이상</option>
-					</select>
-              	</td>
-              	<td>
-              		<select name = "minRunningtime" class="form-select"  aria-label="Multiple select example">
-						<option value = "0" selected>전체</option>
-						<option value="1"> ~ 90분</option>
-						<option value="91">91분 ~ 120분</option>
-						<option value="121">121분 ~ 150분</option>
-						<option value="151">151분 ~ 180분</option>
-						<option value="181">180분 ~ </option>
-					</select>
-              	</td>
-              	<td>
-              	<select name = "location" class="form-select"  aria-label="Multiple select example">
-					<option value = "" selected>전체</option>
-					<option value = "서울">서울</option>
-					<option value="경기">경기</option>
-					<option value="인천">인천</option>
-					<option value="강원">강원</option>
-					<option value="경상">경상</option>
-					<option value="전라">전라</option>
-					<option value="충청">충청</option>
-				</select>
+		<data id = "currentData" 
+				data-keyword = "${keyword }" 
+				data-age = "${filter.age }" 
+				data-min = "${filter.minRunningtime }" 
+				data-location = "${filter.location }" 
+				data-start = "${filter.startDate }" 
+				data-end = "${filter.endDate }"/>
+		 <div class="dropdown mb-3">
+		    <a class="dropdown-toggle" id="dropdownMenuAge" data-toggle="dropdown" aria-expanded="false">
+		      	전체 연령
+		    </a>
+		    <ul class="dropdown-menu" aria-labelledby="dropdownMenuAge">
+		      <li><a class="dropdown-item" href="#" data-filter="age" data-value="0">전체 연령</a></li>
+		      <li><a class="dropdown-item" href="#" data-filter="age" data-value="5">5세 이상</a></li>
+		      <li><a class="dropdown-item" href="#" data-filter="age" data-value="7">7세 이상</a></li>
+		      <li><a class="dropdown-item" href="#" data-filter="age" data-value="12">12세 이상</a></li>
+		      <li><a class="dropdown-item" href="#" data-filter="age" data-value="15">15세 이상</a></li>
+		      <li><a class="dropdown-item" href="#" data-filter="age" data-value="18">18세 이상</a></li>
+		    </ul>
+		  </div>
+		
+		  <!-- Running Time Dropdown -->
+		  <div class="dropdown mb-3">
+		    <a class="dropdown-toggle" id="dropdownMenuRunningTime" data-toggle="dropdown" aria-expanded="false">
+		      	전체 공연 시간
+		    </a>
+		    <ul class="dropdown-menu" aria-labelledby="dropdownMenuRunningTime">
+		      <li><a class="dropdown-item" href="#" data-filter="minRunningtime" data-value="0">전체 공연 시간</a></li>
+		      <li><a class="dropdown-item" href="#" data-filter="minRunningtime" data-value="90"> ~ 90분</a></li>
+		      <li><a class="dropdown-item" href="#" data-filter="minRunningtime" data-value="91">91분 ~ 120분</a></li>
+		      <li><a class="dropdown-item" href="#" data-filter="minRunningtime" data-value="121">121분 ~ 150분</a></li>
+		      <li><a class="dropdown-item" href="#" data-filter="minRunningtime" data-value="151">151분 ~ 180분</a></li>
+		      <li><a class="dropdown-item" href="#" data-filter="minRunningtime" data-value="181">180분 ~ </a></li>
+		    </ul>
+		  </div>
+		
+		  <!-- Location Dropdown -->
+		  <div class="dropdown">
+		    <a class="dropdown-toggle" id="dropdownMenuLocation" data-toggle="dropdown" aria-expanded="false">
+		     	전체 지역
+		    </a>
+		    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLocation">
+		      <li><a class="dropdown-item" href="#" data-filter="location" data-value="">전체 지역</a></li>
+		      <li><a class="dropdown-item" href="#" data-filter="location" data-value="서울">서울</a></li>
+		      <li><a class="dropdown-item" href="#" data-filter="location" data-value="경기">경기</a></li>
+		      <li><a class="dropdown-item" href="#" data-filter="location" data-value="인천">인천</a></li>
+		      <li><a class="dropdown-item" href="#" data-filter="location" data-value="강원">강원</a></li>
+		      <li><a class="dropdown-item" href="#" data-filter="location" data-value="경상">경상</a></li>
+		      <li><a class="dropdown-item" href="#" data-filter="location" data-value="전라">전라</a></li>
+		      <li><a class="dropdown-item" href="#" data-filter="location" data-value="충청">충청</a></li>
+		    </ul>
+		  </div>
               	
-              	</td>
-              	<td>
               		<input type="date" name = "startDate">
               		<input type="date" name = "endDate">
-              	</td>
-              </tr>
-		</table>
-		<button class="filter">적용</button>
+              
+		
 	</div>
   
    	<div class="musical-grid">

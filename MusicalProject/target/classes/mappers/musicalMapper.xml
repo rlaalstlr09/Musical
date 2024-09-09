@@ -83,7 +83,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	    AND
 	    (SYSDATE BETWEEN ADD_MONTHS(m.musical_period_start, -1) AND m.musical_period_end - 1)
         AND
-        ((#{filter.location} is null) or (v.venue_name like '%' || #{filter.location} || '%')) 
+        ((#{filter.location} is null) or (v.venue_address like '%' || #{filter.location} || '%')) 
 	]]>
 	</select>
 	
