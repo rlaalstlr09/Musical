@@ -103,6 +103,28 @@ public class MusicalScheduleDto {
 		this.seat_count = seat_count;
 	}
 
+	// 포맷팅된 날짜를 반환하는 메서드
+    public String getFormattedDate() {
+        return formatDate(mu_sch_date, "yyyy-MM-dd", "yyyy-MM-dd");
+    }
+
+    // 포맷팅된 시간을 반환하는 메서드
+    public String getFormattedTime() {
+        return formatDate(mu_sch_time, "yyyy-MM-dd HH:mm:ss", "HH:mm");
+    }
+
+    // 공통 포맷팅 메서드
+    private String formatDate(String dateString, String inputFormatStr, String outputFormatStr) {
+        SimpleDateFormat inputFormat = new SimpleDateFormat(inputFormatStr);
+        SimpleDateFormat outputFormat = new SimpleDateFormat(outputFormatStr);
+        try {
+            Date date = inputFormat.parse(dateString);
+            return outputFormat.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return dateString; // 포맷팅 실패 시 원래 문자열 반환
+        }
+    }
 
 	@Override
 	public String toString() {
@@ -121,21 +143,15 @@ public class MusicalScheduleDto {
         try {
             Date date = formatter.parse(mu_sch_date);
             String dayName = dayFormatter.format(date);
-            switch (dayName) {
-                case "Monday": return "월요일";
-                case "Tuesday": return "화요일";
-                case "Wednesday": return "수요일";
-                case "Thursday": return "목요일";
-                case "Friday": return "금요일";
-                case "Saturday": return "토요일";
-                case "Sunday": return "일요일";
-                default: return "";
-            }
+            return dayName;
         } catch (ParseException e) {
             e.printStackTrace();
             return "";
         }
     }
+	
+	
+	
 	
 	/*
 	 * 	//뮤지컬 일정 요일 구하기

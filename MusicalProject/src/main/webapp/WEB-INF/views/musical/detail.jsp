@@ -279,7 +279,7 @@ $(document).ready(function() {
 						<c:if test="${schedule.mu_sch_date ne previousDate}">
 							<tr>
 								<td>
-									<fmt:formatDate value="${schedule.mu_sch_date}" pattern="yyyy-MM-dd" />
+									${schedule.formattedDate}
 								</td>
 								<td>
 									${schedule.dayOfWeekInKorean}
@@ -289,7 +289,7 @@ $(document).ready(function() {
 						</c:if>
 						<tr>
 							<td colspan = 2 class = "schedule-time">
-								<fmt:formatDate value="${schedule.mu_sch_time}" pattern="HH:mm" />
+								${schedule.formattedTime}
 							</td>
 						</tr>
 					</table>
