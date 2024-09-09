@@ -1,27 +1,49 @@
 
 
 $(document).ready(function(){
-	function filter(){
-		$.ajax({
-			url : '/ex/musical/listAll',
-			method : 'GET',
-			data:{
-				keyword : $('[name=keyword]').val(),
-				startDate : $('[name=startDate]').val(),
-				endDate:$('[name=endDate]').val(),
-				age:$('[name=age]').val(),
-				minRunningtime:$('[name=minRunningtime]').val(),
-				location : $('[name=location]').val()
-			},
-			success:function(data){
-  				$('body').html(data);
-  			},
-  			error:function(error){
-  				console.error('Error loading content : ', error);
-  			}
+	let filters = {
+			keyword: $('#currentData').data('keyword'),
+			age: $('#currentData').data('age'),
+			minRunningtime : $('#currentData').data('min'),
+			location: $('#currentData').data('location'),
+			startDate : $('#currentData').data('start'),
+			endDate : $('#currentData').data('end')
+		};
+		
+		$('.dropdown-item').on('click', function(event) {
+		      event.preventDefault();
+		      
+		      var filterType = $(this).data('filter');
+		      var filterValue = $(this).data('value');
+
+		      // 필터 객체 업데이트
+		      filters[filterType] = filterValue;
+
+		      // 선택된 필터 항목 표시
+		      console.log(filters);
+
+		      // 서버에 필터 적용된 목록 요청
+		      filter(filters);
 		});
-	}
-	
+		
+		function filter(filters){
+			$.ajax({
+				url : '/ex/musical/listAll',
+				method : 'GET',
+				data: filters,
+				success:function(data){
+					
+	  				$('body').html(data);
+	  				$('.dropdown-toggle').dropdown();
+	  				
+	  			},
+	  			error:function(error){
+	  				console.error('Error loading content : ', error);
+	  			}
+			});
+		}
+	  				
+	  				
 	function sort(sortId){
 		$.ajax({
 			url: '/ex/musical/listAll',
@@ -75,14 +97,14 @@ $(document).ready(function(){
             'background-image': 'url(' + posterUrl + ')',
             'background-size': 'cover',
             'background-position': 'center',
-            'background-repeat': 'no-repeat'
+            'background-repeat': 'no-repeat',
+            'border-radius' : '16px'
         });
     });
     
     
     var swiper1 = new Swiper('.musical-like', {
-        slidesPerView: 5, // 화면에 보여질 슬라이드 수
-        spaceBetween: 0,
+        
         loop:true,
         effect: 'coverflow',
         coverflowEffect: {
@@ -104,7 +126,27 @@ $(document).ready(function(){
         autoplay: {
             delay: 5000, // 자동 슬라이드 전환 간격 (밀리초 단위)
         },
-        
+        breakpoints: {
+        	0: {
+        		slidesPerView: 1
+        	},
+        	501:{
+        		slidesPerView: 2,
+                spaceBetween: 0
+        	},
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 30
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 50
+            },
+            1650: {
+              slidesPerView: 5,
+              spaceBetween : 10
+            }
+          }
     });
     
     var swiper2 = new Swiper('.musical-date', {
@@ -124,6 +166,26 @@ $(document).ready(function(){
         autoplay: {
             delay: 5000, // 자동 슬라이드 전환 간격 (밀리초 단위)
         },
-       
+        breakpoints: {
+        	0: {
+        		slidesPerView: 1
+        	},
+        	501:{
+        		slidesPerView: 2,
+                spaceBetween: 0
+        	},
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 30
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 50
+            },
+            1650: {
+              slidesPerView: 5,
+              spaceBetween : 10
+            }
+          }
     });
 });

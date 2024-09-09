@@ -21,7 +21,7 @@
 	}
 	
 	.product-info table{
-		min-width : 1000px;
+		min-width : 90%;
 		min-height : 400px;
 		padding : 10px;
 		text-align : center;

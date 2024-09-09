@@ -10,7 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Musical Details</title>
- <link rel="stylesheet" href="/ex/resources/css/musical_list.css">
+ <link rel="stylesheet" href="/ex/resources/css/musical_detail.css">
 <style>
 
 </style>
@@ -270,29 +270,30 @@ $(document).ready(function() {
 				</c:forEach>
 			
 			</div>
-
+			
+			<h4>공연 스케줄 안내</h4>
 			<div class="schedule-grid">
-
-				<div class = "schedule-detail">
-					<c:set var="previousDate" value="" />
-					<c:forEach var="schedule" items="${schedules }">
+<c:set var="previousDate" value="" />
+				<c:forEach var="schedule" items="${schedules }">
+					<table class = "schedule-date">
 						<c:if test="${schedule.mu_sch_date ne previousDate}">
-							<div class = "schedule-date">
-								<div>
-									<p><fmt:formatDate value="${schedule.mu_sch_date}" pattern="yyyy-MM-dd" /></p>
-								</div>
-								
-								<div>
-									<p>${schedule.dayOfWeekInKorean}</p>
-								</div>
-							</div>
+							<tr>
+								<td>
+									<fmt:formatDate value="${schedule.mu_sch_date}" pattern="yyyy-MM-dd" />
+								</td>
+								<td>
+									${schedule.dayOfWeekInKorean}
+								</td>
+							</tr>
 							<c:set var="previousDate" value="${schedule.mu_sch_date}" />
 						</c:if>
-						<div>
-							<p><fmt:formatDate value="${schedule.mu_sch_time}" pattern="HH:mm" /></p>
-						</div>
-					</c:forEach>
-				</div>
+						<tr>
+							<td colspan = 2 class = "schedule-time">
+								<fmt:formatDate value="${schedule.mu_sch_time}" pattern="HH:mm" />
+							</td>
+						</tr>
+					</table>
+				</c:forEach>
 				
 			</div>
 			<div id="actor">
