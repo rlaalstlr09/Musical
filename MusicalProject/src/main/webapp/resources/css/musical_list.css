@@ -120,11 +120,6 @@ header a {
     font-weight: bold;
 }
 
-.musical-item img{
-	height: 360px;
-}
-
-
 .hidden{
 	display:none;
 }
@@ -161,7 +156,35 @@ ul li a {
    gap: 20px;
 }
 
+@media (max-width: 1350px) {
+	.musical-grid {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
+
+@media (max-width: 1024px) {
+	.musical-grid {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+@media (max-width: 768px) {
+	.musical-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 500px) {
+	.musical-grid {
+		grid-template-columns: repeat(1,1fr);
+	}
+}
+
+
+
 .swiper {
+	display:flex;
+	flex-direction:column;
     width: 90%;
     height: 500px; /* 높이 조정 */
 }
@@ -178,7 +201,7 @@ ul li a {
 }
 
 .swiper-slide-active {
-   padding : 0;
+   padding : 33px 0;
     
 }
 
