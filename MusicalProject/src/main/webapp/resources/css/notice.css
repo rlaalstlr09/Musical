@@ -212,11 +212,11 @@ border-top: 1px solid #242428;
 	padding-left: 0;
 }
 
-.hide {
+tbody .hide {
 	display: none;
 }
 
-.show {
+tbody .show {
 	display: table-row;
 }
 

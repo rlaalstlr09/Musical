@@ -89,21 +89,20 @@
 		gap : 10px;
 	}
 	
-	.schedule-detail{
-		display : flex;
-		flex-direction: column;
-		gap : 5px;
-	}
-	
 	.schedule-date{
-		display : flex;
-		gap : 3px;
+		displpay : inline-block;
+		min-width : 200px;
+		min-height : 100px;
+		text-align : center;
+		
 	}
 	
-	.schedule-date div{
-		flex : 1;
-		box-sizing : border-box;
-		
+	.schedule-date tr{
+		border : 0.5px solid lightgrey;
+	}
+	
+	.schedule-date tr td:nth-child(even){
+		background-color : #f4f4f4;
 	}
 	
 	#openModalLink, .nav-link{

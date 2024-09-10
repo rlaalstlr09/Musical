@@ -74,6 +74,7 @@ h1 {
 
 </head>
 <body>
+<jsp:include page="../layout/admin_header.jsp"/>
 	<div class="container">
 		<h1>스케줄 변경</h1>
 		<form action="${pageContext.request.contextPath}/reser_admin//mu_sch_update_admin" method="post">

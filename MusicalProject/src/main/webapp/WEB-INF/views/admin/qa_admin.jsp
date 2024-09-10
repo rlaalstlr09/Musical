@@ -13,6 +13,7 @@
 
 </head>
 <body>
+<jsp:include page="../layout/admin_header.jsp"/>
 <jsp:include page="../layout/header.jsp"/>
 	<div id="wrap">
 		<div id="contents">

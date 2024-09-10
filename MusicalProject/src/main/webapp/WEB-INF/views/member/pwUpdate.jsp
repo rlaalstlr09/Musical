@@ -24,7 +24,7 @@ body{
 	border-right: 1px solid #ddd;
 	box-shadow: 2px 0 5px rgba(0,0,0,0.1);
 }
-.sidebar h2{
+.sidebar .mypage{
 	text-align: center;
 	margin-bottom: 30px;
 	font-size: 1.5em;
@@ -83,12 +83,15 @@ window.onload = function() {
 </head>
 <body>
 	<div class="sidebar">
-		<h2>마이페이지</h2>
-		<a href="read?customer_id=${pageContext.request.userPrincipal.name }">회원 정보</a>
-		<a href="write">1:1문의</a>
-		<a href="qa_list?customer_id=${pageContext.request.userPrincipal.name }">1:1문의내역</a>
-		<a href="#">장바구니</a>
-		<a href="remove">회원탈퇴</a>
+		<a href="myPage" class="mypage">마이페이지</a>
+		<a href="read" class="a">회원 정보</a>
+		<a href="write" class="a">1:1문의</a>
+		<a href="qa_list" class="a">1:1문의내역</a>
+
+		<a href="myReview">내가 쓴 리뷰</a>
+
+		<a href="#" class="a">장바구니</a>
+		<a href="remove" class="a">회원탈퇴</a>
 	</div>
 	<div class="container">
 	<form action="pwUpdate" method="post">

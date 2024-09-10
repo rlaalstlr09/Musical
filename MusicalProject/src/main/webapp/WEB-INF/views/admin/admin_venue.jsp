@@ -19,7 +19,7 @@ if (result == 'success') {
 </script>
 </head>
 <body>
-
+<jsp:include page="../layout/admin_header.jsp"/>
 	<div id="wrap">
 			<div id="content">
 				<div class="board_qna">

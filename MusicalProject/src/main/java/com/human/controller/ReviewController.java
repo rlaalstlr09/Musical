@@ -67,13 +67,7 @@ public class ReviewController {
 		return "redirect:/tab/review";
 	}
 	
-	@RequestMapping(value = "/deleteReview", method = RequestMethod.GET)
-	public String deleteReview(Integer musical_id, int review_id, Model model)throws Exception{
-		
-		rService.delete(review_id);
-		model.addAttribute("musical_id", musical_id);
-		return "redirect:/tab/review";
-	}
+	
 	
 
 }
