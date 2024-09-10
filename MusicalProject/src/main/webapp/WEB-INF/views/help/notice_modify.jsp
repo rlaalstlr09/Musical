@@ -23,9 +23,7 @@
 		<label>제목</label> <input type="text" name='nTitle' value="${noticeDto.nTitle}" required
 				style="width: 100%">
 		<label>카테고리</label><select name="nGroupKind" required>
-				<option value="티켓오픈" <c:out value="${noticeDto.nGroupKind eq '전체'?'selected':'' }"/>>티켓오픈</option>
-    		<!-- <option value="n" selected>----</option>
-    		<option value="n">----</option> -->
+				<option value="티켓오픈" <c:out value="${noticeDto.nGroupKind eq '전체'?'selected':'' }"/>>티켓오픈</option>    		
     		<option value="스포츠" <c:out value="${noticeDto.nGroupKind eq '스포츠'?'selected':'' }"/>>스포츠</option>
     		<option value="변경/취소" <c:out value="${noticeDto.nGroupKind eq '변경/취소'?'selected':'' }"/>>변경/취소</option>
     		<option value="시스템관련" <c:out value="${noticeDto.nGroupKind eq '시스템관련'?'selected':'' }"/>>시스템관련</option>

@@ -38,8 +38,6 @@
 				<textarea name="nContent" rows="18" style="width: 100%" required
 					placeholder="내용 입력"></textarea>
 			
-			
-			<!-- /.box-body -->
 			<button type="submit" class="signup">등록</button>
 
 		</form>

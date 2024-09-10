@@ -14,13 +14,6 @@
 <script src='<%=request.getContextPath()%>/resources/script/notice.js'></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/signup.css">	
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/help_sytle.css">
-<script>
-	$(document).ready(function() {
-
-		
-
-	});
-</script>
 </head>
 <body>
 <jsp:include page="../layout/header.jsp"/>
