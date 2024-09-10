@@ -23,7 +23,7 @@ body {
 }
 /* 페이지 로드 시 헤더의 색상이 회색으로 변경될 때의 스타일 */
 .header-background.page-header-active {
-    background-color: #eeeeee; /* 회색 배경색 */
+    background-color: #65aef1; /* 회색 배경색 */
     color: #000000; /* 텍스트 색상 변경 */
     box-shadow: 0 2px 1px rgba(217, 216, 216, 0.3);
     height: 100px;
@@ -60,7 +60,7 @@ body {
 
 /* 스크롤 시 헤더가 고정될 때의 스타일 */
 .header-background.sticky {
-    background-color: #eeeeee;
+    background-color: #65aef1;
     /* 스크롤 시 배경색 흰색으로 변경 */
     color: #000000;
     /* 스크롤 시 텍스트 색상 변경 */
@@ -87,7 +87,7 @@ body {
     padding: 0 40px;
     /* 좌우 패딩 추가 */
     z-index: 2;
-    background: rgba(255, 255, 255, 0);
+    background: #65aef1;
     /* 초기 배경 투명 */
     height: 85px;
     color: inherit;
@@ -394,7 +394,7 @@ input[id="menuicon"]:checked+label span:nth-child(3) {
 div[class="slidebar"] {
     width: 230px;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8);
+    background: #65aef1;
     ;
     position: fixed;
     top: 0;
@@ -410,7 +410,7 @@ input[id="menuicon"]:checked+label+div {
 .sidebar {
     width: 50px;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: #65aef1;
     padding: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
     position: fixed;
@@ -522,7 +522,7 @@ input[id="menuicon"]:checked+label+div {
 .slidebar {
     width: 230px;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8);
+    background: #65aef1;
     position: fixed;
     top: 0;
     left: -230px;
@@ -541,7 +541,7 @@ input[id="menuicon"]:checked+label+div {
     width: 100%;
     height: 100px;
     /* 상단 부분의 높이 설정 */
-    background: rgba(0, 0, 0, 0.7);
+    background: #65aef1;
     /* 더 진한 배경색 설정 */
     z-index: 0;
     /* 슬라이드바 내용보다 위에 표시 */

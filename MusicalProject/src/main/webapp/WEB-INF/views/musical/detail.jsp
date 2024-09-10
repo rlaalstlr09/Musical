@@ -10,85 +10,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Musical Details</title>
+ <link rel="stylesheet" href="/ex/resources/css/musical_detail.css">
 <style>
 
-.container{
-	display:flex;
-	flex-direction: column;
-	gap: 50px;
-}
- #actor {
-            display: flex;
-            flex-wrap: wrap;
-        }
-        .actor-row {
-            display: flex;
-            flex-wrap: wrap;
-            text-align : center;
-            width: 100%;
-        }
-        .actor-info {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: #f9f9f9;
-            margin: 0.5rem;
-            width: 150px;
-        }
-	.info{
-		display:flex;
-		width : 100%;
-		gap : 5%;
-	}
-	.button-container{
-		position: relative;
-		flex:1;
-	}
-	
-	.img-fluid{
-		width : 250px;
-		height : 400px;
-	}
-	
-	.musical-detail-info{
-		position:relative;
-		line-height: 2em;
-	}
-	
-	.seat-table{
-		min-width:250px;
-	}
-	
-	.seat-price{
-		text-align : right;
-	}
-	
-	.list{
-		display : inline-block;
-		position: absolute;
-		top : 0;
-		right : 0;
-	}
-	
-	.reservation{
-		display:inline-block;
-		position: absolute;
-		top : 90%;
-		right : 0;
-	}
-	
-	#openModalLink, .nav-link{
-		text-decoration: none;
-		color: #000;  
-	}
-	
-	#openModalLink:hover, .nav-link:hover{
-		text-decoration: none;
-		color: #000;
-	}
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -141,21 +65,30 @@ $(document).ready(function() {
 				customer_id : customerId
 			},
 			success : function(response) {
-				if (response.redirect) {
+				if (response === 'redirect') {
 					// 로그인 필요 시 로그인 페이지로 리다이렉트
-					window.location.href = response.redirect;
+					if(confirm('로그인이 필요합니다')){
+						window.location.href = '/ex/customer/login';
+					};
+					
 				}
-				var currentCount = parseInt(
-						$('span#total-likes').text(), 10);
-				if (isLiked) {
-					$this.removeClass('liked').text('♡'); // 좋아요 취소
-					$('span#total-likes').text(currentCount - 1);
-				} else {
-					$this.addClass('liked').text('♥'); // 좋아요 추가
-					$('span#total-likes').text(currentCount + 1);
+				else if (response === 'failed'){
+					return;
+				}
+				
+				else if	(response === 'success'){
+					var currentCount = parseInt(
+							$('span#total-likes').text(), 10);
+					if (isLiked) {
+						$this.removeClass('liked').text('♡'); // 좋아요 취소
+						$('span#total-likes').text(currentCount - 1);
+					} else {
+						$this.addClass('liked').text('♥'); // 좋아요 추가
+						$('span#total-likes').text(currentCount + 1);
 
+					}
 				}
-				$('span#total-likes').text(response.total_likes);
+				
 			},
 			error : function(error) {
 				console.error('Error loading content:', error);
@@ -305,8 +238,8 @@ $(document).ready(function() {
 			<div class = "card-body">
 			</div>
 		</div>
-		<div id="musiscal-detail">
-			<h4>공연 상세</h4>
+		<div class="musiscal-detail">
+			<h2>공연 상세</h2>
 			<div id="notice">
 				<strong>공지사항</strong>
 				<ul>
@@ -323,6 +256,7 @@ $(document).ready(function() {
 			<div id="detail">포스터, 상세정보 표시</div>
 
 			<div id="venue">
+				<h4>공연장 안내</h4>
 				<jsp:include page="fragments/venue.jsp">
 				    <jsp:param name="venue_name" value="${musical.venue_name}" />
 				    <jsp:param name="hall_name" value="${musical.hall_name}" />
@@ -336,49 +270,50 @@ $(document).ready(function() {
 				</c:forEach>
 			
 			</div>
-
-			<div id="schedule">
-
-				<c:set var="previousDate" value="" />
-				<table>
-					<tr>
-						<th>날짜</th>
-						<th>요일</th>
-						<th>공연 시간</th>
-					</tr>
-
-					<c:forEach var="schedule" items="${schedules }">
+			
+			<h4>공연 스케줄 안내</h4>
+			<div class="schedule-grid">
+<c:set var="previousDate" value="" />
+				<c:forEach var="schedule" items="${schedules }">
+					<table class = "schedule-date">
 						<c:if test="${schedule.mu_sch_date ne previousDate}">
 							<tr>
-								<td><fmt:formatDate value="${schedule.mu_sch_date}" pattern="yyyy-MM-dd" /></td>
-								<td>${schedule.dayOfWeekInKorean}</td>
+								<td>
+									${schedule.formattedDate}
+								</td>
+								<td>
+									${schedule.dayOfWeekInKorean}
+								</td>
 							</tr>
 							<c:set var="previousDate" value="${schedule.mu_sch_date}" />
 						</c:if>
 						<tr>
-							<td><fmt:formatDate value="${schedule.mu_sch_time}" pattern="HH:mm" /></td>
+							<td colspan = 2 class = "schedule-time">
+								${schedule.formattedTime}
+							</td>
 						</tr>
-					</c:forEach>
-
-				</table>
-				<div id="actor">
-					<c:set var="previousCharacterName" value="${actors[0].character_name}" />
-					<c:forEach var = "actor" items = "${actors }">
-						<c:if test = "${previousCharacterName ne actor.character_name }">
-							<div class = "actor-row">
-								<p>${actor.character_name}</p>
-							</div>
-						</c:if>
-						<div class = "actor-info" data-character="${actor.character_name}">
-							<p><img src = "/ex/resources/${actor.actor_img}"></p>
-							<p>${actor.actor_name}</p>
-
-						</div>
-						 <c:set var="previousCharacterName" value="${actor.character_name}" />
-					</c:forEach>
-					
-				</div>
+					</table>
+				</c:forEach>
+				
 			</div>
+			<div id="actor">
+				<c:set var="previousCharacterName" value="${actors[0].character_name}" />
+				<c:forEach var = "actor" items = "${actors }">
+					<c:if test = "${previousCharacterName ne actor.character_name }">
+						<div class = "actor-row">
+							<p>${actor.character_name}</p>
+						</div>
+					</c:if>
+					<div class = "actor-info" data-character="${actor.character_name}">
+						<p><img src = "/ex/resources/${actor.actor_img}"></p>
+						<p>${actor.actor_name}</p>
+
+					</div>
+					 <c:set var="previousCharacterName" value="${actor.character_name}" />
+				</c:forEach>
+				
+			</div>
+			
 		</div>
 	</div>
 

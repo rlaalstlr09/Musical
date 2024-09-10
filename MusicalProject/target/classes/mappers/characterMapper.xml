@@ -54,14 +54,15 @@ FETCH NEXT #{vo.perPageNum} ROWS ONLY
 
 
 <select id="character_id" resultType="int" >
-select character_id from character c, actor_character ac  where c.musical_id = #{musical_id} and 
+select c.character_id from character c, actor_character ac  where c.musical_id = #{musical_id} and 
 ac.actor_id = #{actor_id} and c.character_name=#{character_name}
 </select>
 
 <select id="character_actor" resultType="com.human.dto.CharacterDto" >	
 SELECT c.*,musical_title,ac.actor_id
 FROM character c, musical m, actor_character ac
-WHERE ac.actor_id=#{actor_id} and c.musical_id=m.musical_id
+WHERE ac.actor_id=#{actor_id} and c.musical_id=m.musical_id 
+and ac.character_id=c.character_id
 ORDER BY c.character_id DESC
 OFFSET (#{vo.page} - 1) * #{vo.perPageNum} ROWS
 FETCH NEXT #{vo.perPageNum} ROWS ONLY
@@ -69,6 +70,7 @@ FETCH NEXT #{vo.perPageNum} ROWS ONLY
 
 <select id="character_actor_listSearchCount" resultType="int">
 <![CDATA[ select count(c.character_id) from character c, actor_character ac where ac.actor_id=#{actor_id} ]]>
+and and ac.character_id=c.character_id 
 <![CDATA[ and c.character_id > 0 ]]>
 </select>	
 

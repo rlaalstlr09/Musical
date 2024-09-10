@@ -35,7 +35,6 @@
 			<textarea name="fContent" rows="18" style="width: 100%" required
 				>${FaqDto.fContent}</textarea>
 		
-		<!-- /.box-body -->
 		<button type="submit" class="signup">완료</button>
 
 	</form>

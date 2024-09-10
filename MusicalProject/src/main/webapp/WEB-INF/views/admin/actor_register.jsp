@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/help_sytle.css">
 </head>
 <body>
+<jsp:include page="../layout/admin_header.jsp"/>
 <div class="container">
 <button type="button" class="btn btn-warning">&lt; 이전</button>
 <button class="viewBtn" value="${searchType}" data-file="${fileName}">view</button>

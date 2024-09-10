@@ -21,6 +21,54 @@ INSERT INTO admin
 select fileName from admin where table_id=#{table_id} and table_name=#{table_name} and table_crud=#{table_crud}
 </select>
 
+<sql id='admin_search'>
+    <if test="keyword!=null">
+            and (
+                table_content LIKE '%' || #{keyword} || '%'
+                or fileName LIKE '%' || #{keyword} || '%'
+                )
+                        
+    </if>
+	</sql>
+		<sql id='admin_category'>
+    <if test="fGroupKind!=null">
+    <if test="fGroupKind!='전체'">
+    <if test="fGroupKind!=''">
+            and table_name = #{fGroupKind}
+    </if>
+    </if>
+    </if>
+	</sql>
+	
+	<sql id='admin_display'>
+    <if test="nGroupKind!=null">
+    <if test="nGroupKind!='전체'">
+    <if test="nGroupKind!=''">
+     		and table_crud = #{nGroupKind}
+    </if>
+    </if>
+    </if>
+	</sql>
+	
+	<select id="admin_listSearch" resultType="com.human.dto.AdminDto" >
+	<![CDATA[SELECT *
+FROM admin
+WHERE 1=1]]>
+<include refid="admin_category"/>
+<include refid="admin_display"/>
+<include refid="admin_search"/>
+<![CDATA[ORDER BY manage_id DESC
+OFFSET (#{page} - 1) * #{perPageNum} ROWS
+FETCH NEXT #{perPageNum} ROWS ONLY]]>
+</select>
 
+
+	<select id="admin_listSearchCount" resultType="int">
+<![CDATA[ select count(manage_id) from admin where 1=1 ]]>
+		<include refid="admin_category"/>
+		<include refid="admin_display"/>
+		<include refid="admin_search"/>
+<![CDATA[ and manage_id > 0 ]]>
+	</select>
 
 </mapper>

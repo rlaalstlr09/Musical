@@ -48,7 +48,7 @@ if (result == 'success') {
 					</div>
 
 					<div id="qnaList-wrapper">
-						<table cellspacing="0" border="0" class="tb_board tb_qna">
+						<table border="0" class="tb_board tb_qna">
 							<colgroup>
 								<col width="15%">
 								<col width="63%">
@@ -64,7 +64,6 @@ if (result == 'success') {
 								</tr>
 							</thead>
 							<tbody>
-								<%--게시글 테이블 불러오는 코드 삽입--%>
 								<c:forEach items="${list }" var='boardDtos' varStatus='status'>
 									<tr class="item">
 										<td>${boardDtos.nGroupKind }</td>
@@ -87,7 +86,6 @@ ${boardDtos.formattedNWriteTime}
 							<c:if test="${boardVo.page !=1}">
 								<a href='notice${boardVo.makeSearch1(1)}'>&lt;&lt;&lt;</a>
 							</c:if>
-							<!-- 앞전 page 모양을 클릭하면 pageMarker.startPage에 -1을 처리해준다.-->
 							<c:if test="${boardVo.prev }">
 								<a href='notice${boardVo.makeSearch1(boardVo.startPage-1)}'>&lt;&lt;</a>
 							</c:if>
@@ -100,24 +98,15 @@ ${boardDtos.formattedNWriteTime}
 									<c:out value="${boardVo.page==idx?' class=active ':'' }"/>>
 									${idx}</a>
 							</c:forEach>
-
-							<%--<a href='#'>1</a>
-    	 <a href='list${pageMaker.makeSearch(2)}'>2</a>
-    	<a href='#' class="active">3</a> --%>
-
 							<c:if test="${boardVo.page != boardVo.totalEndPage}">
 								<a href='notice${boardVo.makeSearch1(boardVo.page+1)}'>&gt;</a>
 							</c:if>
 							<c:if test="${boardVo.next }">
 								<a href='notice${boardVo.makeSearch1(boardVo.endPage+1)}'>&gt;&gt;</a>
-
 							</c:if>
-
-
 							<c:if test="${boardVo.page != boardVo.totalEndPage}">
 								<a href='notice${boardVo.makeSearch1(boardVo.totalEndPage)}'>&gt;&gt;&gt;</a>
 							</c:if>
-
 						</div>
 						
 						<div class="search_faq">
@@ -128,25 +117,19 @@ ${boardDtos.formattedNWriteTime}
 									<c:out value="${boardVo.searchType eq '내용'?'selected':'' }"/>>내용</option>
 								<option value="제목내용"
 									<c:out value="${boardVo.searchType eq '제목내용'?'selected':'' }"/>>제목+내용</option>
-
-							</select>
-							
+							</select>							
 							<input type="text" name="keyword" id="keywordInput" placeholder="검색어 입력"
 								value="${boardVo.keyword}">
 							<button id="searchBtn">검색</button>
-						</div>
-						
+						</div>						
 					</div>
 					 <sec:authorize access="hasRole('ROLE_ADMIN')"> 
 					 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 					<button class="newBtn">새 글</button>
 					</sec:authorize>
 				</div>
-
 			</div>
-
 		</div>
-
 	</div>
 </body>
 </html>

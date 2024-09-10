@@ -24,12 +24,7 @@ $(document).ready(function () {
   var $scrollIcon = $('#scroll-icon');
   var scrollTrigger = 650; // 헤더가 나타나기 시작할 스크롤 위치 (픽셀 단위)
 
-    // 페이지 로드시 고정 상태 확인
-    if ($(window).scrollTop() > scrollTrigger) {
-      $header.addClass('sticky');
-      changeHeaderColor(true);  // 고정된 헤더 색상 변경
-    }
-  
+
 
   // 스크롤 이벤트 핸들러
   $(window).on('scroll', function () {
@@ -46,25 +41,30 @@ $(document).ready(function () {
         $defaultIcon.show(); // 기본 검색로고 이미지 표시
         $scrollIcon.hide();  // 블랙 검색 이미지 숨김
 
-        $
       }
     }
   });
 
-  // 페이지 로드 시 헤더의 고정 상태를 설정
-  $(window).trigger('scroll'); // 페이지 로드 시 스크롤 이벤트를 강제로 발생시켜 상태를 설정
 });
 
-  // 색상을 변경하는 함수
-  function changeHeaderColor(isSticky) {
-    if (isSticky) {
-      $header.css('background-color', '#000');  // 헤더 색상을 검정으로 변경
+//페이지 로드 시 실행
+window.addEventListener('load', function() {
+    // 현재 페이지 URL을 가져옵니다.
+    const currentPage = window.location.pathname;
+
+    // 헤더 요소를 선택합니다.
+    const header = document.querySelector('.header-background');
+console.log(ContextPath);
+    // 조건에 따라 헤더에 클래스 추가
+    if (currentPage !== ContextPath+'/' && currentPage !== ContextPath+'/') {
+        // 홈 페이지가 아닌 경우, 색상 변경
+        header.classList.add('page-header-active'); // 'page-header-active' 클래스를 추가하여 색상 변경
     } else {
-      $header.css('background-color', 'transparent');  // 기본 색상으로 변경
+        // 홈 페이지인 경우, 기본 스타일 유지
+        header.classList.remove('page-header-active');
     }
-  }
-
-
+});
+	 
 // 페이지가 로드될 때 스크롤 위치 복원
 window.addEventListener('load', () => {
   const scrollPosition = sessionStorage.getItem('scrollPosition');
@@ -72,6 +72,7 @@ window.addEventListener('load', () => {
       window.scrollTo(0, parseInt(scrollPosition));
   }
 });
+
 
 // 스크롤 위치 저장
 window.addEventListener('scroll', () => {
@@ -82,7 +83,6 @@ window.addEventListener('scroll', () => {
   document.querySelector('.slidebar').classList.add('hide');
   document.getElementById('menuicon').checked = false; // 메뉴 아이콘의 체크 상태를 해제
 });
-
 
 
 let slideIndex = 1;
@@ -130,3 +130,4 @@ document.addEventListener('scroll', function() {
     adBanner.style.display = 'none'; // 배너를 숨깁니다.
   }
 });
+

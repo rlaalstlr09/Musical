@@ -145,6 +145,7 @@
     </style>
 </head>
 <body>
+<jsp:include page="../layout/admin_header.jsp"/>
     <div class="container">
         <div class="calendar-container">
             <div class="calendar-table-container">

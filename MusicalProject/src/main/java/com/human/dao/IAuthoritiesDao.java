@@ -9,4 +9,6 @@ public interface IAuthoritiesDao {
 		
 	public void delete(AuthoritiesDto dto) throws Exception;
 	
+	//관리자관련
+	public void authorityUpdate(AuthoritiesDto dto) throws Exception;
 }

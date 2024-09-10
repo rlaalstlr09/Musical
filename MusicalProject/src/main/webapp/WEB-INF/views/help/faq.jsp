@@ -29,9 +29,7 @@ if (result == 'success') {
 					<div class="search_faq">
 						<select name="fGroupKind">
 							<option value="전체"
-								<c:out value="${boardVo.fGroupKind eq '전체'?'selected':'' }"/>>전체</option>
-							<!-- <option value="n" selected>----</option>
-    		<option value="n">----</option> -->
+								<c:out value="${boardVo.fGroupKind eq '전체'?'selected':'' }"/>>전체</option>							
 							<option value="예매/취소"
 								<c:out value="${boardVo.fGroupKind eq '예매/취소'?'selected':'' }"/>>예매/취소</option>
 							<option value="결제"
@@ -41,8 +39,6 @@ if (result == 'success') {
 							<option value="기타"
 								<c:out value="${boardVo.fGroupKind eq '기타'?'selected':'' }"/>>기타</option>
 						</select>
-						<!-- input 에 text를 입력하면 value로 설정된 pageMaker에 keyword의 값이 id값으로 들어간다.
-    	입력값이 쿼리 스트링에 들어간다. -->
 						<input type="text" name="keyword" id="keywordInput" placeholder="검색어 입력"
 							value="${boardVo.keyword}">
 						<button id="searchBtn">검색</button>
@@ -64,7 +60,7 @@ if (result == 'success') {
 					</div>
 					
 					<div id="qnaList-wrapper">
-						<table cellspacing="0" border="0" class="tb_board tb_qna">
+						<table border="0" class="tb_board tb_qna">
 							<colgroup>
 								<col width="15%">
 								<col width="70%">
@@ -78,7 +74,6 @@ if (result == 'success') {
 								</tr>
 							</thead>
 							<tbody>
-								<%--게시글 테이블 불러오는 코드 삽입--%>
 								<c:forEach items="${list }" var='boardDtos' varStatus='status'>
 									<tr class="item">
 										<td>${boardDtos.fGroupKind }</td>
@@ -88,7 +83,7 @@ if (result == 'success') {
 									<tr class="hide">
 
 										<td colspan="3"><pre><c:out value="${boardDtos.fContent}" escapeXml="false" /></pre> 
-										 <sec:authorize access="hasRole('ROLE_ADMIN')">
+										 <sec:authorize access="hasRole('ROLE_ADMIN,SUPERADMIN')">
 											<form role='form' method="get">
 											<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 												<input name="fId" type="hidden" value="${boardDtos.fId}">
@@ -120,10 +115,6 @@ if (result == 'success') {
 									${idx}</a>
 							</c:forEach>
 
-							<%--<a href='#'>1</a>
-    	 <a href='list${pageMaker.makeSearch(2)}'>2</a>
-    	<a href='#' class="active">3</a> --%>
-
 							<c:if test="${boardVo.page != boardVo.totalEndPage}">
 								<a href='faq${boardVo.makeSearch1(boardVo.page+1)}'>&gt;</a>
 							</c:if>
@@ -131,27 +122,19 @@ if (result == 'success') {
 								<a href='faq${boardVo.makeSearch1(boardVo.endPage+1)}'>&gt;&gt;</a>
 
 							</c:if>
-
-
 							<c:if test="${boardVo.page != boardVo.totalEndPage}">
 								<a href='faq${boardVo.makeSearch1(boardVo.totalEndPage)}'>&gt;&gt;&gt;</a>
 							</c:if>
-
 						</div>
 
-						<script type="text/javascript">
-							
-						</script>
 					</div>
-					<!--  <sec:authorize access="hasRole('ROLE_ADMIN')"> -->
+					<sec:authorize access="hasRole('ROLE_ADMIN,SUPERADMIN')">
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 					<button class="newBtn">새글</button>
-					<!-- </sec:authorize> -->
+					</sec:authorize> 
 				</div>
-
 			</div>
-
 		</div>
-
 	</div>
 </body>
 </html>

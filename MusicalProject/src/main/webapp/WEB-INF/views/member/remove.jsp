@@ -11,7 +11,7 @@
 <body>
 	<div>
 		정말로 탈퇴하실건가요?<br>
-		<a href="delete?customer_id=${pageContext.request.userPrincipal.name }">확인</a>
+		<a href="delete">확인</a>
 	</div>
 	
 </body>

@@ -18,8 +18,6 @@
 <button type="submit" class="btn btn-warning" style="" >&lt; 이전</button>
 		<h4>FAQ 등록</h4>
 	
-	<!-- /.box-header -->
-	<!-- action에 경로가 없으면 현재 페이지 주소로 이동한다.-->
 	<form role="form" method="post" onsubmit='return checkFaq()'>
 
 		<label>제목</label> <input type="text" name='fTitle' required placeholder="제목 입력"
@@ -36,7 +34,6 @@
 			<textarea name="fContent" rows="18" style="width: 100%" required
 				placeholder="내용 입력"></textarea>
 		
-		<!-- /.box-body -->
 		<button type="submit" class="signup">등록</button>
 
 	</form>

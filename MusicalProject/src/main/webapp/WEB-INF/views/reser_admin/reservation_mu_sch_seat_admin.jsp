@@ -259,7 +259,7 @@ button:hover {
 </style>
 </head>
 <body>
-
+<jsp:include page="../layout/admin_header.jsp"/>
 	<div class="flex-container">
 		<div class="container">
 			<div class="control-container">

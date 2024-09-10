@@ -24,6 +24,7 @@
 
 </head>
 <body>
+<jsp:include page="../layout/admin_header.jsp"/>
 <div class="container">
     <button type="submit" class="btn btn-warning" style="" >&lt; 이전</button>
 <br>
@@ -41,7 +42,7 @@
         
         <br>
         <label for="address">주소:</label>
-        <input type="text" id="address" name="venue_address" value="${VenueDto.venue_address}" readonly required>
+        <input type="text" id="address" name="venue_address" value="${VenueDto.venue_address}" readonly>
         <input type="hidden" id="longitude" name="longitude">
         <input type="hidden" id="latitude" name="latitude">
         <br>

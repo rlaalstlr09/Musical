@@ -34,7 +34,7 @@ CREATE TABLE authorities (
         FOREIGN KEY (customer_id)
         REFERENCES customer(customer_id)
 );
-
+insert into authorities values('admin','ROLE_SUPERADMIN');
 
 create table persistent_logins(
     username nvarchar2(50) not null,
@@ -158,19 +158,25 @@ create table review(
         REFERENCES musical(musical_id)
         ON DELETE CASCADE
 );
-
 create sequence qa_count;
+drop table qa;
 create table qa(
     qa_id number,
     customer_id nvarchar2(50),
+    musical_id number default null,
     qa_type nvarchar2(50),
     title nvarchar2(500),
     content varchar2(4000),
+    qa_date date,
     response varchar2(4000) default null,
     display NUMBER(1) default 0,
-     CONSTRAINT fk_Q&A_customer
+     CONSTRAINT fk_qa_customer
         FOREIGN KEY (customer_id)
         REFERENCES customer(customer_id)
+        ON DELETE CASCADE,
+    CONSTRAINT fk_qa_musical
+        FOREIGN KEY (musical_id)
+        REFERENCES musical(musical_id)
         ON DELETE CASCADE
 );
 

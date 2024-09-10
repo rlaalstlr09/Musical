@@ -21,11 +21,10 @@
         .places li { padding: 10px; border-bottom: 1px solid #ddd; cursor: pointer; }
         .places li:hover { background-color: #f0f0f0; }
     </style>
-<script>
 
-</script>
 </head>
 <body>
+<jsp:include page="../layout/admin_header.jsp"/>
 <div class="container">
     <button type="submit" class="btn btn-warning" style="" >&lt; 이전</button>
 <br>

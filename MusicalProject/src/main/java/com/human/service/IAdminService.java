@@ -21,7 +21,8 @@ public interface IAdminService {
 
 	public void admin_create(AdminDto admin) throws Exception;
 	public List<AdminDto> admin_file_read(@RequestParam("table_id") Integer table_id,@RequestParam("table_name") String table_name,@RequestParam("table_crud") String table_crud) throws Exception;
-
+	public List<AdminDto> admin_listSearch(BoardVo vo) throws Exception;
+	public int admin_listSearchCount(BoardVo vo) throws Exception;
 
 	
 }

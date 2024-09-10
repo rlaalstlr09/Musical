@@ -6,6 +6,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -60,11 +62,7 @@ public class MusicalController {
 		BoardVo categoryVo = new BoardVo();
 		categoryVo.setPage(0);
 		categoryVo.setPerPageNum(10);
-
-		// 총 데이터 개수와 페이징 데이터 계산
-		int totalCount = musicalService.getTotalCount(keyword, filter);
-		boardVo.setTotalCount(totalCount);
-
+		
 		// 상영시간 필터를 위해 최소 상영시간에 따른 최대 상영시간 계산
 		if (filter.getMinRunningtime() == 1) {
 			filter.setMaxRunningtime(90);
@@ -78,7 +76,10 @@ public class MusicalController {
 			filter.setMaxRunningtime(500);
 		}
 		
-		System.out.println(filter);
+		// 총 데이터 개수와 페이징 데이터 계산
+		int totalCount = musicalService.getTotalCount(keyword, filter);
+		boardVo.setTotalCount(totalCount);
+		System.out.println(totalCount);
 
 		// 데이터 가져오기
 		List<MusicalDto> musicalList = musicalService.selectAllMusical(boardVo, keyword, sort, filter);
@@ -152,14 +153,14 @@ public class MusicalController {
 
 	//뮤지컬 좋아요 누르면 동작
 	@PostMapping("/like")
-	public RedirectView likeToggle(@RequestParam("customer_id") String customer_id, @RequestParam("musical_id") Integer musical_id, HttpServletRequest request) {
+	public ResponseEntity<String> likeToggle(@RequestParam("customer_id") String customer_id, @RequestParam("musical_id") Integer musical_id, HttpServletRequest request) {
 	    
 		System.out.println(customer_id);
 		
 		//로그인 안한 상태. 로그인페이지로 리다이렉트하게 바꾸셈
 		if (customer_id == null || customer_id.trim().isEmpty()) {
 			 
-            return new RedirectView("/ex/musical/listAll");
+            return new ResponseEntity<String>("redirect", HttpStatus.OK);
 	    }
 
 	    try {
@@ -169,12 +170,12 @@ public class MusicalController {
 	        } else {
 	            musicalService.insertLike(musical_id, customer_id);
 	        }
-	        return new RedirectView("/ex/musical/detail/" + musical_id);
+	        return new ResponseEntity<String>("success", HttpStatus.OK);
 	        
 	        
 	    } catch (Exception e) {
 	        e.printStackTrace();
-	        return new RedirectView("/ex/musical/listAll");
+	        return new ResponseEntity<String>("failed", HttpStatus.OK);
 	    }
 	}
 	

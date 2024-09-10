@@ -221,7 +221,7 @@
                 } else if (dayPosition === 6) {
                     cell.classList.add('saturday');
                 }
-
+                console.log("01");
                 cell.addEventListener('click', function() {
                     if ((month + 1) < 10) {
                         month = '0' + (month + 1);
@@ -233,10 +233,11 @@
                         cell.id = '0' + cell.id;
                     }
                     const selectedDate = year + '/' + month + '/' + cell.id;
-                    const session_id = "${sessionScope.id}";
-                    document.getElementById('selected-date').value = selectedDate;
+                   document.getElementById('selected-date').value = selectedDate;
+
+                    console.log("02");
 					
-                    if (todayDate <= selectedDate || session_id === "admin") {
+                    if (todayDate <= selectedDate) {
                         // 일반 사용자일 경우 오늘 이전 날짜 클릭 불가,
                         // 관리자인 경우 클릭 가능
                         $.ajax({
@@ -247,10 +248,11 @@
                                 date: selectedDate
                             },
                             success: function(data) {
+                            	console.log("Received data from server:", data); 
                                 console.log(data);
                                 const resultContainer = document.getElementById('result');
                                 resultContainer.innerHTML = ''; 
-                               
+
 
                                 if (data.length === 0) {
                                     resultContainer.innerHTML = '해당 날짜에 대한 일정이 없습니다.';
@@ -258,6 +260,7 @@
                                     const table = document.createElement('table');
                                     table.classList.add('result-table');
                                     table.border = '1';
+
 
                                     // 헤더 생성
                                     const thead = document.createElement('thead');
@@ -269,12 +272,6 @@
                                         headerRow.appendChild(th);
                                     });
                                     
-                                    // 관리자인 경우 예약 수정 열 추가
-                                    if (session_id === "admin") {
-                                        const th = document.createElement('th');
-                                        th.textContent = '예약 수정';
-                                        headerRow.appendChild(th);
-                                    }
                                     
                                     thead.appendChild(headerRow);
                                     table.appendChild(thead);
@@ -308,15 +305,6 @@
                                         td5.appendChild(link);
                                         row.appendChild(td5);
 
-                                        // 관리자인 경우 예약 수정 버튼 추가
-                                        if (session_id === "admin") {
-                                            const td6 = document.createElement('td');
-                                            const adminlink = document.createElement('a');
-                                            adminlink.href = `${pageContext.request.contextPath}/admin/mu_sch_update_admin?mu_sch_id=` + dto.mu_sch_id;
-                                            adminlink.textContent = '스케줄 변동 수정';
-                                            td6.appendChild(adminlink);
-                                            row.appendChild(td6);
-                                        }
 
                                         tbody.appendChild(row);
                                     });

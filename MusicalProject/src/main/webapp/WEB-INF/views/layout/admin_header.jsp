@@ -7,8 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/ex/resources/css/header.css"> 
-   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/admin_header.css"> 
 <script>
 var ContextPath= '<%=request.getContextPath()%>';
 
@@ -87,7 +86,7 @@ var ContextPath= '<%=request.getContextPath()%>';
         <button class="close-btn">&times;</button>
         <ul class="menu">
           <li>
-            <a href="#">Home</a>
+            <a href="${pageContext.request.contextPath }/">Home</a>
             <ul class="submenul">
             <sec:authorize access="isAnonymous()">
               <li><a href="${pageContext.request.contextPath }/customer/login">로그인</a></li>
@@ -95,26 +94,27 @@ var ContextPath= '<%=request.getContextPath()%>';
             </ul>
           </li>
           <li>
-            <a href="${pageContext.request.contextPath }/member/myPage">마이페이지</a>
+            <a href="${pageContext.request.contextPath }/admin/admin">관리자페이지</a>
             <ul class="submenul">
-              <li><a href="#">장바구니</a></li>
-              <li><a href="${pageContext.request.contextPath }/member/read?customer_id=${pageContext.request.userPrincipal.name }">회원정보수정</a></li>
+              <li><a href="${pageContext.request.contextPath }/admin/admin_admin">관리 이력</a></li>
+              <li><a href="${pageContext.request.contextPath }/admin/admin_files">팩스 문서함</a></li>
             </ul>
           </li>
           <li>
-            <a href="#">예약</a>
+            <a href="${pageContext.request.contextPath }/admin/admin_users">회원 관리</a>
             <ul class="submenul">
-              <li><a href="#">예매확인</a></li>
-              <li><a href="#">예매변경</a></li>
-              <li><a href="#">예매취소</a></li>
+              <li><a href="${pageContext.request.contextPath }/admin/qa_admin">QA 관리</a></li>
+              <li><a href="${pageContext.request.contextPath}/reser_admin/reservation_list_admin">예약내역 관리</a></li>
+              <li><a href="${pageContext.request.contextPath}/admin/admin_review">리뷰 관리</a></li>
             </ul>
           </li>
           <li>
-            <a href="${pageContext.request.contextPath }/help/help_main">고객센터</a>
+            <a href="#">테이블 관리</a>
             <ul class="submenul">
-              <li><a href="${pageContext.request.contextPath }/help/notice">공지사항</a></li>
-              <li><a href="${pageContext.request.contextPath }/help/faq">FAQ</a></li>
-              <li><a href="${pageContext.request.contextPath }/member/qa_list?customer_id=${pageContext.request.userPrincipal.name }">1:1문의사항</a></li>
+              <li><a href="${pageContext.request.contextPath }/admin/admin_musical">뮤지컬/배역 관리</a></li>
+              <li><a href="${pageContext.request.contextPath }/admin/admin_venue">극장/홀 관리</a></li>
+              <li><a href="${pageContext.request.contextPath }/admin/admin_actor">배우정보 관리</a></li>
+              <li><a href="${pageContext.request.contextPath }/reser_admin/mu_sch_admin">스케줄 추가</a></li>
             </ul>
           </li>
           <li class="specialo"><a href="${pageContext.request.contextPath }/help/near_map">근처 공연장 보기</a></li>

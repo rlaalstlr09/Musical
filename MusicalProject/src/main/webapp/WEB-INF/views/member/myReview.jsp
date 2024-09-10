@@ -322,6 +322,7 @@ $(document).ready(function() {
 </head>
 <body>
 <div class="sidebar">
+
     <a href="/ex/member/myPage" class="mypage">마이페이지</a>
     <a href="/ex/member/read?customer_id=${pageContext.request.userPrincipal.name }" class="a">회원 정보</a>
     <a href="/ex/member/write" class="a">1:1문의</a>
@@ -330,6 +331,7 @@ $(document).ready(function() {
     <a href="#" class="a">장바구니</a>
     <a href="remove" class="a">회원탈퇴</a>
 </div>
+
 
 <div class="main"> 
     <h1>내가 쓴 리뷰</h1>

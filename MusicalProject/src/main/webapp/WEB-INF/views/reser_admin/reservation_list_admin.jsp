@@ -154,6 +154,7 @@ button:hover {
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+<jsp:include page="../layout/admin_header.jsp"/>
     <h1>예약내역</h1>
 
     <!-- 필터 폼 -->
@@ -242,7 +243,7 @@ button:hover {
                 
                 if (!seatInfoCell.data('loaded')) {
                     $.ajax({
-                        url: '${pageContext.request.contextPath}/admin/seat_check',
+                        url: '${pageContext.request.contextPath}/reser_admin/seat_check',
                         type: 'GET',
                         data: { reservation_id: reservationId },
                         success: function(response) {
@@ -276,7 +277,7 @@ button:hover {
                 var reservationId = $(this).data('id');
                 
                 $.ajax({
-                    url: '${pageContext.request.contextPath}/admin/reservation_cancel',
+                    url: '${pageContext.request.contextPath}/reser_admin/reservation_cancel',
                     type: 'POST',
                     data: { reservation_id: reservationId },
                     success: function(response) {
