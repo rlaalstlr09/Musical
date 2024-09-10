@@ -125,8 +125,8 @@ body{
 
 			<a href="read?customer_id=${pageContext.request.userPrincipal.name }">회원 정보</a> 
 			<a href="write">1:1문의</a> 
-			<a href="qa_list?customer_id=${pageContext.request.userPrincipal.name }">1:1문의내역</a> 
-      		<a href="${pageContext.request.contextPath }/review/myReview">내가 쓴 리뷰</a>
+			<a href="qa_list?customer_id=">1:1문의내역</a> 
+      		<a href="myReview?customer_id=${pageContext.request.userPrincipal.name }">내가 쓴 리뷰</a>
 
 			<a href="#">장바구니</a>
 			<a href="remove">회원탈퇴</a>

@@ -187,4 +187,19 @@ public class MemberController {
 		model.addAttribute("boardVo",vo);
 		return "/member/myReview";
 	}
+	@RequestMapping(value = "member/updateReview", method = RequestMethod.GET)
+	public String updateRevieww(ReviewDto dto)throws Exception{
+		
+		rService.update(dto);
+		
+		
+		return "redirect:/member/myReview?customer_id="+dto.getCustomer_id();
+	}
+	@RequestMapping(value = "member/deleteReview", method = RequestMethod.GET)
+	public String deleteReview(@RequestParam("review_id") int review_id, @RequestParam("customer_id") String customer_id)throws Exception{
+		
+		rService.delete(review_id);
+		
+		return "redirect:/member/myReview?customer_id="+customer_id;
+	}
 }
