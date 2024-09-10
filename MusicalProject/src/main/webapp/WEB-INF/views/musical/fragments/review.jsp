@@ -31,6 +31,7 @@ body {
     border-radius: 8px; /* 모서리 둥글게 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 */
     transition: box-shadow 0.3s ease, transform 0.3s ease; /* 부드러운 전환 효과 */
+    width:900px;
 }
 
 .review_content:hover {
@@ -66,7 +67,7 @@ display:none;
         background-size: cover;
         cursor: pointer;
     }
-     .star.big_star{
+     .star.big_star {
      width:80px;
      height:80px;
      }
@@ -78,7 +79,8 @@ display:none;
 	.star.on.big_star{
 	height:30px;
 	}
-
+.star.big_star.bstar{
+height:80px;}
 
 	.star_rating.read-only .star {
             pointer-events: none; /* 클릭 이벤트를 비활성화합니다 */
@@ -247,7 +249,7 @@ margin-top:10px;
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$(document).ready(function() {
-		$(document).on('click', '.pagination a', function(e) {
+		$('.pagination a').on('click', function(e) {
 	        e.preventDefault(); // 기본 링크 동작 방지
 
 	        var page = $(this).data('page'); // 클릭한 페이지 번호
@@ -352,18 +354,7 @@ margin-top:10px;
              }, 500);
          });
 		 
-		 $(".updateReview").click(function() {
-             var updateForm="#updateForm_"+$(this).data("id");
-             
-			 $(updateForm).toggle();
-         });
 		 
-		 $(".deleteReview").click(function() {
-				var review_id = $(this).data('review-id');
-				if (confirm('정말로 삭제하시겠습니까?')) {
-					window.location.href = "deleteReview?review_id=" + review_id;
-				}
-			});
 		 
 		 $('.star_rating.read-only .star').off('click');
 		 
@@ -384,7 +375,7 @@ margin-top:10px;
 <div class="main"> 
 	
 	    <c:if test = "${roundRating == null && avgRating == null }">
-	    	<p>등록된 리뷰가 없습니다.</p>
+	    	<p>등록된 리뷰가 없습니다.</p><div id="open-Review"><input type="button" value="리뷰작성" id="openReview"></div>
 	    </c:if>
 	    <c:if test="${roundRating ne null && avgRating ne null }">
 		    <div class="average-rating">
@@ -456,12 +447,12 @@ margin-top:10px;
 	</c:if>
 	<div id="reviewForm">
 	
-		 <div class="star_rating">
-               <span class="star big_star" data-value="1"></span>
-               <span class="star big_star" data-value="2"></span>
-               <span class="star big_star" data-value="3"></span>
-               <span class="star big_star" data-value="4"></span>
-               <span class="star big_star" data-value="5"></span>
+		 <div class="star_rating restar">
+               <span class="star big_star bstar" data-value="1"></span>
+               <span class="star big_star bstar" data-value="2"></span>
+               <span class="star big_star bstar" data-value="3"></span>
+               <span class="star big_star bstar" data-value="4"></span>
+               <span class="star big_star bstar" data-value="5"></span>
            </div>
 		
         <input type="hidden" id="rating"  value="0">
