@@ -24,11 +24,13 @@ var ContextPath= '<%=request.getContextPath()%>';
       </div>
 
       <div class="search">
-        <input type="text" placeholder="Search...">
-        <button type="submit">
-          <img id="default-icon" src="${pageContext.request.contextPath }/resources/img/search_logo.png" alt="Search Icon">
-          <img id="scroll-icon" src="${pageContext.request.contextPath }/resources/img/search_logo_black.png" alt="Search Icon">
-        </button>
+      	<form action = "/ex/musical/listAll" method = "get">
+	        <input type="text" name = "keyword" placeholder="Search...">
+	        <button type="submit">
+	          <img id="default-icon" src="${pageContext.request.contextPath }/resources/img/search_logo.png" alt="Search Icon">
+	          <img id="scroll-icon" src="${pageContext.request.contextPath }/resources/img/search_logo_black.png" alt="Search Icon">
+	        </button>
+        </form>
       </div>
 
       <nav class="navigation">

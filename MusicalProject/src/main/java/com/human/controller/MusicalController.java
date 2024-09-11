@@ -4,6 +4,7 @@ package com.human.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,8 +49,6 @@ public class MusicalController {
 	@RequestMapping("/listAll")
 	public String listAll(@RequestParam(value = "page", defaultValue = "0") int page,
 			@RequestParam(value = "perPageNum", defaultValue = "25") int perPageNum,
-			@RequestParam(value = "keyword", defaultValue = "") String keyword,
-			@RequestParam(value = "sort", defaultValue = "") String sort, 
 			MusicalFilterDto filter, Model model)
 			throws Exception {
 
@@ -77,25 +76,28 @@ public class MusicalController {
 		}
 		
 		// 총 데이터 개수와 페이징 데이터 계산
-		int totalCount = musicalService.getTotalCount(keyword, filter);
+		int totalCount = musicalService.getTotalCount(filter);
 		boardVo.setTotalCount(totalCount);
 		System.out.println(totalCount);
 
 		// 데이터 가져오기
-		List<MusicalDto> musicalList = musicalService.selectAllMusical(boardVo, keyword, sort, filter);
+		List<MusicalDto> musicalList = musicalService.selectAllMusical(boardVo, filter);
+		
+		MusicalFilterDto musicalFilterDto = new MusicalFilterDto();
 		
 		//인기순 10개
-		List<MusicalDto> likeMusical = musicalService.selectAllMusical(categoryVo, "", "like", new MusicalFilterDto());
+		musicalFilterDto.setSort("like");
+		List<MusicalDto> likeMusical = musicalService.selectAllMusical(categoryVo, musicalFilterDto);
 		
 		//최근 오픈 10개
-		List<MusicalDto> dateMusical = musicalService.selectAllMusical(categoryVo, "", "period", new MusicalFilterDto());
+		musicalFilterDto.setSort("period");
+		List<MusicalDto> dateMusical = musicalService.selectAllMusical(categoryVo, musicalFilterDto);
 		
 		// 모델에 데이터와 페이지, 필터링 조건 추가
 		model.addAttribute("musicals", musicalList);
 		model.addAttribute("likeMusicals", likeMusical);
 		model.addAttribute("dateMusicals", dateMusical);
 		model.addAttribute("boardVo", boardVo);
-		model.addAttribute("keyword", keyword);
 		model.addAttribute("filter", filter);
 
 		return "musical/list"; // JSP 뷰 이름
@@ -103,7 +105,11 @@ public class MusicalController {
 
 	//뮤지컬 리스트에서 뮤지컬 선택하면 해당 뮤지컬 상세보기
 	@RequestMapping(value = "/detail/{musical_id}")
-	public String musicalDetail(@PathVariable("musical_id") Integer musical_id, Integer total_likes, Model model) throws Exception {
+	public String musicalDetail(
+			@PathVariable("musical_id") Integer musical_id, 
+			HttpServletRequest request,
+			Integer total_likes,
+			Model model) throws Exception {
 
 		MusicalDto musicalDto = new MusicalDto(musicalService.selectMusicalId(musical_id),
 				seatService.selectSeatInfo(musical_id));
@@ -123,8 +129,8 @@ public class MusicalController {
 		List<ActorCharacterDto> actorCharacterDto = actorCharacterService.selectAll(musical_id);
 
 		//customer_id 세션에서 받아온걸로 바꾸기
-		Integer isLike = musicalService.selectMusicalLike(musical_id, "test");
-		model.addAttribute("customer_id", "test");
+		String customer_id = request.getUserPrincipal().getName();
+		Integer isLike = musicalService.selectMusicalLike(musical_id, customer_id);
 
 		// 뮤지컬 정보
 		model.addAttribute("musical", musicalDto);
@@ -153,8 +159,11 @@ public class MusicalController {
 
 	//뮤지컬 좋아요 누르면 동작
 	@PostMapping("/like")
-	public ResponseEntity<String> likeToggle(@RequestParam("customer_id") String customer_id, @RequestParam("musical_id") Integer musical_id, HttpServletRequest request) {
-	    
+	public ResponseEntity<String> likeToggle(
+			@RequestParam("musical_id") Integer musical_id, 
+			HttpServletRequest request,
+			Model model) {
+		String customer_id = request.getUserPrincipal().getName();
 		System.out.println(customer_id);
 		
 		//로그인 안한 상태. 로그인페이지로 리다이렉트하게 바꾸셈

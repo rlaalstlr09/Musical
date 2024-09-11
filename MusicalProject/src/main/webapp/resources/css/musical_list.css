@@ -34,36 +34,14 @@ header a {
 /* 정렬 스타일 */
 .sort-container {
     display: flex;
-    justify-content: center; /* 가운데 정렬 */
-    margin: 20px 0; /* 상하 여백 */
+    justify-content: right; /* 가운데 정렬 */
 }
 
-.sort-options {
-    list-style: none; /* 기본 리스트 스타일 제거 */
-    padding: 0; /* 패딩 제거 */
-    margin: 0; /* 마진 제거 */
-    display: flex; /* 가로 배치 */
+select{
+	display : inline-block;
+	
 }
 
-.sort-options li {
-    margin: 0 10px; /* 아이템 간의 간격 조절 */
-}
-
-.sort-link {
-    text-decoration: none; /* 밑줄 제거 */
-    color: #333; /* 링크 색상 */
-    font-size: 16px; /* 폰트 사이즈 */
-    padding: 10px 15px; /* 패딩 추가 */
-    border-radius: 5px; /* 둥근 모서리 */
-    transition: background-color 0.3s, color 0.3s; /* 부드러운 색상 전환 효과 */
-}
-
-.sort-link:hover,
-.sort-link:focus,
-.sort-link.active {
-    background-color: #007bff; /* 배경색 변화 */
-    color: #fff; /* 글자색 변화 */
-}
 
 /* 필터 버튼 및 패널 */
 .filter-button {
@@ -77,31 +55,26 @@ header a {
 
 .filter-panel {
     display: none;
-    margin-top: 10px;
     padding: 10px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
 }
 
-.filter-panel table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.filter-panel th, .filter-panel td {
-    padding: 10px;
-    
-}
 
 .filter-panel select, .filter-panel input[type="date"] {
-    width: 100%;
-    padding: 5px;
-    margin: 5px 0;
+	width : auto;
+	height : 33px;
+	line-height: 16px;
+	font-size : 14px;
+	vertical-align : middle;
+	border:0.5px solid lightgrey;
 }
 
 .filter-panel.show {
-    display: block; /* 표시 상태 */
+    display: flex; /* 표시 상태 */
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
     max-height: 500px; /* 최대 높이 설정 */
+    gap : 20px; 
 }
 
 
@@ -110,15 +83,25 @@ header a {
 
 
 .card.musical-item {
-   width : 300px;
-   height : 550px;
+	
+  width:280px;
+  border-radius: 16px;
+  transition: transform 0.3s ease;
+   
+  overflow: hidden;    /* 카드 안의 요소들이 경계 밖으로 나가지 않도록 함 */
 }
 
-.musical-item a {
+.card.musical-item:hover {
+    transform: scale(1.05);
+}
+
+
+.musical-item a, .musical-item a:hover {
     color: #333;
     text-decoration: none;
     font-weight: bold;
 }
+
 
 .hidden{
 	display:none;
@@ -156,27 +139,27 @@ ul li a {
    gap: 20px;
 }
 
-@media (max-width: 1350px) {
+@media (max-width: 1600px) {
 	.musical-grid {
 		grid-template-columns: repeat(4, 1fr);
 	}
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1350px) {
 	.musical-grid {
 		grid-template-columns: repeat(3, 1fr);
 	}
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
 	.musical-grid {
 		grid-template-columns: repeat(2, 1fr);
 	}
 }
 
-@media (max-width: 500px) {
+@media (max-width: 768px) {
 	.musical-grid {
-		grid-template-columns: repeat(1,1fr);
+		grid-template-columns: repeat(1, 1fr);
 	}
 }
 
@@ -238,14 +221,14 @@ ul li a {
     text-align: center;
 }
 
-#search input[type="text"] {
+#search-container input[type="text"] {
     padding: 10px;
     width: 200px;
     border: 1px solid #ddd;
     border-radius: 5px;
 }
 
-#search button {
+#search-container button {
     background-color: #007bff;
     color: white;
     border: none;
@@ -256,6 +239,8 @@ ul li a {
 
 /* 페이지 네비게이션 */
 .pagination {
+	display: flex;
+	justify-content:center;
     text-align: center;
     margin: 20px 0;
 }
@@ -276,3 +261,30 @@ ul li a {
     display: none;
 }
 
+
+.scroll-controls {
+    position: fixed;
+    bottom: 20px; /* 페이지 하단에서 20px 위 */
+    right: 20px; /* 페이지 우측에서 20px 떨어져 위치 */
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* 버튼 사이의 간격 */
+    z-index: 1000; /* 버튼이 다른 요소 위에 위치하도록 설정 */
+}
+
+.scroll-controls button {
+    background-color: #007bff; /* 버튼 배경색 */
+    color: white; /* 버튼 텍스트 색 */
+    border: none;
+    border-radius: 4px; /* 둥근 모서리 */
+    width: 40px; /* 버튼 너비 */
+    height: 40px; /* 버튼 높이 */
+    font-size: 20px; /* 버튼 텍스트 크기 */
+    cursor: pointer; /* 마우스 커서 손 모양 */
+    outline: none; /* 포커스 시 테두리 제거 */
+    transition: background-color 0.3s ease;
+}
+
+.scroll-controls button:hover {
+    background-color: #0056b3; /* 버튼에 마우스 오버 시 색상 변경 */
+}

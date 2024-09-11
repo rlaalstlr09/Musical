@@ -7,17 +7,31 @@ $(document).ready(function(){
 			minRunningtime : $('#currentData').data('min'),
 			location: $('#currentData').data('location'),
 			startDate : $('#currentData').data('start'),
-			endDate : $('#currentData').data('end')
+			endDate : $('#currentData').data('end'),
+			sort : $('#currentData').data('sort')
 		};
+	
+	//이전에 선택한 검색어, 정렬, 필터 유지
+	 function setFilterSortValues(filters) {
+		    $('#ageSelect').val(filters.age);
+		    $('#runningTimeSelect').val(filters.minRunningtime);
+		    $('#locationSelect').val(filters.location);
+		    $('input[name="startDate"]').val(filters.startDate);
+		    $('input[name="endDate"]').val(filters.endDate);
+		    
+		    $('#sortSelect').val(filters.sort);
+		    
+		    $('.filter-panel').addClass('show');
+	 }
 		
-		$('.dropdown-item').on('click', function(event) {
-		      event.preventDefault();
+	 	//필터링
+		$('.filter-item').on('change', function() {
 		      
-		      var filterType = $(this).data('filter');
-		      var filterValue = $(this).data('value');
-
-		      // 필터 객체 업데이트
-		      filters[filterType] = filterValue;
+		      filters.age = $('#ageSelect').val();
+		      filters.minRunningtime = $('#runningTimeSelect').val();
+		      filters.location = $('#locationSelect').val();
+		      filters.startDate = $('input[name="startDate"]').val();
+		      filters.endDate = $('input[name="endDate"]').val();
 
 		      // 선택된 필터 항목 표시
 		      console.log(filters);
@@ -26,6 +40,7 @@ $(document).ready(function(){
 		      filter(filters);
 		});
 		
+		//검색, 필터, 정렬 데이터 가져옴
 		function filter(filters){
 			$.ajax({
 				url : '/ex/musical/listAll',
@@ -34,7 +49,7 @@ $(document).ready(function(){
 				success:function(data){
 					
 	  				$('body').html(data);
-	  				$('.dropdown-toggle').dropdown();
+	  				setFilterSortValues(filters);
 	  				
 	  			},
 	  			error:function(error){
@@ -44,45 +59,60 @@ $(document).ready(function(){
 		}
 	  				
 	  				
-	function sort(sortId){
-		$.ajax({
-			url: '/ex/musical/listAll',
-			method : 'GET',
-			data: {
-                sort: sortId,
-                keyword: $('#currentKeyword').val() ,
-                startDate: $('#currentStartDate').val() ,
-                endDate: $('#currentEndDate').val() ,
-                age: $('#currentAge').val() ,
-                minRunningtime: $('#currentMinRunningtime').val(), 
-                location: $('#currentLocation').val() 
-            },
-	  			success:function(data){
-	  				$('body').html(data);
-	  				$('a.sort-link').removeClass('active');
-	  		         
-	  		        $('[data-sort="' + sortId + '"]').addClass('active');
-	  			},
-	  			error:function(error){
-	  				console.error('Error loading content : ', error);
-	  			}
-		});	
-	}
-	 $('a.sort-link').click(function(event) {
-         event.preventDefault(); // 기본 동작 방지
-         
-         var sortId = $(this).data('sort'); // 'data-sort' 속성에서 정렬 기준 가져오기
-         sort(sortId);
+//	function sort(filters){
+//		$.ajax({
+//			url: '/ex/musical/listAll',
+//			method : 'GET',
+//			data: filters,
+//	  			success:function(data){
+//	  				$('body').html(data);
+//	  				
+//	  		        setFilterSortValues(filters);
+//	  			},
+//	  			error:function(error){
+//	  				console.error('Error loading content : ', error);
+//	  			}
+//		});	
+//	}
+		
+	//정렬
+	 $('#sortSelect').change(function(event) {
+         filters.sort = $(this).val();
+         filter(filters);
      });
 	 
-	 $('button.filter').click(function(){
-		 filter();
-	 })
+	 //뮤지컬 검색
+	 $('.search').click(()=>{
+		filters.keyword = $('.keyword').val();
+		filter(filters); 
+	 });
 	 
+	 //필터 초기화 버튼
+	 $('.reset').click(()=>{
+		 filters = {
+			keyword: "",
+			age: 0,
+			minRunningtime : 0,
+			location: "",
+			startDate : "",
+			endDate : "",
+			sort : ""
+		 };
+		 filter(filters);
+	 });
+	 
+	 //페이지 버튼 누르면 전체 뮤지컬 목록으로 스크롤 이동
+//	 $('.pagination a').click(function(e) {
+//		    e.preventDefault();
+//		    $('html, body').animate({
+//		        scrollTop: $('#container').offset().top
+//		    }, 500);
+//	});
 	 
     const filterButton = document.querySelector('.filter-button');
     const filterPanel = document.querySelector('.filter-panel');
 
+    //필터 버튼 누르면 필터링 옵션들 있는 div 생김
     filterButton.addEventListener('click', function () {
         if (filterPanel.classList.contains('show')) {
             filterPanel.classList.remove('show');
@@ -91,8 +121,9 @@ $(document).ready(function(){
         }
     });
     
+    //인기뮤지컬, 최근오픈 뮤지컬 swiper에 쓸 이미지 a태그
     $('.musical-img-item').each(function() {
-        var posterUrl = $(this).data('poster'); // jQuery의 .data() 메서드를 사용하여 data-poster 값을 가져옵니다
+        var posterUrl = $(this).data('poster'); 
         $(this).css({
             'background-image': 'url(' + posterUrl + ')',
             'background-size': 'cover',
