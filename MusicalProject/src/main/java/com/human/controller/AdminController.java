@@ -356,7 +356,7 @@ public class AdminController {
 	    }
 	    characterService.character_create(characterList);
 	    for(CharacterDto item:characterList ){
-	    	int character_id= characterService.character_id(item.getMusical_id(),item.getActor_id(),item.getCharacter_name());
+	    	int character_id= characterService.character_id(item.getMusical_id(),item.getCharacter_name());
 	    	acService.actor_character_create(item.getActor_id(),character_id);
 	    }
 	    rttr.addFlashAttribute("msg", "success");

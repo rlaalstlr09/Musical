@@ -54,8 +54,8 @@ FETCH NEXT #{vo.perPageNum} ROWS ONLY
 
 
 <select id="character_id" resultType="int" >
-select c.character_id from character c, actor_character ac  where c.musical_id = #{musical_id} and 
-ac.actor_id = #{actor_id} and c.character_name=#{character_name}
+select c.character_id from character c where c.musical_id = #{musical_id} and 
+ c.character_name=#{character_name}
 </select>
 
 <select id="character_actor" resultType="com.human.dto.CharacterDto" >	

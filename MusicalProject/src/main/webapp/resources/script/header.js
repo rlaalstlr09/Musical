@@ -1,6 +1,7 @@
 document.querySelector('.search button').addEventListener('click', function () {
-  
+  alert('Search functionality is not implemented yet.');
 });
+
 
 
 const submenuItems = document.querySelectorAll('.has-submenu');
@@ -46,9 +47,50 @@ $(document).ready(function () {
   });
 
 });
+window.addEventListener('load', function() {
+	let slideIndex = 1;
+	showSlides(slideIndex);
 
+	// 전역 함수로 바인딩
+	window.plusSlides = function(n) {
+		showSlides(slideIndex += n);
+	}
+
+	window.currentSlide = function(n) {
+		showSlides(slideIndex = n);
+	}
+
+	function showSlides(n) {
+		let slides = document.getElementsByClassName("mySlides");
+		let dots = document.getElementsByClassName("dot");
+
+		// 슬라이드 개수 확인
+		if (slides.length === 0) {
+			console.error("No slides found with class 'mySlides'");
+			return;
+		}
+
+		if (n > slides.length) { slideIndex = 1; }
+		if (n < 1) { slideIndex = slides.length; }
+
+		// 모든 슬라이드 숨기기
+		for (let i = 0; i < slides.length; i++) {
+			slides[i].style.display = "none";
+		}
+
+		// 모든 점 비활성화
+		for (let i = 0; i < dots.length; i++) {
+			dots[i].className = dots[i].className.replace(" active", "");
+		}
+
+		// 현재 슬라이드와 점 활성화
+		slides[slideIndex - 1].style.display = "block";
+		dots[slideIndex - 1].className += " active";
+	}
+});
 //페이지 로드 시 실행
 window.addEventListener('load', function() {
+	
     // 현재 페이지 URL을 가져옵니다.
     const currentPage = window.location.pathname;
 
@@ -63,6 +105,7 @@ console.log(ContextPath);
         // 홈 페이지인 경우, 기본 스타일 유지
         header.classList.remove('page-header-active');
     }
+    
 });
 	 
 // 페이지가 로드될 때 스크롤 위치 복원
@@ -85,35 +128,7 @@ window.addEventListener('scroll', () => {
 });
 
 
-let slideIndex = 1;
-showSlides(slideIndex);
 
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-  let slides = document.getElementsByClassName("mySlides");
-  let dots = document.getElementsByClassName("dot");
-  
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
-  
-  for (let i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  
-  for (let i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
-  
-  slides[slideIndex - 1].style.display = "block";
-  dots[slideIndex - 1].className += " active";
-}
 
 
 
@@ -130,4 +145,23 @@ document.addEventListener('scroll', function() {
     adBanner.style.display = 'none'; // 배너를 숨깁니다.
   }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+	  const slides = document.querySelectorAll('.purple_slides img');
+	  let currentIndex = 0;
+
+	  function showSlide(index) {
+	    slides.forEach((slide, i) => {
+	      slide.classList.toggle('active', i === index);
+	    });
+	  }
+
+	  function nextSlide() {
+	    currentIndex = (currentIndex + 1) % slides.length;
+	    showSlide(currentIndex);
+	  }
+
+	  showSlide(currentIndex);
+	  setInterval(nextSlide, 3000); // 3초마다 슬라이드 전환
+	});
 

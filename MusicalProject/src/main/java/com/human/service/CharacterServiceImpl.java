@@ -68,9 +68,9 @@ public class CharacterServiceImpl implements ICharacterService {
 		dao.character_create(characterList);
 	}
 
-	public int character_id(@Param("musical_id") int musical_id,@Param("actor_id") Integer actor_id,@Param("character_name") String character_name) throws Exception{
+	public int character_id(@Param("musical_id") int musical_id,@Param("character_name") String character_name) throws Exception{
 		ICharacterDao dao = sqlSession.getMapper(ICharacterDao.class);
-		return dao.character_id(musical_id,actor_id,character_name);
+		return dao.character_id(musical_id,character_name);
 	}
 	public void character_update(CharacterDto character) throws Exception{
 		ICharacterDao dao = sqlSession.getMapper(ICharacterDao.class);
