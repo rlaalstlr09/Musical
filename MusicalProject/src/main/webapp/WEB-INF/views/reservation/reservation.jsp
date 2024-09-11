@@ -175,7 +175,9 @@
                 </table>
             </div>
             <div class="input-container">
-                <input type="hidden" id="selected-date" readonly placeholder="년월이 표시됩니다">
+	            <input type="text" id="venue_id" value="${venue_id}" readonly >
+    	        <input type="text" id="musical_id" value="${musical_id}" readonly >
+                <input type="hidden" id="selected-date" readonly>
             </div>
         </div>
 
@@ -231,9 +233,11 @@
 
                     if (cell.id.length < 2) {
                         cell.id = '0' + cell.id;
-                    }
-                    const selectedDate = year + '/' + month + '/' + cell.id;
-                   document.getElementById('selected-date').value = selectedDate;
+					}
+					const selectedDate = year + '/' + month + '/' + cell.id;
+					document.getElementById('selected-date').value = selectedDate;
+					let venue_id = parseInt(document.getElementById('venue_id').value);
+					let musical_id = parseInt(document.getElementById('musical_id').value);
 
                     console.log("02");
 					
@@ -245,7 +249,9 @@
                             type: 'GET',
                             dataType: 'json',	
                             data: {
-                                date: selectedDate
+                                date: selectedDate,
+                                venue_id:venue_id,
+                                musical_id:musical_id
                             },
                             success: function(data) {
                             	console.log("Received data from server:", data); 

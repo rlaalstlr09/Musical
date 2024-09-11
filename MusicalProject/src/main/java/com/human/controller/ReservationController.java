@@ -62,8 +62,13 @@ public class ReservationController {
 	
 
 	@RequestMapping(value = "/reservation", method = RequestMethod.GET)
-	public void reservation(Model model) throws Exception {
+	public void reservation(@RequestParam("venue_id")int venue_id,
+			@RequestParam("musical_id")int musical_id,Model model) throws Exception {
+		
 		System.out.println("reservation");
+		model.addAttribute("venue_id",venue_id);
+		model.addAttribute("musical_id",musical_id);
+		
 	}
 	
 
@@ -71,9 +76,10 @@ public class ReservationController {
 	////////////////////////// request르 받아서 구현
 	@RequestMapping(value = "/select_date", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
-	public List<MusicalScheduleDto> select_date(@RequestParam("date") String date) throws Exception {
+	public List<MusicalScheduleDto> select_date(@RequestParam("venue_id")int venue_id,
+			@RequestParam("musical_id")int musical_id, @RequestParam("date") String date) throws Exception {
 		System.out.println("Fetching schedule for date: " + date);
-		List<MusicalScheduleDto> dtos = mu_schservice.select_Musical_sch(date, 1, 1);
+		List<MusicalScheduleDto> dtos = mu_schservice.select_Musical_sch(date, venue_id, musical_id);
 
 		for (MusicalScheduleDto schedule : dtos) {
 
@@ -154,7 +160,7 @@ public class ReservationController {
 
 		for(ReservationDto dto : dtos) {
 			MusicalScheduleDto mu_dto = mu_schservice.mu_sch_info(dto.mu_sch_id);
-			Date date_only = mu_dto.getMu_sch_date();
+			String date_only = mu_dto.getMu_sch_date().substring(0,10);
 			mu_dto.setMu_sch_date(date_only);
 			dto.mu_sch_dto=mu_dto;
 			dto.setMusical_name(musicalservice.musical_title(mu_dto.getMusical_id()));

@@ -110,7 +110,7 @@ public class Reser_adminController {
 	    
 		for(ReservationDto dto : dtos) {
 			MusicalScheduleDto mu_dto = mu_schservice.mu_sch_info(dto.mu_sch_id);
-			Date date_only = mu_dto.getMu_sch_date();
+			String date_only = mu_dto.getMu_sch_date().substring(0,10);
 			mu_dto.setMu_sch_date(date_only);
 			dto.mu_sch_dto=mu_dto;
 			dto.setMusical_name(musicalservice.musical_title(mu_dto.getMusical_id()));
