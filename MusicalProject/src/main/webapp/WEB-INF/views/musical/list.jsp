@@ -69,9 +69,12 @@
 	    <div class="swiper-button-next next-date"></div>
 	    <div class="swiper-button-prev prev-date"></div>
     </div>
-	<h2>전체 뮤지컬</h2>
-	 <div class="sort-container">
-	    <button class="filter-button">필터</button>
+	
+	<div class = "list-title">
+		<h2>전체 뮤지컬</h2>
+		<div class="sort-container">
+		    <button class="filter-button">필터</button>
+	    </div>
     </div>
    
    	  

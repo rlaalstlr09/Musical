@@ -172,7 +172,7 @@ $(document).ready(function() {
 				<!-- Modal -->
 				<div class="modal fade" id="venue-modal" tabindex="-1" role="dialog"
 					aria-labelledby="exampleModalLabel" aria-hidden="true">
-					<div class="modal-dialog custom-modal" role="document">
+					<div class="modal-dialog modal-lg" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
 								<h5 class="modal-title" id="exampleModalLabel">공연장 정보</h5>
@@ -280,27 +280,32 @@ $(document).ready(function() {
 			
 			<h4>공연 스케줄 안내</h4>
 			<div class="schedule-grid">
-<c:set var="previousDate" value="" />
-				<c:forEach var="schedule" items="${schedules }">
-					<table class = "schedule-date">
-						<c:if test="${schedule.mu_sch_date ne previousDate}">
-							<tr>
-								<td>
-									${schedule.formattedDate}
-								</td>
-								<td>
-									${schedule.dayOfWeekInKorean}
-								</td>
-							</tr>
-							<c:set var="previousDate" value="${schedule.mu_sch_date}" />
-						</c:if>
-						<tr>
-							<td colspan = 2 class = "schedule-time">
-								${schedule.formattedTime}
-							</td>
-						</tr>
-					</table>
-				</c:forEach>
+				<c:set var="previousDate" value="" />
+				
+					<c:forEach var="schedule" items="${schedules }">
+						<table class = "schedule-date">
+							<c:if test="${schedule.mu_sch_date ne previousDate}">
+								<tr>
+									<td>
+										${schedule.formattedDate}
+									</td>
+									<td>
+										${schedule.dayOfWeekInKorean}
+									</td>
+								</tr>
+								<c:set var="previousDate" value="${schedule.mu_sch_date}" />
+							</c:if>
+							<c:forEach var="schedule" items="${schedules }">
+								<c:if test="${schedule.mu_sch_date eq previousDate || previousDate eq ''}">
+									<tr>
+										<td colspan = 2 class = "schedule-time">
+											${schedule.formattedTime}
+										</td>
+									</tr>
+								</c:if>
+							</c:forEach>
+						</table>
+					</c:forEach>
 				
 			</div>
 			<div id="actor">

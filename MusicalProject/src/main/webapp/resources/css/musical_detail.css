@@ -77,6 +77,16 @@
 		line-height: 2em;
 	}
 	
+	
+	li{
+		margin-top: 10px;
+	}
+	
+	#venue{
+		display : flex;
+		flex-direction: column;
+		gap : 30px;
+	}
 	/* 좌석 등급별 가격 테이블 */
 	.seat-table{
 		min-width:250px;

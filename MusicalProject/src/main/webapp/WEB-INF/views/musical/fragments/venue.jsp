@@ -8,8 +8,18 @@
     <style>
     #map {
     	position: relative; /* 또는 position: absolute; */
-    	width: 500px;
-    	height: 350px;
+    	width: 100%;
+    	height: 450px;
+    	border : 1px solid #111;
+    	border-radius: 16px;
+	}
+	
+	.venue-info p{
+		font-size:14px;
+	}
+	
+	.venue-info strong{
+		font-size : 20px;
 	}
     
     </style>
@@ -78,13 +88,13 @@
 	
 	// 장소의 정보를 표시하는 함수입니다
 	function displayPlaceInfo(place) {
-	    var content = '<div style="padding:5px;font-size:12px;">' +
-	                  '<strong>' + place.place_name + '</strong><br>' +
-	                  '주소: ' + place.address_name + '<br>' +
-	                  '전화: ' + (place.phone || '정보 없음') + '<br>' +
-	                  '상세주소: ' + (place.road_address_name || '정보 없음') + '<br>' +
-	                  '카테고리: ' + place.category_name + '<br>' +
-	                  '웹사이트: <a href="' + (place.place_url || '#') + '" target="_blank">' + (place.place_url || '정보 없음') + '</a></div>';
+	    var content = '<div class = "venue-info">' +
+	                  '<strong>' + place.place_name + '</strong>' +
+	                  '<p>주소: ' + place.address_name + '</p>' +
+	                  '<p>전화: ' + (place.phone || '정보 없음') + '</p>' +
+	                  '<p>상세주소: ' + (place.road_address_name || '정보 없음') + '</p>' +
+	                  '<p>카테고리: ' + place.category_name + '</p>' +
+	                  '<p>웹사이트: <a href="' + (place.place_url || '#') + '" target="_blank">' + (place.place_url || '정보 없음') + '</a></p></div>';
 	    
 	    document.getElementById('map-detail-info').innerHTML = content;
 	}

@@ -80,7 +80,16 @@ select{
 
 
 /* 뮤지컬 목록 */
+.list-title{
+	display : inline-block;
+	width : 100%;
+	vertical-align : middle;
+	text-align:center;	
+}
 
+.list-title div{
+	margin-right:5%;
+}
 
 .card.musical-item {
 	
