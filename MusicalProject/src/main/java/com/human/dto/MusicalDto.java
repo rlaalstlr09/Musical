@@ -1,7 +1,6 @@
 package com.human.dto;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -19,6 +18,7 @@ public class MusicalDto {
 	private String musical_agelimit;
 	
 	//뮤지컬 리스트에서 공연장 정보 출력을 위한 데이터
+	private int venue_id;
 	private String venue_name;
 	private String hall_name;
 	
@@ -65,6 +65,7 @@ public class MusicalDto {
 		this.musical_period_end = musicalDto.getMusical_period_end();
 		this.musical_runningtime = musicalDto.getMusical_runningtime();
 		this.musical_agelimit = musicalDto.getMusical_agelimit();
+		this.venue_id = musicalDto.getVenue_id();
 		this.venue_name = musicalDto.getVenue_name();
 		this.hall_name = musicalDto.getHall_name();
 		this.total_likes = musicalDto.getTotal_likes();
@@ -166,7 +167,16 @@ public class MusicalDto {
 	public void setMusical_agelimit(String musical_agelimit) {
 		this.musical_agelimit = musical_agelimit;
 	}
+	
 
+
+	public int getVenue_id() {
+		return venue_id;
+	}
+
+	public void setVenue_id(int venue_id) {
+		this.venue_id = venue_id;
+	}
 
 	public Integer getTotal_likes() {
 		return total_likes;
