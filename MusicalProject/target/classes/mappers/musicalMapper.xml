@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     GROUP BY musical_id
 	) like_count ON m.musical_id = like_count.musical_id
 	WHERE   
-	    upper(m.musical_title) LIKE upper('%' || #{keyword, jdbcType=VARCHAR} || '%')
+	    upper(m.musical_title) LIKE upper('%' || #{filter.keyword, jdbcType=VARCHAR} || '%')
 	    AND
 	    ((#{filter.startDate, jdbcType=VARCHAR} IS NULL AND #{filter.endDate, jdbcType=VARCHAR} IS NULL) 
 	        OR (m.musical_period_start <= TO_DATE(#{filter.endDate, jdbcType=VARCHAR}, 'YYYY-MM-DD') 
@@ -35,9 +35,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         ((#{filter.location} is null) or (v.venue_address like '%' || #{filter.location} || '%')) 
 	ORDER BY
 	    CASE
-	        WHEN #{sort, jdbcType=VARCHAR} = 'like' THEN TO_CHAR(-COALESCE(like_count.total_likes, 0))
-	        WHEN #{sort, jdbcType=VARCHAR} = 'period' THEN TO_CHAR(m.musical_period_start, 'YYYY-MM-DD')
-	        WHEN #{sort, jdbcType=VARCHAR} = 'title' THEN TO_CHAR(m.musical_title)
+	        WHEN #{filter.sort, jdbcType=VARCHAR} = 'like' THEN TO_CHAR(-COALESCE(like_count.total_likes, 0))
+	        WHEN #{filter.sort, jdbcType=VARCHAR} = 'period' THEN TO_CHAR(m.musical_period_start, 'YYYY-MM-DD')
+	        WHEN #{filter.sort, jdbcType=VARCHAR} = 'title' THEN TO_CHAR(m.musical_title)
 	        ELSE TO_CHAR(m.musical_id)
 	    END
 	    
@@ -69,7 +69,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	join venue v
 	on ms.venue_id = v.venue_id
 	where 
-		upper(m.musical_title) like upper('%' || #{keyword} || '%')
+		upper(m.musical_title) like upper('%' || #{filter.keyword} || '%')
 		AND
 		((#{filter.startDate, jdbcType=VARCHAR} IS NULL AND #{filter.endDate, jdbcType=VARCHAR} IS NULL) 
 		    OR (m.musical_period_start <= TO_DATE(#{filter.endDate, jdbcType=VARCHAR}, 'YYYY-MM-DD') 
@@ -129,14 +129,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!--admin 뮤지컬 관리 -->
 
 <sql id='musical_search'>
-    <if test="keyword!=null">
-    <if test="keyword!=''">
+    <if test="filter.keyword!=null">
+    <if test="filter.keyword!=''">
     <if test="searchType!=''">
     <if test="searchType=='title'">
-            and (musical_title LIKE '%' || #{keyword} || '%')                        
+            and (musical_title LIKE '%' || #{filter.keyword} || '%')                        
     </if>
     <if test="searchType=='agelimit'">
-            and (musical_agelimit LIKE '%' || #{keyword} || '%')                        
+            and (musical_agelimit LIKE '%' || #{filter.keyword} || '%')                        
     </if>  </if>  </if></if>
 </sql>
 

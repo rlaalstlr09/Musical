@@ -9,9 +9,12 @@ public class MusicalFilterDto {
 	private Integer minRunningtime = 0;
 	private Integer maxRunningtime = 500;
 	private String location = "";
+	private String keyword = "";
+	private String sort = "";
+	
 	
 	public MusicalFilterDto(String startDate, String endDate, Integer age, Integer minRunningtime,
-			Integer maxRunningtime, String location) {
+			Integer maxRunningtime, String location, String keyword, String sort) {
 		super();
 		this.startDate = startDate;
 		this.endDate = endDate;
@@ -19,17 +22,17 @@ public class MusicalFilterDto {
 		this.minRunningtime = minRunningtime;
 		this.maxRunningtime = maxRunningtime;
 		this.location = location;
+		this.keyword = keyword;
+		this.sort = sort;
 	}
-	
+
 	public MusicalFilterDto() {}
-	
-	
 
 	@Override
 	public String toString() {
 		return "MusicalFilterDto [startDate=" + startDate + ", endDate=" + endDate + ", age=" + age
 				+ ", minRunningtime=" + minRunningtime + ", maxRunningtime=" + maxRunningtime + ", location=" + location
-				+ "]";
+				+ ", keyword=" + keyword + ", sort=" + sort + "]";
 	}
 
 	public String getStartDate() {
@@ -69,6 +72,22 @@ public class MusicalFilterDto {
 
 	public void setLocation(String location) {
 		this.location = location;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
+	public String getSort() {
+		return sort;
+	}
+
+	public void setSort(String sort) {
+		this.sort = sort;
 	}
 	
 	
