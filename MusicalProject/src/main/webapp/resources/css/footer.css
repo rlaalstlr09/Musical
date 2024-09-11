@@ -7,21 +7,22 @@ html, body {
   #wrap {
     min-height: calc(100vh - 350px); /* 페이지의 최소 높이를 푸터 높이만큼을 제외한 값으로 설정 */
     box-sizing: border-box;
-    padding-bottom: 150px; /* 푸터의 높이와 같게 설정 */
+    padding-bottom:0px; /* 푸터의 높이와 같게 설정 */
   }
   /* 전체 푸터 스타일 */
 footer {
   width: 100%;
-  background-color: #f5f5f5; /* 푸터 배경색 */
-  padding: 5px 0; /* 상하 패딩 */
+  background-color: #eeeeee; /* 푸터 배경색 */
+  padding:0px 0; /* 상하 패딩 */
   box-sizing: border-box; /* 패딩을 포함한 전체 너비 계산 */
+  height: 200px;
 
 }
 
 /* 푸터의 중앙 컨테이너 */
 .footer-container {
   max-width: 1200px; /* 최대 너비 설정 */
-  margin: 0 auto; /* 가운데 정렬 */
+  margin: 0 0; /* 가운데 정렬 */
   padding: 0 20px; /* 좌우 패딩 */
 }
 
@@ -34,17 +35,20 @@ footer {
   padding: 10px 0 10px;
   font-size: 12px;
   line-height: 16px;
-  color: #62676c;
+  color: #919191; /* 파트너안내 색상 */
+  ;
    
 }
 
 .footer-nav a {
-  color: #616161; /* 링크 색상 */
+  color: #919191; /* 파트너안내 색상 */
   text-decoration: none; /* 밑줄 제거 */
   margin: 0 10px; /* 링크 사이의 여백 */
   font-size: 15px; /* 링크 폰트 크기 */
-
+  font-weight: bold;
 }
+
+
 
 .footer-nav a:hover {
   text-decoration: underline; /* 마우스 오버 시 밑줄 표시 */
@@ -52,29 +56,30 @@ footer {
 .footer-left{
   margin: 0 auto;
   font-size:17px; /* 기본 글씨 크기 */
-  color: #6e6e6e; /* 텍스트 색상 */
-  height: 200px;
+  color: #cfcfcfe1; /* 텍스트 색상 */
+  height: 220px;
 
 }
 .footer-left {
   margin: 0 auto;
   box-sizing: border-box; /* padding을 포함한 전체 너비 계산 */
-  background-color: #ffffff; /* 배경색 설정 (선택적) */
+  background-color: #e4e2e2; /* 배경색 설정 (선택적) */
   max-width: 100%; /* 요소가 부모의 너비를 초과하지 않도록 설정 */
-  padding: 8px 0px; /* 내부 여백 설정 (상하좌우) */
+  padding:25px 0px; /* 내부 여백 설정 (상하좌우) */
 }
 
 .footer-left p {
-  margin-top: 10px; /* p 태그의 기본 마진 제거 */
+  margin-top: -5px; /* p 태그의 기본 마진 제거 */
   line-height: 1.5; /* 행간 설정 */
   font-size: 14px; /* 글씨 크기 설정 */
-  color: #333; /* 텍스트 색상 설정 */
+  color: #797979; /* 텍스트 색상 설정 */
   margin-left: 400px;
 }
 
 .contact-info {
-  margin-top: -300px; /* 원하는 만큼 아래로 이동 */
-  margin-left: 1200px; 
+  position: fixed; /* 화면에 고정된 위치 */
+  margin-top: -400px; /* 원하는 만큼 아래로 이동 */
+  margin-left: 900px; 
 }
 .contact-info p {
     margin: 10px 0; /* 상하 간격을 10px로 설정 */
@@ -82,17 +87,17 @@ footer {
 }
   
 .contact-info {
-  border: 2px solid red; /* 테두리 색상과 두께 설정 */
-  padding: 0px; /* 내부 여백 설정 */
-  margin: 0px; /* 외부 여백 설정 (선택 사항) */
-  background-color: #f9f9f9; /* 배경색 설정 (선택 사항) */
-  
-    border: 2px solid red; /* 테두리 색상과 두께 설정 */
+  border: 2px solid rgb(208, 208, 208); /* 테두리 색상과 두께 설정 */
+
     padding: 20px; /* 내부 여백 설정 */
     margin: 20px; /* 외부 여백 설정 */
-    background-color: #f9f9f9; /* 배경색 설정 */
-    width: 300px; /* 너비 설정 */
-    height: auto; /* 높이 자동 조절 */
+
+    width: 240px; /* 너비 설정 */
+    height: 180px; /* 높이 자동 조절 */
+   
+    position: relative; /* 부모 요소를 기준으로 위치 설정 */
+    left: 1240px; /* 오른쪽에서 20px 떨어진 위치로 이동 */
+    bottom: 220px; /* 아래에서 20px 떨어진 위치로 이동 */
   }
 
 
@@ -104,9 +109,10 @@ footer {
 
 /* 고객센터 제목의 글씨 크기 */
 .contact-info .title {
-  font-size: 17px; /* 큰 글씨 */
+  margin-top: -13px;
+  font-size: 20px; /* 큰 글씨 */
   font-weight: bold;
-  color: #333;
+  color: #8a8a8a;
 
 }
 
@@ -114,8 +120,9 @@ footer {
 .contact-info .phone {
   font-size: 17px; /* 중간 크기 글씨 */
   font-weight: bold;
-  color: #333;
- 
+  color: #8a8a8a;
+  margin-top: -5px;
+  margin-bottom: -24px;
 }
 
 /* 운영시간과 점심시간의 글씨 크기 */
@@ -123,16 +130,11 @@ footer {
   font-size: 15px; /* 작은 글씨 */
   color: #8a8a8a;
   font-weight: 700;
-  margin-bottom: 50px; /* 두 문장 사이의 간격을 조절 */
+  margin-bottom: 10px; /* 두 문장 사이의 간격을 조절 */
+  
 }
 
-/* 나머지 정보는 기본 글씨 크기 */
-.contact-info .address,
-.contact-info .letter,
-.contact-info .connect {
-  font-size:12px; /* 기본 글씨 크기 */
-  color: #6e6e6e; /* 텍스트 색상 */
-}
+
 
 
 
