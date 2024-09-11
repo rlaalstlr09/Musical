@@ -13,7 +13,7 @@
 		name="dataSource">
 		<property value="oracle.jdbc.driver.OracleDriver"
 			name="driverClassName" />
-		<property value="jdbc:oracle:thin:@localhost:1522:xe"
+		<property value="jdbc:oracle:thin:@localhost:1521:xe"
 			name="url" />
 		<property value="hr" name="username" />
 		<property value="hr" name="password" />

@@ -11,7 +11,8 @@
 		flex-direction: column;
 		text-align :left;
 		gap : 50px;
-			
+		padding : 50px 0;	
+		font-size : 15px;
 	}
 	.tab-container div{
 		display : flex;
@@ -34,6 +35,10 @@
 	}
 	.product-info table tr{
 		border : 0.5px solid lightgray;
+	}
+	
+	li{
+		margin-bottom : 10px;
 	}
 	
 </style>
