@@ -69,76 +69,69 @@
 	    <div class="swiper-button-next next-date"></div>
 	    <div class="swiper-button-prev prev-date"></div>
     </div>
-	<h2>전체 뮤지컬</h2><br>
+	<h2>전체 뮤지컬</h2>
 	 <div class="sort-container">
-	 
-	    <ul class="sort-options">
-	    	<li><a href = "#" class="sort-link" data-sort = "">기본정렬</a></li>
-	    	<li><a href = "#" class="sort-link" data-sort = "title">이름순</a></li>
-	    	<li><a href = "#" class="sort-link" data-sort = "like">좋아요순</a></li>
-	    	<li><a href = "#" class="sort-link" data-sort = "period">공연날짜순</a></li>
-	    </ul>
 	    <button class="filter-button">필터</button>
     </div>
-    
+   
    	  
 	<div class="filter-panel">
-			<data id = "currentData" 
-				data-keyword = "${keyword }" 
-				data-age = "${filter.age }" 
-				data-min = "${filter.minRunningtime }" 
-				data-location = "${filter.location }" 
-				data-start = "${filter.startDate }" 
-				data-end = "${filter.endDate }"/>
-		 <div class="dropdown mb-3">
-		    <a class="dropdown-toggle" id="dropdownMenuAge" data-toggle="dropdown" aria-expanded="false">
-		      	전체 연령
-		    </a>
-		    <ul class="dropdown-menu" aria-labelledby="dropdownMenuAge">
-		      <li><a class="dropdown-item" href="#" data-filter="age" data-value="0">전체 연령</a></li>
-		      <li><a class="dropdown-item" href="#" data-filter="age" data-value="5">5세 이상</a></li>
-		      <li><a class="dropdown-item" href="#" data-filter="age" data-value="7">7세 이상</a></li>
-		      <li><a class="dropdown-item" href="#" data-filter="age" data-value="12">12세 이상</a></li>
-		      <li><a class="dropdown-item" href="#" data-filter="age" data-value="15">15세 이상</a></li>
-		      <li><a class="dropdown-item" href="#" data-filter="age" data-value="18">18세 이상</a></li>
-		    </ul>
-		  </div>
 		
-		  <!-- Running Time Dropdown -->
-		  <div class="dropdown mb-3">
-		    <a class="dropdown-toggle" id="dropdownMenuRunningTime" data-toggle="dropdown" aria-expanded="false">
-		      	전체 공연 시간
-		    </a>
-		    <ul class="dropdown-menu" aria-labelledby="dropdownMenuRunningTime">
-		      <li><a class="dropdown-item" href="#" data-filter="minRunningtime" data-value="0">전체 공연 시간</a></li>
-		      <li><a class="dropdown-item" href="#" data-filter="minRunningtime" data-value="90"> ~ 90분</a></li>
-		      <li><a class="dropdown-item" href="#" data-filter="minRunningtime" data-value="91">91분 ~ 120분</a></li>
-		      <li><a class="dropdown-item" href="#" data-filter="minRunningtime" data-value="121">121분 ~ 150분</a></li>
-		      <li><a class="dropdown-item" href="#" data-filter="minRunningtime" data-value="151">151분 ~ 180분</a></li>
-		      <li><a class="dropdown-item" href="#" data-filter="minRunningtime" data-value="181">180분 ~ </a></li>
-		    </ul>
-		  </div>
-		
-		  <!-- Location Dropdown -->
-		  <div class="dropdown">
-		    <a class="dropdown-toggle" id="dropdownMenuLocation" data-toggle="dropdown" aria-expanded="false">
-		     	전체 지역
-		    </a>
-		    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLocation">
-		      <li><a class="dropdown-item" href="#" data-filter="location" data-value="">전체 지역</a></li>
-		      <li><a class="dropdown-item" href="#" data-filter="location" data-value="서울">서울</a></li>
-		      <li><a class="dropdown-item" href="#" data-filter="location" data-value="경기">경기</a></li>
-		      <li><a class="dropdown-item" href="#" data-filter="location" data-value="인천">인천</a></li>
-		      <li><a class="dropdown-item" href="#" data-filter="location" data-value="강원">강원</a></li>
-		      <li><a class="dropdown-item" href="#" data-filter="location" data-value="경상">경상</a></li>
-		      <li><a class="dropdown-item" href="#" data-filter="location" data-value="전라">전라</a></li>
-		      <li><a class="dropdown-item" href="#" data-filter="location" data-value="충청">충청</a></li>
-		    </ul>
-		  </div>
-	  		<input type="date" name = "startDate">
-	  		<input type="date" name = "endDate">
+			
+		<select id = "sortSelect" class="custom-select">
+		   	<option class="sort-link" value = "">기본정렬</option>
+		   	<option class="sort-link" value = "title">이름순</option>
+		   	<option class="sort-link" value = "like">좋아요순</option>
+		   	<option class="sort-link" value = "period">공연날짜순</option>
+		</select>
+		   
+	    <select id="ageSelect" class="custom-select filter-item">
+	      <option value="0">전체 연령</option>
+	      <option value="5">5세 이상</option>
+	      <option value="7">7세 이상</option>
+	      <option value="12">12세 이상</option>
+	      <option value="15">15세 이상</option>
+	      <option value="18">18세 이상</option>
+	    </select>
 	  
+		
+		  
+	    <select id="runningTimeSelect" class="custom-select filter-item">
+	      <option value="0">전체 공연 시간</option>
+	      <option value="90">~ 90분</option>
+	      <option value="91">91분 ~ 120분</option>
+	      <option value="121">121분 ~ 150분</option>
+	      <option value="151">151분 ~ 180분</option>
+	      <option value="181">180분 ~</option>
+	    </select>
+		  
+		  
+	    <select id="locationSelect" class="custom-select filter-item">
+	      <option value="">전체 지역</option>
+	      <option value="서울">서울</option>
+	      <option value="경기">경기</option>
+	      <option value="인천">인천</option>
+	      <option value="강원">강원</option>
+	      <option value="경상">경상</option>
+	      <option value="전라">전라</option>
+	      <option value="충청">충청</option>
+	    </select>
+		   
+		<input type="date" name = "startDate" class = "filter-item">
+		<input type="date" name = "endDate" class = "filter-item">
+		
+		<button class = "reset">초기화</button>
 	</div>
+	
+	 <data id = "currentData" 
+			data-keyword = "${filter.keyword }" 
+			data-age = "${filter.age }" 
+			data-min = "${filter.minRunningtime }" 
+			data-location = "${filter.location }" 
+			data-start = "${filter.startDate }" 
+			data-end = "${filter.endDate }"
+			data-sort = "${filter.sort }">
+	</data>
   
    	<div class="musical-grid">
    	
@@ -159,9 +152,9 @@
             </div>
         </c:forEach>
     </div>
-   	<div id = "search">
-   		<input type = "text" name = "keyword" value = "${keyword }">
-   		<button class="filter">검색</button>
+   	<div id = "search-container">
+   		<input type = "text" class = "keyword" value = "${filter.keyword }">
+   		<button class="search">검색</button>
    	</div>
     
     <!-- 페이지 네비게이션 -->
@@ -198,13 +191,13 @@
     	<c:if test="${boardVo.page != boardVo.totalEndPage}">
     		<a href='listAll${boardVo.makeSearch(boardVo.totalEndPage)}'>&gt;&gt;&gt;</a>
     	</c:if>
-    	 <input type="hidden" id="currentKeyword" value="${keyword}">
-    	 <input type="hidden" id="currentStartDate" value="${filter.startDate}">
-    	 <input type="hidden" id="currentEndDate" value="${filter.endDate}">
-    	 <input type="hidden" id="currentAge" value="${filter.age}">
-    	 <input type="hidden" id="currentMinRunningtime" value="${filter.minRunningtime}">
-    	 <input type="hidden" id="currentLocation" value="${filter.location}">
+    	
     </div>
+    <div class="scroll-controls">
+        <button class="scroll-to-top" id="scrollToTopBtn">↑</button>
+        <button class="scroll-to-bottom" id="scrollToBottomBtn">↓</button>
+    </div>
+    
 </div>
 
 </body>

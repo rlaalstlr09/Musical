@@ -100,6 +100,11 @@ $(document).ready(function() {
 	//탭 클릭하면 함수 실행
 	$('a[data-toggle="tab"]').on('click', function(e) {
 		var tabId = $(this).attr('href').substring(1);
+		
+//		 $('html, body').animate({
+//		        scrollTop: $('').offset().top - 50 
+//		 }, 500);
+		 
 		loadTabContent(tabId);
 	});
 	loadDefaultTabContent();
@@ -142,7 +147,7 @@ $(document).ready(function() {
 </head>
 <body>
 
-	<div class="container mt-4">
+	<div id="container">
 		<div class="info">
 			<div class ="musical-poster">
 				<img src="/ex/resources/img/musical/${musical.musical_poster}" alt="poster"
@@ -167,8 +172,8 @@ $(document).ready(function() {
 				<!-- Modal -->
 				<div class="modal fade" id="venue-modal" tabindex="-1" role="dialog"
 					aria-labelledby="exampleModalLabel" aria-hidden="true">
-					<div class="modal-dialog modal-lg" role="document">
-						<div class="modal-content modal-lg">
+					<div class="modal-dialog custom-modal" role="document">
+						<div class="modal-content">
 							<div class="modal-header">
 								<h5 class="modal-title" id="exampleModalLabel">공연장 정보</h5>
 								<button type="button" class="close" data-dismiss="modal"
@@ -242,6 +247,7 @@ $(document).ready(function() {
 			<h2>공연 상세</h2>
 			<div id="notice">
 				<strong>공지사항</strong>
+				<br>
 				<ul>
 					<li>본 공연은 ${musical.musical_agelimit}세부터 예약 가능합니다.</li>
 					<li>서류상 나이가 확인되어야 입장 가능하오니 증빙서류를 지참해주시기 바랍니다. (주민등록등본, 청소년증,

@@ -32,24 +32,6 @@ public class HomeController {
 	  @RequestMapping("/")
 	    public String Main(Model model) throws Exception {
 
-	        // BoardVo 객체 생성 및 설정
-	        BoardVo boardVo = new BoardVo();
-	        boardVo.setPage(0);
-	        boardVo.setPerPageNum(10);
-	        
-	        // 총 데이터 개수와 페이징 데이터 계산
-	        int totalCount = musicalService.getTotalCount("", new MusicalFilterDto());
-	        boardVo.setTotalCount(totalCount);
-	        System.out.println(totalCount);
-	        // 데이터 가져오기
-	        List<MusicalDto> musicalPeriod = musicalService.selectAllMusical(boardVo, "", "period", new MusicalFilterDto());
-	        
-	        System.out.println(totalCount);
-	        System.out.println(boardVo);
-
-	        // 모델에 데이터와 페이지 정보 추가
-	        model.addAttribute("musicalPeriod", musicalPeriod);
-	        
 	        return "home";  // JSP 뷰 이름
 	    }
 	  

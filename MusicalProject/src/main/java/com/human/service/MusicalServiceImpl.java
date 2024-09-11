@@ -20,11 +20,11 @@ public class MusicalServiceImpl implements IMusicalService {
 
 	//뮤지컬 리스트 페이지 정렬기준, 필터, 검색 키워드를 통해 조건에 맞는 뮤지컬 목록 불러옴
 	@Override
-	public List<MusicalDto> selectAllMusical(BoardVo vo, String keyword, String sort, MusicalFilterDto filter) throws Exception {
+	public List<MusicalDto> selectAllMusical(BoardVo vo, MusicalFilterDto filter) throws Exception {
 		
 		IMusicalDao dao = sqlSession.getMapper(IMusicalDao.class);
 		
-		return dao.selectAllMusical(vo, keyword, sort, filter);
+		return dao.selectAllMusical(vo, filter);
 	}
 	
 	
@@ -38,10 +38,10 @@ public class MusicalServiceImpl implements IMusicalService {
 
 	//뮤지컬 리스트 페이지 페이지 갯수 구하기 위한 sql문
 	@Override
-	public Integer getTotalCount(String keyword, MusicalFilterDto filter) throws Exception {
+	public Integer getTotalCount(MusicalFilterDto filter) throws Exception {
 		IMusicalDao dao = sqlSession.getMapper(IMusicalDao.class);
 		
-		return dao.getTotalCount(keyword, filter);
+		return dao.getTotalCount(filter);
 	}
 	
 	//뮤지컬 상세보기 페이지 뮤지컬 일정표 출력을 위한 sql문

@@ -10,9 +10,9 @@ import com.human.dto.MusicalScheduleDto;
 import com.human.vo.BoardVo;
 
 public interface IMusicalDao {
-	public List<MusicalDto> selectAllMusical(@Param("vo") BoardVo vo, @Param("keyword") String keyword, @Param("sort") String sort, @Param("filter") MusicalFilterDto filter) throws Exception;
+	public List<MusicalDto> selectAllMusical(@Param("vo") BoardVo vo, @Param("filter") MusicalFilterDto filter) throws Exception;
 	public MusicalDto selectMusicalId(Integer musical_id) throws Exception;
-	public Integer getTotalCount(@Param("keyword") String keyword, @Param("filter") MusicalFilterDto filter) throws Exception;
+	public Integer getTotalCount(@Param("filter") MusicalFilterDto filter) throws Exception;
 
 	public List<MusicalScheduleDto> selectMusicalSchedule(Integer musical_id) throws Exception;
 	
