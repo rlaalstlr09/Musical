@@ -252,90 +252,100 @@
         NOW SHOWING
       </div>
       
-      <div class="gallery">
-        <ul>
-          <!-- 첫 번째 줄 -->
-          <li>
-            <a href="#">
-              <img src="<%=request.getContextPath()%>/resources/img/써니텐.jpg" alt="이미지01">
-              <div class="image-text">써니텐</div>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <img src="<%=request.getContextPath()%>/resources/img/피겨.jpg" alt="이미지02">
-              <div class="image-text">피겨</div>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <img src="<%=request.getContextPath()%>/resources/img/시스터즈.jpg" alt="이미지03">
-              <div class="image-text">시스터즈</div>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <img src="<%=request.getContextPath()%>/resources/img/시스터즈.jpg" alt="이미지04">
-              <div class="image-text">시스터즈</div>
-            </a>
-          </li>
+      <div class="now-container">
+    <div class="now-item">
+    <a href="#">
+         <img src="<%=request.getContextPath()%>/resources/img/써니텐.jpg" alt="이미지01">
+        <h5>황금카니발 2024</h5>
+        <p>2024.09.28 - 2024.09.29<br>경주시 금리단길 일대</p>
+    </a>    
+    </div>
+    <div class="now-item">
+    <a href="#">
+         <img src="<%=request.getContextPath()%>/resources/img/써니텐.jpg" alt="이미지01">
+        <h5>스탠드업 코미디 MOODO</h5>
+        <p>2024.09.08 - 2024.09.18<br>서울 외 3개 지역</p>
+        </a>
+    </div>
+    <div class="now-item">
+     <a href="#">
+         <img src="<%=request.getContextPath()%>/resources/img/써니텐.jpg" alt="이미지01">
+        <h5>앤서니 라자로 서울 공연</h5>
+        <p>2024.09.22<br>노들섬 라이브하우스</p>
+        </a>
+    </div>
+    <div class="now-item">
+    <a href="#">
+         <img src="<%=request.getContextPath()%>/resources/img/써니텐.jpg" alt="이미지01">
+        <h5>Sylo 내한공연</h5>
+        <p>2024.10.17 - 2024.10.17<br>KT&G 상상마당 홍대 라이브홀</p>
+         </a>
+    </div>
+</div>
 
-          <!-- 두 번째 줄 -->
-          <li>
-            <a href="#">
-              <img src="<%=request.getContextPath()%>/resources/img/써니텐.jpg" alt="이미지01">
-              <div class="image-text">써니텐</div>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <img src="<%=request.getContextPath()%>/resources/img/피겨.jpg" alt="이미지02">
-              <div class="image-text">피겨</div>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <img src="<%=request.getContextPath()%>/resources/img/시스터즈.jpg" alt="이미지03">
-              <div class="image-text">시스터즈</div>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <img src="<%=request.getContextPath()%>/resources/img/시스터즈.jpg" alt="이미지04">
-              <div class="image-text">시스터즈</div>
-            </a>
-          </li>
+<div class="now-container-two">
+    <div class="now-item">
+    <a href="#">
+         <img src="<%=request.getContextPath()%>/resources/img/써니텐.jpg" alt="이미지01">
+        <h5>황금카니발 2024</h5>
+        <p>2024.09.28 - 2024.09.29<br>경주시 금리단길 일대</p>
+          </a>
+    </div>
+    <div class="now-item">
+    <a href="#">
+         <img src="<%=request.getContextPath()%>/resources/img/써니텐.jpg" alt="이미지01">
+        <h5>스탠드업 코미디 MOODO</h5>
+        <p>2024.09.08 - 2024.09.18<br>서울 외 3개 지역</p>
+          </a>
+    </div>
+    <div class="now-item">
+    <a href="#">
+         <img src="<%=request.getContextPath()%>/resources/img/써니텐.jpg" alt="이미지01">
+        <h5>앤서니 라자로 서울 공연</h5>
+        <p>2024.09.22<br>노들섬 라이브하우스</p>
+          </a>
+    </div>
+    <div class="now-item">
+    <a href="#">
+         <img src="<%=request.getContextPath()%>/resources/img/써니텐.jpg" alt="이미지01">
+        <h5>Sylo 내한공연</h5>
+        <p>2024.10.17 - 2024.10.17<br>KT&G 상상마당 홍대 라이브홀</p>  
+        </a>
+    </div>
+</div>
 
-        </ul>
 
-        <ul>
-          <!-- 세 번째 줄 -->
-          <li>
-            <a href="#">
-              <img src="<%=request.getContextPath()%>/resources/img/써니텐.jpg" alt="이미지01">
-              <div class="image-text">써니텐</div>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <img src="<%=request.getContextPath()%>/resources/img/피겨.jpg" alt="이미지02">
-              <div class="image-text">2019.25.20~2015.25.98</div>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <img src="<%=request.getContextPath()%>/resources/img/시스터즈.jpg" alt="이미지03">
-              <div class="image-text">시스터즈</div>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <img src="<%=request.getContextPath()%>/resources/img/시스터즈.jpg" alt="이미지04">
-              <div class="image-text">시스터즈</div>
-            </a>
-          </li>
-        </ul>
-      </div>
+<div class="now-container-three">
+    <div class="now-item">
+    <a href="#">
+         <img src="<%=request.getContextPath()%>/resources/img/써니텐.jpg" alt="이미지01">
+        <h5>황금카니발 2024</h5>
+        <p>2024.09.28 - 2024.09.29<br>경주시 금리단길 일대</p>
+          </a>
+    </div>
+    <div class="now-item">
+    <a href="#">
+         <img src="<%=request.getContextPath()%>/resources/img/써니텐.jpg" alt="이미지01">
+        <h5>스탠드업 코미디 MOODO</h5>
+        <p>2024.09.08 - 2024.09.18<br>서울 외 3개 지역</p>
+          </a>
+    </div>
+    <div class="now-item">
+    <a href="#">
+         <img src="<%=request.getContextPath()%>/resources/img/써니텐.jpg" alt="이미지01">
+        <h5>앤서니 라자로 서울 공연</h5>
+        <p>2024.09.22<br>노들섬 라이브하우스</p>
+          </a>
+    </div>
+    <div class="now-item">
+    <a href="#">
+         <img src="<%=request.getContextPath()%>/resources/img/써니텐.jpg" alt="이미지01">
+        <h5>Sylo 내한공연</h5>
+        <p>2024.10.17 - 2024.10.17<br>KT&G 상상마당 홍대 라이브홀</p>
+          </a>
+    </div>
+</div>      
+      
 
       <div class="ad-banner" id="adBanner">
         <a href="#" target="_blank" class="banner-link">
