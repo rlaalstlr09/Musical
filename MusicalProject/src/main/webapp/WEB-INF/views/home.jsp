@@ -10,7 +10,7 @@
 </head>
 
 <body>
-  <jsp:include page="layout/header.jsp"/>
+  <jsp:include page="../../resources/layout/header.jsp"/>
   
 
  <div class="slideshow-container">
@@ -43,9 +43,8 @@
     </div>
 
     </section>
-    <div class="performance">
-      <div class="open_performance h2">티켓오픈공연</div>
-      <div class="open_performance h3">performance</div>
+    <div class="recommend">
+      <div class="recommend_text">RECOMMENDED MUSICAL</div>
     </div>
     <div class="open_carousel">
       <div class="open_carousel-item">
@@ -101,7 +100,7 @@
       </div>
 
       <div class="openconcert_text">
-        <a href="https://www.example.com">
+        <a href="#">
         +
         </a>
       </div>
@@ -161,8 +160,12 @@
       </a>
     </div>
 
+     <div class="best1">
+      <div class="best_text">
+        BEST MUSICAL
+      </div>
+      
     <div class="best">
-      <h4>베스트|</h4>
       <div class="main-container">
         <div class="large-item">
           <a href="#">
@@ -200,7 +203,7 @@
 
     <div class="kids_container">
       <div class="kids_text">
-        kids
+        KIDS
       </div>
     </div>
     <div class="kids1_text">
@@ -238,14 +241,18 @@
       </div>
     </div>
 
-    <div class="gallery_text">
+    <div class="nowgallery_text">
       <a href="#">
       +
       </a>
     </div>
-
+    
+    <div class="now_gallery">
+      <div class="now_text">
+        NOW SHOWING
+      </div>
+      
       <div class="gallery">
-        <h3>상영중|</h3>
         <ul>
           <!-- 첫 번째 줄 -->
           <li>
@@ -341,7 +348,7 @@
         </a>
       </div>
 
-<jsp:include page="layout/footer.jsp"></jsp:include>
+<jsp:include page="../../resources/layout/footer.jsp"></jsp:include>
 
 </body>
 </html>
