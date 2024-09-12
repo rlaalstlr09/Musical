@@ -18,7 +18,6 @@ public class MusicalDto {
 	private String musical_agelimit;
 	
 	//뮤지컬 리스트에서 공연장 정보 출력을 위한 데이터
-	private int venue_id;
 	private String venue_name;
 	private Integer venue_id;
 	private String hall_name;
