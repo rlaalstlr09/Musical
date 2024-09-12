@@ -147,6 +147,7 @@ border-top: 1px solid #242428;
 
 .board_qna h1{
 	margin-bottom: 20px;
+	text-align: center;
 }
 .board_qna .tb_board {
 	table-layout: fixed;
@@ -305,14 +306,17 @@ tbody .show {
 	width:100%;
 	height: 100%;
 }
-
-
-#light p{
+#List-wrapper{
 	margin-top: 20px;
+	margin-bottom: 20px;
+	display: flex;
+	justify-content: center;
 }
-#light{
-	text-align: center;
+#img-box{	
+	display: flex;
+	justify-content: center;
 }
+
 .light_btn{
 	display: inline-block;
 	width: 50px;

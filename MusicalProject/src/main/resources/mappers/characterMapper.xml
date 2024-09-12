@@ -70,7 +70,7 @@ FETCH NEXT #{vo.perPageNum} ROWS ONLY
 
 <select id="character_actor_listSearchCount" resultType="int">
 <![CDATA[ select count(c.character_id) from character c, actor_character ac where ac.actor_id=#{actor_id} ]]>
-and and ac.character_id=c.character_id 
+and ac.character_id=c.character_id 
 <![CDATA[ and c.character_id > 0 ]]>
 </select>	
 

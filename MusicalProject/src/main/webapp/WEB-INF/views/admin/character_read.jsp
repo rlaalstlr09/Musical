@@ -18,14 +18,13 @@
 <div id="wrap">
 		<div id="contents">
 			<div id="content">
-				<div class="board_qna">
+				<div class="board_qna">					
+					<div id=img-box>	
+						<img src='/poster/${list.musical_poster }' style="justify-content: center;"  width='250px'>
+						</div>
 					<div id="List-wrapper">
-	
-			<img src='/poster/${list.musical_poster }'  width='250px'>
-				
-					<h2>${list.musical_title } 배역/출연 배우 정보</h2>
-					
-	</div>
+					<h2>${list.musical_title } 배역/출연 배우 정보</h2>					
+					</div>
 					<button class="viewBtn" data-file="${fileName}">view</button>
 
 					<div id="qnaList-wrapper">

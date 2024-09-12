@@ -16,13 +16,16 @@
 		<div id="contents">
 			<div id="content">
 				<div class="board_qna">
+				<div id=img-box>
 				<img src='/actor/${actor_read.actor_img }'  width='250px'>
-				<h1>${actor_read.actor_name } 필모그래피 목록</h1>
-					
+				</div>
+				<div id="List-wrapper">
+				<h2>${actor_read.actor_name } 필모그래피 목록</h2>
+				</div>
 					<input type="hidden" id="actor_id" value="${actor_read.actor_id }">
 
 					<div id="qnaList-wrapper">
-						<table cellspacing="0" border="0" class="tb_board tb_qna">
+						<table class="tb_board tb_qna">
 							<colgroup>
 								<col width="40%">
 								<col width="40%">
