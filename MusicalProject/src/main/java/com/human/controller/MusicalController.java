@@ -1,6 +1,7 @@
 package com.human.controller;
 
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -113,9 +114,9 @@ public class MusicalController {
 
 		MusicalDto musicalDto = new MusicalDto(musicalService.selectMusicalId(musical_id),
 				seatService.selectSeatInfo(musical_id));
-
+		System.out.println(musicalDto);
 		List<MusicalScheduleDto> schedules = musicalService.selectMusicalSchedule(musical_id);
-		
+		System.out.println(schedules);
 		BoardVo vo = new BoardVo();
 		
 		//최상위 리뷰 3개 표출을 위한 vo 설정
@@ -129,8 +130,13 @@ public class MusicalController {
 		List<ActorCharacterDto> actorCharacterDto = actorCharacterService.selectAll(musical_id);
 
 		//customer_id 세션에서 받아온걸로 바꾸기
-		String customer_id = request.getUserPrincipal().getName();
-		Integer isLike = musicalService.selectMusicalLike(musical_id, customer_id);
+		 Principal principal = request.getUserPrincipal();
+		 Integer isLike = 0;
+		 
+         if (principal != null) {
+             String customer_id = principal.getName();
+             isLike = musicalService.selectMusicalLike(musical_id, customer_id);
+         }
 
 		// 뮤지컬 정보
 		model.addAttribute("musical", musicalDto);
@@ -163,7 +169,13 @@ public class MusicalController {
 			@RequestParam("musical_id") Integer musical_id, 
 			HttpServletRequest request,
 			Model model) {
-		String customer_id = request.getUserPrincipal().getName();
+		 Principal principal = request.getUserPrincipal();
+		 String customer_id = null;
+		 
+         if (principal != null) {
+             customer_id = principal.getName();
+         }
+         
 		System.out.println(customer_id);
 		
 		//로그인 안한 상태. 로그인페이지로 리다이렉트하게 바꾸셈

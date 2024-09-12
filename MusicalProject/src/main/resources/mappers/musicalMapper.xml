@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="selectAllMusical" parameterType="map" resultType="com.human.dto.MusicalDto">
 	<![CDATA[
-	SELECT m.*, v.venue_id, v.venue_name, h.hall_name, COALESCE(like_count.total_likes, 0) AS total_likes
+	SELECT distinct m.*, v.venue_name, h.hall_name, COALESCE(like_count.total_likes, 0) AS total_likes
 	FROM musical m
 	JOIN musical_schedule ms ON m.musical_id = ms.musical_id
 	JOIN venue v ON v.venue_id = ms.venue_id
@@ -47,7 +47,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id = "selectMusicalId" resultType = "com.human.dto.MusicalDto">
-		SELECT distinct m.*, v.venue_name, h.hall_name, COALESCE(like_count.total_likes, 0) AS total_likes
+		SELECT distinct m.*, v.venue_id, v.venue_name, h.hall_name, COALESCE(like_count.total_likes, 0) AS total_likes
 		FROM musical m
 		JOIN musical_schedule ms ON m.musical_id = ms.musical_id
 		JOIN venue v ON v.venue_id = ms.venue_id
