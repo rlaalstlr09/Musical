@@ -32,24 +32,31 @@ public class MusicalDto {
 
 	//뮤지컬 날짜포맷 이쁘게 보이게
 	public String getFormattedMusical_period_start() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
-        return sdf.format(musical_period_start);
+		if (musical_period_start != null) {
+	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+	        return sdf.format(musical_period_start);
+		}
+		return "";
     }
 	
 	public String getFormattedMusical_period_end() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
-        return sdf.format(musical_period_end);
+		if (musical_period_end != null) {
+	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+	        return sdf.format(musical_period_end);
+		}
+		return "";
     }
 	
 	//뮤지컬 리스트 출력을 위한 생성자
 	public MusicalDto(Integer musical_id, String musical_title, String musical_poster, Date musical_period_start,
-			Date musical_period_end, String venue_name, String hall_name, Integer total_likes) {
+			Date musical_period_end, Integer venue_id, String venue_name, String hall_name, Integer total_likes) {
 		super();
 		this.musical_id = musical_id;
 		this.musical_title = musical_title;
 		this.musical_poster = musical_poster;
 		this.musical_period_start = musical_period_start;
 		this.musical_period_end = musical_period_end;
+		this.venue_id = venue_id;
 		this.venue_name = venue_name;
 		this.hall_name = hall_name;
 		this.total_likes = total_likes;
@@ -67,7 +74,6 @@ public class MusicalDto {
 		this.musical_agelimit = musicalDto.getMusical_agelimit();
 		this.venue_id = musicalDto.getVenue_id();
 		this.venue_name = musicalDto.getVenue_name();
-		this.venue_id = musicalDto.getVenue_id();
 		this.hall_name = musicalDto.getHall_name();
 		this.total_likes = musicalDto.getTotal_likes();
 		this.seatDtos = seatDtos;
@@ -90,10 +96,9 @@ public class MusicalDto {
 		return "MusicalDto [musical_id=" + musical_id + ", musical_title=" + musical_title + ", musical_poster="
 				+ musical_poster + ", musical_period_start=" + musical_period_start + ", musical_period_end="
 				+ musical_period_end + ", musical_runningtime=" + musical_runningtime + ", musical_agelimit="
-				+ musical_agelimit + ", venue_name=" + venue_name + ", hall_name=" + hall_name + ", seatDtos="
-				+ seatDtos + "]";
+				+ musical_agelimit + ", venue_name=" + venue_name + ", venue_id=" + venue_id + ", hall_name="
+				+ hall_name + ", seatDtos=" + seatDtos + ", total_likes=" + total_likes + "]";
 	}
-
 
 	public List<SeatDto> getSeatDtos() {
 		return seatDtos;
@@ -129,14 +134,7 @@ public class MusicalDto {
 	public void setVenue_name(String venue_name) {
 		this.venue_name = venue_name;
 	}
-
-	public Integer getVenue_id() {
-		return venue_id;
-	}
-
-	public void setVenue_id(Integer venue_id) {
-		this.venue_id = venue_id;
-	}
+	
 
 	public String getHall_name() {
 		return hall_name;
@@ -177,13 +175,11 @@ public class MusicalDto {
 		this.musical_agelimit = musical_agelimit;
 	}
 	
-
-
-	public int getVenue_id() {
+	public Integer getVenue_id() {
 		return venue_id;
 	}
 
-	public void setVenue_id(int venue_id) {
+	public void setVenue_id(Integer venue_id) {
 		this.venue_id = venue_id;
 	}
 
