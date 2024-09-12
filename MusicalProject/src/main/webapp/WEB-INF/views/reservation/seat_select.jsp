@@ -320,7 +320,7 @@ button:hover {
 				method="post" onsubmit="return handlePayment()">
 				<input type="hidden" id="mu_sch_id" name="mu_sch_id" value="${mu_sch_id }" readonly>
 				<input type="hidden" id="booked_count" name="booked_count" value="0" readonly>
-				<input type="hidden" id="customer_id" name="customer_id" value="customer" readonly>
+				<input type="hidden" id="customer_id" name="customer_id" value="${customer}" readonly>
 				<input type="hidden" id="customer_email" name="customer_email" value="customer@naver.com" readonly>
 				<div id="inputContainer"></div>
 				<div>

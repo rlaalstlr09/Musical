@@ -218,7 +218,7 @@ $(document).ready(function() {
 			
 			<div class = "button-container">
 				<button class="list" onclick="location.href='/ex/musical/listAll'">목록</button>
-				<a class="reservation" href="${pageContext.request.contextPath}/reservation/reservation?venue_id=${musical.venue_name}&musical_id=${musical.musical_id}">예매하기</a>
+				<a class="reservation" href="${pageContext.request.contextPath}/reservation/reservation?venue_id=${musical.venue_id}&musical_id=${musical.musical_id}">예매하기</a>
 
 				
 			</div>

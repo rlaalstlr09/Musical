@@ -4,7 +4,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +14,8 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -109,8 +110,12 @@ public class ReservationController {
 		List<SeatDto> dtos = seatservice.seat_select(mu_sch_id);
 		System.out.print(dtos.toString());
 
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String customer = authentication.getName();
+        
 		model.addAttribute("mu_sch_id", mu_sch_id);
 		model.addAttribute("seatdtos", dtos);
+		model.addAttribute("customer", customer);
 		
 
 	}
@@ -146,15 +151,18 @@ public class ReservationController {
             @RequestParam(value = "endDate", required = false) String endDate,
             PageVo vo,Model model) throws Exception {
 		System.out.println("reservation_list");
-		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String customer = authentication.getName();
+        System.out.println(customer);
 	    List<ReservationDto> dtos;
 	    
+	    
 	    if (startDate != null && endDate != null) {
-	        dtos = reservationservice.reservation_range("customer", page, 10, startDate, endDate);
-	        vo.setTotalcount(reservationservice.total_reservation_range("customer", startDate, endDate));
+	        dtos = reservationservice.reservation_range(customer, page, 10, startDate, endDate);
+	        vo.setTotalcount(reservationservice.total_reservation_range(customer, startDate, endDate));
 	    } else {
-	        dtos = reservationservice.reservation_check_page("customer", page, 10);
-	        vo.setTotalcount(reservationservice.reservation_check_total("customer"));
+	        dtos = reservationservice.reservation_check_page(customer, page, 10);
+	        vo.setTotalcount(reservationservice.reservation_check_total(customer));
 	    }
 	
 
@@ -194,7 +202,8 @@ public class ReservationController {
 	public String seat_update(@RequestParam("mu_sch_id") int mu_sch_id,
 			@RequestParam("seat_reservation") int seat_reservation,
 			Model model, HttpSession session) throws Exception {
-		String id= "customer";  //(String) session.getAttribute("customer");
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String id=  authentication.getName();
 		
 		//예약 변경을 위하여 아이디 동인한지 확인하는작업 아이디 나중에 넣기
 		String check_id =reservationservice.id_check(seat_reservation);
