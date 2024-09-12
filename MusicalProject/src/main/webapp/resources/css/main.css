@@ -1,35 +1,174 @@
+body {
+  overflow-x: hidden;
+}
+
 /* base */
 * { 
   padding: 0; 
   margin: 0; 
   font-family: 'Roboto', sans-serif;
+ 
+
+ 
 } /* 여백제거 */
 li { 
   list-style: none; 
 } /* 기호제거 */
 
+ 
 
+/* The dots/bullets/indicators container */
+.dot-container {
+    text-align: center;
+    padding: 20px;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+  }
+  
+  .dot {
+    cursor: pointer;
+    height: 10px;
+    width: 10px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
+  
+  .active, .dot:hover {
+    background-color: #717171;
+  }
+  
+  /* Hide the default number text */
+  .numbertext {
+    display: none;
+  }
+  
+  /* Other existing styles */
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Verdana, sans-serif;
+    margin: 0;
+  }
+  
+  .mySlides {
+    display: none;
+  }
+  
+  img {
+    vertical-align: middle;
+  }
+  
+  /* Slideshow container */
+.slideshow-container {
+  max-width: 100%;
+  height: 700px; /* 슬라이드 쇼의 높이 설정 */
+  position: relative;
+  margin: auto;
+  overflow: hidden; /* 컨테이너를 넘치는 내용을 숨김 */
+}
+
+/* Slides */
+.mySlides img {
+  width: 100%; /* 이미지의 너비를 슬라이드 쇼의 너비에 맞춤 */
+  height: 100%; /* 이미지의 높이를 슬라이드 쇼의 높이에 맞춤 */
+  object-fit: cover; /* 이미지 비율 유지, 컨테이너에 맞게 조정 */
+}
+  
+  /* Next & previous buttons */
+  .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    color: white;
+    font-size: 40px;
+    border-radius: 3px;
+    user-select: none;
+    transform: translateY(-50%);
+  
+  }
+  
+  .prev {
+    left: 0;
+    border-radius: 3px 0 0 3px;
+  }
+  
+  .next {
+    right: 0;
+    border-radius: 0 3px 3px 0;
+  }
+  
+
+  
+  /* Caption text */
+  .text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+  }
+  
+
+  
 
 /* styles.css */
-.performance {
+.recommend {
   text-align: center;
-  margin-bottom: 50px;
-  margin-top: 80px;
+  margin-bottom: 200px;
+  margin-top: 120px;
   margin-left: 0px;
 }
 
-.open_performance.h2 {
-  font-size: 1.0em; /* 글씨 크기 조정 */
-  color: #333; /* 색상 조정 */
-  margin: 0; /* 기본 여백 제거 */
-}
 
-.open_performance.h3 {
-  font-size: 3.8em; /* 글씨 크기 조정 */
-  color: #555; /* 색상 조정 */
+.recommend_text {
+  font-size: 2.5em; /* 글씨 크기 조정 */
+  color: #676767; /* 색상 조정 */
   margin: 0; /* 기본 여백 제거 */
   font-weight: bold; /* 폰트 두껍게 */
 }
+
+.recommend_text {
+  position: absolute; 
+  top:800px;
+  bottom: 20px; 
+  left:500px;
+  color: #676767; 
+  font-size: 35px; 
+  font-weight: 800;
+  z-index: 3;
+  text-align: center; 
+  text-decoration: none; /* 밑줄 제거 */
+  padding: 0 3cm; /* 양쪽에 패딩을 추가하여 막대기가 텍스트 양쪽에 붙도록 합니다 */
+}
+
+.recommend_text::before,
+.recommend_text::after {
+  content: "";
+  display: inline-block;
+  width: 3cm; /* 막대기의 길이 */
+  height: 5px; /* 막대기의 두께 */
+  background-color:  #676767; /* 막대기의 색상 */
+  vertical-align: middle; /* 텍스트와 막대기가 수직으로 정렬되도록 합니다 */
+}
+
+.recommend_text::before {
+  margin-right: 10px; /* 텍스트와 왼쪽 막대기 사이의 간격 조절 */
+}
+
+.recommend_text::after {
+  margin-left: 10px; /* 텍스트와 오른쪽 막대기 사이의 간격 조절 */
+}
+
 
 .open_carousel {
   width: 1500px; /* 필요에 따라 너비 조정 */
@@ -89,68 +228,6 @@ li {
   opacity: 1; /* 이미지 위에 커서를 올렸을 때 오버레이가 보이도록 설정 */
 }
 
-
-.purple_text {
-  position: absolute; 
-  bottom: -940px; 
-  left: 1150px;
-  color: rgb(255, 255, 255); 
-  font-size: 80px; 
-  z-index: 3;
-  
-}
-.purple1_text {
-  position: absolute; 
-  bottom: -970px; 
-  left: 1150px;
-  color: rgb(255, 255, 255); 
-  font-size: 20px; 
-  z-index: 3;
-}
-
-.purple {
- 
-  position: relative;
-  overflow: hidden; /* 이미지를 넘치는 부분 숨기기 */
-  margin-top: 200px;
-  width: 100%; /* 원하는 너비 설정 */
-  height: 800px; /* 고정 높이 설정 */
-  
-}
-
-
-.background {
-  position: absolute;
-  width: 100%;
-  height: 350px;
-  background-color: rgb(130, 4, 169); /* 핑크색 배경 */
-  z-index: 1; /* 배경을 가장 뒤에 위치시키기 */
-}
-
-.purple_slides {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display: flex;
-}
-
-
-.purple_slides img {
-  width: 800px;
-  height: 400px; /* 이미지 높이를 부모 높이에 맞춤 */
-  position: absolute;
-  margin-top: 80px;
-  left: 250px;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-  z-index: 1; 
-}
-
-.purple_slides img.active {
-  opacity: 1;
-}
-
-
 .concerts-container {
   border: 2px solid rgb(255, 255, 255);
   width: 1500px;
@@ -162,8 +239,9 @@ li {
   gap: 20px; /* 이미지 사이의 간격을 조절 */
   margin-left: 200px;
   margin-bottom: 80px;
-  margin-top: -150px;
+  margin-top: -90px;
   overflow-x: auto; /* 수평 스크롤이 가능하도록 설정 (필요시) */
+   text-align: center;
 }
 
 .concerts {
@@ -171,6 +249,7 @@ li {
   width: 245px; 
   height: 300px;
   cursor: pointer; 
+   text-align: center;
 }
 
 .concerts img {
@@ -208,7 +287,7 @@ li {
   position: absolute; 
   bottom: -1430px; 
   left: 1650px;
-  color: rgb(0, 0, 0); 
+  color:#676767; 
   font-size: 50px; 
   z-index: 3;
   text-align: center; 
@@ -216,12 +295,14 @@ li {
 }
 
 .openconcert1_text {
+  font-size: 2.5em; /* 글씨 크기 조정 */
+  margin: 0; /* 기본 여백 제거 */
+  font-weight: bold; /* 폰트 두껍게 */
   position: absolute; 
-  bottom: -1350px; 
-  left: 600px;
-  color: rgb(0, 0, 0); 
-  font-size: 40px; 
-  font-weight: 800;
+  bottom: -1370px; 
+  left: 50%; /* 부모 요소 기준으로 50% 이동 */
+  transform: translateX(-50%); /* 요소 너비의 절반만큼 왼쪽으로 이동 */
+  color:#676767; 
   z-index: 3;
   text-align: center; 
   text-decoration: none; /* 밑줄 제거 */
@@ -234,8 +315,9 @@ li {
   display: inline-block;
   width: 3cm; /* 막대기의 길이 */
   height: 5px; /* 막대기의 두께 */
-  background-color:  rgb(0, 0, 0); /* 막대기의 색상 */
+  background-color: #676767; /* 막대기의 색상 */
   vertical-align: middle; /* 텍스트와 막대기가 수직으로 정렬되도록 합니다 */
+   text-align: center;
 }
 
 .openconcert1_text::before {
@@ -245,6 +327,69 @@ li {
 .openconcert1_text::after {
   margin-left: 10px; /* 텍스트와 오른쪽 막대기 사이의 간격 조절 */
 }
+
+.purple_text {
+  position: absolute; 
+  bottom: -920px; 
+  left: 1150px;
+  color: rgb(255, 255, 255); 
+  font-size: 80px; 
+  z-index: 3;
+  
+}
+.purple1_text {
+  position: absolute; 
+  bottom: -950px; 
+  left: 1150px;
+  color: rgb(255, 255, 255); 
+  font-size: 20px; 
+  z-index: 3;
+}
+
+.purple {
+ 
+  position: relative;
+  overflow: hidden; /* 이미지를 넘치는 부분 숨기기 */
+  margin-top: 200px;
+  width: 100%; /* 원하는 너비 설정 */
+  height: 800px; /* 고정 높이 설정 */
+  
+}
+
+
+.background {
+  position: absolute;
+  width: 100%;
+  height: 350px;
+  background-color:#4B0082; /* 핑크색 배경 */
+  z-index: 1; /* 배경을 가장 뒤에 위치시키기 */
+}
+
+.purple_slides {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+
+.purple_slides img {
+  width: 800px;
+  height: 400px; /* 이미지 높이를 부모 높이에 맞춤 */
+  position: absolute;
+  margin-top: 80px;
+  left: 250px;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 1; 
+}
+
+.purple_slides img.active {
+  opacity: 1;
+}
+
+
+
 
 
 .You {
@@ -284,7 +429,7 @@ li {
 }
 
 .line-1 {
-    color: darkorange; /* 첫 번째 줄 텍스트 색상 */
+    color: #E67E22; /* 첫 번째 줄 텍스트 색상 */
     font-size: 50px; /* 첫 번째 줄 글씨 크기 */
     font-weight: 800;
 }
@@ -312,6 +457,7 @@ li {
 .hero_h2 {
   font-size: 2.5em; /* h2 요소의 폰트 크기 조정 */
   color: #333; /* 글씨 색상 조정 */
+  font-weight:800;
   margin-bottom: 10px; /* 아래쪽 여백 조정 */
 }
 
@@ -353,43 +499,94 @@ li {
   border: 3px solid rgb(255, 255, 255); 
   padding: 0px; /* 박스 내부 여백 */
   background-color: transparent; /* 내부 배경색 없음 */
-  margin-top: 50px;
+  margin-top: 170px;
 }
 
 /* 제목 스타일 */
-.best h4 {
+.best_text {
+  font-size: 2.5em; /* 글씨 크기 조정 */
+  margin: 0; /* 기본 여백 제거 */
+  font-weight: bold; /* 폰트 두껍게 */
   width: 100%; 
   height: 100px;
   text-align: center;
   line-height: 80px; /* 텍스트 세로 중앙 정렬 */
-  margin: 0;
-  font-size: 30px; /* 텍스트 크기 설정 */
   margin-left:-490px;
-  color: #807d7d;
+  color: #676767;
   margin-bottom: -10px;
 
 }
 
+.best_text a {
+  position: absolute; 
+  bottom: -1430px; 
+  left: 1650px;
+  color: rgb(0, 0, 0); 
+  font-size: 50px; 
+  z-index: 3;
+  text-align: center; 
+  text-decoration: none; /* 밑줄 제거 */
+}
+
+.best_text {
+  position: absolute; 
+  bottom: -3700px; 
+  left:500px;
+  color: #676767; 
+  margin: 0; /* 기본 여백 제거 */
+  font-weight: bold; /* 폰트 두껍게 */
+  font-size: 2.5em; /* 글씨 크기 조정 */
+  z-index: 3;
+  text-align: center; 
+  text-decoration: none; /* 밑줄 제거 */
+  padding: 0 3cm; /* 양쪽에 패딩을 추가하여 막대기가 텍스트 양쪽에 붙도록 합니다 */
+  left: 50%; /* 부모 요소 기준으로 50% 이동 */
+  transform: translateX(-50%); /* 요소 너비의 절반만큼 왼쪽으로 이동 */
+}
+
+.best_text::before,
+.best_text::after {
+  content: "";
+  display: inline-block;
+  width: 3cm; /* 막대기의 길이 */
+  height: 5px; /* 막대기의 두께 */
+  background-color:  #676767;  /* 막대기의 색상 */
+  vertical-align: middle; /* 텍스트와 막대기가 수직으로 정렬되도록 합니다 */
+}
+
+.best_text::before {
+  margin-right: 10px; /* 텍스트와 왼쪽 막대기 사이의 간격 조절 */
+}
+
+.best_text::after {
+  margin-left: 10px; /* 텍스트와 오른쪽 막대기 사이의 간격 조절 */
+}
+
+
+
+
+
+
 .kids {
   
-  background-color:rgba(209, 190, 214, 0.916); /* 컨테이너 배경색 */
+  background-color:#FFFACD; /* 컨테이너 배경색 */
   height:420px;
   display: flex;
   justify-content: center; /* 전체 컨테이너 가운데 정렬 */
   align-items: center; /* 세로 가운데 정렬 */
   flex-wrap: wrap; /* 내용이 여러 줄로 쌓이도록 함 */
-  gap: 10px; /* 요소 간격 조정 */
   max-width: 100%;
   margin: auto;
 }
 
 .kidss {
-  /* border: 3px solid rgb(255, 255, 255);  */
-  margin-left:-5px;
-  margin-right:20px;
+ /* border: 3px solid rgb(255, 255, 255);*/  
+  margin-left:7px;
+  margin-right:0px;
   margin-top: -70px;
   display: flex;
-  gap: 17px; /* 요소 간격 조정 */
+  gap: 18px; /* 요소 간격 조정 */
+  width: 1100px;
 }
 
 .kids_p {
@@ -397,25 +594,32 @@ li {
   box-sizing: border-box;
   text-align: center; /* 텍스트 가운데 정렬 */
   max-width: 300px; /* 최대 너비 조정 */
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  
 }
 
 .kids_text {
+  text-align: center;
+  font-size: 2.5em; /* 글씨 크기 조정 */
+  margin: 0; /* 기본 여백 제거 */
+  font-weight: bold; /* 폰트 두껍게 */
   position: relative; /* 가상 요소를 절대 위치로 배치하기 위해 상대 위치 설정 */
   padding: 0 3cm; /* 텍스트 양쪽에 패딩 추가 */
-  font-size: 50px; /* 텍스트 크기 설정 (필요에 따라 조정) */
-  color: rgba(144, 109, 153, 0.916); /* 텍스트 색상 설정 (필요에 따라 조정) */
-  font-weight: 600;
+  color:  #676767; /* 텍스트 색상 설정 (필요에 따라 조정) */
   top: -10px;
-  margin-left: 500px;
+  left: 50%; /* 부모 요소 기준으로 50% 이동 */
+  transform: translateX(-50%); /* 요소 너비의 절반만큼 왼쪽으로 이동 */
 }
 
 .kids_text::before,
 .kids_text::after {
   content: "";
   display: inline-block;
-  width: 7cm; /* 막대기의 길이 */
+  width: 3cm; /* 막대기의 길이 */
   height: 5px; /* 막대기의 두께 */
-  background-color: rgba(209, 190, 214, 0.916); /* 막대기의 색상 */
+  background-color:#676767; /* 막대기의 색상 */
   vertical-align: middle; /* 텍스트와 막대기가 수직으로 정렬되도록 합니다 */
 }
 
@@ -429,9 +633,9 @@ li {
 .kids_p img {
   cursor: pointer;
   margin-top: 90px;
-  width: 200px;
+  width: 191px;
   height: 280px; /* 비율에 맞게 자동으로 조정 */
-  border-radius: 10px; /* 이미지 모서리 둥글게 하기 */
+  border-radius: 5px; /* 이미지 모서리 둥글게 하기 */
   transition: transform 0.3s ease;
 }
 
@@ -457,29 +661,83 @@ li {
 }
 .kids1_text a {
   text-decoration: none; /* 링크의 기본 밑줄 제거 */
-  color:rgba(144, 109, 153, 0.916); /* "+" 기호의 색상 */
+  color:#676767; /* "+" 기호의 색상 */
   font-weight:600; /* "+" 기호의 두께 설정 */
   z-index: 3;
   font-size: 45px;
-  margin-left: 1000px;
+  margin-left: 1050px;
 }
 
-.gallery_text {
-  top: 120px;
+.now_text {
+  width: 100%; 
+  height: 100px;
+  text-align: center;
+  line-height: 80px; /* 텍스트 세로 중앙 정렬 */
+  margin: 0;
+  font-size: 30px; /* 텍스트 크기 설정 */
+  color: #807d7d;
+  margin-bottom: -10px;
+  font-size: 2.5em; /* 글씨 크기 조정 */
+  margin: 0; /* 기본 여백 제거 */
+  font-weight: bold; /* 폰트 두껍게 */
+  
+
+}
+
+
+.now_text {
+  position: absolute; 
+  bottom: -5400px; 
+  color: #676767; 
+  z-index: 3;
+  text-align: center; 
+  text-decoration: none; /* 밑줄 제거 */
+  padding: 0 3cm; /* 양쪽에 패딩을 추가하여 막대기가 텍스트 양쪽에 붙도록 합니다 */
+  font-size: 2.5em; /* 글씨 크기 조정 */
+  margin: 0; /* 기본 여백 제거 */
+  font-weight: bold; /* 폰트 두껍게 */
+  
+}
+
+.nowgallery_text {
+  top:60px;
   position: relative; /* 위치를 자유롭게 조정하기 위해 절대 위치 사용 */
   display: flex;
   justify-content: center; /* "+" 기호를 가운데 정렬 */
   align-items: center; /* "+" 기호를 세로로 가운데 정렬 */
   font-size: 24px; /* "+" 기호의 크기 설정 */
 }
-.gallery_text a {
+.nowgallery_text a {
   text-decoration: none; /* 링크의 기본 밑줄 제거 */
-  color: #807d7d; /* "+" 기호의 색상 */
+  color: #676767; /* "+" 기호의 색상 */
   font-weight:600; /* "+" 기호의 두께 설정 */
   z-index: 3;
   font-size: 45px;
-  margin-left: 1050px;
+  margin-left: 510px;
+  margin-top:170px;
+
 }
+
+
+.now_text::before,
+.now_text::after {
+  content: "";
+  display: inline-block;
+  width: 3cm; /* 막대기의 길이 */
+  height: 5px; /* 막대기의 두께 */
+  background-color:  #676767; /* 막대기의 색상 */
+  vertical-align: middle; /* 텍스트와 막대기가 수직으로 정렬되도록 합니다 */
+}
+
+.now_text::before {
+  margin-right: 10px; /* 텍스트와 왼쪽 막대기 사이의 간격 조절 */
+}
+
+.now_text::after {
+  margin-left: 10px; /* 텍스트와 오른쪽 막대기 사이의 간격 조절 */
+}
+
+
 
 .gallery {
   position: relative;
@@ -488,18 +746,9 @@ li {
   border: 3px solid rgb(255, 255, 255);
   margin: 0 auto; /* 블록요소 가운데처리 */
   overflow: hidden; /* float받은 자손이나 후손의 높이도 인식 */
+  margin-top:80px;
 }
-.gallery h3 {
-  width: 100%; 
-  height: 80px;
-  text-align: center;
-  line-height: 80px; /* 텍스트 세로 중앙 정렬 */
-  font-size: 30px;
-  margin-left: -480px;
-  color: #807d7d; 
-  margin-top: 50px;
- 
-}
+
 .gallery ul {
   display: flex;
   flex-wrap: wrap; /* 줄바꿈 허용 */
@@ -530,7 +779,7 @@ li {
   width: 100%;
   height: 100%;
   transition: 0.3s;
-  border-radius: 15px;
+  
   
 }
 
