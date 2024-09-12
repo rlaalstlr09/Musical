@@ -129,14 +129,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!--admin 뮤지컬 관리 -->
 
 <sql id='musical_search'>
-    <if test="filter.keyword!=null">
-    <if test="filter.keyword!=''">
+    <if test="keyword!=null">
+    <if test="keyword!=''">
     <if test="searchType!=''">
     <if test="searchType=='title'">
-            and (musical_title LIKE '%' || #{filter.keyword} || '%')                        
+            and (musical_title LIKE '%' || #{keyword} || '%')                        
     </if>
     <if test="searchType=='agelimit'">
-            and (musical_agelimit LIKE '%' || #{filter.keyword} || '%')                        
+            and (musical_agelimit LIKE '%' || #{keyword} || '%')                        
     </if>  </if>  </if></if>
 </sql>
 
