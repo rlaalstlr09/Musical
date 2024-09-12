@@ -285,7 +285,7 @@ li {
 
 .openconcert_text a {
   position: absolute; 
-  bottom: -1430px; 
+  bottom: -1450px; 
   left: 1650px;
   color:#676767; 
   font-size: 50px; 
@@ -562,6 +562,76 @@ li {
   margin-left: 10px; /* 텍스트와 오른쪽 막대기 사이의 간격 조절 */
 }
 
+.image-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
+  color: #fff; /* 텍스트 색상 */
+  text-align: center;
+  padding: 10px; /* 패딩 추가 */
+  border-bottom-left-radius: 15px; /* 모서리 둥글게 */
+  border-bottom-right-radius: 15px; /* 모서리 둥글게 */
+  font-size: 16px; /* 텍스트 크기 */
+}
+
+
+
+/* 메인 컨테이너 스타일 */
+.main-container {
+  display: flex;
+}
+
+/* 큰 이미지 스타일 */
+.large-item {
+  flex: 1;
+}
+
+.large-item img {
+  width: 500px; /* 컨테이너에 맞게 조정 */
+  height: auto; /* 비율 유지 */
+}
+
+/* 그리드 컨테이너 스타일 */
+.grid-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 상단 행 스타일 */
+.top-row,
+.bottom-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px; /* 상하 간격 조절 */
+}
+
+/* 그리드 항목 스타일 */
+.grid-item {
+  flex: 1;
+  margin: 0 10px; /* 좌우 여백 */
+  overflow: hidden; /* 확대 시 이미지가 넘치지 않도록 숨기기 */
+  position: relative; /* 자식 요소의 절대 위치 설정을 위한 기준 */
+  }
+
+
+/* 작은 이미지 스타일 */
+.grid-item img {
+  width: 275px; /* 그리드 셀에 맞게 조정 */
+  height: 347.5px; /* 비율 유지 */
+  max-width: 300px; /* 최대 너비 조정 (필요에 따라 조정) */
+  transition: 0.3s; /* 이미지 전환 효과 */
+}
+.grid-item:hover img, 
+.grid-item:focus img {
+  transform: scale(1.2); /* 이미지 확대 */
+}
+
+.grid-item:last-child {
+  margin-right: 0; /* 마지막 이미지의 오른쪽 여백 없애기 (필요 시) */
+}
 
 
 
@@ -689,7 +759,7 @@ li {
   position: absolute; 
   bottom: -5400px; 
   color: #676767; 
-  z-index: 3;
+  z-index: 2;
   text-align: center; 
   text-decoration: none; /* 밑줄 제거 */
   padding: 0 3cm; /* 양쪽에 패딩을 추가하여 막대기가 텍스트 양쪽에 붙도록 합니다 */
@@ -700,12 +770,13 @@ li {
 }
 
 .nowgallery_text {
-  top:60px;
+  top:-10px;
   position: relative; /* 위치를 자유롭게 조정하기 위해 절대 위치 사용 */
   display: flex;
   justify-content: center; /* "+" 기호를 가운데 정렬 */
   align-items: center; /* "+" 기호를 세로로 가운데 정렬 */
   font-size: 24px; /* "+" 기호의 크기 설정 */
+  
 }
 .nowgallery_text a {
   text-decoration: none; /* 링크의 기본 밑줄 제거 */
@@ -715,7 +786,8 @@ li {
   font-size: 45px;
   margin-left: 510px;
   margin-top:170px;
-
+  position: relative;
+  cursor: pointer;
 }
 
 
@@ -737,128 +809,124 @@ li {
   margin-left: 10px; /* 텍스트와 오른쪽 막대기 사이의 간격 조절 */
 }
 
-
-
-.gallery {
-  position: relative;
-  height: auto;
-  width: 1100px; 
-  border: 3px solid rgb(255, 255, 255);
-  margin: 0 auto; /* 블록요소 가운데처리 */
-  overflow: hidden; /* float받은 자손이나 후손의 높이도 인식 */
-  margin-top:80px;
+.now-container {
+    display: flex;
+    justify-content: space-between;
+    width: 1100px; /* Set the total width of the container */
+    margin: 0 auto; /* Center-align the container */
+    padding: 0px; /* Optional padding inside the container */
+    /* Add a border if needed */
+     
 }
 
-.gallery ul {
-  display: flex;
-  flex-wrap: wrap; /* 줄바꿈 허용 */
-  justify-content: space-between;
-  padding: 0;
-  margin: 0;
+.now-item {
+    width: 22%; /* Adjust width based on container size */
+    background-color: #fff;
+    border: 1px solid #e6e6e6;
+    padding: 0px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-right: 2%; /* Adjust margin between items */
+     box-sizing: border-box;
 }
 
-.gallery li {
-  width: 260px; /* 이미지 한 줄에 4개 배치 */
-  height: 340px;
-  margin-bottom: 70px; /* 줄 사이 간격 조정 */
+.now-item:last-child {
+    margin-right: 0; /* Remove right margin for the last item */
 }
 
-.gallery li:nth-child(4n) {
-  margin-right: 0; /* 매 4번째 요소의 마진 제거 */
+.now-item img {
+    max-width: 240px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
 
-.gallery a {
-  display: block;
-  width: 100%;
-  height: 100%;
-  overflow: hidden; /* 자손이 현재 요소보다 클때 안보이게 처리 */
-  position: relative; /* 자식 요소의 절대 위치 설정을 위한 기준 */
+.now-item:hover {
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transform: scale(1.1); /* Zoom in the entire .now-item including the image and text */
 }
 
-.gallery img {
-  width: 100%;
-  height: 100%;
-  transition: 0.3s;
-  
-  
+.now-item h5 {
+    font-size: 16px;
+    margin: 10px 0;
+    text-align: left; /* Align text to the left */
+    padding-left: 10px;
 }
 
-.gallery a:hover img, 
-.gallery a:focus img {
-  transform: scale(1.2); /* a태그에 마우스를 올렸을 때 */
+.now-item p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+    text-align: left; /* Align text to the left */
+    padding-left: 10px;
+    padding-bottom:10px;
+}
+.now-item a {
+    text-decoration: none; /* Remove underline from links */
+    color: inherit; /* Inherit text color */
+    display: block; /* Ensure the entire .now-item is clickable */
 }
 
-.image-text {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
-  color: #fff; /* 텍스트 색상 */
-  text-align: center;
-  padding: 10px; /* 패딩 추가 */
-  border-bottom-left-radius: 15px; /* 모서리 둥글게 */
-  border-bottom-right-radius: 15px; /* 모서리 둥글게 */
-  font-size: 16px; /* 텍스트 크기 */
+.now-container-two {
+    display: flex;
+    justify-content: space-between;
+    width: 1100px; /* Set the total width of the container */
+    margin: 0 auto; /* Center-align the container */
+    padding: 0px; /* Optional padding inside the container */
+    margin-top:80px;
 }
 
-
-
-/* 메인 컨테이너 스타일 */
-.main-container {
-  display: flex;
+.now-container-two .now-item {
+    width: 22%; /* Adjust width based on container size */
+    background-color: #fff;
+    border: 1px solid #e6e6e6;
+    padding: 0px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-right: 2%; /* Adjust margin between items */
 }
 
-/* 큰 이미지 스타일 */
-.large-item {
-  flex: 1;
+.now-container-two .now-item:last-child {
+    margin-right: 0; /* Remove right margin for the last item */
 }
 
-.large-item img {
-  width: 500px; /* 컨테이너에 맞게 조정 */
-  height: auto; /* 비율 유지 */
+.now-container-two img {
+    max-width: 240px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
 
-/* 그리드 컨테이너 스타일 */
-.grid-container {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+.now-container-three {
+    display: flex;
+    justify-content: space-between;
+    width: 1100px; /* Set the total width of the container */
+    margin: 0 auto; /* Center-align the container */
+    padding: 0px; /* Optional padding inside the container */
+    margin-top:80px;
+    margin-bottom:150px;
 }
 
-/* 상단 행 스타일 */
-.top-row,
-.bottom-row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px; /* 상하 간격 조절 */
+.now-container-three .now-item {
+    width: 22%; /* Adjust width based on container size */
+    background-color: #fff;
+    border: 1px solid #e6e6e6;
+    padding: 0px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-right: 2%; /* Adjust margin between items */
 }
 
-/* 그리드 항목 스타일 */
-.grid-item {
-  flex: 1;
-  margin: 0 10px; /* 좌우 여백 */
-  overflow: hidden; /* 확대 시 이미지가 넘치지 않도록 숨기기 */
-  position: relative; /* 자식 요소의 절대 위치 설정을 위한 기준 */
-  }
-
-
-/* 작은 이미지 스타일 */
-.grid-item img {
-  width: 275px; /* 그리드 셀에 맞게 조정 */
-  height: 347.5px; /* 비율 유지 */
-  max-width: 300px; /* 최대 너비 조정 (필요에 따라 조정) */
-  transition: 0.3s; /* 이미지 전환 효과 */
-}
-.grid-item:hover img, 
-.grid-item:focus img {
-  transform: scale(1.2); /* 이미지 확대 */
+.now-container-three .now-item:last-child {
+    margin-right: 0; /* Remove right margin for the last item */
 }
 
-.grid-item:last-child {
-  margin-right: 0; /* 마지막 이미지의 오른쪽 여백 없애기 (필요 시) */
+.now-container-three img {
+    max-width: 240px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
-
 
 
 .ad-banner {
