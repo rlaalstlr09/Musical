@@ -9,6 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	insert into qa(qa_id,customer_id,qa_type,title,content)
 	values (qa_count.nextval,#{customer_id},#{qa_type},#{title},#{content})
 </insert>
+
 <!-- 회원 탈퇴시 삭제용 -->
 <delete id="deleteAll">
 delete qa where customer_id = #{customer_id}
@@ -87,6 +88,39 @@ FETCH NEXT #{vo.perPageNum} ROWS ONLY]]>
 		 where qa_id = #{qa_id}
 	</update>
 
+
+
+
+
 	
 
+<!-- qna -->
+<insert id="insertQna">
+insert into qa(qa_id,customer_id,musical_id,title,content,qa_date,display)
+values(qa_count.nextval,#{customer_id},#{musical_id},#{title},#{content},sysdate,#{display})
+</insert>
+
+<select id="selectAllQna" resultType="QaDto">
+select qa_id,customer_id,musical_id,title,content,qa_date,response,display from qa
+where musical_id=#{musical_id} 
+OFFSET (#{vo.page}-1) * #{vo.perPageNum} ROWS
+FETCH NEXT #{vo.perPageNum} ROWS ONLY
+</select>
+
+<select id="selectMyQna">
+select qa_id,customer_id,musical_id,title,content,qa_date,response,display from qa
+where customer_id=#{customer_id} 
+OFFSET (#{vo.page}-1) * #{vo.perPageNum} ROWS
+FETCH NEXT #{vo.perPageNum} ROWS ONLY
+</select>
+
+<update id="updateQna">
+update qa set qa_id=#{qa_id},customer_id=#{customer_id},
+musical_id=#{musical_id},title=#{title},content=#{content},qa_date=#{qa_date},
+response=#{response},display=#{display} where qa_id=#{qa_id}
+</update>
+
+<delete id="deleteQna">
+delete qa where qa_id=#{qa_id}
+</delete>
 </mapper>

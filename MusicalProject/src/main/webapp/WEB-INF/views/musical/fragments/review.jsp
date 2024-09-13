@@ -324,7 +324,7 @@ margin-top:10px;
 				data:{
 					content: $('#content').val(), 
 					musical_id : $('#musical_id').val(),
-					customer_id:$('#customer_id').val(),
+					
 					rating:$('#rating').val()
 					
 				},
@@ -410,14 +410,14 @@ margin-top:10px;
 				<div class="reviw_title">
 					<div class="review_header">
 						<div class="star_rating read-only sttar">
-	                    	<span class="star on " style="width: ${reviewDto.rating >= 1 ? '30px' : '0'};"></span>
-	                    	<span class="star on" style="width: ${reviewDto.rating >= 2 ? '30px' : '0'};"></span>
-	                    	<span class="star on" style="width: ${reviewDto.rating >= 3 ? '30px' : '0'};"></span>
-	                    	<span class="star on" style="width: ${reviewDto.rating >= 4 ? '30px' : '0'};"></span>
-	                    	<span class="star on" style="width: ${reviewDto.rating >= 5 ? '30px' : '0'};"></span>
+	                    	<span class="star  ${reviewDto.rating >= 1 ? 'on' : '0'}"></span>
+	                    	<span class="star  ${reviewDto.rating >= 2 ? 'on' : '0'}"></span>
+	                    	<span class="star  ${reviewDto.rating >= 3 ? 'on' : '0'}"></span>
+	                    	<span class="star  ${reviewDto.rating >= 4 ? 'on' : '0'}"></span>
+	                    	<span class="star  ${reviewDto.rating >= 5 ? 'on' : '0'}"></span>
 	                	</div>
 	                
-						<div class="nick_name">닉네임: ${reviewDto.customer_id} &nbsp;|&nbsp; 
+						<div class="nick_name">아이디: ${reviewDto.customer_id} &nbsp;|&nbsp; 
 					
 					
 					 	<fmt:formatDate pattern="yyyy-MM-dd"
@@ -456,7 +456,7 @@ margin-top:10px;
            </div>
 		
         <input type="hidden" id="rating"  value="0">
-		<input type="hidden" name="customer_id" id="customer_id" value="test"> 
+		 
 		
 		<input type="hidden"name="musical_id" id="musical_id" value='${musical_id }'>
 		<textarea id="content" name="content" placeholder="댓글을 입력하세요"></textarea>

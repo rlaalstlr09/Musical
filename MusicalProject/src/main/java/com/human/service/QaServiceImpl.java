@@ -1,5 +1,6 @@
 package com.human.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -8,9 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.human.dao.IQaDao;
+import com.human.dao.IReviewDao;
 import com.human.dto.CustomerDto;
 import com.human.dto.QaDto;
-
+import com.human.dto.ReviewDto;
 import com.human.vo.BoardVo;
 
 @Service
@@ -50,4 +52,50 @@ public class QaServiceImpl implements IQaService {
 		IQaDao dao = sqlSession.getMapper(IQaDao.class);
 		dao.deleteAll(dto);
 	}
+	//qna
+	public void insertQna(QaDto dto) throws Exception{
+		IQaDao dao = sqlSession.getMapper(IQaDao.class);
+		dao.create(dto);
+	}
+	
+	@Override
+	public ArrayList<QaDto> selectAllQna(Integer musical_id,BoardVo vo) throws Exception {
+		IQaDao dao=sqlSession.getMapper(IQaDao.class);
+		return dao.selectAllQna(musical_id,vo);
+	}
+	
+	@Override
+	public ArrayList<QaDto> selectMyQna(String customer_id,BoardVo vo) throws Exception {
+		IQaDao dao=sqlSession.getMapper(IQaDao.class);
+		return dao.selectMyQna(customer_id,vo);
+	}
+	
+	@Override
+	public void deleteQna(int qa_id) throws Exception {
+		IQaDao dao=sqlSession.getMapper(IQaDao.class);
+		dao.deleteQna(qa_id);
+		
+	}
+
+	@Override
+	public void updateQna(QaDto dto) throws Exception {
+		IQaDao dao=sqlSession.getMapper(IQaDao.class);
+		dao.updateQna(dto);
+		
+	}
+	
+	@Override
+	public Integer totalCount(Integer musical_id) throws Exception {
+		IQaDao dao=sqlSession.getMapper(IQaDao.class);
+		
+		return dao.totalCount(musical_id);
+	}
+	
+	@Override
+	public Integer myTotalCount(String customer_id) throws Exception {
+		IQaDao dao=sqlSession.getMapper(IQaDao.class);
+		
+		return dao.myTotalCount(customer_id);
+	}
+	
 }

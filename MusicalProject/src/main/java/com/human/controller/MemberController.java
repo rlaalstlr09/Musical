@@ -178,7 +178,7 @@ public class MemberController {
 		vo.setTotalCount(qaService.qa_listCount(customer_id));
 		return "/member/qa_list";
 	}
-	
+	/////////////////////////////
 	@RequestMapping(value = "member/myReview", method = RequestMethod.GET)
 	public String myReview(Model model,Authentication authentication,@RequestParam(value="page",defaultValue="1") int page,
 		@RequestParam(value="perPageNum",defaultValue="10") int perPageNum)throws Exception{
@@ -205,6 +205,14 @@ public class MemberController {
 	}
 	@RequestMapping(value = "member/deleteReview", method = RequestMethod.GET)
 	public String deleteReview(@RequestParam("review_id") int review_id, @RequestParam("customer_id") String customer_id)throws Exception{
+		
+		rService.delete(review_id);
+		
+		return "redirect:/member/myReview?customer_id="+customer_id;
+	}
+	/////////////////////////////
+	@RequestMapping(value = "member/myQna", method = RequestMethod.GET)
+	public String myQna(@RequestParam("review_id") int review_id, @RequestParam("customer_id") String customer_id)throws Exception{
 		
 		rService.delete(review_id);
 		

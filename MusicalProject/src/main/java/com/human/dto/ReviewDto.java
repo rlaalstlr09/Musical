@@ -35,6 +35,17 @@ public class ReviewDto {
 		this.review_date = review_date;
 		this.musical_title = musical_title;
 	}
+	public ReviewDto(Integer review_id,  Integer musical_id, String content, Integer rating,
+			Date review_date, String musical_title) {
+		super();
+		this.review_id = review_id;
+		
+		this.musical_id = musical_id;
+		this.content = content;
+		this.rating = rating;
+		this.review_date = review_date;
+		this.musical_title = musical_title;
+	}
 	
 	public Integer getTotalCount() {
 		return totalCount;
