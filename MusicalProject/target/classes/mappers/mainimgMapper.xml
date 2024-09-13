@@ -12,6 +12,8 @@ select * from main_img  where img_num =#{param1}
 
 
 
+
+
 </mapper>
 
 
