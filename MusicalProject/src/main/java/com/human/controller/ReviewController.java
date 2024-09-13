@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -59,8 +60,8 @@ public class ReviewController {
 	}
 	
 	@RequestMapping(value = "/insertReview", method = RequestMethod.GET)
-	public String insertReview(Integer musical_id, ReviewDto dto, Model model)throws Exception{
-		
+	public String insertReview(Integer musical_id, ReviewDto dto, Model model,Authentication authentication)throws Exception{
+		dto.setCustomer_id(authentication.getName());
 		rService.insert(dto);
 		System.out.println(dto);
 		model.addAttribute("musical_id", musical_id);

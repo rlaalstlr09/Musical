@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,11 +17,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.human.dto.ActorCharacterDto;
 import com.human.dto.MusicalDto;
 import com.human.dto.MusicalFilterDto;
+import com.human.dto.QaDto;
 import com.human.dto.ReviewDto;
 import com.human.service.ActorCharacterServiceImpl;
 import com.human.service.IMusicalService;
 import com.human.service.ISeatService;
 import com.human.service.MusicalServiceImpl;
+import com.human.service.QaServiceImpl;
 import com.human.service.ReviewServiceImpl;
 import com.human.vo.BoardVo;
 
@@ -36,12 +39,13 @@ public class TabController {
 	ActorCharacterServiceImpl ACService;
 	@Autowired
 	MusicalServiceImpl musicalService;
-
+	@Autowired
+	QaServiceImpl qnaService;
 	@RequestMapping("/review")
 	public String reviewTab(Model model, @RequestParam(value = "musical_id") Integer musical_id,@RequestParam(value = "customer_id", defaultValue ="") String customer_id,
 			@RequestParam(value = "page", defaultValue = "1") int page,
 			@RequestParam(value = "perPageNum", defaultValue = "10") int perPageNum,
-			@RequestParam(value = "sort", defaultValue = "date") String sort) throws Exception {
+			@RequestParam(value = "sort", defaultValue = "date") String sort,Authentication authentication) throws Exception {
 
 		Double avgRating = rService.avgRating(musical_id);
 
@@ -64,10 +68,35 @@ public class TabController {
 		model.addAttribute("boardVo", vo);
 		model.addAttribute("roundRating", roundRating);
 		model.addAttribute("musical_id", musical_id);
+		customer_id=authentication.getName();
 		model.addAttribute("customer_id", customer_id);
 		return "musical/fragments/review";
 
 	}
+	@RequestMapping("/qna")
+	public String qTab(Model model, @RequestParam(value = "musical_id") Integer musical_id,@RequestParam(value = "customer_id", defaultValue ="") String customer_id,
+			@RequestParam(value = "page", defaultValue = "1") int page,
+			@RequestParam(value = "perPageNum", defaultValue = "10") int perPageNum
+			) throws Exception {
+
+		
+
+		BoardVo vo = new BoardVo();
+		
+		vo.setPage(page);
+		vo.setPerPageNum(perPageNum);
+		vo.setTotalCount(qnaService.totalCount(musical_id));
+		
+		ArrayList<QaDto> dto = qnaService.selectAllQna(musical_id, vo);		
+		
+		model.addAttribute("List", dto);		
+		model.addAttribute("boardVo", vo);		
+		model.addAttribute("musical_id", musical_id);
+		
+		return "musical/fragments/qna";
+
+	}
+	
 	
 	@RequestMapping(value = "/character", method = RequestMethod.GET)
 	public String characterTab(Integer musical_id, Model model)throws Exception{
