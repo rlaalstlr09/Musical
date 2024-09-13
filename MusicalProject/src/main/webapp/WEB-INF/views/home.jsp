@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -105,44 +107,16 @@
         +
         </a>
       </div>
-      <div class="concerts">
-        <img src="<%=request.getContextPath()%>/resources/img/차사 강림.jpg" alt="Image 1">
-        <div class="overlay">
-          <div class="overlay-text">Image 1 Description</div>
-        </div>
+      
+      <c:forEach var = "musical" items = "${openMusical }">
+      	<div class="concerts">
+	        <img src="<%=request.getContextPath()%>/resources/img/musical/${musical.musical_poster}" alt="Image 1">
+	        <div class="overlay">
+          		<div class="overlay-text">Image 1 Description</div>
+        	</div>
+      	</div>
+      </c:forEach> 
       </div>
-      <div class="concerts">
-        <img src="<%=request.getContextPath()%>/resources/img/피겨.jpg" alt="Image 2">
-        <div class="overlay">
-          <div class="overlay-text">Image 2 Description</div>
-        </div>
-      </div>
-      <div class="concerts">
-        <img src="<%=request.getContextPath()%>/resources/img/써니텐.jpg" alt="Image 3">
-        <div class="overlay">
-          <div class="overlay-text">Image 3 Description</div>
-        </div>
-      </div>
-      <div class="concerts">
-        <img src="<%=request.getContextPath()%>/resources/img/시스터즈.jpg" alt="Image 4">
-        <div class="overlay">
-          <div class="overlay-text">Image 4 Description</div>
-        </div>
-      </div>
-      <div class="concerts">
-        <img src="<%=request.getContextPath()%>/resources/img/시스터즈.jpg" alt="Image 4">
-        <div class="overlay">
-          <div class="overlay-text">Image 4 Description</div>
-        </div>
-      </div>
-      <div class="concerts">
-        <img src="<%=request.getContextPath()%>/resources/img/시스터즈.jpg" alt="Image 4">
-        <div class="overlay">
-          <div class="overlay-text">Image 4 Description</div>
-        </div>
-      </div>
-    </div>
-
     <div class="You">
       <div class="left-content">
         <div class="text-line line-1"><br>인사이드아웃2<br></div>

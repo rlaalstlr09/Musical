@@ -51,7 +51,6 @@ $(document).ready(function() {
 		let $this = $(this);
 		let isLiked = $this.hasClass('liked');
 		let musicalId = $this.data('musical');
-		let customerId = $this.data('customer');
 
 		if (isLiked && !confirm('정말 취소하시겠습니까?')) {
 			return;
@@ -62,7 +61,6 @@ $(document).ready(function() {
 			method : 'POST',
 			data : {
 				musical_id : musicalId,
-				customer_id : customerId
 			},
 			success : function(response) {
 				if (response === 'redirect') {
@@ -154,11 +152,12 @@ $(document).ready(function() {
 					class="img-fluid">
 				
 				<div class="like">
-					<a href="#" id="like-button" class="${isLike == 1 ? 'liked' : ''}"
-						data-customer="${pageContext.request.userPrincipal.name }"
-						data-musical="${musical.musical_id }"> ${isLike == 1 ? '♥' : '♡'}
-		
-					</a> <span id="total-likes">${musical.total_likes }</span>
+					<a href="#" id="like-button" class="${isLike == 1 ? 'liked' : ''}" data-musical="${musical.musical_id }"> 
+						${isLike == 1 ? '♥' : '♡'}
+					</a> 
+					<span id="total-likes">
+						${musical.total_likes }
+					</span>
 				</div>
 			</div>
 			<div class = "musical-detail-info">
@@ -168,7 +167,7 @@ $(document).ready(function() {
 				<!-- Link to open the modal -->
 				<a href="#" class="open-venue-modal" id="openModalLink"
 					data-toggle="modal" data-target="#venue-modal">${musical.venue_name }&nbsp;${musical.hall_name} ▶</a>
-				
+				 
 				<!-- Modal -->
 				<div class="modal fade" id="venue-modal" tabindex="-1" role="dialog"
 					aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -280,33 +279,19 @@ $(document).ready(function() {
 			
 			<h4>공연 스케줄 안내</h4>
 			<div class="schedule-grid">
-				<c:set var="previousDate" value="" />
-				
-					<c:forEach var="schedule" items="${schedules }">
-						<table class = "schedule-date">
-							<c:if test="${schedule.mu_sch_date ne previousDate}">
-								<tr>
-									<td>
-										${schedule.formattedDate}
-									</td>
-									<td>
-										${schedule.dayOfWeekInKorean}
-									</td>
-								</tr>
-								<c:set var="previousDate" value="${schedule.mu_sch_date}" />
-							</c:if>
-							<c:forEach var="schedule" items="${schedules }">
-								<c:if test="${schedule.mu_sch_date eq previousDate || previousDate eq ''}">
-									<tr>
-										<td colspan = 2 class = "schedule-time">
-											${schedule.formattedTime}
-										</td>
-									</tr>
-								</c:if>
-							</c:forEach>
-						</table>
-					</c:forEach>
-				
+				<c:forEach var="entry" items="${scheduleMap}">
+					
+				 	<table>
+				 		<tr>
+				 			<th>${entry.key.mu_sch_date} (${entry.key.dayOfWeekInKorean})</th>
+					 		<td>
+						 		<c:forEach var="time" items="${entry.value}">
+					                <div>${time}</div>
+					            </c:forEach>
+				           	</td>
+			           </tr>
+					</table>
+				</c:forEach>
 			</div>
 			<div id="actor">
 				<c:set var="previousCharacterName" value="${actors[0].character_name}" />

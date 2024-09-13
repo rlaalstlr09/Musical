@@ -2,7 +2,7 @@
 #container {
 	display:flex;
 	flex-direction: column; 
-	width: 90%;
+	width: 70%;
     margin: 0 auto;
     padding: 50px 10%;
     background-color: #ffffff;
@@ -63,6 +63,7 @@
 	/* 뮤지컬 포스터 */
 	.img-fluid{
 		width : 300px;
+		border-radius : 16px;
 	}
 	
 	/* 뮤지컬 상세정보 */
@@ -99,24 +100,41 @@
 	/* 공연 스케쥴 */
 	.schedule-grid{
 		display : grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap : 10px;
-	}
-	
-	.schedule-date{
-		displpay : inline-block;
-		min-width : 200px;
-		min-height : 100px;
-		text-align : center;
+		grid-template-columns: repeat(2, 1fr);
 		
 	}
 	
-	.schedule-date tr{
-		border : 0.5px solid lightgrey;
+	.schedule-grid table{
+		min-height : 150px;
+		border-collapse: collapse;
+		margin-right:20px;
 	}
 	
-	.schedule-date tr td:nth-child(even){
-		background-color : #f4f4f4;
+	.schedule-grid th{
+		width : 175px;
+		vertical-align: middle;
+		
+		border-right : 0.5px  solid lightgrey;
+	}
+	
+	.schedule-grid td{
+		padding : 20px;
+		height : 100%;
+		
+	}
+	
+	.schedule-grid tr{
+		vertical-align: middle;
+		border-top:0.5px solid lightgrey;
+		border-bottom:0.5px solid lightgrey;
+		border-collapse: collapse;
+	}
+	
+	.schedule-grid td div {
+		width : 100px;
+    	margin:20px auto;
+    	text-align : center; 
+    	border-bottom : 0.5px solid #ddd;
 	}
 	
 	#openModalLink, .nav-link{

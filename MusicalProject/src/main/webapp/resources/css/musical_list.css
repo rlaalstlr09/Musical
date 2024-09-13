@@ -190,12 +190,49 @@ ul li a {
     font-size: 18px;
     color: #333;
     padding: 50px 20px;     
+   
 }
 
 .swiper-slide-active {
    padding : 33px 0;
     
 }
+
+/* 기본 버튼 스타일 */
+.swiper-button-next, .swiper-button-prev {
+    position: absolute;
+    top: 50%;
+    width: 40px;
+    height: 40px;
+    color: #fff; /* 아이콘 색상 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, transform 0.3s; /* 부드러운 전환 효과 */
+    z-index: 10; /* 다른 요소 위에 위치 */
+    padding : 30px 25px;
+    border-radius : 16px;
+    background-color: #333;
+}
+
+/* 버튼 아이콘 스타일 (화살표) */
+.swiper-button-next::after, .swiper-button-prev::after {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+/* 버튼 호버 상태 스타일 */
+.swiper-button-next:hover, .swiper-button-prev:hover {
+	background-color: rgba(255,255,255, 0.1); /* 클릭 시 배경색을 더 불투명하게 설정 */
+    transform: scale(1.2); /* 버튼 확대 효과 */
+}
+
+/* 버튼 클릭 시 스타일 */
+.swiper-button-next:active, .swiper-button-prev:active {
+    background-color: rgba(68, 68, 68, 0.9); /* 클릭 시 배경색을 더 불투명하게 설정 */
+}
+
 
  .link-container {
     display: flex; 

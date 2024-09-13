@@ -2,7 +2,10 @@ package com.human.controller;
 
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -117,8 +120,20 @@ public class MusicalController {
 		System.out.println(musicalDto);
 		List<MusicalScheduleDto> schedules = musicalService.selectMusicalSchedule(musical_id);
 		System.out.println(schedules);
-		BoardVo vo = new BoardVo();
 		
+		Map<MusicalScheduleDto, List<String>> scheduleMap = new LinkedHashMap<>();
+		for (MusicalScheduleDto schedule : schedules) {
+			MusicalScheduleDto date = new MusicalScheduleDto();
+			date.setMu_sch_date(schedule.getFormattedDate());
+			if (!scheduleMap.containsKey(date)) {
+				scheduleMap.put(date, new ArrayList<>());
+			}
+			scheduleMap.get(date).add(schedule.getFormattedTime());
+		}
+
+	    
+		BoardVo vo = new BoardVo();
+	
 		//최상위 리뷰 3개 표출을 위한 vo 설정
 		vo.setPage(0);
 		vo.setPerPageNum(3);
@@ -143,6 +158,7 @@ public class MusicalController {
 
 		// 뮤지컬 일정
 		model.addAttribute("schedules", schedules);
+		model.addAttribute("scheduleMap", scheduleMap);
 
 		// 해당 사용자가 해당 뮤지컬에 좋아요를 눌렀는지 여부
 		model.addAttribute("isLike", isLike);
