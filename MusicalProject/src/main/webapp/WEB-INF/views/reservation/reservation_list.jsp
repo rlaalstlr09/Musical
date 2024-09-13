@@ -246,7 +246,16 @@ $(document).ready(function() {
         }
     });
     
-    
+	$('.change-reservation').click(function() {
+	    var reservationId = $(this).data('id');
+	    
+	    // 좌석 변경 페이지로 이동 (예: change_reservation 페이지)
+	    var changeUrl = '${pageContext.request.contextPath}/reservation/seat_update?reservation_id=' + reservationId;
+	    
+	    // 페이지 이동
+	    window.location.href = changeUrl;
+	});
+
 
     
     //예매 취소의 경우 전날까지만 가능하게 버튼 보이는거 수정
@@ -264,23 +273,28 @@ $(document).ready(function() {
     });
     
     $('.cancel-reservation').click(function() {
-        var reservationId = $(this).data('id');   
-        var merchant_uid = $(this).data('merchant_uid');        
-        $.ajax({
-            url: '${pageContext.request.contextPath}/reservation/reservation_cancel', 
-            type: 'POST',
-            data: {
-            	reservation_id: reservationId,
-            	merchant_uid: merchant_uid
-            	},
-            success: function(response) {
-                alert('예매가 취소되었습니다.');
-                location.reload(); // 페이지를 새로 고쳐서 변경사항을 반영합니다.
-            },
-            error: function() {
-                alert('예매 취소에 실패했습니다.');
-            }
-        });
+        var reservationId = $(this).data('id');
+        var merchant_uid = $(this).data('merchant_uid');
+        var confirmCancel = confirm("정말로 예매를 취소하시겠습니까?");
+        if (confirmCancel) {
+            $.ajax({
+                url: '${pageContext.request.contextPath}/reservation/reservation_cancel',
+                type: 'POST',
+                data: {
+                    reservation_id: reservationId,
+                    merchant_uid: merchant_uid
+                },
+                success: function(response) {
+                    alert('예매가 취소되었습니다.');
+                    location.reload();
+                },
+                error: function() {
+                    alert('예매 취소에 실패했습니다.');
+                }
+            });
+        } else {
+            alert('예매 취소가 취소되었습니다.');
+        }
     });
     
 });

@@ -175,8 +175,8 @@
                 </table>
             </div>
             <div class="input-container">
-	            <input type="text" id="venue_id" value="${venue_id}" readonly >
-    	        <input type="text" id="musical_id" value="${musical_id}" readonly >
+	            <input type="hidden" id="venue_id" value="${venue_id}" readonly >
+    	        <input type="hidden" id="musical_id" value="${musical_id}" readonly >
                 <input type="hidden" id="selected-date" readonly>
             </div>
         </div>

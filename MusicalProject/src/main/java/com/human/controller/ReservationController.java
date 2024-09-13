@@ -201,6 +201,7 @@ public class ReservationController {
 	@RequestMapping(value = "/seat_update", method = RequestMethod.GET)
 	public String seat_update(@RequestParam("mu_sch_id") int mu_sch_id,
 			@RequestParam("seat_reservation") int seat_reservation,
+			@RequestParam("reservation_id") int reservation_id,
 			Model model, HttpSession session) throws Exception {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String id=  authentication.getName();
