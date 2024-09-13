@@ -38,7 +38,7 @@ h2 {
 	text-align: left;
 }
 
-input[type="text"], input[type="email"] {
+input[type="text"], input[type="email"], input[type="hidden"] {
 	width: 100%;
 	height: 40px;
 	padding: 0 10px;
@@ -54,7 +54,11 @@ input[type="text"]:focus, input[type="email"]:focus {
 	box-shadow: 0 0 5px rgba(13, 114, 255, 0.5);
 }
 
-#pw-find {
+#customer_id, #customer_email{
+	margin-bottom: 10px;
+}
+
+#send_auth{
 	width: 100%;
 	height: 40px;
 	background-color: #0D72FF;
@@ -67,8 +71,25 @@ input[type="text"]:focus, input[type="email"]:focus {
 	margin-top: 10px;
 }
 
-#pw-find:hover {
+#send_auth:hover{
 	background-color: #0056d2;
+}
+
+#pw-find {
+	width: 100%;
+	height: 40px;
+	background-color: #28a745;
+	border: none;
+	border-radius: 5px;
+	color: white;
+	font-size: 16px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+	margin-top: 10px;
+}
+
+#pw-find:hover {
+	background-color: #218838;
 }
 
 p {
@@ -77,6 +98,54 @@ p {
 	margin-top: 10px;
 }
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+	// 이메일 인증 코드 발송 함수
+	window.sendAuthCode = function() {
+		var email = $("#customer_email").val();
+		if (!email) {
+			alert("이메일을 입력해주세요.");
+			return;
+		}
+
+		// 이메일로 인증 코드 발송 요청
+		$.post("sendMail.do", {
+			customer_email: email
+		}, function(result) {
+			alert("인증 코드가 발송되었습니다.");
+			$("#auth_code").prop('type', 'text'); // 숨겨진 인증 코드 필드 활성화
+		}).fail(function() {
+			alert("이메일 발송 오류");
+		});
+	}
+
+	// 인증 코드 확인 함수
+	window.checkAuthCode = function(event) {
+		event.preventDefault();  // 기본 폼 제출 동작을 막음
+
+		var authCode = $("#auth_code").val();
+		if (!authCode) {
+			alert("인증 코드를 입력해주세요.");
+			return;
+		}
+
+/* 		// 서버로 인증 코드 확인 요청
+		$.post("codeCheck", {
+			customer_code: authCode
+		}, function(result) {
+			if (result.includes("인증 성공")) {
+				alert("인증에 성공했습니다.");
+				$("#findForm").off('submit').submit();  // 인증 성공 후 폼 제출
+			} else {
+				alert("인증 코드가 잘못되었습니다.");
+			}
+		}).fail(function() {
+			alert("인증 코드 확인 오류");
+		}); */
+	}
+});
+</script>
 </head>
 <body>
 	<div class="container">
@@ -92,9 +161,11 @@ p {
 			<div class="form-group">
 				<input type="email" name="customer_email" id="customer_email"
 					placeholder="이메일">
+				<input type="hidden" name="auth_code" id="auth_code" placeholder="인증 코드입력">
+				
 			</div>
-			<input type="submit" id="pw-find"
-				onclick="findSubmit(); return false;" value="비밀번호 찾기">
+			<input type="button" id="send_auth" onclick="sendAuthCode();" value="인증 코드발송">
+			<input type="submit" id="pw-find" value="비밀번호 찾기">
 		</form>
 	</div>
 </body>
