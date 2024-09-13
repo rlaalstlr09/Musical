@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +10,7 @@
 </head>
 
 <body>
-  <jsp:include page="layout/header.jsp"/>
+  <jsp:include page="../../resources/layout/header.jsp"/>
   
 
  <div class="slideshow-container">
@@ -106,40 +104,57 @@
         +
         </a>
       </div>
-      
-      <c:forEach var = "musical" items = "${openMusical }">
-      	<div class="concerts">
-	        <img src="<%=request.getContextPath()%>/resources/img/musical/${musical.musical_poster}" alt="Image 1">
-	        <div class="overlay">
-          		<div class="overlay-text">Image 1 Description</div>
-        	</div>
-      	</div>
-      </c:forEach> 
+      <div class="concerts">
+        <img src="<%=request.getContextPath()%>/resources/img/차사 강림.jpg" alt="Image 1">
+        <div class="overlay">
+          <div class="overlay-text">Image 1 Description</div>
+        </div>
       </div>
-    <div class="You">
-      <div class="left-content">
-        <div class="text-line line-1"><br>인사이드아웃2<br></div>
-        <div class="text-line line-2">디즈니·픽사의 대표작 </div>
-        <div class="text-line line-3">새로운 감정과 함께 돌아오다!</div>
+      <div class="concerts">
+        <img src="<%=request.getContextPath()%>/resources/img/피겨.jpg" alt="Image 2">
+        <div class="overlay">
+          <div class="overlay-text">Image 2 Description</div>
+        </div>
       </div>
-      <iframe width="700" height="350" src="https://www.youtube.com/watch?v=Vf-iEgOneNs" frameborder="0"
-        allowfullscreen></iframe>
+      <div class="concerts">
+        <img src="<%=request.getContextPath()%>/resources/img/써니텐.jpg" alt="Image 3">
+        <div class="overlay">
+          <div class="overlay-text">Image 3 Description</div>
+        </div>
+      </div>
+      <div class="concerts">
+        <img src="<%=request.getContextPath()%>/resources/img/시스터즈.jpg" alt="Image 4">
+        <div class="overlay">
+          <div class="overlay-text">Image 4 Description</div>
+        </div>
+      </div>
+      <div class="concerts">
+        <img src="<%=request.getContextPath()%>/resources/img/시스터즈.jpg" alt="Image 4">
+        <div class="overlay">
+          <div class="overlay-text">Image 4 Description</div>
+        </div>
+      </div>
+      <div class="concerts">
+        <img src="<%=request.getContextPath()%>/resources/img/시스터즈.jpg" alt="Image 4">
+        <div class="overlay">
+          <div class="overlay-text">Image 4 Description</div>
+        </div>
+      </div>
     </div>
 
-    <div class="hero">
-      <div class="hero_h2">"누가 죄인인가"</div>
-      <div class="hero_h3">하얼빈의 총성, 잊을수 없는 그날</div>
-      <a href="#">
-        <img src="<%=request.getContextPath()%>/resources/img/영웅모음.jpg" alt="hero">
-      </a>
-    </div>
 
-     <div class="best1">
-      <div class="best_text">
-        BEST MUSICAL
+       <div class="KIDS1_text">
+        <a href="#">
+        +
+        </a>
       </div>
       
-    <div class="best">
+     <div class="KIDS1">
+      <div class="KIDS_text">
+        KIDS MUSICAL
+      </div>
+      
+    <div class="KIDS">
       <div class="main-container">
         <div class="large-item">
           <a href="#">
@@ -175,45 +190,17 @@
       </div>
     </div>
 
-    <div class="kids_container">
-      <div class="kids_text">
-        KIDS
+  <div class="You">
+      <div class="left-content">
+        <div class="text-line line-1"><br>인사이드아웃2<br></div>
+        <div class="text-line line-2">디즈니·픽사의 대표작 </div>
+        <div class="text-line line-3">새로운 감정과 함께 돌아오다!</div>
       </div>
-    </div>
-    <div class="kids1_text">
-      <a href="#">
-      +
-      </a>
+      <iframe width="700" height="350" src="https://www.youtube.com/watch?v=Vf-iEgOneNs" frameborder="0"
+        allowfullscreen></iframe>
     </div>
 
-    <div class="kids">
-      <div class="kidss">
-        <div class="kids_p">
-          <a href="#">
-          <img src="<%=request.getContextPath()%>/resources/img/써니텐.jpg" alt="Slide 1">
-        </div>
-        <div class="kids_p">
-          <a href="#">
-          <img src="<%=request.getContextPath()%>/resources/img/시스터즈.jpg" alt="Slide 2">
-          <div class="kids_caption"></div>
-        </div>
-        <div class="kids_p">
-          <a href="#">
-          <img src="<%=request.getContextPath()%>/resources/img/차사 강림.jpg" alt="Slide 3">
-          <div class="kids_caption"></div>
-        </div>
-        <div class="kids_p">
-          <a href="#">
-          <img src="<%=request.getContextPath()%>/resources/img/피겨.jpg" alt="Slide 3">
-          <div class="kids_caption"></div>
-        </div>
-        <div class="kids_p">
-          <a href="#">
-          <img src="<%=request.getContextPath()%>/resources/img/피겨.jpg" alt="Slide 3">
-          <div class="kids_caption"></div>
-        </div>
-      </div>
-    </div>
+   
 
     <div class="nowgallery_text">
       <a href="#">
@@ -332,7 +319,7 @@
         </a>
       </div>
 
-<jsp:include page="layout/footer.jsp"></jsp:include>
+<jsp:include page="../../resources/layout/footer.jsp"></jsp:include>
 
 </body>
 </html>
