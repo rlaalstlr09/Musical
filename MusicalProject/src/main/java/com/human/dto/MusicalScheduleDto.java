@@ -126,20 +126,13 @@ public class MusicalScheduleDto {
         }
     }
 
-	@Override
-	public String toString() {
-		return "Musical_scheduleDto [mu_sch_id=" + mu_sch_id + ", musical_id=" + musical_id + ", venue_id=" + venue_id
-				+ ", mu_sch_date=" + mu_sch_date + ", mu_sch_time=" + mu_sch_time + ", hall_id=" + hall_id
-				+ ", seat_count=" + seat_count + "]";
-	}
-	
 	
 	//뮤지컬 일정 요일 구하기
 	public String getDayOfWeekInKorean() {
         if (mu_sch_date == null || mu_sch_date.isEmpty()) return "";
         
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREAN);
-        SimpleDateFormat dayFormatter = new SimpleDateFormat("EEEE", Locale.KOREAN);
+        SimpleDateFormat dayFormatter = new SimpleDateFormat("E", Locale.KOREAN);
         try {
             Date date = formatter.parse(mu_sch_date);
             String dayName = dayFormatter.format(date);
@@ -149,6 +142,40 @@ public class MusicalScheduleDto {
             return "";
         }
     }
+	
+	@Override
+	public String toString() {
+		return "Musical_scheduleDto [mu_sch_id=" + mu_sch_id + ", musical_id=" + musical_id + ", venue_id=" + venue_id
+				+ ", mu_sch_date=" + mu_sch_date + ", mu_sch_time=" + mu_sch_time + ", hall_id=" + hall_id
+				+ ", seat_count=" + seat_count + "]";
+	}
+
+	//뮤지컬 스케줄 날짜별 시간으로 매핑하기 위해 equals 추가
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((mu_sch_date == null) ? 0 : mu_sch_date.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MusicalScheduleDto other = (MusicalScheduleDto) obj;
+		if (mu_sch_date == null) {
+			if (other.mu_sch_date != null)
+				return false;
+		} else if (!mu_sch_date.equals(other.mu_sch_date))
+			return false;
+		return true;
+	}
 	
 	
 	

@@ -16,6 +16,7 @@
 	
 	.venue-info p{
 		font-size:14px;
+		margin-top : 5px;
 	}
 	
 	.venue-info strong{
