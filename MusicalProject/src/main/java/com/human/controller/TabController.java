@@ -74,7 +74,7 @@ public class TabController {
 
 	}
 	@RequestMapping("/qna")
-	public String qTab(Model model, @RequestParam(value = "musical_id") Integer musical_id,@RequestParam(value = "customer_id", defaultValue ="") String customer_id,
+	public String qTab(Model model, @RequestParam(value = "musical_id") Integer musical_id,
 			@RequestParam(value = "page", defaultValue = "1") int page,
 			@RequestParam(value = "perPageNum", defaultValue = "10") int perPageNum
 			) throws Exception {

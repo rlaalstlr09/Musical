@@ -21,6 +21,24 @@
 		</repository>
 	</repositories>
 	<dependencies>
+	<!-- mail 라이브러리 -->
+	<dependency>
+        <groupId>javax.mail</groupId>
+        <artifactId>javax.mail-api</artifactId>
+        <version>1.6.2</version> 
+   	</dependency>
+   		
+    <dependency>
+    	<groupId>com.sun.mail</groupId>
+    	<artifactId>javax.mail</artifactId>
+    	<version>1.6.2</version>
+	</dependency>
+
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context-support</artifactId>
+		<version>${org.springframework-version}</version>
+	</dependency>
 	<!--pdf관련 라이브러리 -->
 	<dependency>
     <groupId>org.apache.pdfbox</groupId>
