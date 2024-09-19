@@ -212,6 +212,7 @@ button:hover {
 <script type="text/javascript"	src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 </head>
 <body>
+<jsp:include page="../layout/header.jsp"/>
 	<div class="container">
 		<div class="control-container">
 			<div class="showcase">
@@ -327,7 +328,7 @@ button:hover {
 			</form>
 		</div>
 	</div>
-	
+	<jsp:include page="../layout/footer.jsp"/>
 	
 	<script>
 	
@@ -363,7 +364,7 @@ button:hover {
 	            		document.getElementById('booked_count').value=seatLimit;
 	            		
 	            		const newInput = document.createElement('input');
-	            		newInput.type = 'text';
+	            		newInput.type = 'hidden';
 	            		newInput.id ='insert_seat'+seatLimit;
 	            		newInput.name = 'insert_seat'+seatLimit;
 	            		newInput.placeholder = (seatLimit)+'번째 선택좌석';
