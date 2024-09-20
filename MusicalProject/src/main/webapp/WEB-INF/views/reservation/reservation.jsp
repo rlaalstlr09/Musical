@@ -9,151 +9,178 @@
     String todayDate = sdf.format(new Date());
 	
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <meta charset="UTF-8">
     <title>달력</title>
+    <link rel="stylesheet" href="reservation.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
 
-        .container {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            background-color: #f9f9f9;
-            display: flex;
-            flex-direction: row; /* 가로 정렬 */
-            gap: 20px; /* 여백 추가 */
-            min-width: 800px; /* 컨테이너 최소 너비 설정 */
-        }
+.subject-line {
+    color: gray;
+    font-size: 25px;
+    font-weight: 400;
+    margin-top: -45px;
+    margin-bottom: 40px;
+}
 
-        .calendar-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+.container {
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 400px;
+    height: 800px;
+}
 
-        .calendar-controls {
-            text-align: center;
-            margin-bottom: 10px;
-        }
+.calendar-container {
+    text-align: center;
+    margin-top: 70px;
+}
 
-        .calendar-controls button {
-            padding: 8px 16px;
-            font-size: 16px;
-            border: none;
-            border-radius: 4px;
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
-            margin: 0 5px;
-            transition: background-color 0.3s;
-        }
+.calendar-container .calendar-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5px;
+}
 
-        .calendar-controls button:hover {
-            background-color: #0056b3;
-        }
+.calendar-container .calendar-controls button {
+    cursor: pointer;
+    font-size: 20px;
+    color: #7c7c7c;
+    background: none;
+    border: none;
+    margin: 0 40px;
+}
 
-        .calendar-controls button:active {
-            background-color: #004080;
-        }
+.calendar-container .calendar-controls #thismonth {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin: 5px;
+}
 
-        .calendar-table-container {
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
+th {
+    color: #7c7c7c;
+    font-weight: normal;
+    padding: 10px;
+}
 
-        td, th {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: center;
-            font-size: 14px;
-        }
+td {
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+}
 
-        th {
-            background-color: #f8f9fa;
-            color: #343a40;
-        }
+td:hover {
+    background-color: #f0f0f0;
+}
 
-        td:hover {
-            background-color: #f1f1f1;
-        }
+.selected {
+    background-color: #A084DC;
+    color: white;
+    border-radius: 50%;
+}
 
-        .sunday {
-            color: red;
-        }
+.sunday {
+    color: red;
+}
 
-        .saturday {
-            color: blue;
-        }
+.saturday {
+    color: blue;
+}
 
-        .input-container {
-            margin-top: 20px;
-        }
+.btn-secondary {
+    background-color: #f0f0f0;
+    color: #828282;
+    padding: 10px;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+}
 
-        input {
-            padding: 10px;
-            font-size: 16px;
-            text-align: center;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            width: 200px;
-        }
+.btn-secondary:hover {
+    background-color: #b4b4b4;
+    color: white;
+}
 
-        #result {
-            width: 500px; /* 고정 너비 */
-        }
+.result-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
 
-        .result-table {
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            overflow: hidden;
-            width: 100%;
-        }
+.result-table th, .result-table td {
+    padding: 12px;
+    text-align: center;
+    font-size: 16px;
+    border: 1px solid #ddd;
+}
 
-        .result-table th, .result-table td {
-            text-align: center; /* 가운데 정렬 */
-        }
+.result-table th {
+    background-color: #f5f5f5;
+    color: #333;
+    font-weight: bold;
+}
 
-        .result-table th {
-            background-color: #007bff;
-            color: white;
-        }
+.result-table td {
+    background-color: white;
+    color: #555;
+}
 
-        .result-table td {
-            padding: 10px; /* 각 셀 패딩을 늘려서 가독성 향상 */
-        }
+.result-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
 
-        .result-table a {
-            color: #007bff;
-            text-decoration: none;
-        }
+.result-table tr:hover {
+    background-color: #e0e0e0;
+    transition: background-color 0.3s ease;
+}
 
-        .result-table a:hover {
-            text-decoration: underline;
-        }
+.result-table a {
+    color: #A084DC;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.result-table a:hover {
+    color: #7c5cb5;
+}
+
+
+
+
+
     </style>
 </head>
 <body>
+    
     <div class="container">
         <div class="calendar-container">
+            <div class="subject-line">RESERVATION</div>    
             <div class="calendar-table-container">
                 <div class="calendar-controls">
                     <button id="prev-month">◀</button>
@@ -175,15 +202,23 @@
                 </table>
             </div>
             <div class="input-container">
-	            <input type="hidden" id="venue_id" value="${venue_id}" readonly >
-    	        <input type="hidden" id="musical_id" value="${musical_id}" readonly >
+               <input type="hidden" id="venue_id" value="${venue_id}" readonly >
+               <input type="hidden" id="musical_id" value="${musical_id}" readonly >
                 <input type="hidden" id="selected-date" readonly>
             </div>
         </div>
-
+            <h1>회차정보</h1>
         <div id="result">
         </div>
+
+
+        <div class="btn-secondary">HOME</div>
     </div>
+
+
+    </div>
+
+            
 
     <script>
         let currentYear = new Date().getFullYear();
@@ -233,28 +268,28 @@
 
                     if (cell.id.length < 2) {
                         cell.id = '0' + cell.id;
-					}
-					const selectedDate = year + '/' + month + '/' + cell.id;
-					document.getElementById('selected-date').value = selectedDate;
-					let venue_id = parseInt(document.getElementById('venue_id').value);
-					let musical_id = parseInt(document.getElementById('musical_id').value);
+               }
+               const selectedDate = year + '/' + month + '/' + cell.id;
+               document.getElementById('selected-date').value = selectedDate;
+               let venue_id = parseInt(document.getElementById('venue_id').value);
+               let musical_id = parseInt(document.getElementById('musical_id').value);
 
                     console.log("02");
-					
+               
                     if (todayDate <= selectedDate) {
                         // 일반 사용자일 경우 오늘 이전 날짜 클릭 불가,
                         // 관리자인 경우 클릭 가능
                         $.ajax({
                             url: '${pageContext.request.contextPath}/reservation/select_date',
                             type: 'GET',
-                            dataType: 'json',	
+                            dataType: 'json',   
                             data: {
                                 date: selectedDate,
                                 venue_id:venue_id,
                                 musical_id:musical_id
                             },
                             success: function(data) {
-                            	console.log("Received data from server:", data); 
+                               console.log("Received data from server:", data); 
                                 console.log(data);
                                 const resultContainer = document.getElementById('result');
                                 resultContainer.innerHTML = ''; 

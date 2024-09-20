@@ -153,7 +153,8 @@ public class ReservationController {
 		System.out.println("reservation_list");
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String customer = authentication.getName();
-        System.out.println(customer);
+        System.out.println(startDate);
+        System.out.println(endDate);
 	    List<ReservationDto> dtos;
 	    
 	    
@@ -200,12 +201,11 @@ public class ReservationController {
 	//////////////////////좌석 예약 변경 아이디 세션값으로 해서 가져오기
 	@RequestMapping(value = "/seat_update", method = RequestMethod.GET)
 	public String seat_update(@RequestParam("mu_sch_id") int mu_sch_id,
-			@RequestParam("seat_reservation") int seat_reservation,
 			@RequestParam("reservation_id") int reservation_id,
 			Model model, HttpSession session) throws Exception {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String id=  authentication.getName();
-		
+		int seat_reservation =reservation_id;
 		//예약 변경을 위하여 아이디 동인한지 확인하는작업 아이디 나중에 넣기
 		String check_id =reservationservice.id_check(seat_reservation);
 		

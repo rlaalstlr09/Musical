@@ -18,10 +18,9 @@
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- <script src="/ex/resources/script/musicalDetail.js"></script>  -->
-<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=f19069c7a5e6ecba64f00927cb2c6594&libraries=services"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <script>
-var $ = jQuery.noConflict();
+
 $(document).ready(function() {
 	//탭 누르면 실행되는 함수 ajax로 값 받아서 탭 내용 바꿈
 	function loadTabContent(tabId) {
@@ -144,7 +143,8 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-
+	<jsp:include page="../layout/header.jsp"/>
+	
 	<div id="container">
 		<div class="info">
 			<div class ="musical-poster">
@@ -247,7 +247,7 @@ $(document).ready(function() {
 			<h2>공연 상세</h2>
 			<div id="notice">
 				<strong>공지사항</strong>
-				<br>
+				
 				<ul>
 					<li>본 공연은 ${musical.musical_agelimit}세부터 예약 가능합니다.</li>
 					<li>서류상 나이가 확인되어야 입장 가능하오니 증빙서류를 지참해주시기 바랍니다. (주민등록등본, 청소년증,
@@ -293,12 +293,13 @@ $(document).ready(function() {
 					</table>
 				</c:forEach>
 			</div>
+			<h4>등장인물 정보</h4>
 			<div id="actor">
-				<c:set var="previousCharacterName" value="${actors[0].character_name}" />
+				<c:set var="previousCharacterName" value="" />
 				<c:forEach var = "actor" items = "${actors }">
 					<c:if test = "${previousCharacterName ne actor.character_name }">
 						<div class = "actor-row">
-							<p>${actor.character_name}</p>
+							<p><strong>${actor.character_name}</strong></p>
 						</div>
 					</c:if>
 					<div class = "actor-info" data-character="${actor.character_name}">
@@ -313,6 +314,8 @@ $(document).ready(function() {
 			
 		</div>
 	</div>
-
+	<jsp:include page="../layout/footer.jsp"></jsp:include>
+	<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=f19069c7a5e6ecba64f00927cb2c6594&libraries=services"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

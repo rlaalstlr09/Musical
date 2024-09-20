@@ -565,7 +565,8 @@ li {
 
 .large-item img {
   width: 500px; /* 컨테이너에 맞게 조정 */
-  height: auto; /* 비율 유지 */
+  height:715px; /* 비율 유지 */
+  object-fit: cover;
 }
 
 /* 그리드 컨테이너 스타일 */

@@ -128,6 +128,7 @@ button:hover {
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+<jsp:include page="../layout/header.jsp"/>
     <h1>예약내역</h1>
 	<form action="reservation_list" method="get">
     	<label for="startDate">시작 날짜:</label>
@@ -170,7 +171,7 @@ button:hover {
                         <button class="change-reservation"
                             	data-date="${reservation.mu_sch_dto.mu_sch_date }" 
                             	data-id="${reservation.reservation_id}"
-                            	data-merchant_uid = "${reservation.merchant_uid }">
+                            	data-mu_sch_id = "${reservation.mu_sch_id }">
                             	좌석 변경
                        	</button>   
                         
@@ -207,7 +208,7 @@ button:hover {
     
     
     
-    
+    <jsp:include page="../layout/footer.jsp"/>
     
 <script>
 $(document).ready(function() {
@@ -248,9 +249,10 @@ $(document).ready(function() {
     
 	$('.change-reservation').click(function() {
 	    var reservationId = $(this).data('id');
+	    var mu_sch_id = $(this).data('mu_sch_id');
 	    
-	    // 좌석 변경 페이지로 이동 (예: change_reservation 페이지)
-	    var changeUrl = '${pageContext.request.contextPath}/reservation/seat_update?reservation_id=' + reservationId;
+	    // 좌석 변경 페이지로 이동
+	    var changeUrl = '${pageContext.request.contextPath}/reservation/seat_update?reservation_id=' + reservationId+'&mu_sch_id='+mu_sch_id;
 	    
 	    // 페이지 이동
 	    window.location.href = changeUrl;
