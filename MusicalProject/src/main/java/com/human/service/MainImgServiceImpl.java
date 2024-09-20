@@ -16,9 +16,8 @@ public class MainImgServiceImpl implements IMainImgService{
 
 	@Autowired
 	private SqlSession sqlSession;
-	
 	@Override
-	public MainImgDto select_img(int img_num) throws Exception {
+	public List<MainImgDto> select_img(int img_num) throws Exception {
 		// TODO Auto-generated method stub
 		IMainImgDao dao= sqlSession.getMapper(IMainImgDao.class);
 		return dao.select_img(img_num);
