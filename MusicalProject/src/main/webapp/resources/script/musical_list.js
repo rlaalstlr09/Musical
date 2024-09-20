@@ -9,7 +9,10 @@ $(document).ready(function(){
 			startDate : $('#currentData').data('start'),
 			endDate : $('#currentData').data('end'),
 			sort : $('#currentData').data('sort')
-		};
+	};
+	
+	// 필터 패널 상태 변수
+    let isFilterPanelOpen = $('.filter-panel').hasClass('show');
 	
 	//이전에 선택한 검색어, 정렬, 필터 유지
 	 function setFilterSortValues(filters) {
@@ -21,7 +24,9 @@ $(document).ready(function(){
 		    
 		    $('#sortSelect').val(filters.sort);
 		    
-		    $('.filter-panel').addClass('show');
+		    $('.filter-panel').toggleClass('show', isFilterPanelOpen);
+		    
+		    console.log(isFilterPanelOpen);
 	 }
 		
 	 	//필터링
@@ -35,56 +40,45 @@ $(document).ready(function(){
 
 		      // 선택된 필터 항목 표시
 		      console.log(filters);
-
 		      // 서버에 필터 적용된 목록 요청
-		      filter(filters);
+		      filter(1);
 		});
 		
 		//검색, 필터, 정렬 데이터 가져옴
-		function filter(filters){
+		function filter(page){
+			 let requestData = Object.assign({}, filters, { page: page });
+			
 			$.ajax({
 				url : '/ex/musical/listAll',
 				method : 'GET',
-				data: filters,
+				data: requestData,
 				success:function(data){
 					
 	  				$('body').html(data);
 	  				setFilterSortValues(filters);
-	  				
+	  				setTimeout(function() {
+	  			        $('html, body').animate({
+	  			            scrollTop: $('.list-title').offset().top - 20
+	  			        }, 500);
+	  			    }, 10); 
+	  			
 	  			},
 	  			error:function(error){
 	  				console.error('Error loading content : ', error);
 	  			}
 			});
 		}
-	  				
-	  				
-//	function sort(filters){
-//		$.ajax({
-//			url: '/ex/musical/listAll',
-//			method : 'GET',
-//			data: filters,
-//	  			success:function(data){
-//	  				$('body').html(data);
-//	  				
-//	  		        setFilterSortValues(filters);
-//	  			},
-//	  			error:function(error){
-//	  				console.error('Error loading content : ', error);
-//	  			}
-//		});	
-//	}
 		
 	//정렬
 	 $('#sortSelect').change(function(event) {
          filters.sort = $(this).val();
-         filter(filters);
+         filter(1);
      });
 	 
 	 //뮤지컬 검색
-	 $('.search').click(()=>{
+	 $('.search-button').click(()=>{
 		filters.keyword = $('.keyword').val();
-		filter(filters); 
+		filter(1); 
 	 });
 	 
 	 //필터 초기화 버튼
@@ -98,28 +92,20 @@ $(document).ready(function(){
 			endDate : "",
 			sort : ""
 		 };
-		 filter(filters);
+		 filter(1);
 	 });
 	 
-	 //페이지 버튼 누르면 전체 뮤지컬 목록으로 스크롤 이동
-//	 $('.pagination a').click(function(e) {
-//		    e.preventDefault();
-//		    $('html, body').animate({
-//		        scrollTop: $('#container').offset().top
-//		    }, 500);
-//	});
-	 
-    const filterButton = document.querySelector('.filter-button');
-    const filterPanel = document.querySelector('.filter-panel');
+	 $('.pagination a').on('click', function(e) {
+	        e.preventDefault(); // 기본 링크 동작 방지
 
-    //필터 버튼 누르면 필터링 옵션들 있는 div 생김
-    filterButton.addEventListener('click', function () {
-        if (filterPanel.classList.contains('show')) {
-            filterPanel.classList.remove('show');
-        } else {
-            filterPanel.classList.add('show');
-        }
-    });
+	        var page = $(this).data('page'); // 클릭한 페이지 번호
+	        filter(page);
+	    });
+
+	 $('.filter-button').click(function() {
+	        isFilterPanelOpen = !isFilterPanelOpen; // 상태 토글
+	        $('.filter-panel').toggleClass('show', isFilterPanelOpen);
+	 });
     
     //인기뮤지컬, 최근오픈 뮤지컬 swiper에 쓸 이미지 a태그
     $('.musical-img-item').each(function() {

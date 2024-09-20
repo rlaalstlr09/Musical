@@ -264,7 +264,7 @@ margin-top:10px;
 	            data: {
 	                page: page, // 현재 페이지 번호
 	                sort: $('#sort').val(), // 정렬 기준
-	                musical_id: $('#musical_id').val() // 음악 ID
+	                musical_id: $('#musical_id').val() 
 	            },
 	            success: function(response) {
 	                $('.card-body').html(response); // 받은 데이터를 콘텐츠에 업데이트
@@ -468,30 +468,30 @@ margin-top:10px;
 	
 	
 	<div class="pagination">
-    <c:if test="${boardVo.page != 1}">
-        <a href="#" data-page="1">&lt;&lt;&lt;</a>
-    </c:if>
-    <c:if test="${boardVo.prev }">
-        <a href="#" data-page="${boardVo.startPage-1}">&lt;&lt;</a>
-    </c:if>
-    <c:if test="${boardVo.page != 1}">
-        <a href="#" data-page="${boardVo.page-1}">&lt;</a>
-    </c:if>
-    <c:forEach begin="${boardVo.startPage}" end="${boardVo.endPage}" var="idx">
-        <a href="#" data-page="${idx}" class="${boardVo.page == idx ? 'active' : ''}">
-            ${idx}
-        </a>
-    </c:forEach>
-    <c:if test="${boardVo.page != boardVo.totalEndPage}">
-        <a href="#" data-page="${boardVo.page+1}">&gt;</a>
-    </c:if>
-    <c:if test="${boardVo.next }">
-        <a href="#" data-page="${boardVo.endPage+1}">&gt;&gt;</a>
-    </c:if>
-    <c:if test="${boardVo.page != boardVo.totalEndPage}">
-        <a href="#" data-page="${boardVo.totalEndPage}">&gt;&gt;&gt;</a>
-    </c:if>
-</div>
+	    <c:if test="${boardVo.page != 1}">
+	        <a href="#" data-page="1">&lt;&lt;&lt;</a>
+	    </c:if>
+	    <c:if test="${boardVo.prev }">
+	        <a href="#" data-page="${boardVo.startPage-1}">&lt;&lt;</a>
+	    </c:if>
+	    <c:if test="${boardVo.page != 1}">
+	        <a href="#" data-page="${boardVo.page-1}">&lt;</a>
+	    </c:if>
+	    <c:forEach begin="${boardVo.startPage}" end="${boardVo.endPage}" var="idx">
+	        <a href="#" data-page="${idx}" class="${boardVo.page == idx ? 'active' : ''}">
+	            ${idx}
+	        </a>
+	    </c:forEach>
+	    <c:if test="${boardVo.page != boardVo.totalEndPage}">
+	        <a href="#" data-page="${boardVo.page+1}">&gt;</a>
+	    </c:if>
+	    <c:if test="${boardVo.next }">
+	        <a href="#" data-page="${boardVo.endPage+1}">&gt;&gt;</a>
+	    </c:if>
+	    <c:if test="${boardVo.page != boardVo.totalEndPage}">
+	        <a href="#" data-page="${boardVo.totalEndPage}">&gt;&gt;&gt;</a>
+	    </c:if>
+	</div>
 
 </div>
 </body>

@@ -21,7 +21,7 @@
 <script src="/ex/resources/script/musical_list.js"></script>
 </head>
 <body>
-
+<jsp:include page="../layout/header.jsp"/>
 <div id = container>
 
    <h1>뮤지컬 목록</h1>
@@ -157,51 +157,35 @@
     </div>
    	<div id = "search-container">
    		<input type = "text" class = "keyword" value = "${filter.keyword }">
-   		<button class="search">검색</button>
+   		<button class = "search-button">검색</button>
    	</div>
     
     <!-- 페이지 네비게이션 -->
-    <div class="pagination">
-    	<c:if test="${boardVo.page !=1}">
-    		<a href='listAll${boardVo.makeSearch(1)}'>&lt;&lt;&lt;</a>
-    	</c:if>
-    	<!-- 앞전 page 모양을 클릭하면 pageMarker.startPage에 -1을 처리해준다.-->
-    	<c:if test="${boardVo.prev }">
-    		<a href='listAll${boardVo.makeSearch(boardVo.startPage-1)}'>&lt;&lt;</a>
-    	</c:if>
-    	<c:if test="${boardVo.page != 1}">
-    		<a href='listAll${boardVo.makeSearch(boardVo.page-1)}'>&lt;</a>
-    	</c:if>
-    	<c:forEach begin="${boardVo.startPage }" end="${ boardVo.endPage}" var="idx">
-    		<a href='listAll${boardVo.makeSearch(idx)}' 
-    		 <c:out value="${boardVo.page==idx?' class=active ':'' }"/> >
-    		 ${idx}</a>
-    	</c:forEach>
-    	
-    	<%--<a href='#'>1</a>
-    	 <a href='list${pageMaker.makeSearch(2)}'>2</a>
-    	<a href='#' class="active">3</a> --%>
-    	
-    	<c:if test="${boardVo.page != boardVo.totalEndPage}">
-    		<a href='listAll${boardVo.makeSearch(boardVo.page+1)}'>&gt;</a>
-    	</c:if>
-    	<c:if test="${boardVo.next }">
-    		<a href='listAll${boardVo.makeSearch(boardVo.endPage+1)}'>&gt;&gt;</a>
-    		
-    	</c:if>
-    	
-    	
-    	<c:if test="${boardVo.page != boardVo.totalEndPage}">
-    		<a href='listAll${boardVo.makeSearch(boardVo.totalEndPage)}'>&gt;&gt;&gt;</a>
-    	</c:if>
-    	
-    </div>
+   	<div class="pagination">
+	    <c:if test="${boardVo.page != 1}">
+	        <a href="#" data-page="1">&lt;&lt;</a>
+	    </c:if>
+	    <c:if test="${boardVo.page != 1}">
+	        <a href="#" data-page="${boardVo.page-1}">&lt;</a>
+	    </c:if>
+	    <c:forEach begin="${boardVo.startPage}" end="${boardVo.endPage}" var="idx">
+	        <a href="#" data-page="${idx}" class="${boardVo.page == idx ? 'active' : ''}">
+	            ${idx}
+	        </a>
+	    </c:forEach>
+	    <c:if test="${boardVo.page != boardVo.totalEndPage}">
+	        <a href="#" data-page="${boardVo.page+1}">&gt;</a>
+	    </c:if>
+	    <c:if test="${boardVo.page != boardVo.totalEndPage}">
+	        <a href="#" data-page="${boardVo.totalEndPage}">&gt;&gt;</a>
+	    </c:if>
+	</div>
     <div class="scroll-controls">
         <button class="scroll-to-top" id="scrollToTopBtn">↑</button>
         <button class="scroll-to-bottom" id="scrollToBottomBtn">↓</button>
     </div>
     
 </div>
-
+<jsp:include page="../layout/footer.jsp"></jsp:include>
 </body>
 </html>
