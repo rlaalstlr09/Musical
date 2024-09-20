@@ -19,9 +19,8 @@ order by c.character_name
 
 <!-- admin관련 -->
 <insert id="actor_character_create">
-INSERT INTO actor_character 
-		( actor_id,character_id) VALUES
-			( #{actor_id},#{character_id})
+    INSERT INTO actor_character (actor_id, character_id)
+    VALUES (#{actor_id}, (SELECT MAX(character_id) FROM character))
 </insert>
 
 <update id="actor_character_update">

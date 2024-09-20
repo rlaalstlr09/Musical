@@ -17,6 +17,6 @@ public interface IActorCharacterDao {
 	public void update(ActorCharacterDto dto) throws Exception;	
 	
 	//admin관련 Actor Character join
-	public void actor_character_create(@Param("actor_id") Integer actor_id,@Param("character_id") Integer character_id) throws Exception;
+	public void actor_character_create(CharacterDto character) throws Exception;
 	public void actor_character_update(ActorCharacterDto dto) throws Exception;	
 }
