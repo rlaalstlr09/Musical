@@ -292,6 +292,7 @@ body {
     /* 마우스를 올렸을 때 포인터 모양 */
     margin-left: 40px;
     /* 오른쪽으로 20px 이동 */
+    margin-top: -5px;
 
 
 }

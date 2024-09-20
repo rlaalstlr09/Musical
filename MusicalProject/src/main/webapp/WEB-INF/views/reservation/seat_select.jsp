@@ -212,6 +212,7 @@ button:hover {
 <script type="text/javascript"	src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 </head>
 <body>
+<jsp:include page="../layout/header.jsp"/>
 	<div class="container">
 		<div class="control-container">
 			<div class="showcase">
@@ -331,6 +332,8 @@ button:hover {
 			</form>
 		</div>
 	</div>
+	<jsp:include page="../layout/footer.jsp"/>
+	
 	<script>
 	
 	//db값 불러와서 저장하기
@@ -380,7 +383,7 @@ button:hover {
 	            document.getElementById('inputContainer').innerHTML = '';
 	            for (let i = 0; i < seatLimit; i++) {
 	                const newInput = document.createElement('input');
-	                newInput.type = 'text';
+	                newInput.type = 'hidden';
 	                newInput.id ='insert_seat'+i;
 	                newInput.name = 'insert_seat'+i;
 	                newInput.placeholder = (i+1)+'번째 선택좌석';
