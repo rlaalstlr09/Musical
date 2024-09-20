@@ -8,9 +8,9 @@ import com.human.dto.MusicalScheduleDto;
 import com.human.vo.BoardVo;
 
 public interface IMusicalService {
-	public List<MusicalDto> selectAllMusical(BoardVo vo, String keyword, String sort, MusicalFilterDto filter) throws Exception;
+	public List<MusicalDto> selectAllMusical(@Param("vo") BoardVo vo, @Param("filter") MusicalFilterDto filter) throws Exception;
 	public MusicalDto selectMusicalId(Integer musical_id) throws Exception;
-	public Integer getTotalCount(String keyword, MusicalFilterDto filter) throws Exception;
+	public Integer getTotalCount(@Param("filter") MusicalFilterDto filter) throws Exception;
 	
 	public List<MusicalScheduleDto> selectMusicalSchedule(Integer musical_id) throws Exception;
 	
