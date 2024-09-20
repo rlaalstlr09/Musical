@@ -69,12 +69,15 @@ public class HomeController {
 	        
 	        
 	        // 총 데이터 개수와 페이징 데이터 계산
-	        int totalCount = musicalService.getTotalCount("", new MusicalFilterDto());
+	        int totalCount = musicalService.getTotalCount(new MusicalFilterDto());
 	        boardVo.setTotalCount(totalCount);
 	        System.out.println(totalCount);
 	        // 데이터 가져오기
 	        
-	        List<MusicalDto> musicalPeriod = musicalService.selectAllMusical(boardVo, "", "period", new MusicalFilterDto());
+	        MusicalFilterDto musicalFilterDto = new MusicalFilterDto();
+	        musicalFilterDto.setSort("period");
+	        musicalFilterDto.setKeyword("");
+	        List<MusicalDto> musicalPeriod = musicalService.selectAllMusical(boardVo, musicalFilterDto);
 	        
 	        System.out.println(totalCount);
 	        System.out.println(boardVo);
