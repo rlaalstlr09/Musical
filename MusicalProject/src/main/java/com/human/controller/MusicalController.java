@@ -117,9 +117,8 @@ public class MusicalController {
 
 		MusicalDto musicalDto = new MusicalDto(musicalService.selectMusicalId(musical_id),
 				seatService.selectSeatInfo(musical_id));
-		System.out.println(musicalDto);
+		
 		List<MusicalScheduleDto> schedules = musicalService.selectMusicalSchedule(musical_id);
-		System.out.println(schedules);
 		
 		Map<MusicalScheduleDto, List<String>> scheduleMap = new LinkedHashMap<>();
 		for (MusicalScheduleDto schedule : schedules) {
@@ -152,6 +151,8 @@ public class MusicalController {
              String customer_id = principal.getName();
              isLike = musicalService.selectMusicalLike(musical_id, customer_id);
          }
+         
+         System.out.println(actorCharacterDto);
 
 		// 뮤지컬 정보
 		model.addAttribute("musical", musicalDto);

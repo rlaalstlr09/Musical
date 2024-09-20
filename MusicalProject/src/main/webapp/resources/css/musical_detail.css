@@ -4,32 +4,48 @@
 	flex-direction: column; 
 	width: 70%;
     margin: 0 auto;
-    padding: 50px 10%;
+    padding: 10%;
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     gap : 50px;
+    white-space: nowrap;
+    overflow: auto; 
+    text-overflow: ellipsis; 
 }
+@media(max-width : 1650px){
+	#container{
+		width : 100%;
+	}
+		
+}
+
  #actor {
-            display: flex;
-            flex-wrap: wrap;
-        }
-        .actor-row {
-            display: flex;
-            flex-wrap: wrap;
-            text-align : center;
-            width: 100%;
-        }
-        .actor-info {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: #f9f9f9;
-            margin: 0.5rem;
-            width: 150px;
-        }
+    display: flex;
+    flex-wrap: wrap;
+    gap : 15px;
+    align-items: center;
+    justify-content:center;
+}
+.actor-row {
+    display: flex;
+    flex-wrap: wrap;
+    text-align : center;
+    justify-content:center;
+    vertical-align:middle;
+    width: 100%;
+    margin-top : 35px;
+}
+.actor-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin: 0.5rem;
+    width: 150px;
+}
         
     /* 뮤지컬 상세보기 전체 (포스터, 상세정보) */
 	.info{
@@ -63,6 +79,7 @@
 	/* 뮤지컬 포스터 */
 	.img-fluid{
 		width : 300px;
+		max-width : 300px !important;
 		border-radius : 16px;
 	}
 	
@@ -77,8 +94,7 @@
 		position:relative;
 		line-height: 2em;
 	}
-	
-	
+
 	li{
 		margin-top: 10px;
 	}
@@ -97,6 +113,13 @@
 		text-align : right;
 	}
 	
+	/* tab */
+	.card-body{
+		max-height : 800px;
+		overflow: auto;
+		
+	}
+	
 	/* 공연 스케쥴 */
 	.schedule-grid{
 		display : grid;
@@ -108,13 +131,14 @@
 		min-height : 150px;
 		border-collapse: collapse;
 		margin-right:20px;
+		border: 0.5px  solid lightgrey;
+		text-align : center; 
 	}
 	
 	.schedule-grid th{
 		width : 175px;
 		vertical-align: middle;
 		
-		border-right : 0.5px  solid lightgrey;
 	}
 	
 	.schedule-grid td{

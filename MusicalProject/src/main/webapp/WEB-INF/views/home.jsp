@@ -226,5 +226,6 @@
 		</div>
 
 		<jsp:include page="../../resources/layout/footer.jsp"></jsp:include>
+
 </body>
 </html>

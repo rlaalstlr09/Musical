@@ -42,7 +42,7 @@ public class TabController {
 	@Autowired
 	QaServiceImpl qnaService;
 	@RequestMapping("/review")
-	public String reviewTab(Model model, @RequestParam(value = "musical_id") Integer musical_id,@RequestParam(value = "customer_id", defaultValue ="") String customer_id,
+	public String reviewTab(Model model, @RequestParam(value = "musical_id") Integer musical_id,
 			@RequestParam(value = "page", defaultValue = "1") int page,
 			@RequestParam(value = "perPageNum", defaultValue = "10") int perPageNum,
 			@RequestParam(value = "sort", defaultValue = "date") String sort,Authentication authentication) throws Exception {
@@ -54,10 +54,11 @@ public class TabController {
 		vo.setPage(page);
 		vo.setPerPageNum(perPageNum);
 		Long roundRating = null;
-
+		String customer_id = null;
+		
 		if (avgRating != null)
 			roundRating = Math.round(avgRating);
-
+		
 		vo.setTotalCount(rService.totalCount(musical_id,customer_id));
 		ArrayList<ReviewDto> dto = rService.selectAll(musical_id, vo);
 		
@@ -68,7 +69,9 @@ public class TabController {
 		model.addAttribute("boardVo", vo);
 		model.addAttribute("roundRating", roundRating);
 		model.addAttribute("musical_id", musical_id);
-		customer_id=authentication.getName();
+		if(authentication != null) {
+			customer_id=authentication.getName();
+		}
 		model.addAttribute("customer_id", customer_id);
 		return "musical/fragments/review";
 
