@@ -98,34 +98,13 @@ select{
     font-weight: bold;
 }
 
+.card-img-top{
+	height : 400px;
+}
+
 
 .hidden{
 	display:none;
-}
-
-
-
-/* 인기 및 최근 오픈 뮤지컬 섹션 */
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-ul {
-    list-style-type: none;
-    padding: 0;
-    text-align: center;
-    margin: 0;
-}
-
-ul li {
-    display: inline;
-    margin-right: 15px;
-}
-
-ul li a {
-    text-decoration: none;
-    color: #007bff;
 }
 
 /* 그리드 레이아웃 */
@@ -244,7 +223,21 @@ ul li a {
 	width : 100%;
 	height : 100%;
 	color : white;
+	font-weight:bolder;
 	padding-left:10px;
+	font-size : 14px;
+}
+
+.img-like{
+	margin-right:30px;
+	margin-left: auto;
+	margin-top:15px;
+	margin-bottom : auto;
+}
+
+.musical-img-item p, .musical-img-item strong{
+	position: relative;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
 }
 
 .page-date, .page-like{
@@ -275,30 +268,6 @@ ul li a {
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-}
-
-/* 페이지 네비게이션 */
-.pagination {
-	display: flex;
-	justify-content:center;
-    text-align: center;
-    margin: 20px 0;
-}
-
-.pagination a {
-    text-decoration: none;
-    color: #007bff;
-    padding: 10px;
-    margin: 0 5px;
-}
-
-.pagination a.active {
-    font-weight: bold;
-    text-decoration: underline;
-}
-
-.pagination input[type="hidden"] {
-    display: none;
 }
 
 

@@ -82,7 +82,7 @@ div {
 	
 					<div class="character_head">
 						
-						<img alt="사진" class = "actor-img" data-toggle="modal" data-target="#actor-modal" src="${acdto.actor_img}" width="100" height="100" data-actor="${acdto.actor_id }">
+						<img alt="사진" class = "actor-img" data-toggle="modal" data-target="#actor-modal" src="/ex/resources/img/actor/${acdto.actor_img }" width="100" height="100" data-actor="${acdto.actor_id }">
 					</div>
 					<div class="character_info">
 						<strong>${acdto.character_name}</strong><br>${acdto.actor_name}

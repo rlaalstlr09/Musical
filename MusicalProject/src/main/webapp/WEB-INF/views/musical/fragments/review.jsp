@@ -426,8 +426,8 @@ margin-top:10px;
 	                
 	                </div>
 	                <div class="review_body">
-	                <p class="review_text">${reviewDto.content}</p>
-				</div>
+	                	<p class="review_text">${reviewDto.content}</p>
+					</div>
 				</div>
 				<div id="updateForm_${reviewDto.review_id}">
 					<form action="updateReview">
