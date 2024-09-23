@@ -19,6 +19,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="/ex/resources/script/musical_list.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" />
 </head>
 <body>
 <jsp:include page="../layout/header.jsp"/>
@@ -33,10 +34,10 @@
 	            <div class="swiper-slide">
 	                <a class="link-container" href="detail/${likeMusical.musical_id}">
 	                    <div class="musical-img-item" data-poster="/ex/resources/img/musical/${likeMusical.musical_poster}">
-	                        <strong>${likeMusical.musical_title}</strong>
+	                    	<p class = "img-like">♥&nbsp;${likeMusical.total_likes}</p>	                    
 	                        <p>${likeMusical.venue_name}&nbsp;${likeMusical.hall_name}</p>
 	                        <p><fmt:formatDate value="${likeMusical.musical_period_start}" pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${likeMusical.musical_period_end}" pattern="yyyy-MM-dd"/></p>
-	                        <p>♥&nbsp;${likeMusical.total_likes}</p>
+	                        
 	                    </div>
 	                </a>
 	            </div>
@@ -55,10 +56,10 @@
 	            <div class="swiper-slide">
 	                <a class="link-container" href="detail/${dateMusical.musical_id}">
 	                    <div class="musical-img-item" data-poster="/ex/resources/img/musical/${dateMusical.musical_poster}">
-	                        <strong>${dateMusical.musical_title}</strong>
+	                        <p class = "img-like">♥&nbsp;${dateMusical.total_likes}</p>
 	                        <p>${dateMusical.venue_name}&nbsp;${dateMusical.hall_name}</p>
 	                        <p><fmt:formatDate value="${dateMusical.musical_period_start}" pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${dateMusical.musical_period_end}" pattern="yyyy-MM-dd"/></p>
-	                        <p>♥&nbsp;${dateMusical.total_likes}</p>
+	                        
 	                    </div>
 	                </a>
 	            </div>
@@ -73,7 +74,7 @@
 	<div class = "list-title">
 		<h2>전체 뮤지컬</h2>
 		<div class="sort-container">
-		    <button class="filter-button">필터</button>
+		    <button class="filter-button"><span class="material-symbols-outlined">tune</span></button>
 	    </div>
     </div>
    
@@ -123,7 +124,7 @@
 		<input type="date" name = "startDate" class = "filter-item">
 		<input type="date" name = "endDate" class = "filter-item">
 		
-		<button class = "reset">초기화</button>
+		<button class = "btn btn-danger reset">초기화</button>
 	</div>
 	
 	 <data id = "currentData" 
@@ -161,25 +162,35 @@
    	</div>
     
     <!-- 페이지 네비게이션 -->
-   	<div class="pagination">
-	    <c:if test="${boardVo.page != 1}">
-	        <a href="#" data-page="1">&lt;&lt;</a>
-	    </c:if>
-	    <c:if test="${boardVo.page != 1}">
-	        <a href="#" data-page="${boardVo.page-1}">&lt;</a>
-	    </c:if>
-	    <c:forEach begin="${boardVo.startPage}" end="${boardVo.endPage}" var="idx">
-	        <a href="#" data-page="${idx}" class="${boardVo.page == idx ? 'active' : ''}">
-	            ${idx}
-	        </a>
-	    </c:forEach>
-	    <c:if test="${boardVo.page != boardVo.totalEndPage}">
-	        <a href="#" data-page="${boardVo.page+1}">&gt;</a>
-	    </c:if>
-	    <c:if test="${boardVo.page != boardVo.totalEndPage}">
-	        <a href="#" data-page="${boardVo.totalEndPage}">&gt;&gt;</a>
-	    </c:if>
-	</div>
+	<nav aria-label="Page navigation">
+        <ul class="pagination">
+            <c:if test="${boardVo.page != 1}">
+                <li class="page-item">
+                    <a class="page-link" href="#" data-page="1">&lt;&lt;</a>
+                </li>
+            </c:if>
+            <c:if test="${boardVo.page != 1}">
+                <li class="page-item">
+                    <a class="page-link" href="#" data-page="${boardVo.page - 1}">&lt;</a>
+                </li>
+            </c:if>
+            <c:forEach begin="${boardVo.startPage}" end="${boardVo.endPage}" var="idx">
+                <li class="page-item ${boardVo.page == idx ? 'active' : ''}">
+                    <a class="page-link" href="#" data-page="${idx}">${idx}</a>
+                </li>
+            </c:forEach>
+            <c:if test="${boardVo.page != boardVo.totalEndPage}">
+                <li class="page-item">
+                    <a class="page-link" href="#" data-page="${boardVo.page + 1}">&gt;</a>
+                </li>
+            </c:if>
+            <c:if test="${boardVo.page != boardVo.totalEndPage}">
+                <li class="page-item">
+                    <a class="page-link" href="#" data-page="${boardVo.totalEndPage}">&gt;&gt;</a>
+                </li>
+            </c:if>
+        </ul>
+    </nav>
     <div class="scroll-controls">
         <button class="scroll-to-top" id="scrollToTopBtn">↑</button>
         <button class="scroll-to-bottom" id="scrollToBottomBtn">↓</button>

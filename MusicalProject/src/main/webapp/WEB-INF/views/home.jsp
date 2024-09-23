@@ -13,7 +13,7 @@
 </head>
 
 <body>
-	<jsp:include page="../../resources/layout/header.jsp" />
+	<jsp:include page="layout/header.jsp" />
 
 
 	<div class="slideshow-container">
@@ -225,7 +225,7 @@
 			</c:forEach>
 		</div>
 
-		<jsp:include page="../../resources/layout/footer.jsp"></jsp:include>
+		<jsp:include page="layout/footer.jsp"></jsp:include>
 
 </body>
 </html>
