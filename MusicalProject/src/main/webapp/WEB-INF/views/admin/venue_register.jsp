@@ -7,7 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>극장 추가</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/signup.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/help_sytle.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=f51073ce5f2e4b9045c855f6e899592f&libraries=services"></script>
@@ -48,5 +47,6 @@
         <button type="submit" class="signup">저장</button>
     </form>
 </div>
+<jsp:include page="../layout/footer.jsp"></jsp:include>
 </body>
 </html>

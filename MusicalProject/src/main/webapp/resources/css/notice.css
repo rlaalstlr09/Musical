@@ -272,7 +272,7 @@ tbody .show {
 }
 
 .pagination {
-	margin-top: 10px;
+	margin: 18px auto 18px;
 	display: inline-block;
 	width: 100%;
 	text-align: center;
@@ -280,7 +280,6 @@ tbody .show {
 
 .pagination a {
 	color: black;
-	float: left;
 	padding: 8px 16px;
 	text-decoration: none;
 	font-size: 14px;

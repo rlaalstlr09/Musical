@@ -13,7 +13,7 @@
 <script src='<%=request.getContextPath()%>/resources/script/admin_admin.js'></script>
 </head>
 <body>
-<jsp:include page="../layout/header.jsp"/>
+<jsp:include page="../layout/admin_header.jsp"/>
        <div id="wrap">
 		<div id="contents">
 			<div id="content">
@@ -135,6 +135,6 @@
 		</div>
 
 	</div>
-
+<jsp:include page="../layout/footer.jsp"></jsp:include>
 </body>
 </html>
