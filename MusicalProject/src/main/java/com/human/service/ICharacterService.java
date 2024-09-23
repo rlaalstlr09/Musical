@@ -21,7 +21,7 @@ public interface ICharacterService {
 	//admin관련	
 	public List<CharacterDto> character_read(@Param("vo") BoardVo vo, @Param("musical_id") int musical_id) throws Exception; //actor와 조인
 	public int character_listSearchCount(@Param("musical_id") int musical_id) throws Exception;	
-	public void character_create(List<CharacterDto> characterList) throws Exception;
+	public void character_create(CharacterDto character) throws Exception;
 	public int character_id(@Param("musical_id") int musical_id,@Param("character_name") String character_name) throws Exception;
 	public void character_update(CharacterDto character) throws Exception;
 	public void character_delete(Integer character_id) throws Exception;

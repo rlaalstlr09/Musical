@@ -218,5 +218,6 @@ button:hover {
         	<button type="button" class="signup">저장</button>            
         </div>
     </div>
+    <jsp:include page="../layout/footer.jsp"></jsp:include>
 </body>
 </html>

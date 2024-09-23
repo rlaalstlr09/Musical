@@ -9,7 +9,6 @@
 <title>극장 수정</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=f51073ce5f2e4b9045c855f6e899592f&libraries=services"></script>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/signup.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/help_sytle.css">        
         <script src='<%=request.getContextPath()%>/resources/script/address_search.js'></script>
         <script src='<%=request.getContextPath()%>/resources/script/admin_modify.js'></script>
@@ -49,5 +48,6 @@
         <button type="submit" class="signup">저장</button>
     </form>
 </div>
+<jsp:include page="../layout/footer.jsp"></jsp:include>
 </body>
 </html>

@@ -12,8 +12,8 @@
 <title>공지사항</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src='<%=request.getContextPath()%>/resources/script/notice.js'></script>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/signup.css">	
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/help_sytle.css">
+
 </head>
 <body>
 <jsp:include page="../layout/header.jsp"/>
@@ -40,13 +40,15 @@
 
 	<div class="box-footer">
 	<button type="submit" class="go_notice" id='go_notice'>뒤로 가기</button>
-		 <sec:authorize access="hasRole('ROLE_ADMIN')">
+		<sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_SUPERADMIN')">
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<button type="submit" class="btn btn-primary">수정</button>
 		<button type="submit" class="btn btn-danger">삭제</button>		
 		</sec:authorize> 
 		
 	</div>
+	
 </div>
+<jsp:include page="../layout/footer.jsp"></jsp:include>
 </body>
 </html>

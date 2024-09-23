@@ -123,7 +123,7 @@ ${boardDtos.formattedNWriteTime}
 							<button id="searchBtn">검색</button>
 						</div>						
 					</div>
-					 <sec:authorize access="hasRole('ROLE_ADMIN')"> 
+					 <sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_SUPERADMIN')">
 					 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 					<button class="newBtn">새 글</button>
 					</sec:authorize>
@@ -131,5 +131,6 @@ ${boardDtos.formattedNWriteTime}
 			</div>
 		</div>
 	</div>
+	<jsp:include page="../layout/footer.jsp"></jsp:include>
 </body>
 </html>

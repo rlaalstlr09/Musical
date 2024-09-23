@@ -42,13 +42,10 @@ FETCH NEXT #{vo.perPageNum} ROWS ONLY
 	
 <delete id="character_delete"> delete from character where character_id = #{character_id} </delete>
 <delete id="character_Alldelete"> delete from character where musical_id = #{musical_id} </delete>
-<insert id="character_create" parameterType="java.util.List">
+<insert id="character_create">
     INSERT INTO character (character_id, musical_id, character_name)
-        SELECT character_seq.nextval, musical_id, character_name from(
-        <foreach collection="list" item="character" separator="UNION ALL">
-        SELECT #{character.musical_id} AS musical_id, #{character.character_name} AS character_name FROM dual
-    </foreach>
-    ) character
+    values (character_seq.nextval,#{musical_id},#{character_name})
+        
 </insert>
 
 
