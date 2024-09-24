@@ -1,229 +1,246 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ page import="java.util.Date, java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date, java.text.SimpleDateFormat"%>
 <%
-    // 현재 날짜 가져오기
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-    String todayDate = sdf.format(new Date());
-	
+	// 현재 날짜 가져오기
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+	String todayDate = sdf.format(new Date());
 %>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <meta charset="UTF-8">
-    <title>달력</title>
-    <link rel="stylesheet" href="reservation.css">
-    <style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<meta charset="UTF-8">
+<title>달력</title>
+<link rel="stylesheet" href="reservation.css">
+<style>
+
+footer {
+    margin-top: 100px; /* 푸터를 아래로 내리기 위해 간격 조정 */
+}
+.subject-line {
+	color: #333;
+	font-size: 28px;
+	font-weight: bold;
+	margin-top: -45px;
+	margin-bottom: 30px;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f8f8f8;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
 }
 
-.subject-line {
-    color: gray;
-    font-size: 25px;
-    font-weight: 400;
-    margin-top: -45px;
-    margin-bottom: 40px;
-}
-
 .container {
-    background-color: white;
-    border-radius: 16px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 400px;
-    height: 800px;
-}
-
-.calendar-container {
-    text-align: center;
-    margin-top: 70px;
-}
-
-.calendar-container .calendar-controls {
+    position: relative; /* 자식 요소의 기준이 될 수 있도록 설정 */
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 5px;
+    flex-direction: column; /* 세로 방향 정렬 */
+    align-items: center; /* 중앙 정렬 */
+    margin: 200px 0 20px 0; 
 }
 
-.calendar-container .calendar-controls button {
-    cursor: pointer;
-    font-size: 20px;
-    color: #7c7c7c;
-    background: none;
-    border: none;
-    margin: 0 40px;
+.musical-info {
+    position: absolute; /* 절대 위치 설정 */
+    top: 200px; /* 위쪽 위치 조정 */
+    right: 50px; /* 컨테이너 오른쪽에 붙게 설정 */
+    border: 1px solid #ddd; /* 테두리 추가 */
+    padding: 10px; /* 패딩 추가 */
+    background-color: white; /* 배경색 추가 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 약간의 그림자 추가 */
 }
 
-.calendar-container .calendar-controls #thismonth {
-    font-size: 20px;
-    font-weight: bold;
-    color: #333;
-    margin: 5px;
+
+@media (max-width: 768px) {
+    .musical-info {
+        position: relative; /* 상대 위치로 변경 */
+        top: auto; /* 기본 위치로 되돌림 */
+        right: auto; /* 기본 위치로 되돌림 */
+        margin-top: 20px; /* 위쪽 여백 추가 */
+    }
+}
+.calendar-container {
+	margin-top: 20px; /* 위쪽 마진 조정 */
+}
+
+.calendar-controls {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 10px; /* 패딩 조정 */
+}
+
+.calendar-controls button {
+	cursor: pointer;
+	font-size: 24px; /* 글자 크기 증가 */
+	color: #7c7c7c;
+	background: none;
+	border: none;
+	margin: 0 20px; /* 버튼 간격 조정 */
+}
+
+.calendar-controls #thismonth {
+	font-size: 24px; /* 글자 크기 증가 */
+	font-weight: bold;
+	color: #333;
+	margin: 5px;
 }
 
 table {
-    width: 100%;
-    border-collapse: collapse;
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 10px; /* 여백 추가 */
 }
 
 th {
-    color: #7c7c7c;
-    font-weight: normal;
-    padding: 10px;
+	color: #7c7c7c;
+	font-weight: normal;
+	padding: 12px; /* 패딩 증가 */
 }
 
 td {
-    padding: 10px;
-    text-align: center;
-    font-size: 16px;
-    cursor: pointer;
+	padding: 12px; /* 패딩 증가 */
+	text-align: center;
+	font-size: 18px; /* 글자 크기 증가 */
+	cursor: pointer;
 }
 
 td:hover {
-    background-color: #f0f0f0;
+	background-color: #f0f0f0;
 }
 
 .selected {
-    background-color: #A084DC;
-    color: white;
-    border-radius: 50%;
+	background-color: #A084DC;
+	color: white;
+	border-radius: 50%;
 }
 
 .sunday {
-    color: red;
+	color: red;
 }
 
 .saturday {
-    color: blue;
+	color: blue;
 }
 
 .btn-secondary {
-    background-color: #f0f0f0;
-    color: #828282;
-    padding: 10px;
-    margin-top: 10px;
-    text-align: center;
-    font-size: 14px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    cursor: pointer;
+	background-color: #A084DC; /* 버튼 배경색 수정 */
+	color: white; /* 글자색 수정 */
+	padding: 12px;
+	margin-top: 20px; /* 여백 증가 */
+	text-align: center;
+	font-size: 16px; /* 글자 크기 증가 */
+	border-radius: 8px;
+	text-decoration: none;
+	font-weight: bold;
+	cursor: pointer;
+	transition: background-color 0.3s;
 }
 
 .btn-secondary:hover {
-    background-color: #b4b4b4;
-    color: white;
+	background-color: #7c5cb5; /* 호버 색상 조정 */
 }
 
 .result-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 20px; /* 여백 추가 */
 }
 
 .result-table th, .result-table td {
-    padding: 12px;
-    text-align: center;
-    font-size: 16px;
-    border: 1px solid #ddd;
+	padding: 12px;
+	text-align: center;
+	font-size: 16px;
+	border: 1px solid #ddd;
 }
 
 .result-table th {
-    background-color: #f5f5f5;
-    color: #333;
-    font-weight: bold;
+	background-color: #f5f5f5;
+	color: #333;
+	font-weight: bold;
 }
 
 .result-table td {
-    background-color: white;
-    color: #555;
+	background-color: white;
+	color: #555;
 }
 
 .result-table tr:nth-child(even) {
-    background-color: #f9f9f9;
+	background-color: #f9f9f9;
 }
 
 .result-table tr:hover {
-    background-color: #e0e0e0;
-    transition: background-color 0.3s ease;
+	background-color: #e0e0e0;
+	transition: background-color 0.3s ease;
 }
 
 .result-table a {
-    color: #A084DC;
-    text-decoration: none;
-    font-weight: bold;
+	color: #A084DC;
+	text-decoration: none;
+	font-weight: bold;
 }
 
 .result-table a:hover {
-    color: #7c5cb5;
+	color: #7c5cb5;
 }
-
-
-
-
-
-    </style>
+</style>
 </head>
 <body>
-    
-    <div class="container">
-        <div class="calendar-container">
-            <div class="subject-line">RESERVATION</div>    
-            <div class="calendar-table-container">
-                <div class="calendar-controls">
-                    <button id="prev-month">◀</button>
-                    <span id="thismonth"></span>
-                    <button id="next-month">▶</button>
-                </div>
-                <table>
-                    <tr>
-                        <th>일</th>
-                        <th>월</th>
-                        <th>화</th>
-                        <th>수</th>
-                        <th>목</th>
-                        <th>금</th>
-                        <th>토</th>
-                    </tr>
-                    <tbody id="calendar-body">
-                    </tbody>
-                </table>
-            </div>
-            <div class="input-container">
-               <input type="hidden" id="venue_id" value="${venue_id}" readonly >
-               <input type="hidden" id="musical_id" value="${musical_id}" readonly >
-                <input type="hidden" id="selected-date" readonly>
-            </div>
-        </div>
-            <h1>회차정보</h1>
-        <div id="result">
-        </div>
+	<jsp:include page="../layout/header.jsp" />
+	<div class="container">
+		<div class="calendar-container">
+			<div class="calendar-table-container">
+				<div class="calendar-controls">
+					<button id="prev-month">◀</button>
+					<span id="thismonth"></span>
+					<button id="next-month">▶</button>
+				</div>
+				<table>
+					<tr>
+						<th>일</th>
+						<th>월</th>
+						<th>화</th>
+						<th>수</th>
+						<th>목</th>
+						<th>금</th>
+						<th>토</th>
+					</tr>
+					<tbody id="calendar-body">
+					</tbody>
+				</table>
+			</div>
+			<div class="input-container">
+				<input type="hidden" id="venue_id" value="${venue_id}" readonly>
+				<input type="hidden" id="musical_id" value="${musical_id}" readonly>
+				<input type="hidden" id="selected-date" readonly>
+			</div>
+		</div>
+		<h1>회차정보</h1>
+		<div id="result"></div>
 
+<div class="btn-secondary" onclick="location.href='${pageContext.request.contextPath}/'">HOME</div>
+<div class="btn-secondary" onclick="location.href='${pageContext.request.contextPath}/musical/detail/${musical_id}'">뒤로</div>
 
-        <div class="btn-secondary">HOME</div>
-    </div>
+	</div>
+<div class="musical-info">
+    <div>${musical.musical_title}</div>
+    <div>${musical.musical_poster}</div>
+    <div>${musical.musical_runningtime}</div>
+    <div>${musical.musical_agelimit}</div>
+</div>
+	<jsp:include page="../layout/footer.jsp" />
 
-
-    </div>
-
-            
-
-    <script>
+	<script>
         let currentYear = new Date().getFullYear();
         let currentMonth = new Date().getMonth();
-        var todayDate = '<%= todayDate %>';
+        var todayDate = '<%=todayDate%>';
         
         
         function renderCalendar(year, month) {

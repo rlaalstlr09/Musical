@@ -28,6 +28,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.human.dto.HallDto;
+import com.human.dto.MusicalDto;
 import com.human.dto.MusicalScheduleDto;
 import com.human.dto.ReservationDto;
 import com.human.dto.SeatDto;
@@ -69,6 +70,9 @@ public class ReservationController {
 		System.out.println("reservation");
 		model.addAttribute("venue_id",venue_id);
 		model.addAttribute("musical_id",musical_id);
+		
+		MusicalDto dto = musicalservice.musical_read(musical_id);
+		model.addAttribute("musical",dto);
 		
 	}
 	
