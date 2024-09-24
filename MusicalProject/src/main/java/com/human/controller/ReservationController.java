@@ -101,7 +101,7 @@ public class ReservationController {
 		}
 
 		System.out.println(dtos.toString());
-		return mu_schservice.select_Musical_sch(date, 1, 1);
+		return dtos;
 	}
 	
 
@@ -120,6 +120,11 @@ public class ReservationController {
 		model.addAttribute("mu_sch_id", mu_sch_id);
 		model.addAttribute("seatdtos", dtos);
 		model.addAttribute("customer", customer);
+		
+		MusicalDto dto = musicalservice.musical_read(mu_schservice.select_mu_sch_id(mu_sch_id).getMusical_id());
+		model.addAttribute("musical",dto);
+		model.addAttribute("date",mu_schservice.select_mu_sch_id(mu_sch_id).getMu_sch_date().substring(0,10));
+		model.addAttribute("time",mu_schservice.select_mu_sch_id(mu_sch_id).getMu_sch_time());
 		
 
 	}

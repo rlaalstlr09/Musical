@@ -41,6 +41,7 @@ body {
 
 .container {
     position: relative; /* 자식 요소의 기준이 될 수 있도록 설정 */
+    
     display: flex;
     flex-direction: column; /* 세로 방향 정렬 */
     align-items: center; /* 중앙 정렬 */
@@ -219,7 +220,7 @@ td:hover {
 			<div class="input-container">
 				<input type="hidden" id="venue_id" value="${venue_id}" readonly>
 				<input type="hidden" id="musical_id" value="${musical_id}" readonly>
-				<input type="hidden" id="selected-date" readonly>
+				<input type="text" id="selected-date" readonly>
 			</div>
 		</div>
 		<h1>회차정보</h1>
@@ -237,184 +238,176 @@ td:hover {
 </div>
 	<jsp:include page="../layout/footer.jsp" />
 
-	<script>
-        let currentYear = new Date().getFullYear();
-        let currentMonth = new Date().getMonth();
-        var todayDate = '<%=todayDate%>';
-        
-        
-        function renderCalendar(year, month) {
-            const firstDay = new Date(year, month, 1);
-            const lastDay = new Date(year, month + 1, 0);
+<script>
+    let currentYear = new Date().getFullYear();
+    let currentMonth = new Date().getMonth();
+    var todayDate = '<%=todayDate%>';
 
-            document.getElementById('thismonth').textContent = year + '년 ' + (month + 1) + '월';
+    function renderCalendar(year, month) {
+        const firstDay = new Date(year, month, 1);
+        const lastDay = new Date(year, month + 1, 0);
 
-            const calendarBody = document.getElementById('calendar-body');
-            calendarBody.innerHTML = '';
+        document.getElementById('thismonth').textContent = year + '년 ' + (month + 1) + '월';
 
-            let row = document.createElement('tr');
-            for (let i = 0; i < firstDay.getDay(); i++) {
-                row.appendChild(document.createElement('td'));
+        const calendarBody = document.getElementById('calendar-body');
+        calendarBody.innerHTML = '';
+
+        let row = document.createElement('tr');
+        for (let i = 0; i < firstDay.getDay(); i++) {
+            row.appendChild(document.createElement('td'));
+        }
+
+        let date = 1;
+        while (date <= lastDay.getDate()) {
+            if (row.children.length === 7) {
+                calendarBody.appendChild(row);
+                row = document.createElement('tr');
+            }
+            const cell = document.createElement('td');
+            cell.textContent = date;
+            cell.id = date;
+            cell.classList.add('select_date');
+
+            let dayPosition = (date + firstDay.getDay() - 1) % 7;
+
+            if (dayPosition === 0) {
+                cell.classList.add('sunday');
+            } else if (dayPosition === 6) {
+                cell.classList.add('saturday');
             }
 
-            let date = 1;
-            while (date <= lastDay.getDate()) {
-                if (row.children.length === 7) {
-                    calendarBody.appendChild(row);
-                    row = document.createElement('tr');
+            cell.addEventListener('click', function () {
+                let formattedMonth = month + 1;  // month는 0부터 시작하므로 1을 더해줍니다.
+                if (formattedMonth < 10) {
+                    formattedMonth = '0' + formattedMonth;  // 두 자리 수로 맞춥니다.
                 }
-                const cell = document.createElement('td');
-                cell.textContent = date;
-                cell.id = date;
-                cell.classList.add('select_date');
-                
-                let dayPosition = (date + firstDay.getDay() - 1) % 7;
-                
-                if (dayPosition === 0) {
-                    cell.classList.add('sunday');
-                } else if (dayPosition === 6) {
-                    cell.classList.add('saturday');
+
+                let day = cell.id;
+                if (day.length < 2) {
+                    day = '0' + day;  // 두 자리 수로 맞춥니다.
                 }
-                console.log("01");
-                cell.addEventListener('click', function() {
-                    if ((month + 1) < 10) {
-                        month = '0' + (month + 1);
-                    } else {
-                        (month + 1)
-                    }
 
-                    if (cell.id.length < 2) {
-                        cell.id = '0' + cell.id;
-               }
-               const selectedDate = year + '/' + month + '/' + cell.id;
-               document.getElementById('selected-date').value = selectedDate;
-               let venue_id = parseInt(document.getElementById('venue_id').value);
-               let musical_id = parseInt(document.getElementById('musical_id').value);
+                const selectedDate = year + '/' + formattedMonth + '/' + day;
+                document.getElementById('selected-date').value = selectedDate;
+                let venue_id = parseInt(document.getElementById('venue_id').value);
+                let musical_id = parseInt(document.getElementById('musical_id').value);
 
-                    console.log("02");
-               
-                    if (todayDate <= selectedDate) {
-                        // 일반 사용자일 경우 오늘 이전 날짜 클릭 불가,
-                        // 관리자인 경우 클릭 가능
-                        $.ajax({
-                            url: '${pageContext.request.contextPath}/reservation/select_date',
-                            type: 'GET',
-                            dataType: 'json',   
-                            data: {
-                                date: selectedDate,
-                                venue_id:venue_id,
-                                musical_id:musical_id
-                            },
-                            success: function(data) {
-                               console.log("Received data from server:", data); 
-                                console.log(data);
-                                const resultContainer = document.getElementById('result');
-                                resultContainer.innerHTML = ''; 
+                if (todayDate <= selectedDate) {
+                    // 일반 사용자일 경우 오늘 이전 날짜 클릭 불가, 관리자인 경우 클릭 가능
+                    $.ajax({
+                        url: '${pageContext.request.contextPath}/reservation/select_date',
+                        type: 'GET',
+                        dataType: 'json',
+                        data: {
+                            date: selectedDate,
+                            venue_id: venue_id,
+                            musical_id: musical_id
+                        },
+                        success: function (data) {
+                            console.log("Received data from server:", data);
+                            const resultContainer = document.getElementById('result');
+                            resultContainer.innerHTML = '';
 
+                            if (data.length === 0) {
+                                resultContainer.innerHTML = '해당 날짜에 대한 일정이 없습니다.';
+                            } else {
+                                const table = document.createElement('table');
+                                table.classList.add('result-table');
+                                table.border = '1';
 
-                                if (data.length === 0) {
-                                    resultContainer.innerHTML = '해당 날짜에 대한 일정이 없습니다.';
-                                } else {
-                                    const table = document.createElement('table');
-                                    table.classList.add('result-table');
-                                    table.border = '1';
+                                // 헤더 생성
+                                const thead = document.createElement('thead');
+                                const headerRow = document.createElement('tr');
+                                const headers = ['날짜', '시간', '홀 ID', '예약가능좌석 / 전체좌석', '예약'];
+                                headers.forEach(header => {
+                                    const th = document.createElement('th');
+                                    th.textContent = header;
+                                    headerRow.appendChild(th);
+                                });
 
+                                thead.appendChild(headerRow);
+                                table.appendChild(thead);
 
-                                    // 헤더 생성
-                                    const thead = document.createElement('thead');
-                                    const headerRow = document.createElement('tr');
-                                    const headers = ['날짜', '시간', '홀 ID', '예약가능좌석 / 전체좌석', '예약'];
-                                    headers.forEach(header => {
-                                        const th = document.createElement('th');
-                                        th.textContent = header;
-                                        headerRow.appendChild(th);
-                                    });
-                                    
-                                    
-                                    thead.appendChild(headerRow);
-                                    table.appendChild(thead);
+                                const tbody = document.createElement('tbody');
+                                data.forEach(dto => {
+                                    const row = document.createElement('tr');
 
-                                    const tbody = document.createElement('tbody');
-                                    data.forEach(dto => {
-                                        const row = document.createElement('tr');
+                                    const td1 = document.createElement('td');
+                                    const onlydate = dto.mu_sch_date.substring(0, 10);
 
-                                        const td1 = document.createElement('td');
-                                        const onlydate = dto.mu_sch_date.substring(0, 10);
+                                    td1.textContent = onlydate;
+                                    row.appendChild(td1);
 
-                                        td1.textContent = onlydate;
-                                        row.appendChild(td1);
+                                    const td2 = document.createElement('td');
+                                    td2.textContent = dto.mu_sch_time;
+                                    row.appendChild(td2);
 
-                                        const td2 = document.createElement('td');
-                                        td2.textContent = dto.mu_sch_time;
-                                        row.appendChild(td2);
+                                    const td3 = document.createElement('td');
+                                    td3.textContent = dto.hall_id;
+                                    row.appendChild(td3);
 
-                                        const td3 = document.createElement('td');
-                                        td3.textContent = dto.hall_id;
-                                        row.appendChild(td3);
+                                    const td4 = document.createElement('td');
+                                    td4.textContent = dto.seat_count;
+                                    row.appendChild(td4);
 
-                                        const td4 = document.createElement('td');
-                                        td4.textContent = dto.seat_count;
-                                        row.appendChild(td4);
+                                    const td5 = document.createElement('td');
+                                    const link = document.createElement('a');
+                                    link.href = `${pageContext.request.contextPath}/reservation/seat_select?mu_sch_id=` + dto.mu_sch_id;
+                                    link.textContent = '예약';
+                                    td5.appendChild(link);
+                                    row.appendChild(td5);
 
-                                        const td5 = document.createElement('td');
-                                        const link = document.createElement('a');
-                                        link.href = `${pageContext.request.contextPath}/reservation/seat_select?mu_sch_id=` + dto.mu_sch_id;
-                                        link.textContent = '예약';
-                                        td5.appendChild(link);
-                                        row.appendChild(td5);
+                                    tbody.appendChild(row);
+                                });
+                                table.appendChild(tbody);
 
-
-                                        tbody.appendChild(row);
-                                    });
-                                    table.appendChild(tbody);
-
-                                    resultContainer.appendChild(table);
-                                }
-                            },
-                            error: function(jqXHR, textStatus, errorThrown) {
-                                console.error('Error:', textStatus, errorThrown);
-                                alert('일정을 가져오는 중 오류가 발생했습니다.');
+                                resultContainer.appendChild(table);
                             }
-                        });
-                    }
-                });
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            console.error('Error:', textStatus, errorThrown);
+                            alert('일정을 가져오는 중 오류가 발생했습니다.');
+                        }
+                    });
+                }
+            });
 
-
-                row.appendChild(cell);
-                date++;
-            }
-
-            while (row.children.length < 7) {
-                row.appendChild(document.createElement('td'));
-            }
-            calendarBody.appendChild(row);
+            row.appendChild(cell);
+            date++;
         }
 
-        function prevMonth() {
-            if (currentMonth === 0) {
-                currentMonth = 11;
-                currentYear--;
-            } else {
-                currentMonth--;
-            }
-            renderCalendar(currentYear, currentMonth);
+        while (row.children.length < 7) {
+            row.appendChild(document.createElement('td'));
         }
+        calendarBody.appendChild(row);
+    }
 
-        function nextMonth() {
-            if (currentMonth === 11) {
-                currentMonth = 0;
-                currentYear++;
-            } else {
-                currentMonth++;
-            }
-            renderCalendar(currentYear, currentMonth);
+    function prevMonth() {
+        if (currentMonth === 0) {
+            currentMonth = 11;
+            currentYear--;
+        } else {
+            currentMonth--;
         }
-
-        // 초기 달력 렌더링
         renderCalendar(currentYear, currentMonth);
+    }
 
-        document.getElementById('prev-month').addEventListener('click', prevMonth);
-        document.getElementById('next-month').addEventListener('click', nextMonth);
-    </script>
+    function nextMonth() {
+        if (currentMonth === 11) {
+            currentMonth = 0;
+            currentYear++;
+        } else {
+            currentMonth++;
+        }
+        renderCalendar(currentYear, currentMonth);
+    }
+
+    // 초기 달력 렌더링
+    renderCalendar(currentYear, currentMonth);
+
+    document.getElementById('prev-month').addEventListener('click', prevMonth);
+    document.getElementById('next-month').addEventListener('click', nextMonth);
+</script>
+
 </body>
 </html>
