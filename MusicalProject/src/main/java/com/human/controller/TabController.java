@@ -74,13 +74,14 @@ public class TabController {
 
 	}
 	@RequestMapping("/qna")
-	public String qTab(Model model, @RequestParam(value = "musical_id") Integer musical_id,@RequestParam(value = "customer_id", defaultValue ="") String customer_id,
+	public String qTab(Model model, @RequestParam(value = "musical_id") Integer musical_id,
 			@RequestParam(value = "page", defaultValue = "1") int page,
-			@RequestParam(value = "perPageNum", defaultValue = "10") int perPageNum
+			@RequestParam(value = "perPageNum", defaultValue = "10") int perPageNum,Authentication authentication
 			) throws Exception {
-
-		
-
+		String customer_id="";
+		if(authentication.getName() != null) {
+		customer_id=authentication.getName();
+		}
 		BoardVo vo = new BoardVo();
 		
 		vo.setPage(page);
@@ -88,7 +89,7 @@ public class TabController {
 		vo.setTotalCount(qnaService.totalCount(musical_id));
 		
 		ArrayList<QaDto> dto = qnaService.selectAllQna(musical_id, vo);		
-		
+		model.addAttribute("customer_id",customer_id);
 		model.addAttribute("List", dto);		
 		model.addAttribute("boardVo", vo);		
 		model.addAttribute("musical_id", musical_id);

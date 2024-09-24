@@ -1,5 +1,9 @@
 package com.human.dto;
 
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class QaDto {
 	private int qa_id;
 	private String customer_id;
@@ -8,7 +12,11 @@ public class QaDto {
 	private String title;
 	private String content;
 	private String response;
-	private int display;
+	private Integer display;
+	
+	//qna
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date qa_date;
 	
 	//페이징 용
 	private Integer totalcount;
@@ -18,7 +26,7 @@ public class QaDto {
 	
 	
 	public QaDto(int qa_id, String customer_id, String qa_type, String title, String content, String response,
-			int display) {
+			Integer display) {
 		super();
 		this.qa_id = qa_id;
 		this.customer_id = customer_id;
@@ -29,8 +37,8 @@ public class QaDto {
 		this.display = display;
 	}
 
-	public QaDto(int qa_id, String customer_id, Integer musical_id, String title, String content, String response,
-			int display) {
+	public QaDto(int qa_id, String customer_id, Integer musical_id, String title, String content, String response, Date qa_date,
+			Integer display) {
 		super();
 		this.qa_id = qa_id;
 		this.customer_id = customer_id;
@@ -38,6 +46,15 @@ public class QaDto {
 		this.title = title;
 		this.content = content;
 		this.response = response;
+		this.display = display;
+	}
+	public QaDto( String customer_id, Integer musical_id, String title, String content, Integer display) {
+		super();
+		this.customer_id=customer_id;
+		this.musical_id = musical_id;
+		this.title = title;
+		this.content = content;
+		
 		this.display = display;
 	}
 
@@ -50,6 +67,18 @@ public class QaDto {
 
 	
 	
+	public Date getQa_date() {
+		return qa_date;
+	}
+
+
+
+	public void setQa_date(Date qa_date) {
+		this.qa_date = qa_date;
+	}
+
+
+
 	public Integer getMusical_id() {
 		return musical_id;
 	}
@@ -117,10 +146,10 @@ public class QaDto {
 	public void setResponse(String response) {
 		this.response = response;
 	}
-	public int getDisplay() {
+	public Integer getDisplay() {
 		return display;
 	}
-	public void setDisplay(int display) {
+	public void setDisplay(Integer display) {
 		this.display = display;
 	}
 	

@@ -55,7 +55,7 @@ public class QaServiceImpl implements IQaService {
 	//qna
 	public void insertQna(QaDto dto) throws Exception{
 		IQaDao dao = sqlSession.getMapper(IQaDao.class);
-		dao.create(dto);
+		dao.insertQna(dto);
 	}
 	
 	@Override
