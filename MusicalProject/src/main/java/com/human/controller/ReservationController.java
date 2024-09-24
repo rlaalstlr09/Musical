@@ -151,8 +151,8 @@ public class ReservationController {
 		return "home";
 	}
 
-	//////////////////////////////////////////// 로그인 기능 추가시 아이디 설정 현재는 customer 이름으로
-	//////////////////////////////////////////// 찾는중
+		
+	
 	@RequestMapping(value = "/reservation_list", method = RequestMethod.GET)
 	public void reservation_list(
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page,

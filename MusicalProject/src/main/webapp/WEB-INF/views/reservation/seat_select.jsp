@@ -360,7 +360,6 @@ button:hover {
 	
 
 	
-	
 	<jsp:include page="../layout/footer.jsp"/>
 	
 	<script>
@@ -483,8 +482,7 @@ button:hover {
         
         return true; 
     }
-    
-    
+        
     
     
     
