@@ -46,7 +46,9 @@ $(document).ready(function() {
 	}
 
 	//좋아요 토글, 누르면 버튼 바뀜
-	$('a#like-button').on('click',function() {
+	$('a#like-button').on('click',function(event) {
+		event.preventDefault();
+		
 		let $this = $(this);
 		let isLiked = $this.hasClass('liked');
 		let musicalId = $this.data('musical');
@@ -80,7 +82,7 @@ $(document).ready(function() {
 						$this.removeClass('liked').text('♡'); // 좋아요 취소
 						$('span#total-likes').text(currentCount - 1);
 					} else {
-						$this.addClass('liked').text('♥'); // 좋아요 추가
+						$this.addClass('liked').text('❤'); // 좋아요 추가
 						$('span#total-likes').text(currentCount + 1);
 
 					}
@@ -153,7 +155,7 @@ $(document).ready(function() {
 				
 				<div class="like">
 					<a href="#" id="like-button" class="${isLike == 1 ? 'liked' : ''}" data-musical="${musical.musical_id }"> 
-						${isLike == 1 ? '♥' : '♡'}
+						${isLike == 1 ? '❤' : '♡'}
 					</a> 
 					<span id="total-likes">
 						${musical.total_likes }
@@ -166,7 +168,7 @@ $(document).ready(function() {
 				<br> 공연 장소 :
 				<!-- Link to open the modal -->
 				<a href="#" class="open-venue-modal" id="openModalLink"
-					data-toggle="modal" data-target="#venue-modal">${musical.venue_name }&nbsp;${musical.hall_name} ▶</a>
+					data-toggle="modal" data-target="#venue-modal"><strong>${musical.venue_name }&nbsp;${musical.hall_name} ▶</strong></a>
 				 
 				<!-- Modal -->
 				<div class="modal fade" id="venue-modal" tabindex="-1" role="dialog"
@@ -216,8 +218,8 @@ $(document).ready(function() {
 			</div>
 			
 			<div class = "button-container">
-				<button class="list" onclick="location.href='/ex/musical/listAll'">목록</button>
-				<a class="reservation" href="${pageContext.request.contextPath}/reservation/reservation?venue_id=${musical.venue_id}&musical_id=${musical.musical_id}">예매하기</a>
+				<button class="btn btn-primary list" onclick="location.href='/ex/musical/listAll'">목록</button>
+				<a class="btn btn-success reservation" href="${pageContext.request.contextPath}/reservation/reservation?venue_id=${musical.venue_id}&musical_id=${musical.musical_id}">예매하기</a>
 
 				
 			</div>
@@ -259,7 +261,8 @@ $(document).ready(function() {
 					<li>공연장 내 생수만 반입이 가능하며, 그 외 음료수, 음식물은 반입 불가합니다.</li>
 				</ul>
 			</div>
-			<div id="detail">포스터, 상세정보 표시</div>
+			<div id="detail">
+			</div>
 
 			<div id="venue">
 				<h4>공연장 안내</h4>
@@ -269,14 +272,30 @@ $(document).ready(function() {
 				</jsp:include>
 				
 			</div>
-			<div id="review">
-				<c:forEach items = '${reviews}' var = 'review'>
-					<p id="customerId">${review.customer_id } (${review.rating } 점)</p>
-					<p>${review.content}</p>
-				</c:forEach>
-			
+			<div id = "review">
+				<h4>베스트 리뷰</h4>
+				<div class="review-container">
+					
+					<c:if test = '${empty reviews}'>
+						<p>작성된 리뷰가 없습니다. 😥</p>
+					</c:if>
+					<c:forEach items = '${reviews}' var = 'review'>
+						<div class="reviw_content">
+							
+							<div class="star_rating read-only sttar">
+		                    	<span class="star  ${review.rating >= 1 ? 'on' : '0'}"></span>
+		                    	<span class="star  ${review.rating >= 2 ? 'on' : '0'}"></span>
+		                    	<span class="star  ${review.rating >= 3 ? 'on' : '0'}"></span>
+		                    	<span class="star  ${review.rating >= 4 ? 'on' : '0'}"></span>
+		                    	<span class="star  ${review.rating >= 5 ? 'on' : '0'}"></span>
+		                	</div>
+		                	<div class="review_text">${review.content}</div>
+								
+						</div>
+					</c:forEach>
+				
+				</div>
 			</div>
-			
 			<h4>공연 스케줄 안내</h4>
 			<div class="schedule-grid">
 				<c:forEach var="entry" items="${scheduleMap}">
@@ -303,7 +322,7 @@ $(document).ready(function() {
 						</div>
 					</c:if>
 					<div class = "actor-info" data-character="${actor.character_name}">
-						<p><img src = "/ex/resources/${actor.actor_img}"></p>
+						<img src = "/ex/resources/img/actor/${actor.actor_img}">
 						<p>${actor.actor_name}</p>
 
 					</div>

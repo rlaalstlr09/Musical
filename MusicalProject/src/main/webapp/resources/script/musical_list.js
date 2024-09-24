@@ -111,11 +111,12 @@ $(document).ready(function(){
     $('.musical-img-item').each(function() {
         var posterUrl = $(this).data('poster'); 
         $(this).css({
-            'background-image': 'url(' + posterUrl + ')',
+            'background-image': 'linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent), url(' + posterUrl + ')',
             'background-size': 'cover',
             'background-position': 'center',
             'background-repeat': 'no-repeat',
-            'border-radius' : '16px'
+            'border-radius' : '16px',
+            'box-shadow': '0 4px 10px rgba(0, 0, 0, 0.5)'
         });
     });
     

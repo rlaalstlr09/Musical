@@ -352,13 +352,10 @@ public class AdminController {
 	        character.setCharacter_name(character_name.get(i));
 	        character.setActor_id(actor_id.get(i));
 		character.setMusical_id(musical_id.get(i));
-	        characterList.add(character);
+		characterService.character_create(character);
+		acService.actor_character_create(character);
 	    }
-	    characterService.character_create(characterList);
-	    for(CharacterDto item:characterList ){
-	    	int character_id= characterService.character_id(item.getMusical_id(),item.getCharacter_name());
-	    	acService.actor_character_create(item.getActor_id(),character_id);
-	    }
+	    
 	    rttr.addFlashAttribute("msg", "success");
 		return "redirect:/admin/character_read?musical_id=" + musical_id.get(0);
 	}

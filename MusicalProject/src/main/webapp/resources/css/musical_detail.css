@@ -44,7 +44,14 @@
     border-radius: 8px;
     background-color: #f9f9f9;
     margin: 0.5rem;
-    width: 150px;
+    width: 300px;
+    height : 350px;
+    gap : 20px;
+}
+
+.actor-info img{
+	width : 100%;
+	height : 250px;
 }
         
     /* 뮤지컬 상세보기 전체 (포스터, 상세정보) */
@@ -81,6 +88,12 @@
 		width : 300px;
 		max-width : 300px !important;
 		border-radius : 16px;
+		border : 0.5px solid black;
+	}
+	
+	#like-button{
+		font-size : 16px;
+		color : lightpink;
 	}
 	
 	/* 뮤지컬 상세정보 */
@@ -92,8 +105,74 @@
 	
 	.musical-detail-info{
 		position:relative;
-		line-height: 2em;
+		line-height: 2.5em;
 	}
+	
+	.detail-poster{
+		width : 80%;
+	}
+	
+	/* 상위리뷰 */
+	
+	#review{
+		display : flex;
+		flex-direction: column;
+		gap : 20px;
+		align-items: center;
+		margin-top : 50px;
+	}
+	
+	.review-container{
+		display : flex;
+		width : 100%;
+		flex-direction: column;
+		gap : 20px;
+		align-items: center;
+		padding : 50px;
+	}
+	
+	.reviw_content{
+		width : 100%;
+		background : #fff;
+		border-radius : 16px;
+		padding : 10px;
+		margin : auto;
+		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+		font-weight: bolder;
+		line-height: 40px;
+	}
+	.reviw_content div{
+		display : flex;
+		align-items: center;
+		justify-content: center;
+	}
+	
+	.review_header div{
+		margin : auto;
+	}
+	.star_rating {
+        display: inline-flex;
+        flex-direction: row;
+    }
+	
+	.star_rating .star {
+        width: 25px;
+        height: 27px;
+        margin-right: 0px;
+        background: url('/ex/resources/img/star.png') no-repeat;
+        background-size: cover;
+        cursor: pointer;
+    }
+
+	.star_rating.read-only .star {
+            pointer-events: none; /* 클릭 이벤트를 비활성화합니다 */
+    }
+    
+	.star.on {
+        background: url('/ex/resources/img/full_star.png') no-repeat;
+        background-size: cover;
+        font-size : 16px;
+    }
 
 	li{
 		margin-top: 10px;

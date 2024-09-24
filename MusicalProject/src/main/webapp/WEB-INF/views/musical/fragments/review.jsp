@@ -31,7 +31,7 @@ body {
     border-radius: 8px; /* 모서리 둥글게 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 */
     transition: box-shadow 0.3s ease, transform 0.3s ease; /* 부드러운 전환 효과 */
-    width:900px;
+    width:90%;
 }
 
 .review_content:hover {
@@ -134,8 +134,9 @@ font-weight:bold;
 display:none;
 }
 .sort-options{
-margin-left:800px;}
-
+text-align:right;
+width:95%;
+}
 
 .card-body {
     /* 탭 부분이 고정된 위치에 있거나 페이지 상단에 있을 때 */
@@ -426,8 +427,8 @@ margin-top:10px;
 	                
 	                </div>
 	                <div class="review_body">
-	                <p class="review_text">${reviewDto.content}</p>
-				</div>
+	                	<p class="review_text">${reviewDto.content}</p>
+					</div>
 				</div>
 				<div id="updateForm_${reviewDto.review_id}">
 					<form action="updateReview">

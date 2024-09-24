@@ -83,7 +83,7 @@ if (result == 'success') {
 									<tr class="hide">
 
 										<td colspan="3"><pre><c:out value="${boardDtos.fContent}" escapeXml="false" /></pre> 
-										 <sec:authorize access="hasRole('ROLE_ADMIN,SUPERADMIN')">
+										 <sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_SUPERADMIN')">
 											<form role='form' method="get">
 											<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 												<input name="fId" type="hidden" value="${boardDtos.fId}">
@@ -128,7 +128,7 @@ if (result == 'success') {
 						</div>
 
 					</div>
-					<sec:authorize access="hasRole('ROLE_ADMIN,SUPERADMIN')">
+					<sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_SUPERADMIN')">
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 					<button class="newBtn">새글</button>
 					</sec:authorize> 
@@ -136,5 +136,6 @@ if (result == 'success') {
 			</div>
 		</div>
 	</div>
+	<jsp:include page="../layout/footer.jsp"></jsp:include>
 </body>
 </html>

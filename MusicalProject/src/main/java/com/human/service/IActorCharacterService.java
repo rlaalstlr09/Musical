@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.apache.ibatis.annotations.Param;
 
 import com.human.dto.ActorCharacterDto;
+import com.human.dto.CharacterDto;
 
 
 public interface IActorCharacterService {
@@ -15,6 +16,6 @@ public interface IActorCharacterService {
 	public void delete(int actor_id) throws Exception;
 	public void update(ActorCharacterDto dto) throws Exception;	
 	
-	public void actor_character_create(@Param("actor_id") Integer actor_id,@Param("character_id") Integer character_id) throws Exception;
+	public void actor_character_create(CharacterDto character) throws Exception;
 	public void actor_character_update(ActorCharacterDto dto) throws Exception;	
 }

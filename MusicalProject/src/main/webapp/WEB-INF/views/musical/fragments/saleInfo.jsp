@@ -19,6 +19,7 @@
 		flex-direction : column;
 		gap : 20px;
 		margin : 0 50px;
+		white-space:normal;
 	}
 	
 	.product-info table{
@@ -27,7 +28,15 @@
 		padding : 10px;
 		text-align : center;
 		border : 0.5px solid black;
+		white-space:normal;
+		
 	}
+	.product-info table td{
+		max-width : 300px;
+		padding : 0 30px;
+		line-height : 30px;
+	}
+	
 	.product-info table td:nth-of-type(odd) {
 	    background-color: #f0f0f0; /* 예시 배경색 */
 	    color: #333; /* 예시 글자색 */
@@ -61,7 +70,7 @@
 				<td>주연</td>
 				<td>
 					<c:forEach var = "actor" items = "${actors }">
-						${actor.actor_name }
+						${actor.actor_name }&nbsp;
 					</c:forEach>
 				</td>
 				<td>공연 장소</td>

@@ -8,6 +8,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.human.service.ActorCharacterServiceImpl;
+import com.human.dao.IActorCharacterDao;
 import com.human.dao.ICharacterDao;
 import com.human.dto.CharacterDto;
 import com.human.vo.BoardVo;
@@ -63,9 +65,9 @@ public class CharacterServiceImpl implements ICharacterService {
 		ICharacterDao dao = sqlSession.getMapper(ICharacterDao.class);
 		return dao.character_listSearchCount(musical_id);
 	}
-	public void character_create(List<CharacterDto> characterList) throws Exception{
-		ICharacterDao dao = sqlSession.getMapper(ICharacterDao.class);
-		dao.character_create(characterList);
+	public void character_create(CharacterDto character) throws Exception{
+		ICharacterDao dao = sqlSession.getMapper(ICharacterDao.class);		
+		dao.character_create(character);
 	}
 
 	public int character_id(@Param("musical_id") int musical_id,@Param("character_name") String character_name) throws Exception{
