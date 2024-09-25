@@ -328,6 +328,7 @@ $(document).ready(function() {
     <a href="write" class="a">1:1문의</a>
     <a href="qa_list" class="a">1:1문의내역</a>
     <a href="myReview">내가 쓴 리뷰</a>
+    <a href="myQna">내가 쓴 Qna</a>
     <a href="#" class="a">장바구니</a>
     <a href="remove" class="a">회원탈퇴</a>
 </div>

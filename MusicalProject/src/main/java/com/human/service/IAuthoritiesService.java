@@ -11,4 +11,6 @@ public interface IAuthoritiesService {
 	
 	public void authorityUpdate(AuthoritiesDto dto) throws Exception;
 	
+	public AuthoritiesDto showQna(String customer_id) throws Exception;
+	
 }

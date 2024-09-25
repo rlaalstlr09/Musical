@@ -211,11 +211,47 @@ public class MemberController {
 		return "redirect:/member/myReview?customer_id="+customer_id;
 	}
 	/////////////////////////////
-	@RequestMapping(value = "member/myQna", method = RequestMethod.GET)
-	public String myQna(@RequestParam("review_id") int review_id, @RequestParam("customer_id") String customer_id)throws Exception{
+	@RequestMapping("member/myQna")
+	public String myQna(Model model, 
+			@RequestParam(value = "page", defaultValue = "1") int page,
+			@RequestParam(value = "perPageNum", defaultValue = "10") int perPageNum,Authentication authentication
+			) throws Exception {
+		String customer_id="";
+		if(authentication != null) {
+		customer_id=authentication.getName();
+		}
 		
-		rService.delete(review_id);
+		BoardVo vo = new BoardVo();
 		
-		return "redirect:/member/myReview?customer_id="+customer_id;
+		vo.setPage(page);
+		vo.setPerPageNum(perPageNum);
+		vo.setTotalCount(qaService.myTotalCount(customer_id));
+		
+		
+		
+		
+		ArrayList<QaDto> dto = qaService.selectMyQna(customer_id,vo);		
+		model.addAttribute("customer_id",customer_id);
+		model.addAttribute("List", dto);		
+		model.addAttribute("boardVo", vo);		
+		
+		
+		return "member/myQna";
+
+	}
+	@RequestMapping(value = "/member/updateQna", method = RequestMethod.GET)
+	public String updateQna(QaDto dto)throws Exception{
+		
+		qaService.updateQna(dto);
+		
+		
+		return "redirect:/member/myQna";
+	}
+	@RequestMapping(value = "/member/deleteQna", method = RequestMethod.GET)
+	public String deleteQna(@RequestParam("qa_id") int qa_id)throws Exception{
+		
+		qaService.deleteQna(qa_id);
+		
+		return "redirect:/member/myQna";
 	}
 }

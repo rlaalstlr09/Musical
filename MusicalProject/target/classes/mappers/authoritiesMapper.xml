@@ -19,4 +19,8 @@ authority=#{authority}
 where customer_id=#{customer_id}
 </update>
 
+<select id="showQna" resultType="AuthoritiesDto">
+select customer_id,authority from authorities where customer_id=#{customer_id}
+</select>
+
 </mapper>

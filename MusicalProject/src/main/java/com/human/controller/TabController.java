@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.human.dto.ActorCharacterDto;
+import com.human.dto.AuthoritiesDto;
 import com.human.dto.MusicalDto;
 import com.human.dto.MusicalFilterDto;
 import com.human.dto.QaDto;
 import com.human.dto.ReviewDto;
 import com.human.service.ActorCharacterServiceImpl;
+import com.human.service.IAuthoritiesService;
 import com.human.service.IMusicalService;
 import com.human.service.ISeatService;
 import com.human.service.MusicalServiceImpl;
@@ -41,6 +43,8 @@ public class TabController {
 	MusicalServiceImpl musicalService;
 	@Autowired
 	QaServiceImpl qnaService;
+	@Autowired
+	private IAuthoritiesService auService;
 	@RequestMapping("/review")
 	public String reviewTab(Model model, @RequestParam(value = "musical_id") Integer musical_id,
 			@RequestParam(value = "page", defaultValue = "1") int page,
@@ -82,7 +86,7 @@ public class TabController {
 			@RequestParam(value = "perPageNum", defaultValue = "10") int perPageNum,Authentication authentication
 			) throws Exception {
 		String customer_id="";
-		if(authentication.getName() != null) {
+		if(authentication != null) {
 		customer_id=authentication.getName();
 		}
 		BoardVo vo = new BoardVo();
@@ -91,11 +95,16 @@ public class TabController {
 		vo.setPerPageNum(perPageNum);
 		vo.setTotalCount(qnaService.totalCount(musical_id));
 		
+		AuthoritiesDto adto =auService.showQna(customer_id);
+		
+		String role=adto.getAuthority();
+		
 		ArrayList<QaDto> dto = qnaService.selectAllQna(musical_id, vo);		
 		model.addAttribute("customer_id",customer_id);
 		model.addAttribute("List", dto);		
 		model.addAttribute("boardVo", vo);		
 		model.addAttribute("musical_id", musical_id);
+		model.addAttribute("role", role);
 		
 		return "musical/fragments/qna";
 
