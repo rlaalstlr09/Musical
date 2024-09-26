@@ -48,7 +48,6 @@ img {vertical-align: middle;}
 
 /* Caption text */
 .text {
-  color: #f2f2f2;
   font-size: 15px;
   padding: 8px 12px;
   position: absolute;
@@ -105,20 +104,20 @@ img {vertical-align: middle;}
 
 <div class="mySlides fade">
   <div class="numbertext">1 / 3</div>
-  <img src="resources/img/info1.jpg" style="width:100%">
+  <img src="<%=request.getContextPath()%>/resources/img/info1.jpg" style="width:100%">
   <div class="text">보고싶은 뮤지컬을 선택하고<br>
   예매하기 버튼을 누르세요.</div>
 </div>
 
 <div class="mySlides fade">
   <div class="numbertext">2 / 3</div>
-  <img src="img_snow_wide.jpg" style="width:100%">
+  <img src="<%=request.getContextPath()%>/resources/img/info1.jpg" style="width:100%">
   <div class="text">Caption Two</div>
 </div>
 
 <div class="mySlides fade">
   <div class="numbertext">3 / 3</div>
-  <img src="img_mountains_wide.jpg" style="width:100%">
+  <img src="<%=request.getContextPath()%>/resources/img/info1.jpg" style="width:100%">
   <div class="text">Caption Three</div>
 </div>
 
