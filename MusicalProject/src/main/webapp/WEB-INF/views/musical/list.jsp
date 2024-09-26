@@ -20,6 +20,11 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="/ex/resources/script/musical_list.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
 </head>
 <body>
 <jsp:include page="../layout/header.jsp"/>
@@ -34,9 +39,9 @@
 	            <div class="swiper-slide">
 	                <a class="link-container" href="detail/${likeMusical.musical_id}">
 	                    <div class="musical-img-item" data-poster="/ex/resources/img/musical/${likeMusical.musical_poster}">
-	                    	<p class = "img-like">♥&nbsp;${likeMusical.total_likes}</p>	                    
+	                    	<p class = "img-like"><span class="lp">❤</span>&nbsp;${likeMusical.total_likes}</p>	                    
 	                        <p>${likeMusical.venue_name}&nbsp;${likeMusical.hall_name}</p>
-	                        <p><fmt:formatDate value="${likeMusical.musical_period_start}" pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${likeMusical.musical_period_end}" pattern="yyyy-MM-dd"/></p>
+	                        <p class = "l-grey"><fmt:formatDate value="${likeMusical.musical_period_start}" pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${likeMusical.musical_period_end}" pattern="yyyy-MM-dd"/></p>
 	                        
 	                    </div>
 	                </a>
@@ -56,9 +61,9 @@
 	            <div class="swiper-slide">
 	                <a class="link-container" href="detail/${dateMusical.musical_id}">
 	                    <div class="musical-img-item" data-poster="/ex/resources/img/musical/${dateMusical.musical_poster}">
-	                        <p class = "img-like">♥&nbsp;${dateMusical.total_likes}</p>
+	                        <p class = "img-like"><span class="lp">❤</span>&nbsp;${dateMusical.total_likes}</p>
 	                        <p>${dateMusical.venue_name}&nbsp;${dateMusical.hall_name}</p>
-	                        <p><fmt:formatDate value="${dateMusical.musical_period_start}" pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${dateMusical.musical_period_end}" pattern="yyyy-MM-dd"/></p>
+	                        <p class = "l-grey"><fmt:formatDate value="${dateMusical.musical_period_start}" pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${dateMusical.musical_period_end}" pattern="yyyy-MM-dd"/></p>
 	                        
 	                    </div>
 	                </a>
@@ -74,7 +79,7 @@
 	<div class = "list-title">
 		<h2>전체 뮤지컬</h2>
 		<div class="sort-container">
-		    <button class="filter-button"><span class="material-symbols-outlined">tune</span></button>
+		    <button class="filter-button btn btn-outline-primary"><span class="material-symbols-outlined">tune</span></button>
 	    </div>
     </div>
    
@@ -150,15 +155,17 @@
                     </a>
                 
 	                <p class = "card-text">${musical.venue_name}&nbsp;${musical.hall_name }</p>
-	                <p class = "card-text"><fmt:formatDate value="${musical.musical_period_start}" pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${musical.musical_period_end }" pattern = "yyyy-MM-dd"/></p>
-	                <p class = "card-text">♥&nbsp;${musical.total_likes }</p>
+	                <p class = "card-text d-grey"><fmt:formatDate value="${musical.musical_period_start}" pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${musical.musical_period_end }" pattern = "yyyy-MM-dd"/></p>
+	                <p class = "card-text"><span class="lp">❤</span>&nbsp;${musical.total_likes }</p>
                 </div>
             </div>
         </c:forEach>
     </div>
    	<div id = "search-container">
    		<input type = "text" class = "keyword" value = "${filter.keyword }">
-   		<button class = "search-button">검색</button>
+   		<button class = "search-button"><span class="material-symbols-outlined">
+			search
+		</span></button>
    	</div>
     
     <!-- 페이지 네비게이션 -->
@@ -192,8 +199,17 @@
         </ul>
     </nav>
     <div class="scroll-controls">
-        <button class="scroll-to-top" id="scrollToTopBtn">↑</button>
-        <button class="scroll-to-bottom" id="scrollToBottomBtn">↓</button>
+        <button class="scroll-to-top" id="scrollToTopBtn">
+	        <span class="material-symbols-outlined">
+				arrow_drop_up
+			</span>
+		</button>
+        <button class="scroll-to-bottom" id="scrollToBottomBtn">
+			<span class="material-symbols-outlined">
+				arrow_drop_down
+			</span>
+			
+		</button>
     </div>
     
 </div>

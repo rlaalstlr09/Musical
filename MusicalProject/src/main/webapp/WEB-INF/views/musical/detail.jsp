@@ -16,7 +16,10 @@
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <!-- <script src="/ex/resources/script/musicalDetail.js"></script>  -->
 
 <script>
@@ -140,6 +143,14 @@ $(document).ready(function() {
             }
         });
     });
+	
+    $('#scrollToTopBtn').click(function() {
+        $('html, body').animate({ scrollTop: 0 }, 600);
+    });
+
+    $('#scrollToBottomBtn').click(function() {
+        $('html, body').animate({ scrollTop: $(document).height() }, 600);
+    });
     
 });
 </script>
@@ -251,14 +262,14 @@ $(document).ready(function() {
 				<strong>공지사항</strong>
 				
 				<ul>
-					<li>본 공연은 ${musical.musical_agelimit}세부터 예약 가능합니다.</li>
-					<li>서류상 나이가 확인되어야 입장 가능하오니 증빙서류를 지참해주시기 바랍니다. (주민등록등본, 청소년증,
+					<li>본 공연은 <span class = "bold">${musical.musical_agelimit}세</span>부터 예약 가능합니다.</li>
+					<li>서류상 나이가 확인되어야 입장 가능하오니 <span class = "bold">증빙서류</span>를 지참해주시기 바랍니다. (주민등록등본, 청소년증,
 						학생증, 여권, 신분증 등)</li>
-					<li>매표소 오픈은 공연 시작 기준 1시간 전입니다.</li>
-					<li>공연 당일에는 예매한 티켓의 취소, 변경, 환불이 불가합니다.</li>
-					<li>공연 시작 후 입장이 불가능하며, 공연 중 퇴장 시 재입장이 불가능합니다.</li>
-					<li>사전에 협의되지 않은 사진, 영상촬영, 녹음은 절대 불가합니다.</li>
-					<li>공연장 내 생수만 반입이 가능하며, 그 외 음료수, 음식물은 반입 불가합니다.</li>
+					<li>매표소 오픈은 공연 시작 기준 <span class = "bold">1시간 전</span>입니다.</li>
+					<li>공연 당일에는 예매한 티켓의 취소, 변경, 환불이 <span class = "bold">불가</span>합니다.</li>
+					<li><span class = "bold">공연 시작 후 입장</span>이 불가능하며, 공연 중 퇴장 시  <span class = "bold">재입장</span>이 불가능합니다.</li>
+					<li>사전에 협의되지 않은 <span class = "bold">사진, 영상촬영, 녹음</span>은 절대 불가합니다.</li>
+					<li>공연장 내 생수만 반입이 가능하며, 그 외 <span class = "bold">음료수, 음식물</span>은 반입 불가합니다.</li>
 				</ul>
 			</div>
 			<div id="detail">
@@ -296,22 +307,7 @@ $(document).ready(function() {
 				
 				</div>
 			</div>
-			<h4>공연 스케줄 안내</h4>
-			<div class="schedule-grid">
-				<c:forEach var="entry" items="${scheduleMap}">
-					
-				 	<table>
-				 		<tr>
-				 			<th>${entry.key.mu_sch_date} (${entry.key.dayOfWeekInKorean})</th>
-					 		<td>
-						 		<c:forEach var="time" items="${entry.value}">
-					                <div>${time}</div>
-					            </c:forEach>
-				           	</td>
-			           </tr>
-					</table>
-				</c:forEach>
-			</div>
+			
 			<h4>등장인물 정보</h4>
 			<div id="actor">
 				<c:set var="previousCharacterName" value="" />
@@ -330,8 +326,36 @@ $(document).ready(function() {
 				</c:forEach>
 				
 			</div>
-			
+			<h4>공연 스케줄 안내</h4>
+			<div class="schedule-grid">
+				<c:forEach var="entry" items="${scheduleMap}">
+					
+				 	<table>
+				 		<tr>
+				 			<th>${entry.key.mu_sch_date} (${entry.key.dayOfWeekInKorean})</th>
+					 		<td>
+						 		<c:forEach var="time" items="${entry.value}">
+					                <div>${time}</div>
+					            </c:forEach>
+				           	</td>
+			           </tr>
+					</table>
+				</c:forEach>
+			</div>
 		</div>
+		<div class="scroll-controls">
+	        <button class="scroll-to-top" id="scrollToTopBtn">
+		        <span class="material-symbols-outlined">
+					arrow_drop_up
+				</span>
+			</button>
+	        <button class="scroll-to-bottom" id="scrollToBottomBtn">
+				<span class="material-symbols-outlined">
+					arrow_drop_down
+				</span>
+				
+			</button>
+	    </div>
 	</div>
 	<jsp:include page="../layout/footer.jsp"></jsp:include>
 	<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=f19069c7a5e6ecba64f00927cb2c6594&libraries=services"></script>
