@@ -6,47 +6,12 @@
 <html>
 <head>
 <title>my_review_page</title>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/myPage_sidebar.css">
 <style>
 body {
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
-    color: #333;
-}
-
-.sidebar {
-    width: 250px;
-    background-color: #fff;
-    color: #000;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    padding-top: 20px;
-    border-right: 1px solid #ddd;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-}
-
-.sidebar .mypage {
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 1.5em;
-    padding-bottom: 10px;
-    color: #333;
-}
-
-.sidebar a {
-    display: block;
-    color: #555;
-    text-decoration: none;
-    padding: 15px 20px;
-    font-size: 1em;
-    transition: background-color 0.3s ease;
-    border-bottom: 1px solid #eee;
-}
-
-.sidebar a:hover {
-    background-color: #f7f7f7;
     color: #333;
 }
 
@@ -322,15 +287,17 @@ $(document).ready(function() {
 </head>
 <body>
 <div class="sidebar">
-
+	<a href="${pageContext.request.contextPath }/" class="mainpage">메인 페이지</a>
     <a href="myPage" class="mypage">마이페이지</a>
-    <a href="read" class="a">회원 정보</a>
-    <a href="write" class="a">1:1문의</a>
-    <a href="qa_list" class="a">1:1문의내역</a>
+    <a href="read">회원 정보</a>
+    <a href="write">1:1문의</a>
+    <a href="qa_list">1:1문의내역</a>
     <a href="myReview">내가 쓴 리뷰</a>
+
     <a href="myQna">내가 쓴 Qna</a>
     <a href="#" class="a">장바구니</a>
     <a href="remove" class="a">회원탈퇴</a>
+
 </div>
 
 

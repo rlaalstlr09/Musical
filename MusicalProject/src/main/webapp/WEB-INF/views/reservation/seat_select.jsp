@@ -19,16 +19,32 @@ body {
 	flex-direction: column;
 	align-items: center;
 }
+.musical-info {
+    position: relative; 
+    top: 150px; 
+    width: 100%; 
+    max-width: 600px; 
+    border: 1px solid #ccc; 
+    padding: 16px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    transition: border-color 0.3s;
+}
 
 .container {
-	width: 80%;
-	max-width: 1200px;
-	background-color: white;
-	padding: 20px;
-	border-radius: 8px;
-	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-	margin-bottom: 30px;
+    position: relative; 
+    top: 200px; 
+    padding: 20px; 
+    width: 80%; 
+    max-width: 850px;
+    background-color: white; 
+    border-radius: 8px; 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+    margin-bottom: 300px; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
 }
+
 
 .control-container {
 	display: flex;
@@ -213,6 +229,13 @@ button:hover {
 </head>
 <body>
 <jsp:include page="../layout/header.jsp"/>
+
+	<div class="musical-info">
+    <div>${musical.musical_title}</div>
+    <div>${date }</div>
+    <div>${time }</div>
+</div>
+	
 	<div class="container">
 		<div class="control-container">
 			<div class="showcase">
@@ -317,7 +340,7 @@ button:hover {
 
 		<div id="reservationContainer">
 			<form
-				action="${pageContext.request.contextPath}/reservation/seat_select"
+				action="${pageContext.request.contextPath}/reservation/reservation_end"
 				method="post" onsubmit="return handlePayment()">
 				<input type="hidden" id="mu_sch_id" name="mu_sch_id" value="${mu_sch_id }" readonly>
 				<input type="hidden" id="booked_count" name="booked_count" value="0" readonly>
@@ -329,9 +352,14 @@ button:hover {
 					<button type="submit">결제</button>
 				
 				</div>
+				
 			</form>
+			<div class="btn-secondary" onclick="location.href='${pageContext.request.contextPath}/reservation/reservation?venue_id=${venue_id }&musical_id = ${musical.musical_id }'">뒤로</div>
 		</div>
 	</div>
+	
+
+	
 	<jsp:include page="../layout/footer.jsp"/>
 	
 	<script>
@@ -400,7 +428,6 @@ button:hover {
 	            
 	        });
 	    });
-
 	    // 좌석 클릭시 색변경 및 선택된 좌석 id값 input에 보내기 , 가격 합산
 	    seats.forEach(seat => {
 	        seat.addEventListener('click', () => {
@@ -455,13 +482,15 @@ button:hover {
         
         return true; 
     }
+        
     
     
     
-    
-    
-	function handlePayment() {
+    function handlePayment() {
+        console.log("handlePayment called");
+        
         if (!validateForm()) {
+            console.log("Form validation failed");
             return false;
         }
 
@@ -471,20 +500,23 @@ button:hover {
         var totalCost = document.getElementById("total_cost").value;
         var customer = document.getElementById("customer_id").value;
         var customerEmail = document.getElementById("customer_email").value;
-		var merchant_uid ='merchant_' + new Date().getTime();
+        var merchant_uid = 'merchant_' + new Date().getTime();
+        
+        console.log("Starting payment request");
+
         IMP.request_pay({
             pg: 'html5_inicis',
             pay_method: 'card',
             merchant_uid: merchant_uid,
             name: "뮤지컬예약",
-            amount: '100',  //////////////연습용 100원 결제
+            amount: totalCost,
             buyer_email: customerEmail,
             buyer_name: customer,
         }, function(rsp) {
             if (rsp.success) {
-            	
                 alert('결제가 완료되었습니다.');
-                // 결제id랑 결제방법 값 폼 바로 작성해서 넘기기
+
+                // 결제 ID와 결제 방법 값을 폼에 추가
                 var input_merchantUid = document.createElement('input');
                 input_merchantUid.type = 'hidden';
                 input_merchantUid.name = 'merchant_uid';
@@ -497,6 +529,8 @@ button:hover {
                 
                 document.querySelector('form').appendChild(input_merchantUid);
                 document.querySelector('form').appendChild(payment_method);
+
+                console.log("Submitting form");
                 document.querySelector('form').submit(); 
             } else {
                 alert('결제에 실패하였습니다. 에러내용: ' + rsp.error_msg);
@@ -505,6 +539,8 @@ button:hover {
 
         return false; 
     }
+
+
 </script>
 
     

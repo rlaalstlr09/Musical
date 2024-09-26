@@ -44,10 +44,6 @@ public class CustomerMoveController {
 	public String admin(Locale locale, Model model) {
 		return "redirect:/admin/admin_main";
 	}
-	@RequestMapping(value = "/member/remove", method = RequestMethod.GET)
-	public String remove(Locale locale, Model model) {
-		return "/member/remove";
-	}
 	@RequestMapping(value = "/member/ok", method = RequestMethod.GET)
 	public String pwOk(Locale locale, Model model) {
 		return "/member/ok";
@@ -64,8 +60,12 @@ public class CustomerMoveController {
 	public String joinUs(Locale locale, Model model) {
 		return "/customer/joinUs";
 	}
-//	@RequestMapping(value = "/qna/write" , method=RequestMethod.GET)
-//	public String qna(Locale locale, Model model) {
-//		return "/qna/write";
-//	}
+	@RequestMapping(value = "/member/removeMove", method = RequestMethod.GET)
+	public String remove(Locale locale, Model model) {
+		return "/member/remove";
+	}
+	@RequestMapping(value = "/member/pwUpdateMove", method = RequestMethod.GET)
+	public String pwUpdateMove(Locale locale, Model model) {
+		return "/member/pwUpdate";
+	}
 }

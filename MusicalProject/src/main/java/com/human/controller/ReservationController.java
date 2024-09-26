@@ -28,6 +28,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.human.dto.HallDto;
+import com.human.dto.MusicalDto;
 import com.human.dto.MusicalScheduleDto;
 import com.human.dto.ReservationDto;
 import com.human.dto.SeatDto;
@@ -70,6 +71,9 @@ public class ReservationController {
 		model.addAttribute("venue_id",venue_id);
 		model.addAttribute("musical_id",musical_id);
 		
+		MusicalDto dto = musicalservice.musical_read(musical_id);
+		model.addAttribute("musical",dto);
+		
 	}
 	
 
@@ -97,7 +101,7 @@ public class ReservationController {
 		}
 
 		System.out.println(dtos.toString());
-		return mu_schservice.select_Musical_sch(date, 1, 1);
+		return dtos;
 	}
 	
 
@@ -116,6 +120,11 @@ public class ReservationController {
 		model.addAttribute("mu_sch_id", mu_sch_id);
 		model.addAttribute("seatdtos", dtos);
 		model.addAttribute("customer", customer);
+		
+		MusicalDto dto = musicalservice.musical_read(mu_schservice.select_mu_sch_id(mu_sch_id).getMusical_id());
+		model.addAttribute("musical",dto);
+		model.addAttribute("date",mu_schservice.select_mu_sch_id(mu_sch_id).getMu_sch_date().substring(0,10));
+		model.addAttribute("time",mu_schservice.select_mu_sch_id(mu_sch_id).getMu_sch_time());
 		
 
 	}
@@ -142,8 +151,8 @@ public class ReservationController {
 		return "home";
 	}
 
-	//////////////////////////////////////////// 로그인 기능 추가시 아이디 설정 현재는 customer 이름으로
-	//////////////////////////////////////////// 찾는중
+		
+	
 	@RequestMapping(value = "/reservation_list", method = RequestMethod.GET)
 	public void reservation_list(
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page,

@@ -7,7 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/cs/resources/css/notice.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/notice.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/myPage_sidebar.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
@@ -33,14 +34,27 @@ $(function() {
 </script>
 </head>
 <body>
+	<div class="sidebar">
+		<a href="${pageContext.request.contextPath }/" class="mainpage">메인 페이지</a>
+		<a href="myPage" class="mypage">마이페이지</a>
+		<a href="read" class="a">회원 정보</a>
+		<a href="write" class="a">1:1문의</a>
+		<a href="qa_list" class="a">1:1문의내역</a>
 
-	<div id="wrap">
+		<a href="myReview">내가 쓴 리뷰</a>
+
+		<a href="#" class="a">장바구니</a>
+		<a href="remove" class="a">회원탈퇴</a>
+	</div>
+	<div id="wrap" style="margin-left: 250px;">
 		<div id="contents">
 			<div id="content">
 
 				<div class="board_qna">
 				<h1 id="qna_head">나의 QA</h1>
-				<h3><a href="myPage">마이페이지</a></h3>
+				<h3>
+					<a href="write" style="float:right;">글쓰기</a>
+				</h3>
 					<div id="qnaList-wrapper">
 						<table cellspacing="0" border="0" class="tb_board tb_qna">
 							<colgroup>

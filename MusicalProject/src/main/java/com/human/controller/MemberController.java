@@ -63,30 +63,41 @@ public class MemberController {
 		return "redirect:/member/myPage";
 	}
 	@RequestMapping(value = "member/update", method = RequestMethod.GET)
-	public String update(Model model, Authentication authentication, @RequestParam("customer_birth") String customer_birth)throws Exception{
+	public String update(Model model, Authentication authentication,HttpSession session,@RequestParam("customer_birth")String customer_birth)throws Exception{
 		String customer_id = authentication.getName();
 		System.out.println("update");
-		SimpleDateFormat Isdf = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy",Locale.US);
-		SimpleDateFormat Osdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date date;
-		try {
-			date = Isdf.parse(customer_birth);
-		} catch(ParseException e) {
-			System.out.println("date parsing error:" + e.getMessage());
-			date = new Date();
-		}
-		String formattedDate = Osdf.format(date);
-		System.out.println(formattedDate);
-		model.addAttribute("formattedDate",formattedDate);
+		
 		model.addAttribute(customerService.selectName(customer_id));
-		return "member/uRead";
+		Boolean isVerified = (Boolean) session.getAttribute("pwCheck");
+		if(isVerified != null && isVerified) {
+			return "member/uRead";
+		}else {
+			session.setAttribute("customer_birth", customer_birth);
+			System.out.println(session.getAttribute("customer_birth"));
+			session.setAttribute("redirectUrl", "/member/uRead");
+			session.setAttribute("url", "update");
+			return "redirect:/member/nowPwCheck";
+		}
+
 	}
 	
-	
-	@RequestMapping(value = "member/delete", method = RequestMethod.GET)
-	public String delete(AuthoritiesDto dtos,CustomerDto dto, HttpServletRequest request,Authentication authentication,RedirectAttributes rttr, Model model, HttpSession session) throws Exception{
-		String customer_id = authentication.getName();
-		System.out.println("delete: "+dto);
+	@RequestMapping(value = "member/remove", method = RequestMethod.GET)
+	public String remove(HttpSession session) throws Exception{
+		Boolean isVerified = (Boolean) session.getAttribute("pwCheck");
+		if(isVerified != null && isVerified) {
+			return "member/remove";
+		}else {
+			session.setAttribute("redirectUrl", "/member/removeMove");
+			return "redirect:/member/nowPwCheck";
+		}
+		
+	}
+	@RequestMapping(value = "member/delete", method = RequestMethod.POST)
+	public String delete(@RequestParam("customer_id") String customer_id,AuthoritiesDto dtos,CustomerDto dto, HttpServletRequest request,Authentication authentication,RedirectAttributes rttr, Model model, HttpSession session) throws Exception{
+		
+		System.out.println("customer_id:"+customer_id);
+		System.out.println("dto: "+dto);
+		System.out.println("dtos: "+dtos);
 		qaService.deleteAll(dto);
 		authoritiesService.delete(dtos);
 		customerService.delete(dto);
@@ -97,30 +108,48 @@ public class MemberController {
 			new SecurityContextLogoutHandler().logout(request, null, auth);
 		}
 		rttr.addFlashAttribute("msg","success");
-		return "redirect:/home";
+		return "redirect:member/myPage";
 	}
 	
 	@RequestMapping(value = "member/nowPwCheck", method = RequestMethod.GET)
-	public String nowPwCheck(Authentication authentication, Model model) throws Exception {
+	public String nowPwCheck(Authentication authentication, Model model, HttpSession session,HttpServletRequest request) throws Exception {
 		String customer_id = authentication.getName();
 		System.out.println("nowPwCheck");
 		System.out.println("customer_id:" + customer_id);
+		
 		model.addAttribute("customerDto",customerService.selectName(customer_id));
+		System.out.println(customerService.selectName(customer_id));
+		
 		return "member/nowPwCheck";
 	}
 	
 	@RequestMapping(value = "member/nowPwCheck", method = RequestMethod.POST)
-	public String nowPwCheckDB(Authentication authentication,@RequestParam("customer_pw") String customer_pw, Model model, CustomerDto dto,RedirectAttributes rttr) throws Exception{
+	public String nowPwCheckDB(Authentication authentication,@RequestParam("customer_pw") String customer_pw, Model model, CustomerDto dto,RedirectAttributes rttr,HttpSession session) throws Exception{
 		String customer_id = authentication.getName();
 		dto = customerService.nowPwCheck(customer_id);
+		
 		System.out.println("nowPwCheckDB");
 		if(passwordEncoder.matches(customer_pw, dto.getCustomer_pw())) {
-			return "redirect:pwUpdate";
+			session.setAttribute("pwCheck", true);
+			String redirectUrl = (String) session.getAttribute("redirectUrl");
+			String url = (String) session.getAttribute("url");
+			System.out.println("redirectUrl:"+redirectUrl);
+			if(redirectUrl != null) {
+				session.removeAttribute("pwCheck");
+				if(url != null && url.equals("update")) {
+					System.out.println("dd");
+					session.removeAttribute("url");
+					return "redirect:"+redirectUrl;
+				}else {
+					return "redirect:"+redirectUrl;
+				}
+			}else {
+				return "redirect:/member/myPage";
+			}
 		} else {
             rttr.addFlashAttribute("errorMessage", "비밀번호가 일치하지 않습니다.");
             return "redirect:/member/nowPwCheck"; 
 		}
-		
 	}
 	
 	@RequestMapping(value = "member/pwUpdate", method = RequestMethod.POST)
@@ -134,26 +163,49 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "member/pwUpdate", method = RequestMethod.GET)
-	public String pwUpdate(Authentication authentication,CustomerDto dto, RedirectAttributes rttr, Model model) throws Exception{
+	public String pwUpdate(Authentication authentication,CustomerDto dto, RedirectAttributes rttr, Model model,HttpSession session) throws Exception{
 		String customer_id = authentication.getName();
 		System.out.println("pwUpdate");
 		model.addAttribute(customerService.selectName(customer_id));
-		return "member/pwUpdate";
+		Boolean isVerified = (Boolean) session.getAttribute("pwCheck");
+		if(isVerified != null && isVerified) {
+			return "member/pwUpdate";
+		}else {
+			session.setAttribute("redirectUrl", "/member/pwUpdateMove");
+			return "redirect:/member/nowPwCheck";
+		}
+		
 	}
 	
 	@RequestMapping(value = "member/read", method = RequestMethod.GET)
-	public void read(Model model, Authentication authentication) throws Exception{
+	public void read(Model model, Authentication authentication, HttpSession session) throws Exception{
 		String customer_id = authentication.getName();
 		System.out.println("read");
 		System.out.println("customer_id:" + customer_id);
+		String requestURI = "read";
+		session.setAttribute("requestURI",requestURI);
 		model.addAttribute("customerDto",customerService.selectName(customer_id));
 	}
 	
-	@RequestMapping(value = "member/uRead", method = RequestMethod.POST)
-	public void uRead(Model model, Authentication authentication) throws Exception{
+	@RequestMapping(value = "member/uRead", method = RequestMethod.GET)
+	public void uRead(Model model, Authentication authentication,HttpSession session) throws Exception{
 		String customer_id = authentication.getName();
 		System.out.println("uRead");
 		System.out.println("customer_id:" + customer_id);
+		String customer_birth = (String) session.getAttribute("customer_birth");
+		System.out.println("customer_birth:"+customer_birth);
+		SimpleDateFormat Isdf = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy",Locale.US);
+		SimpleDateFormat Osdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date date;
+		try {
+			date = Isdf.parse(customer_birth);
+		} catch(ParseException e) {
+			System.out.println("date parsing error:" + e.getMessage());
+			date = new Date();
+		}
+		String formattedDate = Osdf.format(date);
+		System.out.println(formattedDate);
+		model.addAttribute("formattedDate",formattedDate);
 		model.addAttribute("customerDto",customerService.selectName(customer_id));
 	}
 	
@@ -178,6 +230,7 @@ public class MemberController {
 		vo.setTotalCount(qaService.qa_listCount(customer_id));
 		return "/member/qa_list";
 	}
+	
 	/////////////////////////////
 	@RequestMapping(value = "member/myReview", method = RequestMethod.GET)
 	public String myReview(Model model,Authentication authentication,@RequestParam(value="page",defaultValue="1") int page,
@@ -199,8 +252,6 @@ public class MemberController {
 	public String updateRevieww(ReviewDto dto)throws Exception{
 		
 		rService.update(dto);
-		
-		
 		return "redirect:/member/myReview?customer_id="+dto.getCustomer_id();
 	}
 	@RequestMapping(value = "member/deleteReview", method = RequestMethod.GET)
