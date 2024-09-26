@@ -166,7 +166,7 @@
 					"</select>" +
 					"</td>" +
 					"<td style='text-align: center;'>" +
-					"<button class='submitmodifyBtn'>제출</button>" +
+					"<button class='submitmodifyBtn'>수정완료</button>" +
 					"</td>" +
 					"</tr>";
 

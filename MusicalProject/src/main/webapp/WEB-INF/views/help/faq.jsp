@@ -17,6 +17,16 @@ if (result == 'success') {
 	alert("처리가 완료되었습니다.");
 }
 </script>
+<style>
+.btn-warning, .btn-danger{
+    width: 50px;
+    padding: 2px;
+    font-size: 13px;
+    background: black;
+    border: 1px solid #242428;
+    color: #fff;
+}
+</style>
 </head>
 <body>
 <jsp:include page="../layout/header.jsp"/>

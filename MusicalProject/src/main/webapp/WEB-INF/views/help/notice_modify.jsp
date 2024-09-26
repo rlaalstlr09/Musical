@@ -38,7 +38,7 @@
 			<textarea name="nContent" rows="18" style="width: 100%" required
 				>${noticeDto.nContent}</textarea>
 		
-		<button type="submit" class="btn btn-primary">수정하기</button>
+		<button type="submit" class="btn btn-primary">수정완료</button>
 
 	</form>
 		

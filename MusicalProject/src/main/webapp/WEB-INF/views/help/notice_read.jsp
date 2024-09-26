@@ -39,7 +39,7 @@
 <hr>
 
 	<div class="box-footer">
-	<button type="submit" class="go_notice" id='go_notice'>뒤로 가기</button>
+	<button type="submit" class="go_notice" id='go_notice'>이전</button>
 		<sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_SUPERADMIN')">
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<button type="submit" class="btn btn-primary">수정</button>

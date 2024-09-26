@@ -502,6 +502,8 @@ input[id="menuicon"]:checked+label+div {
 
 
 .menu li.special input {
+	background-color: transparent;
+    border: none;
     font-size: 15px;
     /* 텍스트 크기 조절 */
     padding: 15px 20px;
