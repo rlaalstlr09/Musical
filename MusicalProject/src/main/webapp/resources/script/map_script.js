@@ -132,24 +132,36 @@ window.onload = () => {
     	                        <div class="product_grid_list">`;
     	        console.log(data);
     	        if (Array.isArray(data)) {
-    	            data.forEach(musical => {
-    	                html += `
-    	                <div class="product_grid_item">
-    	                    <div class="product_grid_unit">
-    	                        <a class="product_link" href="`+contextPath+`/musical/detail/${musical.musical_id}">
-    	                            <div class="product_imgbox">
-    	                                <img class="product_img" src="/poster/${musical.musical_poster}">
-    	                            </div>
-    	                            <div class="product_info">
-    	                                <span class="product_title">${musical.musical_title}</span>
-    	                                <div class="product_sideinfo">
-    	                                    <span class="product_period">${musical.musical_period_start} ~ ${musical.musical_period_end}</span>
-    	                                </div>
-    	                            </div>
-    	                        </a>
-    	                    </div>
-    	                </div>`;
-    	            });
+    	        	data.forEach(musical => {
+    	        	    // 날짜 포맷팅 함수 (YYYY.MM.DD 형식으로 변환)
+    	        	    function formatDate(dateStr) {
+    	        	        let date = new Date(dateStr);
+    	        	        let year = date.getFullYear();
+    	        	        let month = (date.getMonth() + 1).toString().padStart(2, '0');
+    	        	        let day = date.getDate().toString().padStart(2, '0');
+    	        	        return `${year}.${month}.${day}`;
+    	        	    }
+
+    	        	    let startDate = formatDate(musical.musical_period_start);
+    	        	    let endDate = formatDate(musical.musical_period_end);
+
+    	        	    html += `
+    	        	    <div class="product_grid_item">
+    	        	        <div class="product_grid_unit">
+    	        	            <a class="product_link" href="` + contextPath + `/musical/detail/${musical.musical_id}">
+    	        	                <div class="product_imgbox">
+    	        	                    <img class="product_img" src="/poster/${musical.musical_poster}">
+    	        	                </div>
+    	        	                <div class="product_info">
+    	        	                    <span class="product_title">${musical.musical_title}</span>
+    	        	                    <div class="product_sideinfo">
+    	        	                        <span class="product_period">${startDate} ~ ${endDate}</span>
+    	        	                    </div>
+    	        	                </div>
+    	        	            </a>
+    	        	        </div>
+    	        	    </div>`;
+    	        	});
 
     	            html += `
     	                        </div>
