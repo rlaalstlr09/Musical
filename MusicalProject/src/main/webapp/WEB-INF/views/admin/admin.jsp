@@ -81,22 +81,8 @@
 									</tr>
 								</c:forEach>
 							</tbody>
-						</table>
-			
+						</table>			
 		</div>
-<a href='admin_musical'>뮤지컬 관리</a>
-<a href='admin_actor'>배우정보 관리</a>
-<a href='admin_review'>리뷰 관리</a>
-<br>
-<a href='admin_venue'>극장 관리</a>
-<a href='admin_files'>스캔파일 목록</a>
-<a href='qa_admin'>QA관리</a>
-<a href='admin_users'>회원관리</a>
-<a href='admin_admin'>관리내역</a>
-<br>
-<a href='${pageContext.request.contextPath}/reser_admin/reservation_list_admin'>예약내역리스트 관리자</a>
-<a href='${pageContext.request.contextPath}/reser_admin/mu_sch_admin'>스케줄 추가</a>
-
 </div>
 </div>
 <jsp:include page="../layout/footer.jsp"></jsp:include>

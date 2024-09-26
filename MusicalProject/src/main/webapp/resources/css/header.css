@@ -150,6 +150,16 @@ body {
 
 }
 
+.navigation .logout_header {
+    color: inherit;
+    /* 상위 요소의 텍스트 색상 상속 */
+    text-decoration: none;
+    font-size: 16px;
+    padding: 0px;
+    background-color: transparent;
+    border: none;
+}
+
 
 .navigation {
     display: flex;
@@ -162,7 +172,7 @@ body {
 
 
 
-.navigation a:hover {
+.navigation a:hover,.navigation .logout_header:hover {
     text-decoration: underline;
 }
 
@@ -201,7 +211,7 @@ body {
 
 }
 
-.submenu a {
+.submenu a,.submenu .logout_header {
     color: white;
     text-decoration: none;
     padding: 10px 10px;
@@ -210,7 +220,7 @@ body {
 
 }
 
-.submenu a:hover {
+.submenu a:hover,.submenu .logout_header:hover {
     background-color: #555;
 }
 
@@ -442,7 +452,7 @@ input[id="menuicon"]:checked+label+div {
 
 }
 
-.menu li a {
+.menu li a,.menu li input {
 
     text-decoration: none;
     color: white;
@@ -454,7 +464,7 @@ input[id="menuicon"]:checked+label+div {
 
 }
 
-.menu li a:hover {
+.menu li a:hover,.menu li input:hover {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
@@ -493,11 +503,13 @@ input[id="menuicon"]:checked+label+div {
 }
 
 
-.menu li.special a {
+.menu li.special input {
     font-size: 15px;
     /* 텍스트 크기 조절 */
     padding: 15px 20px;
     /* 패딩 조절로 버튼 크기 조절 */
+    background-color: transparent;
+    border: none;
 }
 
 /* 닫기 버튼 스타일 */

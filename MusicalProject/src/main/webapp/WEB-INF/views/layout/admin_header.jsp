@@ -39,7 +39,7 @@ var ContextPath= '<%=request.getContextPath()%>';
           </sec:authorize>
           <sec:authorize access="isAuthenticated()">
              <form:form action="${pageContext.request.contextPath }/customer/logout" method="POST">
-              	<input type="submit" value="로그아웃">
+              	<input type="submit" class="logout_header" value="로그아웃">
              </form:form>
           </sec:authorize>
             <ul class="submenu">
@@ -50,7 +50,7 @@ var ContextPath= '<%=request.getContextPath()%>';
               <sec:authorize access="isAuthenticated()">
               	<form:form action="${pageContext.request.contextPath }/customer/logout" method="POST">
               		<li>
-              			<input type="submit" value="로그아웃">
+              			<input type="submit" class="logout_header" value="로그아웃">
               		</li>
               	</form:form>
               </sec:authorize>
