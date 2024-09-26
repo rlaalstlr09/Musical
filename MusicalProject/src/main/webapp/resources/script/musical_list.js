@@ -120,6 +120,14 @@ $(document).ready(function(){
         });
     });
     
+    $('#scrollToTopBtn').click(function() {
+        $('html, body').animate({ scrollTop: 0 }, 600);
+    });
+
+    $('#scrollToBottomBtn').click(function() {
+        $('html, body').animate({ scrollTop: $(document).height() }, 600);
+    });
+    
     
     var swiper1 = new Swiper('.musical-like', {
         
