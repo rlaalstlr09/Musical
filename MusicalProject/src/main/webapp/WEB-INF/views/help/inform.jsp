@@ -12,11 +12,15 @@ body {font-family: Verdana, sans-serif; margin:0}
 img {vertical-align: middle;}
 
 /* Slideshow container */
+.info_container {
+margin-top: 100px;
+}
 .slideshow-container {
+
   max-width: 860px;
   height: 600px;
   position: relative;
-  margin: auto;
+  margin: 150px auto 150px auto;
 }
 
 /* Next & previous buttons */
@@ -49,8 +53,8 @@ img {vertical-align: middle;}
 /* Caption text */
 .text {
   font-size: 15px;
-  padding: 8px 12px;
-  position: absolute;
+  padding: 80px 12px;
+  position: relative;
   bottom: 8px;
   width: 100%;
   text-align: center;
