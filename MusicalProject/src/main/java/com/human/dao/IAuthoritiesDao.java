@@ -11,4 +11,6 @@ public interface IAuthoritiesDao {
 	
 	//관리자관련
 	public void authorityUpdate(AuthoritiesDto dto) throws Exception;
+	//qna관련
+	public AuthoritiesDto showQna(String customer_id) throws Exception;
 }

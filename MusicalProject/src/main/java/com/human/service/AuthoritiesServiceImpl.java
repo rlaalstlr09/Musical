@@ -31,4 +31,8 @@ public class AuthoritiesServiceImpl implements IAuthoritiesService {
 		IAuthoritiesDao dao = sqlSession.getMapper(IAuthoritiesDao.class);
 		dao.authorityUpdate(dto);
 	}
+	public AuthoritiesDto showQna (String customer_id) throws Exception{
+		IAuthoritiesDao dao = sqlSession.getMapper(IAuthoritiesDao.class);
+		return dao.showQna(customer_id);
+	}
 }

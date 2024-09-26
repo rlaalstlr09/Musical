@@ -98,4 +98,11 @@ public class QaServiceImpl implements IQaService {
 		return dao.myTotalCount(customer_id);
 	}
 	
+	@Override
+	public void adResponse(int qa_id,String response)throws Exception{
+		IQaDao dao=sqlSession.getMapper(IQaDao.class);
+		dao.adResponse(qa_id, response);
+		
+	}
+	
 }

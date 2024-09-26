@@ -20,6 +20,8 @@ public class QaDto {
 	
 	//페이징 용
 	private Integer totalcount;
+	//조인용
+	private String musical_title;
 	
 	public QaDto() {}
 	
@@ -55,6 +57,15 @@ public class QaDto {
 		this.title = title;
 		this.content = content;
 		
+		this.display = display;
+	}
+	public QaDto( String customer_id, Integer musical_id, String title, String content, Integer display,String musical_title) {
+		super();
+		this.customer_id=customer_id;
+		this.musical_id = musical_id;
+		this.title = title;
+		this.content = content;
+		this.musical_title=musical_title;
 		this.display = display;
 	}
 
@@ -151,6 +162,18 @@ public class QaDto {
 	}
 	public void setDisplay(Integer display) {
 		this.display = display;
+	}
+
+
+
+	public String getMusical_title() {
+		return musical_title;
+	}
+
+
+
+	public void setMusical_title(String musical_title) {
+		this.musical_title = musical_title;
 	}
 	
 	

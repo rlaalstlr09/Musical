@@ -39,6 +39,7 @@ public class QnaController {
 	@Autowired
 	QaServiceImpl QService;
 	
+	
 	private static final Logger logger = LoggerFactory.getLogger(QnaController.class);
 	
 	
@@ -77,7 +78,15 @@ public class QnaController {
 		return "redirect:/tab/qna";
 	}
 	
-	
+	@RequestMapping(value = "/adResponse", method = RequestMethod.GET)
+	public String adResponse(@RequestParam("qa_id")int qa_id ,@RequestParam("res")String res ,@RequestParam("musical_id")int musical_id ,Model model)throws Exception{
+		
+		
+		QService.adResponse(qa_id,res);
+		
+		model.addAttribute("musical_id", musical_id);
+		return "redirect:/tab/qna";
+	}
 	
 
 }

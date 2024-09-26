@@ -330,7 +330,7 @@ background-color: lightpink;
 
             $('#insertQna').click(function(e) {
                 e.preventDefault();
-                var displayValue = $('#displayCheckbox').is(':checked') ? 0 : 1;
+                var displayValue = $('#display_checkbox').is(':checked') ? 0 : 1;
                 
                 $.ajax({
                     url: '/ex/qna/insertQna',
@@ -437,6 +437,28 @@ background-color: lightpink;
                 }
             });
             
+            $(".response_btn").click(function(){
+            	var qa_id=$(this).data("id");
+            	
+            	
+            	$.ajax({
+            		
+            		url:'/ex/qna/adResponse',
+            		type:'GET',
+            		data:{
+            			res:$('#ad_response_'+qa_id).val(),
+            			qa_id:qa_id,
+            			musical_id:$('#musical_id').val()
+            		},
+            		success:function(response){
+            			$('.card-body').html(response);
+            		},
+            		error:function(shr, status,error){
+            			console.error('실패', status, error);
+            		}
+            	})
+            }
+            		);
         });
     </script>
 </head>
@@ -452,7 +474,7 @@ background-color: lightpink;
                 <div id="open_qna"><input type="button" value="QnA 작성" ></div>
             </div>
             <c:forEach items="${List}" var="QnaDto">
-            	<c:if test="${QnaDto.display == 0 && QnaDto.customer_id == customer_id}">
+            	<c:if test="${(QnaDto.display == 0 && QnaDto.customer_id == customer_id) || (QnaDto.display == 0 && role == 'ROLE_ADMIN')}">
 	            	
 	            	<div class="qna_body">
 	                    <div class="qna_title" data-id="${QnaDto.qa_id }">
@@ -475,6 +497,10 @@ background-color: lightpink;
 			                    </c:if>
 			                    <c:if test="${QnaDto.response == null}">
 			                        <p>등록된 답변이 없습니다.</p>
+			                    </c:if>
+			                    <c:if test="${role == 'ROLE_ADMIN'}">
+			                    <input type="text" id="ad_response_${QnaDto.qa_id }">
+			                    <button class="response_btn" data-id="${QnaDto.qa_id }">답변 달기</button>
 			                    </c:if>
 		                    </div>
 	                    </div>
@@ -503,10 +529,11 @@ background-color: lightpink;
 	                        </div>
 	                    </div>
 	                    <div id="isHide_${QnaDto.qa_id }">
-	                    <div class="qna_text">${QnaDto.content}
+	                    <div class="qna_text"><div>${QnaDto.content}</div>
 	                    <c:if test="${QnaDto.customer_id == customer_id}">
-	                    		<div><button class="update_qna" data-id="${QnaDto.qa_id }">수정</button ><button class="delete_qna" data-id="${QnaDto.qa_id }"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg></button></div>
-	                    	</c:if>
+		                    		<div><button class="update_qna" data-id="${QnaDto.qa_id }">수정</button >
+		                    		<button class="delete_qna" data-id="${QnaDto.qa_id }"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg></button></div>
+		                    	</c:if>
 	                    </div>
 	                    <div class="qna_response">
 	                    <c:if test="${QnaDto.response ne null}">
@@ -515,6 +542,10 @@ background-color: lightpink;
 	                    <c:if test="${QnaDto.response == null}">
 	                        <p>등록된 답변이 없습니다.</p>
 	                    </c:if>
+	                    <c:if test="${role == 'ROLE_ADMIN'}">
+			                    <input type="text" id="ad_response_${QnaDto.qa_id }">
+			                    <button class="response_btn" data-id="${QnaDto.qa_id }">답변 달기</button>
+			                    </c:if>
 	                    </div>
 	                    </div>
 	                    <c:if test="${QnaDto.customer_id == customer_id}">
@@ -533,7 +564,7 @@ background-color: lightpink;
 		                    </c:if> 
 	                </div>
                 </c:if>
-                <c:if test="${QnaDto.display == 0 && QnaDto.customer_id != customer_id}">
+                <c:if test="${(QnaDto.display == 0 && QnaDto.customer_id != customer_id) && (role != 'ROLE_ADMIN')}">
                 <div class="qna_body">
                 <p>비밀글 입니다.</p>
                 </div>
@@ -544,11 +575,11 @@ background-color: lightpink;
 				    <input type="hidden" name="musical_id" id="musical_id" value='${musical_id}'>
 				    <input type="text" name="title" id="title" placeholder="제목을 입력하세요" style="margin-bottom: 10px;"><br>
 				    <textarea id="content" name="content"  placeholder="댓글을 입력하세요" style="margin-bottom: 10px;"></textarea>
-				    <div class="display_check">
+				    <div id="display_check">
 				       
 				        <label>
 				        	
-				            <input type="checkbox" name="display" value="0" > 비공개
+				            <input id="display_checkbox" type="checkbox" name="display" value="0" > 비공개
 				        </label>
 				        
 				    </div>

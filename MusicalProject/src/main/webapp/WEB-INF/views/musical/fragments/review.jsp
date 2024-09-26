@@ -157,6 +157,7 @@ margin-top:20px;
     padding: 20px; /* 내부 여백 추가 */
     background-color: #fff; /* 배경 색상 변경 */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+    height:400px;
 }
 
 #reviewForm textarea {
@@ -455,7 +456,7 @@ margin-top:10px;
                <span class="star big_star bstar" data-value="4"></span>
                <span class="star big_star bstar" data-value="5"></span>
            </div>
-		
+		<br>
         <input type="hidden" id="rating"  value="0">
 		 
 		

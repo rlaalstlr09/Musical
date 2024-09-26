@@ -143,7 +143,7 @@
 <body>
     <div class="all">
         <div class="photo">
-            <img src="${actor.actor_img}" alt="${actor.actor_name}">
+            <img src="/ex/resources/img/actor/${actor.actor_img }" alt="${actor.actor_name}">
         </div>
         <div class="info">
             <div class="info_head">
@@ -173,7 +173,7 @@
             <c:forEach items="${worksList}" var="works">
                 <div class="worksAll">
                     <div class="worksPoster">
-                        <img src="${works.musical_poster}" alt="${works.musical_title}">
+                        <img src="/ex/resources/img/musical/${works.musical_poster}" alt="${works.musical_title}">
                     </div>
                     <div class="worksInfo">
                         <p><strong>${works.musical_title}</strong></p>
