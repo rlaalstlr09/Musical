@@ -377,9 +377,9 @@ $(document).ready(function() {
                         <input type="hidden" value="${reviewDto.musical_id}" name="musical_id">
                         <label for="content_${reviewDto.review_id}">리뷰 내용:</label>
                         <input type="text" id="content_${reviewDto.review_id}" value="${reviewDto.content}" name="content">
-                        <label for="rating_${reviewDto.review_id}">별점:</label>
+                        
                         <input type="hidden" id="rating_${reviewDto.review_id}" value="${reviewDto.rating}" name="rating">
-                        <label for="review_date_${reviewDto.review_id}">리뷰 날짜:</label>
+                       
                         <input type="hidden" id="review_date_${reviewDto.review_id}" value="<fmt:formatDate value='${reviewDto.review_date}' pattern='yyyy-MM-dd'/>" name="review_date">
                         <button type="submit">수정</button>
                         <button type="button" class="cancel" onclick="$('#updateForm_${reviewDto.review_id}').hide()">취소</button>
