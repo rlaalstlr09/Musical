@@ -18,7 +18,7 @@
 		<div id="contents">
 			<div id="content">
 				<div class="board_qna">
-					<h1 id="qna_head"><a href='admin_admin'>관리 이력 페이지</a></h1>
+					<h1 id="qna_head"><a href='admin_admin'>관리 내역 페이지</a></h1>
 					<div id="qnaList-wrapper">
 						<table class="tb_board tb_qna">
 							<colgroup>

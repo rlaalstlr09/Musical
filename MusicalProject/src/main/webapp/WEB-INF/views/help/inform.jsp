@@ -105,10 +105,9 @@ img {vertical-align: middle;}
 
 <div class="mySlides fade">
   <div class="numbertext">1 / 3</div>
-  <img src="img_nature_wide.jpg" style="width:100%">
-  <div class="text">Caption Textsdfdsf<br>
-  sdfsdf
- sdfsdfsdf</div>
+  <img src="resources/img/info1.jpg" style="width:100%">
+  <div class="text">보고싶은 뮤지컬을 선택하고<br>
+  예매하기 버튼을 누르세요.</div>
 </div>
 
 <div class="mySlides fade">

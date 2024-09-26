@@ -96,7 +96,7 @@ var ContextPath= '<%=request.getContextPath()%>';
           <li>
             <a href="${pageContext.request.contextPath }/admin/admin">관리자페이지</a>
             <ul class="submenul">
-              <li><a href="${pageContext.request.contextPath }/admin/admin_admin">관리 이력</a></li>
+              <li><a href="${pageContext.request.contextPath }/admin/admin_admin">관리 내역</a></li>
               <li><a href="${pageContext.request.contextPath }/admin/admin_files">팩스 문서함</a></li>
             </ul>
           </li>
