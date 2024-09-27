@@ -67,27 +67,27 @@ tr:hover {
 	background-color: #f1f1f1;
 }
 
-/* 보라색 테마 버튼 스타일 */
 button, a.button-link {
-	background-color: #A084DC;
-	color: white;
-	border: none;
-	padding: 8px 16px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 14px;
-	margin: 4px 2px;
-	cursor: pointer;
-	border-radius: 4px;
-	transition: background-color 0.3s ease;
+    background-color: #A084DC;
+    color: white;
+    border: none;
+    padding: 10px 16px; /* 패딩을 일관되게 설정 */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    height: 40px; 
+    line-height: 20px; 
 }
 
 button:hover, a.button-link:hover {
-	background-color: #9932CC;
+    background-color: #9932CC;
 }
 
-/* 좌석 정보 영역 */
 .seat-info {
 	max-height: 150px;
 	overflow-y: auto;
@@ -194,14 +194,15 @@ button:hover, a.button-link:hover {
 								금액 : ${reservation.total_cost}<br> 
 								예약한 시간 : ${reservation.reservation_time}
 							</td>
-							<td class="seat-info"></td>
+							<td class="seat-info">
+							
+							</td>
 							<td>
-								<!-- 좌석 변경을 링크로 변경 -->
 								<a href="${pageContext.request.contextPath}/reservation/seat_update?reservation_id=${reservation.reservation_id}&mu_sch_id=${reservation.mu_sch_id }" 
 									class="button-link">좌석 변경</a>
 								
 								<!-- 예매 취소 버튼 -->
-								<button class="cancel-reservation" 
+								<button class="button-link  cancel-reservation" 
 									data-date="${reservation.mu_sch_dto.mu_sch_date }"
 									data-id="${reservation.reservation_id}" 
 									data-merchant_uid="${reservation.merchant_uid }">예매 취소

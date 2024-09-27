@@ -17,10 +17,10 @@
 <title>달력</title>
 <link rel="stylesheet" href="reservation.css">
 <style>
-
 footer {
-    margin-top: 100px; /* 푸터를 아래로 내리기 위해 간격 조정 */
+	margin-top: 100px; /* 푸터를 아래로 내리기 위해 간격 조정 */
 }
+
 .subject-line {
 	color: #333;
 	font-size: 28px;
@@ -30,61 +30,60 @@ footer {
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f8f8f8;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
+	font-family: Arial, sans-serif;
+	background-color: #f8f8f8;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-height: 100vh;
+	margin: 0;
 }
 
 .container {
-    position: relative;
-    
-    display: flex;
-    flex-direction: column; 
-    align-items: center; 
-    margin: 200px 0 20px 0; 
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 200px 0 20px 0;
 }
 
 .musical-info {
-    position: absolute;
-    top: 200px; 
-    right: 50px; 
-    border: 1px solid #ddd; 
-    padding: 10px; 
-    background-color: white; /
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+	position: absolute;
+	top: 200px;
+	right: 50px;
+	border: 1px solid #ddd;
+	padding: 10px;
+	background-color: white; /
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-
-@media (max-width: 768px) {
-    .musical-info {
-        position: relative; 
-        top: auto; 
-        right: auto; 
-        margin-top: 20px; 
-    }
+@media ( max-width : 768px) {
+	.musical-info {
+		position: relative;
+		top: auto;
+		right: auto;
+		margin-top: 20px;
+	}
 }
+
 .calendar-container {
-	margin-top: 20px; 
+	margin-top: 20px;
 }
 
 .calendar-controls {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 0 10px; 
+	padding: 0 10px;
 }
 
 .calendar-controls button {
 	cursor: pointer;
-	font-size: 24px; 
+	font-size: 24px;
 	color: #7c7c7c;
 	background: none;
 	border: none;
-	margin: 0 20px; 
+	margin: 0 20px;
 }
 
 .calendar-controls #thismonth {
@@ -226,19 +225,23 @@ td:hover {
 		<h1>회차정보</h1>
 		<div id="result"></div>
 
-<div class="btn-secondary" onclick="location.href='${pageContext.request.contextPath}/'">HOME</div>
-<div class="btn-secondary" onclick="location.href='${pageContext.request.contextPath}/musical/detail/${musical_id}'">뒤로</div>
 
+		<div class="btn-secondary"
+			onclick="location.href='${pageContext.request.contextPath}/musical/detail/${musical_id}'">뒤로</div>
+		
 	</div>
-<div class="musical-info">
-    <div>${musical.musical_title}</div>
-    <div>${musical.musical_poster}</div>
-    <div>${musical.musical_runningtime}</div>
-    <div>${musical.musical_agelimit}</div>
-</div>
+	<div class="musical-info">
+		<div>
+			<img src="/ex/resources/img/musical/${musical.musical_poster}"
+				alt="poster" class="img-fluid">
+		</div>
+
+		<div>뮤지컬 : ${musical.musical_title}</div>
+		<div>공연기간 : ${start} ~ ${end}</div>
+	</div>
 	<jsp:include page="../layout/footer.jsp" />
 
-<script>
+	<script>
     let currentYear = new Date().getFullYear();
     let currentMonth = new Date().getMonth();
     var todayDate = '<%=todayDate%>';
