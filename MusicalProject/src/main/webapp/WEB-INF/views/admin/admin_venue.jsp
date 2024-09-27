@@ -127,7 +127,7 @@ if (result == 'success') {
 								value="${boardVo.keyword}">
 							<button id="searchBtn">검색</button>
 						</div>
-						<button class="newBtn">극장 추가</button>
+						<button class="newBtn">추가</button>
 						
 					</div>					
 					
