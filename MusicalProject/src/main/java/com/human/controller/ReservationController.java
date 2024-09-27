@@ -4,6 +4,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -73,6 +75,9 @@ public class ReservationController {
 		
 		MusicalDto dto = musicalservice.musical_read(musical_id);
 		model.addAttribute("musical",dto);
+		
+		model.addAttribute("start",dto.getFormattedMusical_period_start().substring(0,10));
+		model.addAttribute("end",dto.getFormattedMusical_period_end().substring(0,10));
 		
 	}
 	
@@ -218,6 +223,12 @@ public class ReservationController {
 		int seat_reservation =reservation_id;
 		//예약 변경을 위하여 아이디 동인한지 확인하는작업 아이디 나중에 넣기
 		String check_id =reservationservice.id_check(seat_reservation);
+		MusicalDto dto = musicalservice.musical_read(mu_schservice.select_mu_sch_id(mu_sch_id).getMusical_id());
+		model.addAttribute("musical",dto);
+		model.addAttribute("date",mu_schservice.select_mu_sch_id(mu_sch_id).getMu_sch_date().substring(0,10));
+		model.addAttribute("time",mu_schservice.select_mu_sch_id(mu_sch_id).getMu_sch_time());
+	
+		
 		
 	    if (id == null || !id.equals(check_id)) {
 	        return "redirect:/";
@@ -246,6 +257,9 @@ public class ReservationController {
 		///체크하고 만약 다른 예약이 들어오면 리다이렉트 
 		System.out.println("reser_id : " + reservation_id);
 		List<SeatDto> seat_checkdtos=seatservice.seat_reservation_check(reservation_id);
+		
+	
+		
 		for(int i=0;i<reservationdto.booked_count;i++) {
 			int check_equal=0;
 			int seat = Integer.parseInt(request.getParameter("insert_seat" + (i + 1)));

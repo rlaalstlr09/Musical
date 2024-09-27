@@ -11,23 +11,25 @@
 <title>Movie Seat Booking</title>
 <style>
 body {
-	font-family: Arial, sans-serif;
-	text-align: center;
-	background-color: #f4f4f4;
-	padding: 20px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
 .musical-info {
     position: relative; 
     top: 150px; 
     width: 100%; 
     max-width: 600px; 
     border: 1px solid #ccc; 
-    padding: 16px; 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    padding: 20px; /* 패딩 약간 늘림 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 강화 */
     transition: border-color 0.3s;
+    background-color: #ffffff; /* 배경 색 추가 */
 }
 
 .container {
@@ -37,193 +39,198 @@ body {
     width: 80%; 
     max-width: 850px;
     background-color: white; 
-    border-radius: 8px; 
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+    border-radius: 10px; /* 모서리 라운드 강화 */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); /* 더 부드러운 그림자 */
     margin-bottom: 300px; 
     display: flex; 
     flex-direction: column; 
     align-items: center; 
 }
 
-
 .control-container {
-	display: flex;
-	justify-content: space-between;
-	margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
 }
 
 .control-container .showcase {
-	margin: 0;
-	flex: 1;
+    margin: 0;
+    flex: 1;
 }
 
 .control-container .seat-count {
-	text-align: right;
-	flex: 1;
+    text-align: right;
+    flex: 1;
 }
 
 .movie-container {
-	margin: 0 auto;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .seat-limit-buttons {
-	display: flex;
-	gap: 10px;
+    display: flex;
+    gap: 10px;
 }
 
 .seat-limit-buttons button {
-	padding: 10px 20px;
-	font-size: 14px;
-	background-color: #444451;
-	color: white;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	transition: background-color 0.3s ease;
+    padding: 10px 20px;
+    font-size: 14px;
+    background-color: #444451;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .seat-limit-buttons button:hover {
-	background-color: #6feaf6;
+    background-color: #6feaf6;
 }
 
 .seat-limit-buttons button.active {
-	background-color: #6feaf6;
+    background-color: #6feaf6;
 }
 
 .showcase {
-	padding: 0;
-	list-style-type: none;
-	margin-bottom: 20px;
-	display: flex;
-	justify-content: center;
-	gap: 20px;
+    padding: 0;
+    list-style-type: none;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* 항목 간격을 넓혀줌 */
 }
 
 .showcase li {
-	display: flex;
-	align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .showcase div {
-	display: inline-block;
-	height: 20px;
-	width: 20px;
-	border-radius: 3px;
-	margin-right: 5px;
+    display: inline-block;
+    height: 24px; /* 크기 약간 늘림 */
+    width: 24px; /* 크기 약간 늘림 */
+    border-radius: 3px;
+    margin-right: 5px;
 }
 
 .seat {
-	background-color: #444451;
-	height: 20px;
-	width: 20px;
-	margin: 5px;
-	border-radius: 3px;
-	display: inline-block;
-	transition: transform 0.2s ease, background-color 0.2s ease;
+    background-color: #444451;
+    height: 24px; /* 크기 약간 늘림 */
+    width: 24px; /* 크기 약간 늘림 */
+    margin: 5px;
+    border-radius: 3px;
+    display: inline-block;
+    transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 .seat:hover {
-	transform: scale(1.2);
-	cursor: pointer;
+    transform: scale(1.2);
+    cursor: pointer;
 }
 
 .seat.selected {
-	background-color: #6feaf6;
+    background-color: #6feaf6;
 }
 
 .seat.occupied {
-	background-color: red;
-	pointer-events: none;
+    background-color: red;
+    pointer-events: none;
 }
 
 .row {
-	display: flex;
-	justify-content: center;
-	margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
 }
 
 .stage {
-	background-color: #ccc;
-	height: 50px;
-	width: 100%;
-	margin: 15px 0;
-	border-radius: 5px;
-	line-height: 50px;
-	color: #333;
-	font-weight: bold;
+    background-color: #ccc;
+    height: 50px;
+    width: 100%;
+    margin: 15px 0;
+    border-radius: 5px;
+    line-height: 50px;
+    color: #333;
+    font-weight: bold;
 }
 
 ul {
-	padding: 0;
-	list-style-type: none;
-	margin: 0;
+    padding: 0;
+    list-style-type: none;
+    margin: 0;
 }
 
 ul li {
-	display: inline-block;
-	margin: 0 10px;
+    display: inline-block;
+    margin: 0 10px;
+}
+small{
+	width : 55px;
 }
 
 .gap {
-	height: 20px;
-	width: 20px;
-	margin: 5px;
-	display: inline-block;
-	background-color: transparent;
-	border-radius: 3px;
+    height: 20px;
+    width: 20px;
+    margin: 5px;
+    display: inline-block;
+    background-color: transparent;
+    border-radius: 3px;
 }
 
 #ExSeat {
-	background-color: #444451;
+    background-color: #444451;
 }
 
 #ExSelected {
-	background-color: #6feaf6;
+    background-color: #6feaf6;
 }
 
 #ExOccupied {
-	background-color: red;
-	pointer-events: none;
+    background-color: red;
+    pointer-events: none;
 }
 
 form {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 input[type="text"] {
-	margin: 5px;
-	padding: 8px;
-	border: 1px solid #ddd;
-	border-radius: 4px;
+    margin: 5px;
+    padding: 10px; /* 패딩 약간 늘림 */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%; /* 입력란의 폭을 100%로 설정 */
+    max-width: 300px; /* 최대 폭 설정 */
 }
 
 button {
-	padding: 10px 20px;
-	font-size: 16px;
-	background-color: #007bff;
-	color: white;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	transition: background-color 0.3s ease;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
-	background-color: #0056b3;
+    background-color: #0056b3;
 }
 
 #reservationContainer {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 </style>
+
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript"	src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 </head>
@@ -231,17 +238,17 @@ button:hover {
 <jsp:include page="../layout/header.jsp"/>
 
 	<div class="musical-info">
-    <div>${musical.musical_title}</div>
-    <div>${date }</div>
-    <div>${time }</div>
-</div>
+	    <div>뮤지컬 : ${musical.musical_title}</div>
+	    <div>공연일자 : ${date }</div>
+    	<div>공연시간 : ${time }</div>
+	</div>
 	
 	<div class="container">
 		<div class="control-container">
 			<div class="showcase">
 				<ul class="showcase">
 					<li>
-						<div id="ExSeat"></div> <small>선택가능좌석</small>
+						<div id="ExSeat"></div> <small>선택가능</small>
 					</li>
 					<li>
 						<div id="ExSelected"></div> <small>선택좌석</small>

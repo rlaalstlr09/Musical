@@ -8,7 +8,8 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Movie Seat Booking</title>
+<title>Movie Seat Update</title>
+
 <style>
 body {
 	font-family: Arial, sans-serif;
@@ -19,16 +20,32 @@ body {
 	flex-direction: column;
 	align-items: center;
 }
+.musical-info {
+    position: relative; 
+    top: 150px; 
+    width: 100%; 
+    max-width: 600px; 
+    border: 1px solid #ccc; 
+    padding: 16px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    transition: border-color 0.3s;
+}
 
 .container {
-	width: 80%;
-	max-width: 1200px;
-	background-color: white;
-	padding: 20px;
-	border-radius: 8px;
-	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-	margin-bottom: 30px;
+    position: relative; 
+    top: 200px; 
+    padding: 20px; 
+    width: 80%; 
+    max-width: 850px;
+    background-color: white; 
+    border-radius: 8px; 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+    margin-bottom: 300px; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
 }
+
 
 .control-container {
 	display: flex;
@@ -150,7 +167,9 @@ ul li {
 	display: inline-block;
 	margin: 0 10px;
 }
-
+small{
+width : 60px;
+}
 .gap {
 	height: 20px;
 	width: 20px;
@@ -213,12 +232,19 @@ button:hover {
 </head>
 <body>
 <jsp:include page="../layout/header.jsp"/>
+
+	<div class="musical-info">
+	    <div>뮤지컬 : ${musical.musical_title}</div>
+	    <div>공연일자 : ${date }</div>
+    	<div>공연시간 : ${time }</div>
+	</div>
+
 	<div class="container">
 		<div class="control-container">
 			<div class="showcase">
 				<ul class="showcase">
 					<li>
-						<div id="ExSeat"></div> <small>선택가능좌석</small>
+						<div id="ExSeat"></div> <small>선택가능</small>
 					</li>
 					<li>
 						<div id="ExSelected"></div> <small>선택좌석</small>
