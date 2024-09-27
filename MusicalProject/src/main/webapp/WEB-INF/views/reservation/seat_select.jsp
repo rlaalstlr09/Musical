@@ -339,8 +339,8 @@ button:hover {
 		</div>
 
 		<div id="reservationContainer">
-			<form
-				action="${pageContext.request.contextPath}/reservation/reservation_end"
+			<form id="reservationForm"				
+				action="${pageContext.request.contextPath }/reservation/reservation_end"
 				method="post" onsubmit="return handlePayment()">
 				<input type="hidden" id="mu_sch_id" name="mu_sch_id" value="${mu_sch_id }" readonly>
 				<input type="hidden" id="booked_count" name="booked_count" value="0" readonly>
@@ -354,7 +354,7 @@ button:hover {
 				</div>
 				
 			</form>
-			<div class="btn-secondary" onclick="location.href='${pageContext.request.contextPath}/reservation/reservation?venue_id=${venue_id }&musical_id = ${musical.musical_id }'">뒤로</div>
+			
 		</div>
 	</div>
 	
@@ -527,11 +527,13 @@ button:hover {
                 payment_method.name = 'payment_method';
                 payment_method.value = 'card';
                 
-                document.querySelector('form').appendChild(input_merchantUid);
-                document.querySelector('form').appendChild(payment_method);
+                var form = document.querySelector('#reservationForm');
+                form.appendChild(input_merchantUid);
+                form.appendChild(payment_method);
+
 
                 console.log("Submitting form");
-                document.querySelector('form').submit(); 
+                form.submit();
             } else {
                 alert('결제에 실패하였습니다. 에러내용: ' + rsp.error_msg);
             }

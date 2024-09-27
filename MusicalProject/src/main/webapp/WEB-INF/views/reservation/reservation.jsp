@@ -40,51 +40,51 @@ body {
 }
 
 .container {
-    position: relative; /* 자식 요소의 기준이 될 수 있도록 설정 */
+    position: relative;
     
     display: flex;
-    flex-direction: column; /* 세로 방향 정렬 */
-    align-items: center; /* 중앙 정렬 */
+    flex-direction: column; 
+    align-items: center; 
     margin: 200px 0 20px 0; 
 }
 
 .musical-info {
-    position: absolute; /* 절대 위치 설정 */
-    top: 200px; /* 위쪽 위치 조정 */
-    right: 50px; /* 컨테이너 오른쪽에 붙게 설정 */
-    border: 1px solid #ddd; /* 테두리 추가 */
-    padding: 10px; /* 패딩 추가 */
-    background-color: white; /* 배경색 추가 */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 약간의 그림자 추가 */
+    position: absolute;
+    top: 200px; 
+    right: 50px; 
+    border: 1px solid #ddd; 
+    padding: 10px; 
+    background-color: white; /
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
 }
 
 
 @media (max-width: 768px) {
     .musical-info {
-        position: relative; /* 상대 위치로 변경 */
-        top: auto; /* 기본 위치로 되돌림 */
-        right: auto; /* 기본 위치로 되돌림 */
-        margin-top: 20px; /* 위쪽 여백 추가 */
+        position: relative; 
+        top: auto; 
+        right: auto; 
+        margin-top: 20px; 
     }
 }
 .calendar-container {
-	margin-top: 20px; /* 위쪽 마진 조정 */
+	margin-top: 20px; 
 }
 
 .calendar-controls {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 0 10px; /* 패딩 조정 */
+	padding: 0 10px; 
 }
 
 .calendar-controls button {
 	cursor: pointer;
-	font-size: 24px; /* 글자 크기 증가 */
+	font-size: 24px; 
 	color: #7c7c7c;
 	background: none;
 	border: none;
-	margin: 0 20px; /* 버튼 간격 조정 */
+	margin: 0 20px; 
 }
 
 .calendar-controls #thismonth {
@@ -220,7 +220,7 @@ td:hover {
 			<div class="input-container">
 				<input type="hidden" id="venue_id" value="${venue_id}" readonly>
 				<input type="hidden" id="musical_id" value="${musical_id}" readonly>
-				<input type="text" id="selected-date" readonly>
+				<input type="hidden" id="selected-date" readonly>
 			</div>
 		</div>
 		<h1>회차정보</h1>

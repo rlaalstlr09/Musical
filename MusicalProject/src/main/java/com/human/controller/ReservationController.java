@@ -130,7 +130,7 @@ public class ReservationController {
 	}
 
 	@Transactional
-	@RequestMapping(value = "/seat_select", method = RequestMethod.POST)
+	@RequestMapping(value = "/reservation_end", method = RequestMethod.POST)
 	public String reservation_end(HttpServletRequest request, ReservationDto reservationdto, Model model)
 			throws Exception {
 
@@ -148,7 +148,8 @@ public class ReservationController {
 			}
 		}
 		System.out.println("cost : " + request.getParameter("total_cost"));
-		return "home";
+		return "redirect:/musical/listAll";
+
 	}
 
 		
@@ -278,7 +279,7 @@ public class ReservationController {
 		
 		
 		
-		return "home";
+		return "reservation/reservation_list";
 	}
 
 	

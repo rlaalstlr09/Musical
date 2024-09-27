@@ -205,12 +205,11 @@ button:hover {
                       	      인원: ${reservation.booked_count}<br>
                       	      금액: ${reservation.total_cost}<br>
                       	      예약한 시간: ${reservation.reservation_time}
-                        </td>
-                        <td>${reservation.reservation_cancel == 1 ? '취소' : '예매완료'}</td>
-                        <td>
-                            <button class="view-details" data-id="${reservation.reservation_id}">좌석 정보</button>
-                            <button class="cancel-reservation" data-id="${reservation.reservation_id}">예약 취소</button>
-                        </td>
+						</td>
+						<td>${reservation.reservation_cancel == 1 ? '취소' : '예매완료'}</td>
+						<td>
+						    <button class="view-details" data-id="${reservation.reservation_id}">좌석 정보</button>
+						</td>
                         <td class="seat-info"></td>
                     </tr>
                 </c:forEach>
