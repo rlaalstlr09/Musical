@@ -185,7 +185,7 @@
                     			window.location.href = "actor_register";
                     		}                    		
                     	}else{
-                    		 if (actor_name.trim() === "") {
+                    		 if (character_name.trim() === "") {
                                  alert("배역명을 입력해주세요.");
                              } else{
                             	 $.ajax({
