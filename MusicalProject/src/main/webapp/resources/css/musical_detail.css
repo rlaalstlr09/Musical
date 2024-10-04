@@ -5,13 +5,14 @@
 	flex-direction: column; 
 	width: 70%;
     margin: 0 auto;
-    padding: 10%;
+    padding: 200px;
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     gap : 50px;
     white-space: nowrap;
     overflow: auto; 
     text-overflow: ellipsis; 
+    max-width : 1600px;
 }
 @media(max-width : 1650px){
 	#container{
