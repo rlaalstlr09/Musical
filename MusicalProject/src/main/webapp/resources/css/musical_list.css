@@ -13,10 +13,11 @@ body {
 	align-items:center;
     width: 90%;
     margin: 0 auto;
-    padding: 10% 20px;
+    padding: 200px 20px;
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     gap : 50px;
+    max-width : 1600px;
 }
 
 /* 정렬 스타일 */
