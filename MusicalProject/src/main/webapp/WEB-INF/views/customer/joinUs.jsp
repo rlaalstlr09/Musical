@@ -4,14 +4,59 @@
 <head>
     <meta charset="UTF-8" />
     <title>로그인 페이지</title>
-<style>
-	.agree{
-		width: 500px;
-		height: 100px;
-		border: 1px solid black;
-		overflow-y: scroll;
-	}
-</style>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        h3 {
+            color: #333;
+        }
+        hr {
+            border: 1px solid #ccc;
+            margin: 10px 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .agree {
+            width: 100%;
+            height: 150px;
+            border: 1px solid #ccc;
+            overflow-y: scroll;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        label {
+            font-weight: bold;
+        }
+        .checkbox-group {
+            margin-bottom: 15px;
+        }
+        .error-message {
+            color: red;
+            margin-top: 5px;
+        }
+        .submit-btn {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 <script>
@@ -36,7 +81,7 @@ window.onload = function() {
 				return true;
 			}else{
 				console.log("실패");
-				$('#result').text('이용약관을 동의해주세요').css('color','red');
+				$('#result').text('이용 약관에 동의해주세요').css('color','red');
 				return false;
 			}
 		}
@@ -62,7 +107,7 @@ window.onload = function() {
 	<span id="result"></span>
 </div><hr>
 <div>
-	<label for="a">이용약관 동의 (필수)</label>
+	<label for="a">이용 약관 동의 (필수)</label>
 	<input type="checkbox" id="my_checkbox1" name="a">
 	<br>
 	<p class="agree">

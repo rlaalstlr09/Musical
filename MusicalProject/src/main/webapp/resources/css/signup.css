@@ -136,3 +136,8 @@ a {
 	text-decoration: none;
 	margin-top: 20px;
 }
+
+.logo img{
+		width: 300px;
+		height: 120px;
+}

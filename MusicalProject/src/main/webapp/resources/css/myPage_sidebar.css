@@ -1,20 +1,21 @@
 body{
 	font-family: Arial, sans-serif;
 }
-.sidebar {
+.my_sidebar {
     width: 250px;
     background-color: #fff;
     color: #000;
     height: 100vh;
-    position: absolute;
+   	position: fixed; 
     top: 0;
     left: 0;
     padding-top: 20px;
+    margin-top: 100px;
     border-right: 1px solid #ddd;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
-.sidebar .title {
+.my_sidebar .title {
     text-align: center;
     font-size: 1.5em;
     margin-bottom: 30px;
@@ -22,7 +23,7 @@ body{
     color: #333;
 }
 
-.sidebar a {
+.my_sidebar a {
     display: block;
     color: #555;
     text-decoration: none;
@@ -32,24 +33,24 @@ body{
     border-bottom: 1px solid #eee;
 }
 
-.sidebar a:hover {
+.my_sidebar a:hover {
     background-color: #f7f7f7;
     color: #333;
 }
 
-.sidebar .mainpage {
+.my_sidebar .mainpage {
     font-size: 0.8em;
     text-align: left;
     padding: 10px 20px;
     border-bottom: none;
 }
 
-.sidebar .mainpage:hover {
+.my_sidebar .mainpage:hover {
     background-color: transparent;
     text-decoration: underline;
 }
 
-.sidebar .mypage{
+.my_sidebar .mypage{
 	text-align: center;
 	font-size: 1.5em;
 }

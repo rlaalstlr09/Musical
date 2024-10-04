@@ -108,12 +108,19 @@
 		font-size: 15px;
 		margin-bottom: 10px;
 	}
+	.logo img{
+		width: 300px;
+		height: 120px;
+	}
 </style>
 <body>
     <c:if test="${param.logout != null}">
         <p>로그아웃 하였습니다.</p>
 </c:if>
-<h3><a href="${pageContext.request.contextPath }/" class="site">사이트 이름</a></h3>
+	<div class="logo">
+        <a href="${pageContext.request.contextPath }/">
+          <img src="${pageContext.request.contextPath }/resources/img/bora_logo_black.png" alt="home"> </a>
+      </div>
 <c:url value="/login" var="loginUrl" />
 <form name="frmLogin" action="${loginUrl}" method="POST">
 

@@ -148,7 +148,10 @@
 </head>
 <body>
 <div class="container">
-	<a href="${pageContext.request.contextPath }/">사이트 이름</a>
+	<div class="logo">
+        <a href="${pageContext.request.contextPath }/">
+          <img src="${pageContext.request.contextPath }/resources/img/bora_logo_black.png" alt="home"> </a>
+      </div>
 	<h4>정보 입력</h4><hr>
 		<form action="${pageContext.request.contextPath }/customer/insert" method="post">
 			아이디<input type="text" name="customer_id" id="customer_id" required
