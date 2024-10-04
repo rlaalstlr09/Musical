@@ -29,6 +29,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.human.dto.AuthoritiesDto;
 import com.human.dto.CustomerDto;
+import com.human.dto.MusicalDto;
 import com.human.dto.QaDto;
 import com.human.dto.ReviewDto;
 import com.human.service.IAuthoritiesService;
@@ -208,6 +209,14 @@ public class MemberController {
 		model.addAttribute("formattedDate",formattedDate);
 		model.addAttribute("customerDto",customerService.selectName(customer_id));
 	}
+	// 장바구니
+		@RequestMapping(value = "member/cart", method = RequestMethod.GET)
+			public String selectCart(Authentication authentication,Model model) throws Exception{
+			String customer_id = authentication.getName();
+			List<MusicalDto> List = customerService.selectMusicalsLike(customer_id);
+			model.addAttribute("list",List);
+			return "member/cart";
+		}
 	
 	// qna관련 메서드
 	@RequestMapping(value = "member/write", method = RequestMethod.GET)
