@@ -50,7 +50,15 @@ where customer_id = #{customer_id} and customer_email = #{customer_email}
 select customer_pw from customer
 where customer_id = #{customer_id}
 </select>
-
+<!-- 장바구니 -->
+<select id="selectMusicalsLike" parameterType="String" resultType="com.human.dto.MusicalDto">
+	<![CDATA[
+		select m.musical_id, m.musical_title, m.musical_poster, m.musical_agelimit
+		from musical_like ml
+		join musical m on ml.musical_id = m.musical_id
+		where ml.customer_id = #{customer_id}
+	]]>
+</select>
 <!-- 관리자 관련 -->
 <sql id='customer_search'>
     <if test="keyword!=null">

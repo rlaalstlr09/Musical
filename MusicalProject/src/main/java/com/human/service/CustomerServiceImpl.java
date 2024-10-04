@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.human.dao.ICustomerDao;
 import com.human.dto.CustomerDto;
+import com.human.dto.MusicalDto;
 import com.human.vo.BoardVo;
 
 @Service
@@ -90,6 +91,12 @@ public class CustomerServiceImpl implements ICustomerService {
 	public CustomerDto nowPwCheck(String customer_id) throws Exception{
 		ICustomerDao dao = sqlSession.getMapper(ICustomerDao.class);
 		return dao.nowPwCheck(customer_id);
+	}
+	//장바구니
+	@Override
+	public List<MusicalDto> selectMusicalsLike(String customer_id) throws Exception{
+		ICustomerDao dao = sqlSession.getMapper(ICustomerDao.class);
+		return dao.selectMusicalsLike(customer_id);
 	}
 //	@Override
 //	public void authoritiesUpdate(CustomerDto dto) throws Exception{

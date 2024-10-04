@@ -4,6 +4,7 @@ package com.human.service;
 import java.util.List;
 
 import com.human.dto.CustomerDto;
+import com.human.dto.MusicalDto;
 import com.human.vo.BoardVo;
 
 public interface ICustomerService {
@@ -32,6 +33,8 @@ public interface ICustomerService {
 	// 현재 비밀번호 확인
 	public CustomerDto nowPwCheck(String customer_id) throws Exception;
 	
+	// 장바구니
+	public List<MusicalDto> selectMusicalsLike(String customer_id) throws Exception;
 //	public void authoritiesUpdate(CustomerDto dto) throws Exception;
 	
 	//관리자 관련

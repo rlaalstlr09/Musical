@@ -4,6 +4,7 @@ package com.human.dao;
 import java.util.List;
 
 import com.human.dto.CustomerDto;
+import com.human.dto.MusicalDto;
 import com.human.vo.BoardVo;
 
 public interface ICustomerDao {
@@ -32,6 +33,9 @@ public interface ICustomerDao {
 	public int pwCheck(CustomerDto dto) throws Exception;
 	
 	public CustomerDto nowPwCheck(String customer_id) throws Exception;
+	
+	// 장바구니
+	public List<MusicalDto> selectMusicalsLike(String customer_id) throws Exception;
 	
 	//관리자 관련
 	public List<CustomerDto> customer_listSearch(BoardVo vo) throws Exception;
