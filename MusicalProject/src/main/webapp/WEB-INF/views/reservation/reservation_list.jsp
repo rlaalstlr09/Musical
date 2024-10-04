@@ -6,6 +6,7 @@
 <%
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     String todayDate = sdf.format(new Date());
+    request.setAttribute("todayDate", todayDate); 
 	
 %>
 <!DOCTYPE html>
@@ -200,13 +201,16 @@ button:hover, a.button-link:hover {
 							<td>
 								<a href="${pageContext.request.contextPath}/reservation/seat_update?reservation_id=${reservation.reservation_id}&mu_sch_id=${reservation.mu_sch_id }" 
 									class="button-link">좌석 변경</a>
+									<fmt:parseDate value="${reservation.mu_sch_dto.mu_sch_date}" pattern="yyyy-MM-dd" var="reservationDate" />
+									<fmt:parseDate value="${todayDate}" pattern="yyyy-MM-dd" var="todayDateParsed" />
 								
-								<!-- 예매 취소 버튼 -->
-								<button class="button-link  cancel-reservation" 
-									data-date="${reservation.mu_sch_dto.mu_sch_date }"
-									data-id="${reservation.reservation_id}" 
-									data-merchant_uid="${reservation.merchant_uid }">예매 취소
-								</button>
+								<c:if test="${reservationDate >= todayDateParsed}">
+									<button class="button-link cancel-reservation"
+										data-date="${reservation.mu_sch_dto.mu_sch_date }"
+										data-id="${reservation.reservation_id}"
+										data-merchant_uid="${reservation.merchant_uid }">예매 취소
+									</button>
+								</c:if>
 							</td>
 						</tr>
 					</c:forEach>
