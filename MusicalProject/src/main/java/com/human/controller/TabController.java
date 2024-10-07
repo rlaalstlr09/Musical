@@ -94,10 +94,13 @@ public class TabController {
 		vo.setPage(page);
 		vo.setPerPageNum(perPageNum);
 		vo.setTotalCount(qnaService.totalCount(musical_id));
-		
+		String role="";
 		AuthoritiesDto adto =auService.showQna(customer_id);
+		if(adto!=null) {
+			role=adto.getAuthority();
+		}
 		
-		String role=adto.getAuthority();
+		
 		
 		ArrayList<QaDto> dto = qnaService.selectAllQna(musical_id, vo);		
 		model.addAttribute("customer_id",customer_id);
