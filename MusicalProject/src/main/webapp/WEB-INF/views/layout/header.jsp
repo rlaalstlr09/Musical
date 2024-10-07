@@ -35,7 +35,7 @@ var ContextPath= '<%=request.getContextPath()%>';
 
       <nav class="navigation">
         <ul>
-          <li><span class="new-menu"><span class="hash"># </span> Musical</span></li>
+          <li><a href = "/ex/musical/listAll"><span class="new-menu"><span class="hash"># </span> Musical</span></a></li>
           <li class="has-submenu">
           <sec:authorize access="isAnonymous()">
             <a href="${pageContext.request.contextPath }/customer/login">로그인</a>

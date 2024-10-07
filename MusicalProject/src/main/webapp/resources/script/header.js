@@ -1,7 +1,3 @@
-document.querySelector('.search button').addEventListener('click', function () {
-  alert('Search functionality is not implemented yet.');
-});
-
 
 
 const submenuItems = document.querySelectorAll('.has-submenu');
