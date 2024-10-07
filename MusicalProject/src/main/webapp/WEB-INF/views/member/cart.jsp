@@ -71,7 +71,39 @@ body {
 .button-group a:hover {
     background-color: #c0392b;
 }
+.musical-img-item {
+    display: flex;
+    justify-content: space-between; /* 양쪽 끝으로 정렬 */
+    align-items: center;
+    margin-bottom: 15px;
+}
+.musical-img-item img {
+    width: 100px; /* 적절한 크기로 조정 */
+    height: auto;
+    margin-right: 10px;
+}
+span .musical_title{
+	color: #000000;
+}
+.delete-icon {
+    margin-left: auto; /* 아이콘을 오른쪽으로 이동 */
+    cursor: pointer;
+    color: #e74c3c; /* 삭제 아이콘 색상 */
+    transition: color 0.3s ease;
+}
+.delete-icon:hover {
+    color: #c0392b; /* 호버 시 색상 변경 */
+}
 </style>
+<script>
+	window.onload = function(){
+		var msg = "${msg}";
+		if(msg){
+			alert(msg);
+		}
+	}
+	
+</script>
 </head>
 <body>
 	<jsp:include page="../layout/header.jsp"/>
@@ -89,9 +121,12 @@ body {
 		<div class="profile-info">
 			<c:forEach var="musical" items="${list}">
 				<a href="<%=request.getContextPath()%>/musical/detail/${musical.musical_id}">
-				${musical.musical_poster }<br>
-				${musical.musical_title }<br>
+				<div class="musical-img-item">
+				<img src="${pageContext.request.contextPath}/resources/img/musical/${musical.musical_poster}" alt="${musical.musical_title}">
+				<span class="musical_title">${musical.musical_title }</span>
 				</a>
+				<a href="<%=request.getContextPath()%>/member/cartDelete?musical_id=${musical.musical_id}" class="delete-icon"><span class="material-symbols-outlined">delete</span></a>
+				</div>				
 				<hr>
 			</c:forEach>
 		</div>
