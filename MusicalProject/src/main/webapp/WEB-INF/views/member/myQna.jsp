@@ -20,7 +20,7 @@ body {
     margin-top: 100px;
     width: calc(100% - 280px);
     padding: 20px;
-    background-color: #ffffff;
+    background-color: #f0f0f0;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 .qna_body {
