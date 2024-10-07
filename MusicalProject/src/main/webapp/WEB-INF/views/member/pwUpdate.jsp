@@ -98,6 +98,7 @@ window.onload = function() {
 			if ($('input[name=customer_pw]').val() === $('#pw2').val()) {
 				console.log("1");
 				$('#pwConfirm').text('비밀번호 일치').css('color', 'green')
+				alert('비밀번호 변경 성공');
 				return true;
 			} else {
 				console.log("0");
@@ -139,7 +140,8 @@ window.onload = function() {
 		</div>
 		<div>
 			<label>새 비밀번호 확인</label>
-			<input type="password" id="pw2">
+			<input type="password" id="pw2" placeholder="8~16자 영문, 숫자, 특수문자"
+					pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[~$@$!%*#?&])[A-Za-z\d~$@$!%*#?&]{8,16}$">
 			<span id="pwConfirm"></span>
 		</div>
 		<input type="submit" value="변경하기">
