@@ -34,6 +34,7 @@ import com.human.dto.QaDto;
 import com.human.dto.ReviewDto;
 import com.human.service.IAuthoritiesService;
 import com.human.service.ICustomerService;
+import com.human.service.IMusicalService;
 import com.human.service.IQaService;
 import com.human.service.IReviewService;
 
@@ -53,6 +54,8 @@ public class MemberController {
 	private IQaService qaService;
 	@Autowired
 	private IReviewService rService;
+	@Autowired
+	private IMusicalService musicalService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
@@ -160,7 +163,7 @@ public class MemberController {
 		dto.setCustomer_pw(encPassword);
 		customerService.pwUpdate(dto);
 		rttr.addFlashAttribute("msg","success");
-		return "redirect:/member/ok";
+		return "redirect:/member/myPage";
 	}
 	
 	@RequestMapping(value = "member/pwUpdate", method = RequestMethod.GET)
@@ -210,13 +213,20 @@ public class MemberController {
 		model.addAttribute("customerDto",customerService.selectName(customer_id));
 	}
 	// 장바구니
-		@RequestMapping(value = "member/cart", method = RequestMethod.GET)
-			public String selectCart(Authentication authentication,Model model) throws Exception{
-			String customer_id = authentication.getName();
-			List<MusicalDto> List = customerService.selectMusicalsLike(customer_id);
-			model.addAttribute("list",List);
-			return "member/cart";
-		}
+	@RequestMapping(value = "member/cart", method = RequestMethod.GET)
+	public String selectCart(Authentication authentication,Model model) throws Exception{
+		String customer_id = authentication.getName();
+		List<MusicalDto> List = customerService.selectMusicalsLike(customer_id);
+		model.addAttribute("list",List);
+		return "member/cart";
+	}
+	@RequestMapping(value = "member/cartDelete", method = RequestMethod.GET)
+	public String deleteCart(Authentication authentication,Model model,@RequestParam("musical_id") Integer musical_id,RedirectAttributes rttr) throws Exception{
+		String customer_id = authentication.getName();
+		musicalService.deleteLike(musical_id, customer_id);
+		rttr.addFlashAttribute("msg","장바구니에서 해당 뮤지컬이 삭제되었습니다.");
+		return "redirect:/member/cart";
+	}
 	
 	// qna관련 메서드
 	@RequestMapping(value = "member/write", method = RequestMethod.GET)
