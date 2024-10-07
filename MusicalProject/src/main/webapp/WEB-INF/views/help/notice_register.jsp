@@ -7,7 +7,6 @@
 <title>공지 등록</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src='<%=request.getContextPath()%>/resources/script/help_check.js'></script>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/signup.css">	
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/help_sytle.css">
 </head>
 <body>
