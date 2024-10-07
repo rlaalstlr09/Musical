@@ -6,6 +6,8 @@
 <html>
 <head>
 <title>my_qna_page</title>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/myPage_sidebar.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 <style>
 body {
     font-family: Arial, sans-serif;
@@ -15,47 +17,12 @@ body {
 
 .main {
     margin-left: 280px;
+    margin-top: 100px;
     width: calc(100% - 280px);
     padding: 20px;
     background-color: #ffffff;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
-
-.sidebar {
-    width: 250px;
-    background-color: #fff;
-    color: #000;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    padding-top: 20px;
-    border-right: 1px solid #ddd;
-}
-
-.sidebar .mypage {
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 1.5em;
-    padding-bottom: 10px;
-    color: #333;
-}
-
-.sidebar a {
-    display: block;
-    color: #555;
-    text-decoration: none;
-    padding: 15px 20px;
-    font-size: 1em;
-    transition: background-color 0.3s ease;
-    border-bottom: 1px solid #eee;
-}
-
-.sidebar a:hover {
-    background-color: #eaeaea;
-    color: #333;
-}
-
 .qna_body {
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -303,17 +270,16 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-<div class="sidebar">
-
-    <a href="myPage" class="mypage">마이페이지</a>
-    <a href="read" class="a">회원 정보</a>
-    <a href="write" class="a">1:1문의</a>
-    <a href="qa_list" class="a">1:1문의내역</a>
-    <a href="myReview">내가 쓴 리뷰</a>
-    <a href="myQna">내가 쓴 Qna</a>
-    <a href="#" class="a">장바구니</a>
-    <a href="remove" class="a">회원탈퇴</a>
-</div>
+<jsp:include page="../layout/header.jsp"/>
+	<div class="my_sidebar">
+		<a href="read"><span class="material-symbols-outlined">id_card</span>회원 정보</a> 
+		<a href="write"><span class="material-symbols-outlined">support_agent</span>1:1문의</a> 
+		<a href="qa_list"><span class="material-symbols-outlined">forum</span>1:1문의내역</a> 
+      	<a href="myReview"><span class="material-symbols-outlined">rate_review</span>내가 쓴 리뷰</a>
+      	<a href="myQna"><img src="${pageContext.request.contextPath }/resources/img/qna.png" class="qna_icon">내가 쓴 Qna</a>
+		<a href="cart"><span class="material-symbols-outlined">shopping_bag</span>장바구니</a>
+		<a href="remove"><span class="material-symbols-outlined">person_remove</span>회원탈퇴</a>
+	</div>
 
 
 <div class="main"> 

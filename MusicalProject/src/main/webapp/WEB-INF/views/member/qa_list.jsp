@@ -41,7 +41,7 @@ $(function() {
 		<a href="write"><span class="material-symbols-outlined">support_agent</span>1:1문의</a> 
 		<a href="qa_list"><span class="material-symbols-outlined">forum</span>1:1문의내역</a> 
       	<a href="myReview"><span class="material-symbols-outlined">rate_review</span>내가 쓴 리뷰</a>
-      	<a href="myQna">내가 쓴 Qna</a>
+      	<a href="myQna"><img src="${pageContext.request.contextPath }/resources/img/qna.png" class="qna_icon">내가 쓴 Qna</a>
 		<a href="cart"><span class="material-symbols-outlined">shopping_bag</span>장바구니</a>
 		<a href="remove"><span class="material-symbols-outlined">person_remove</span>회원탈퇴</a>
 	</div>

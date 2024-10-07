@@ -54,3 +54,7 @@ body{
 	text-align: center;
 	font-size: 1.5em;
 }
+.my_sidebar .qna_icon{
+	width: 25px;
+	height: 25px;
+}

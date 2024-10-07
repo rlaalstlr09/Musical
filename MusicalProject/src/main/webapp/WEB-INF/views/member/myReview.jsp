@@ -2,11 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
 <html>
 <head>
 <title>my_review_page</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/myPage_sidebar.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 <style>
 body {
     margin: 0;
@@ -17,6 +17,7 @@ body {
 
 .main {
     margin-left: 280px;
+    margin-top: 100px;
     width: calc(100% - 280px);
     padding: 20px;
 }
@@ -286,19 +287,16 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-<div class="sidebar">
-	<a href="${pageContext.request.contextPath }/" class="mainpage">메인 페이지</a>
-    <a href="myPage" class="mypage">마이페이지</a>
-    <a href="read">회원 정보</a>
-    <a href="write">1:1문의</a>
-    <a href="qa_list">1:1문의내역</a>
-    <a href="myReview">내가 쓴 리뷰</a>
-
-    <a href="myQna">내가 쓴 Qna</a>
-    <a href="#" class="a">장바구니</a>
-    <a href="remove" class="a">회원탈퇴</a>
-
-</div>
+<jsp:include page="../layout/header.jsp"/>
+	<div class="my_sidebar">
+		<a href="read"><span class="material-symbols-outlined">id_card</span>회원 정보</a> 
+		<a href="write"><span class="material-symbols-outlined">support_agent</span>1:1문의</a> 
+		<a href="qa_list"><span class="material-symbols-outlined">forum</span>1:1문의내역</a> 
+      	<a href="myReview"><span class="material-symbols-outlined">rate_review</span>내가 쓴 리뷰</a>
+      	<a href="myQna"><img src="${pageContext.request.contextPath }/resources/img/qna.png" class="qna_icon">내가 쓴 Qna</a>
+		<a href="cart"><span class="material-symbols-outlined">shopping_bag</span>장바구니</a>
+		<a href="remove"><span class="material-symbols-outlined">person_remove</span>회원탈퇴</a>
+	</div>
 
 
 <div class="main"> 

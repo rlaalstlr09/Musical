@@ -60,6 +60,10 @@ body {
     color: #000;
 }
 
+.qna_icon{
+	width: 25px;
+	height: 25px;
+}
  
 
 </style>
@@ -73,7 +77,7 @@ body {
 			<a href="write"><span class="material-symbols-outlined">support_agent</span><br>1:1문의</a> 
 			<a href="qa_list"><span class="material-symbols-outlined">forum</span><br>1:1문의내역</a> 
       		<a href="myReview"><span class="material-symbols-outlined">rate_review</span><br>내가 쓴 리뷰</a>
-      		<a href="myQna">내가 쓴 Qna</a>
+      		<a href="myQna"><img src="${pageContext.request.contextPath }/resources/img/qna.png" class="qna_icon"><br>내가 쓴 Qna</a>
 			<a href="cart"><span class="material-symbols-outlined">shopping_bag</span><br>장바구니</a>
 			<a href="remove"><span class="material-symbols-outlined">person_remove</span><br>회원탈퇴</a>
 		</div>
