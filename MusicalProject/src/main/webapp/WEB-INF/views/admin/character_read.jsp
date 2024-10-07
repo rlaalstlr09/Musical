@@ -20,7 +20,7 @@
 			<div id="content">
 				<div class="board_qna">					
 					<div id=img-box>	
-						<img src='/poster/${list.musical_poster }' style="justify-content: center;"  width='250px'>
+						<img src='<%=request.getContextPath()%>/resources/img/musical/${list.musical_poster }' style="justify-content: center;"  width='250px'>
 						</div>
 					<div id="List-wrapper">
 					<h2>${list.musical_title } 배역/출연 배우 정보</h2>					

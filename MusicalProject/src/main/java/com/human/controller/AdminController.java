@@ -133,7 +133,7 @@ public class AdminController {
 		String severPath = servletContext.getRealPath("/");
 		String parentparentPath = new File(severPath).getParent();
 		String parentPath = new File(parentparentPath).getParent();
-		String uploadsDir = parentPath+"\\webapps\\ROOT\\poster"; //톰캣서버 기본 경로로 포스터 업로드 경로 설정, 이곳에 저장해야 src로 불러올때 편하다.
+		String uploadsDir = "C:\\Users\\TJ-BU-702-P14\\git\\Musical\\MusicalProject\\src\\main\\webapp\\resources\\img\\musical"; //톰캣서버 기본 경로로 포스터 업로드 경로 설정, 이곳에 저장해야 src로 불러올때 편하다.
 		File uploadDir = new File(uploadsDir);
         if (!uploadDir.exists()) {
             uploadDir.mkdirs();
@@ -146,7 +146,7 @@ public class AdminController {
 		String severPath = servletContext.getRealPath("/");
 		String parentparentPath = new File(severPath).getParent();
 		String parentPath = new File(parentparentPath).getParent();
-		String uploadsDir = parentPath+"\\webapps\\ROOT\\actor"; //톰캣서버 기본 경로로 포스터 업로드 경로 설정
+		String uploadsDir = "C:\\Users\\TJ-BU-702-P14\\git\\Musical\\MusicalProject\\src\\main\\webapp\\resources\\img\\actor"; //톰캣서버 기본 경로로 포스터 업로드 경로 설정
 		File uploadDir = new File(uploadsDir);
         if (!uploadDir.exists()) {
             uploadDir.mkdirs();

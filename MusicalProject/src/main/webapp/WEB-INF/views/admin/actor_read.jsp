@@ -17,7 +17,7 @@
 			<div id="content">
 				<div class="board_qna">
 				<div id=img-box>
-				<img src='/actor/${actor_read.actor_img }'  width='250px'>
+				<img src='<%=request.getContextPath()%>/resources/img/actor/${actor_read.actor_img }'  width='250px'>
 				</div>
 				<div id="List-wrapper">
 				<h2>${actor_read.actor_name } 필모그래피 목록</h2>
