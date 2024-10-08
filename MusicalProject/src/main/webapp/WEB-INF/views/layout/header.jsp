@@ -50,6 +50,8 @@ var ContextPath= '<%=request.getContextPath()%>';
               <li><a href="${pageContext.request.contextPath }/customer/login">로그인</a></li>
             </sec:authorize>
               <li><a href="${pageContext.request.contextPath }/member/myPage">마이페이지</a></li>
+              <li><a href="${pageContext.request.contextPath }/reservation/reservation_list">예약내역</a></li>
+              
               <sec:authorize access="isAuthenticated()">
               	<form:form action="${pageContext.request.contextPath }/customer/logout" method="POST">
               		<li>
@@ -106,9 +108,9 @@ var ContextPath= '<%=request.getContextPath()%>';
           <li>
             <a href="#">예약</a>
             <ul class="submenul">
-              <li><a href="#">예매확인</a></li>
-              <li><a href="#">예매변경</a></li>
-              <li><a href="#">예매취소</a></li>
+              <li><a href="reservation/reservation_list">예매확인</a></li>
+              <li><a href="reservation/reservation_list">예매변경</a></li>
+              <li><a href="reservation/reservation_list">예매취소</a></li>
             </ul>
           </li>
           <li>
