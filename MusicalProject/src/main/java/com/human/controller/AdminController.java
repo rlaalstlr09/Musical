@@ -410,7 +410,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/venue_register", method = RequestMethod.POST)
-	public String venue_registerPOST(VenueDto venue,double latitude, double longitude,String searchType,String fileName,BoardVo vo ,Model model, RedirectAttributes rttr) throws Exception {
+	public String venue_registerPOST(VenueDto venue,double latitude, double longitude,String searchType,String fileName,BoardVo vo , RedirectAttributes rttr) throws Exception {
 		venueservice.venue_create(venue);
 		List<VenueDto> searchList=venueservice.venue_listSearch(vo);
 		int table_id=searchList.get(0).getVenue_id();
@@ -435,12 +435,15 @@ public class AdminController {
 		String fileName = file_read(venue_id,table_name,table_crud);
 		model.addAttribute("fileName", fileName);			
 		model.addAttribute("VenueDto", venueservice.venue_read(venue_id));
+		model.addAttribute("VenueApiDto", venue_apiservice.getVenue(venue_id));
 		return "admin/venue_modify";
 	}
 	
 	@RequestMapping(value = "/venue_modify", method = RequestMethod.POST)
-	public String admin_venue_modifyPOST(VenueDto venue,RedirectAttributes rttr) throws Exception {
+	public String admin_venue_modifyPOST(VenueDto venue,double latitude, double longitude,RedirectAttributes rttr) throws Exception {
 		venueservice.venue_update(venue);
+		Venue_apiDto dtos=new Venue_apiDto(longitude,latitude,venue.getVenue_id());		
+		venue_apiservice.venue_api_update(dtos);
 		//reason,content와 고객아이디_뮤지컬아이디을 admin테이블에 저장
 		rttr.addFlashAttribute("msg", "success");
 		return "redirect:/admin/admin_venue";
@@ -449,7 +452,7 @@ public class AdminController {
 	@RequestMapping(value = "/venue_remove", method = RequestMethod.POST)
 	@ResponseBody
 	public String admin_venue_remove(int venue_id, RedirectAttributes rttr,String reason) throws Exception {		
-		if(reservationservice.reservation_venuecheck(venue_id).size()==0) {
+		if(reservationservice.reservation_venuecheck(venue_id).size()!=0) {
 			AdminDto dto=AdminDto.withoutFileName("venue",venue_id,venueservice.venue_read(venue_id).getVenue_name(),"table_delete",reason);
 			file_register(dto);
 			seatservice.seat_venueAlldelete(venue_id);
@@ -457,10 +460,15 @@ public class AdminController {
 			hallservice.hall_vanuedelete(venue_id);
 			venue_apiservice.venue_api_delete(venue_id);	
 			venueservice.venue_delete(venue_id);
-			return "success";
+			
 		}else {
-			return  "fail";
+			AdminDto dto=AdminDto.withoutFileName("venue",venue_id,venueservice.venue_read(venue_id).getVenue_name(),"table_delete",reason);
+			file_register(dto);
+			hallservice.hall_vanuedelete(venue_id);
+			venue_apiservice.venue_api_delete(venue_id);	
+			venueservice.venue_delete(venue_id);			
 		}
+		return "success";
 		
 	}
 	
@@ -546,7 +554,6 @@ public class AdminController {
 		List<ReviewDto> searchList = rService.review_listSearch(vo);
 		model.addAttribute("list", searchList);
 		vo.setTotalCount(rService.review_listSearchCount(vo));
-		
 		List<ReviewDto> AllList = rService.review_listAll(vo);
 		List<String> CustomerIdList = AllList.stream()
 			    .map(ReviewDto::getCustomer_id) // ReviewDto 객체에서 customer_id 추출

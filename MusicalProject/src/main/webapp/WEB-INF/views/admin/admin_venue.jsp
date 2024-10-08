@@ -28,24 +28,25 @@ if (result == 'success') {
 					<div class="search_id">
 							<label for="region">지역</label>
     <select id="region">
+    <c:set var="RG" value="${boardVo.nGroupKind}"/>
     <option value="">전체</option>
-        <option value="경기">경기</option>
-        <option value="서울">서울</option>
-        <option value="인천">인천</option>
-        <option value="부산">부산</option>
-        <option value="대구">대구</option>
-        <option value="대전">대전</option>
-        <option value="광주">광주</option>
-        <option value="울산">울산</option>
-        <option value="세종">세종</option>
-        <option value="충북">충북</option>
-        <option value="충남">충남</option>
-        <option value="전남">전남</option>        
-        <option value="전북">전북</option>
-        <option value="경북">경북</option>
-        <option value="경남">경남</option>
-        <option value="강원">강원</option>        
-        <option value="제주">제주</option>        
+        <option value="경기" <c:out value="${RG eq '경기'?'selected':'' }"/> >경기</option>
+        <option value="서울" <c:out value="${RG eq '서울'?'selected':'' }"/> >서울</option>
+        <option value="인천" <c:out value="${RG eq '인천'?'selected':'' }"/> >인천</option>
+        <option value="부산" <c:out value="${RG eq '부산'?'selected':'' }"/> >부산</option>
+        <option value="대구" <c:out value="${RG eq '대구'?'selected':'' }"/> >대구</option>
+        <option value="대전" <c:out value="${RG eq '대전'?'selected':'' }"/> >대전</option>
+        <option value="광주" <c:out value="${RG eq '광주'?'selected':'' }"/> >광주</option>
+        <option value="울산" <c:out value="${RG eq '울산'?'selected':'' }"/> >울산</option>
+        <option value="세종" <c:out value="${RG eq '세종'?'selected':'' }"/> >세종</option>
+        <option value="충북" <c:out value="${RG eq '충북'?'selected':'' }"/> >충북</option>
+        <option value="충남" <c:out value="${RG eq '충남'?'selected':'' }"/> >충남</option>
+        <option value="전남" <c:out value="${RG eq '전남'?'selected':'' }"/> >전남</option>        
+        <option value="전북" <c:out value="${RG eq '전북'?'selected':'' }"/> >전북</option>
+        <option value="경북" <c:out value="${RG eq '경북'?'selected':'' }"/> >경북</option>
+        <option value="경남" <c:out value="${RG eq '경남'?'selected':'' }"/> >경남</option>
+        <option value="강원" <c:out value="${RG eq '강원'?'selected':'' }"/> >강원</option>        
+        <option value="제주" <c:out value="${RG eq '제주'?'selected':'' }"/> >제주</option>        
     </select>
 
 

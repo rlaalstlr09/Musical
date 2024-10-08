@@ -91,7 +91,7 @@
 							</c:if>
 
 						</div>
-						<button class="newBtn" value="${list.musical_id}">배역 추가</button>
+						<button class="newBtn" value="${list.musical_id}">배역추가</button>
 						
 					</div>
 

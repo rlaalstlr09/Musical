@@ -52,7 +52,7 @@ a {
     color: #fff;
 }
 
-.excelBtn{
+.excelBtn, .add_addBtn{
     width: 100px;
     padding: 2px;
     font-size: 13px;
@@ -78,7 +78,7 @@ a {
     background: #fff;
 }
 
-#searchBtn,.newBtn, #submit, .hall_newBtn, .addBtn, .res_modify, .res_remove, .res_register {
+#searchBtn,.newBtn, #submit, .hall_newBtn, .addBtn, .res_modify, .res_remove, .res_register, .submitmodifyBtn, .registerBtn {
 	margin-left: 1px;
     width: 80px;
     padding: 4px 11px;

@@ -12,4 +12,6 @@ public interface IVenue_apiService {
 	public List<Venue_apiDto> getTheaters(@Param("lat") double lat,@Param("lon") double lon,@Param("distance") double distance) throws Exception;
 	public void venue_api_delete(Integer venue_id) throws Exception;
 	public List<MusicalDto> getTheater(Integer venue_id) throws Exception;
+	public void venue_api_update(Venue_apiDto venue) throws Exception;
+	public Venue_apiDto getVenue(Integer venue_id) throws Exception;
 }

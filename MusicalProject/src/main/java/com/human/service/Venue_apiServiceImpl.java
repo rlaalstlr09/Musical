@@ -35,5 +35,14 @@ public class Venue_apiServiceImpl implements IVenue_apiService {
 		IVenue_apiDao dao = sqlSession.getMapper(IVenue_apiDao.class);
 		return dao.getTheater(venue_id);
 	}
+	
+	public void venue_api_update(Venue_apiDto venue) throws Exception{
+		IVenue_apiDao dao = sqlSession.getMapper(IVenue_apiDao.class);
+		dao.venue_api_update(venue);
+	}
 
+	public Venue_apiDto getVenue(Integer venue_id) throws Exception{
+		IVenue_apiDao dao = sqlSession.getMapper(IVenue_apiDao.class);
+		return dao.getVenue(venue_id);
+	}
 }

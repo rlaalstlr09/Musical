@@ -39,7 +39,8 @@ public class ExcelService {
         for (MusicalDto musical : musicals) {
             Row row = sheet.createRow(rowNum++);
             row.createCell(0).setCellValue(musical.getMusical_title());
-            row.createCell(1).setCellValue(musical.getFormattedMusical_period_start() + " ~ " + musical.getFormattedMusical_period_end());
+            row.createCell(1).setCellValue(musical.getFormattedMusical_period_start() + 
+            		" ~ " + musical.getFormattedMusical_period_end());
             row.createCell(2).setCellValue(musical.getMusical_runningtime());
             row.createCell(3).setCellValue(musical.getMusical_agelimit());
         }
