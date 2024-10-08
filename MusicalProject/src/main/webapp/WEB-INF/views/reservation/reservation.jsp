@@ -230,10 +230,12 @@ td:hover {
 			onclick="location.href='${pageContext.request.contextPath}/musical/detail/${musical_id}'">뒤로</div>
 		
 	</div>
-	<div class="musical-info">
+	<div class="musical-info" style="right:200px;">
 		<div>
 			<img src="/ex/resources/img/musical/${musical.musical_poster}"
-				alt="poster" class="img-fluid">
+				alt="poster" class="img-fluid"
+				style="width:300px;
+				">
 		</div>
 
 		<div>뮤지컬 : ${musical.musical_title}</div>
