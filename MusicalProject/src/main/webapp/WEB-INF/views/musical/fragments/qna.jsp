@@ -242,7 +242,7 @@ background-color: lightblue;
 .delete_qna:hover{
 background-color: lightpink;
 }
-.update-form {
+.update-form { 
     display: none;
     margin-top: 20px;
     padding: 15px;
@@ -250,10 +250,12 @@ background-color: lightpink;
     background: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    
 }
 
 .update-form input[type="text"] {
-    width: calc(100% - 22px);
+	display : block;
+    width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -264,7 +266,8 @@ background-color: lightpink;
 }
 
 .update-form textarea {
-    width: calc(100% - 22px);
+	display : block;
+    width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
