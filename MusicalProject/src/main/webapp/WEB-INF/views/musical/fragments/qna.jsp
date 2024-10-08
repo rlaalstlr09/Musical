@@ -358,14 +358,21 @@ background-color: lightpink;
             });
 
             $("#open_qna").click(function() {
-                $("#qna_form").show();
-
+                
+				var islogin='${role}';
                 var offset = 700; // 하단에서 위로 이동할 거리 (픽셀 단위)
                 var scrollToPosition = $('.card-body').offset().top + $('.card-body').outerHeight() - offset;
-
-                $('html, body').animate({
-                    scrollTop: scrollToPosition
-                }, 500);
+				
+                if(islogin===""){
+                	alert("로그인 후 가능합니다.");
+                	return;
+                }else{
+                	$("#qna_form").show();
+                	 $('html, body').animate({
+                         scrollTop: scrollToPosition
+                     }, 500);
+                }
+               
             });
             
             $(".qna_title").click(function() {
