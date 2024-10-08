@@ -346,14 +346,20 @@ margin-top:10px;
 		 	
 		
 		 $("#openReview").click(function() {
-             $("#reviewForm").show();
              
-             var offset = 500; // 하단에서 위로 이동할 거리 (픽셀 단위)
-             var scrollToPosition = $('.card-body').offset().top + $('.card-body').outerHeight() - offset;
-
-             $('html, body').animate({
-                 scrollTop: scrollToPosition
-             }, 500);
+             var islogin = '${customer_id}';
+            
+			 if(islogin===""){
+				 alert("로그인 후 가능합니다");
+				 return;
+			 }else{
+				 $("#reviewForm").show();
+				 var offset = 700; // 하단에서 위로 이동할 거리 (픽셀 단위)
+	             var scrollToPosition = $('.card-body').offset().top + $('.card-body').outerHeight() - offset;
+	             $('html, .card-body').animate({
+	                 scrollTop: scrollToPosition
+	             }, 500);
+			 }
          });
 		 
 		 
