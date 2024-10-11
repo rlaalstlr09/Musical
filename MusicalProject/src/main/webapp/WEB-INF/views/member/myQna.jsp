@@ -32,6 +32,7 @@ body {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
    	transition: transform 0.2s ease;
     z-index:1;
+    
 }
 .qna_body:hover{
 transform: translateY(-5px);
@@ -107,7 +108,7 @@ transform: translateY(-5px);
     display: block; /* 호버 시 보이도록 설정 */
 }
 .qna_body{
-width:800px;
+width:1000px;
 }
 .update-form {
     display: none;
@@ -174,6 +175,22 @@ width:800px;
 .title{
 font-size: x-large;}
 
+#all_delete {
+    background-color: red;
+    color: white;
+    width: 150px;
+    height: 50px;
+    font-weight: bolder;
+    font-size: 20px;
+    border: none; /* 테두리 제거 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    cursor: pointer; /* 마우스 커서 변경 */
+    transition: background-color 0.3s; /* 배경색 전환 효과 */
+}
+
+#all_delete:hover {
+    background-color: darkred; /* 호버 시 배경색 변화 */
+}
 
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -234,7 +251,33 @@ $(document).ready(function() {
     		});
         }
     });
-
+	
+    $('#all_delete').click(function(){
+    	var is=$('[name=customer_id]').val();
+    	
+    	if (confirm('정말로 모든 Q&A를 삭제하시겠습니까?')){
+    		if (is){
+	    		$.ajax({
+	    			url:'/ex/member/all_deleteQna',
+					type:'GET',
+					data:{
+						customer_id:$('[name=customer_id]').val()
+					},
+					success:function(response){
+		    			$('body').html(response);
+		    		},
+		    		error: function(xhr, status, error) {
+		                console.error('AJAX 요청 실패:', status, error);
+				
+					}
+	    		});}
+    		else{
+	    		alert("삭제할 Q&A가 없습니다.");	
+	    		}
+    		
+    	}
+    	
+    });
    
 
     $('form').on('submit', function(e) {
@@ -283,8 +326,8 @@ $(document).ready(function() {
 
 
 <div class="main"> 
-    <h2>내가 쓴 Q&A</h2>
-    <c:if test="${boardVo.totalCount == 0}">
+    <h2>내가 쓴 Q&A</h2><button id="all_delete">Q&A 일괄 삭제</button>
+    <c:if test="${boardVo.totalCount == 0 }">
         <p>등록된 Qna가 없습니다.</p>
     </c:if>
     <c:if test="${boardVo.totalCount ne 0}">

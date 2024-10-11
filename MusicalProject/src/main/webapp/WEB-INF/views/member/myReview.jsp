@@ -180,6 +180,22 @@ test
 .content_header{
 text-align: center;
 }
+#all_delete {
+    background-color: red;
+    color: white;
+    width: 150px;
+    height: 50px;
+    font-weight: bolder;
+    font-size: 20px;
+    border: none; /* 테두리 제거 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    cursor: pointer; /* 마우스 커서 변경 */
+    transition: background-color 0.3s; /* 배경색 전환 효과 */
+}
+
+#all_delete:hover {
+    background-color: darkred; /* 호버 시 배경색 변화 */
+}
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -251,7 +267,34 @@ $(document).ready(function() {
          $(this).addClass('on').prevAll('.star').addClass('on');
          ratingInput.val(value);
     });
-
+	
+    $('#all_delete').click(function(){
+    	var is=$('[name=customer_id]').val();
+    	
+    	if (confirm('정말로 모든 리뷰를 삭제하시겠습니까?')){
+    		if (is){
+	    		$.ajax({
+	    			url:'/ex/member/all_delete',
+					type:'GET',
+					data:{
+						customer_id:$('[name=customer_id]').val()
+					},
+					success:function(response){
+		    			$('body').html(response);
+		    		},
+		    		error: function(xhr, status, error) {
+		                console.error('AJAX 요청 실패:', status, error);
+				
+					}
+	    		});}
+    		else{
+	    		alert("삭제할 리뷰가 없습니다.");	
+	    		}
+    		
+    	}
+    	
+    });
+    
     $('form').on('submit', function(e) {
     	var ratingValue = $('#rating').val();
     	
@@ -300,7 +343,7 @@ $(document).ready(function() {
 
 
 <div class="main"> 
-    <h1>내가 쓴 리뷰</h1>
+    <h1>내가 쓴 리뷰</h1><button id="all_delete">리뷰 일괄 삭제</button>
     <c:if test="${boardVo.totalCount == 0}">
         <p>등록된 리뷰가 없습니다.</p>
     </c:if>

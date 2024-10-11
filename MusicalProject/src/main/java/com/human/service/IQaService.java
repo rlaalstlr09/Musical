@@ -29,6 +29,7 @@ public interface IQaService {
 	public void updateQna(QaDto dto) throws Exception; //qna수정
 	public void deleteQna(int qa_id)throws Exception;
 	public void adResponse(int qa_id,String response)throws Exception;
+	public void all_delete(String customer_id) throws Exception;
 	
 	//qna페이징관련
 	public Integer totalCount(@Param("musical_id") Integer musical_id) throws Exception;

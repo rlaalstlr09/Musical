@@ -46,6 +46,10 @@ SELECT COUNT(*) FROM review WHERE customer_id = #{customer_id}
 delete review where review_id=#{review_id}
 </delete>
 
+<delete id="all_delete">
+delete review where customer_id=#{customer_id}
+</delete>
+
 <update id="update">
 update review set review_id=#{review_id},customer_id=#{customer_id},
 musical_id=#{musical_id},content=#{content},rating=#{rating},
