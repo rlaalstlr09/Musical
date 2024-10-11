@@ -45,6 +45,13 @@ public class ReviewServiceImpl implements IReviewService {
 		dao.delete(review_id);
 		
 	}
+	
+	@Override
+	public void all_delete(String customer_id) throws Exception {
+		IReviewDao dao=sqlSession.getMapper(IReviewDao.class);
+		dao.all_delete(customer_id);
+		
+	}
 
 	@Override
 	public void update(ReviewDto dto) throws Exception {

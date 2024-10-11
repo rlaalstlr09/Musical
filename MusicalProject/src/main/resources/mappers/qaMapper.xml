@@ -119,7 +119,7 @@ FETCH NEXT #{vo.perPageNum} ROWS ONLY
 select count(*) from qa where musical_id=#{musical_id}
 </select>
 <select id="myTotalCount" resultType="Integer">
-select count(*) from qa where customer_id=#{customer_id}
+select count(*) from qa where customer_id=#{customer_id} and qa_type is null
 </select>
 
 <update id="adResponse">
@@ -134,5 +134,8 @@ display=#{display} where qa_id=#{qa_id}
 
 <delete id="deleteQna">
 delete qa where qa_id=#{qa_id}
+</delete>
+<delete id="all_delete">
+delete qa where customer_id=#{customer_id} and qa_type is null
 </delete>
 </mapper>

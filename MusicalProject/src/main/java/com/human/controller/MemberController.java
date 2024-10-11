@@ -280,6 +280,13 @@ public class MemberController {
 		
 		return "redirect:/member/myReview?customer_id="+customer_id;
 	}
+	@RequestMapping(value = "member/all_delete", method = RequestMethod.GET)
+	public String all_delete(@RequestParam("customer_id") String customer_id)throws Exception{
+		
+		rService.all_delete(customer_id);
+		
+		return "redirect:/member/myReview?customer_id="+customer_id;
+	}
 	/////////////////////////////
 	@RequestMapping("member/myQna")
 	public String myQna(Model model, 
@@ -321,6 +328,13 @@ public class MemberController {
 	public String deleteQna(@RequestParam("qa_id") int qa_id)throws Exception{
 		
 		qaService.deleteQna(qa_id);
+		
+		return "redirect:/member/myQna";
+	}
+	@RequestMapping(value = "/member/all_deleteQna", method = RequestMethod.GET)
+	public String all_deleteQna(@RequestParam("customer_id") String customer_id)throws Exception{
+		
+		qaService.all_delete(customer_id);
 		
 		return "redirect:/member/myQna";
 	}
