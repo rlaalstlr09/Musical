@@ -2,7 +2,13 @@
 
 
 ## 기술스택
-<img src="https://img.shields.io/badge/Spring-6DB33F?style=flat-square&logo=Spring&logoColor=white"/>
+![Spring](https://img.shields.io/badge/Spring-6DB33F?style=flat&logo=spring&logoColor=white)
+![JSP](https://img.shields.io/badge/JSP-2F80ED?style=flat&logo=java&logoColor=white)
+![SpringSecurity](https://img.shields.io/badge/jQuery-0769AD?style=flat&logo=jquery&logoColor=white)
+![SpringSecurity](https://img.shields.io/badge/SpringSecurity-6DB33F?style=flat&logo=springsecurity&logoColor=white)
+![OracleSQL](https://img.shields.io/badge/OracleSQL-F80000?style=flat&logo=oracle&logoColor=white)
+![Apache Tomcat](https://img.shields.io/badge/Apache%20Tomcat-F8DC75?style=flat&logo=apachetomcat&logoColor=black)
+
 
 ## 역할
 
