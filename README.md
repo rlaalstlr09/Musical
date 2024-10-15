@@ -8,6 +8,8 @@
 ![SpringSecurity](https://img.shields.io/badge/SpringSecurity-6DB33F?style=flat&logo=springsecurity&logoColor=white)
 ![OracleSQL](https://img.shields.io/badge/OracleSQL-F80000?style=flat&logo=oracle&logoColor=white)
 ![Apache Tomcat](https://img.shields.io/badge/Apache%20Tomcat-F8DC75?style=flat&logo=apachetomcat&logoColor=black)
+![Kakao](https://img.shields.io/badge/KakaoMapAPI-FFCD00?style=flat&logo=kakao&logoColor=black)
+
 
 
 ## 역할
