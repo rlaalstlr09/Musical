@@ -7,17 +7,24 @@
 <img src="https://img.shields.io/badge/html5-%23E34F26.svg?&style=for-the-badge&logo=html5&logoColor=white" />
 <img src="https://img.shields.io/badge/css3-%231572B6.svg?&style=for-the-badge&logo=css3&logoColor=white" />
 <img src="https://img.shields.io/badge/javascript-%23F7DF1E.svg?&style=for-the-badge&logo=javascript&logoColor=black" />
+<img src="https://img.shields.io/badge/bootstrap-%237952B3.svg?&style=for-the-badge&logo=bootstrap&logoColor=white" />
+<img src="https://img.shields.io/badge/swiper-%236332F6.svg?&style=for-the-badge&logo=swiper&logoColor=white" />
+<img src="https://img.shields.io/badge/jquery-%230769AD.svg?&style=for-the-badge&logo=jquery&logoColor=white" /><img src="https://img.shields.io/badge/AJAX-4BC51D?style=for-the-badge" alt="AJAX">
 
 ### 백엔드
-![Spring](https://img.shields.io/badge/Spring-6DB33F?style=flat&logo=spring&logoColor=white)
-![JSP](https://img.shields.io/badge/JSP-2F80ED?style=flat&logo=java&logoColor=white)
-![jQuery](https://img.shields.io/badge/jQuery-0769AD?style=flat&logo=jquery&logoColor=white)
-![SpringSecurity](https://img.shields.io/badge/SpringSecurity-6DB33F?style=flat&logo=springsecurity&logoColor=white)
-![OracleSQL](https://img.shields.io/badge/OracleSQL-F80000?style=flat&logo=oracle&logoColor=white)
-![Apache Tomcat](https://img.shields.io/badge/Apache%20Tomcat-F8DC75?style=flat&logo=apachetomcat&logoColor=black)
-![Kakao](https://img.shields.io/badge/KakaoMapAPI-FFCD00?style=flat&logo=kakao&logoColor=black)
+<img src="https://img.shields.io/badge/spring-%236DB33F.svg?&style=for-the-badge&logo=spring&logoColor=white" />
+<img src="https://img.shields.io/badge/JSP-%23007396.svg?&style=for-the-badge&logo=java&logoColor=white" />
+<img src="https://img.shields.io/badge/SpringSecurity-%236DB33F.svg?&style=for-the-badge&logo=springsecurity&logoColor=white" />
+<img src="https://img.shields.io/badge/Kakao_Map_API-%23FFCD00.svg?&style=for-the-badge&logo=kakao&logoColor=black" />
 
+### DataBase
+<img src="https://img.shields.io/badge/Oracle_DB-%23F80000.svg?&style=for-the-badge&logo=oracle&logoColor=white" />
 
+### Server
+<img src="https://img.shields.io/badge/Apache_Tomcat%20tomcat-%23F8DC75.svg?&style=for-the-badge&logo=apache%20tomcat&logoColor=black" />
+
+### 협업
+<img src="https://img.shields.io/badge/github-%23181717.svg?&style=for-the-badge&logo=github&logoColor=white" />
 
 ## 역할
 | 이름 | 역할  | 깃허브 |
