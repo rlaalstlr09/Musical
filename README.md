@@ -4,26 +4,42 @@
 ## 기술스택
 
 ### 프론트엔드
-<img src="https://img.shields.io/badge/html5-%23E34F26.svg?&style=for-the-badge&logo=html5&logoColor=white" />
-<img src="https://img.shields.io/badge/css3-%231572B6.svg?&style=for-the-badge&logo=css3&logoColor=white" />
-<img src="https://img.shields.io/badge/javascript-%23F7DF1E.svg?&style=for-the-badge&logo=javascript&logoColor=black" />
-<img src="https://img.shields.io/badge/bootstrap-%237952B3.svg?&style=for-the-badge&logo=bootstrap&logoColor=white" />
-<img src="https://img.shields.io/badge/swiper-%236332F6.svg?&style=for-the-badge&logo=swiper&logoColor=white" />
-<img src="https://img.shields.io/badge/jquery-%230769AD.svg?&style=for-the-badge&logo=jquery&logoColor=white" /><img src="https://img.shields.io/badge/AJAX-4BC51D?style=for-the-badge" alt="AJAX">
+
+<div>
+  <img src="https://img.shields.io/badge/JSP-%23007396.svg?&style=for-the-badge&logo=java&logoColor=white" />
+  <img src="https://img.shields.io/badge/html5-%23E34F26.svg?&style=for-the-badge&logo=html5&logoColor=white" />
+  <img src="https://img.shields.io/badge/css3-%231572B6.svg?&style=for-the-badge&logo=css3&logoColor=white" />
+  <img src="https://img.shields.io/badge/javascript-%23F7DF1E.svg?&style=for-the-badge&logo=javascript&logoColor=black" /> <br>
+  <img src="https://img.shields.io/badge/bootstrap-%237952B3.svg?&style=for-the-badge&logo=bootstrap&logoColor=white" />
+  <img src="https://img.shields.io/badge/swiper-%236332F6.svg?&style=for-the-badge&logo=swiper&logoColor=white" /> <br>
+  <img src="https://img.shields.io/badge/jquery-%230769AD.svg?&style=for-the-badge&logo=jquery&logoColor=white" /><img src="https://img.shields.io/badge/AJAX-4BC51D?style=for-the-badge" alt="AJAX"> <br>
+  <img src="https://img.shields.io/badge/Kakao_Map_API-%23FFCD00.svg?&style=for-the-badge&logo=kakao&logoColor=black" />
+</div>
 
 ### 백엔드
-<img src="https://img.shields.io/badge/spring-%236DB33F.svg?&style=for-the-badge&logo=spring&logoColor=white" />
-<img src="https://img.shields.io/badge/JSP-%23007396.svg?&style=for-the-badge&logo=java&logoColor=white" />
-<img src="https://img.shields.io/badge/SpringSecurity-%236DB33F.svg?&style=for-the-badge&logo=springsecurity&logoColor=white" />
-<img src="https://img.shields.io/badge/Kakao_Map_API-%23FFCD00.svg?&style=for-the-badge&logo=kakao&logoColor=black" />
 
-### DataBase
-<img src="https://img.shields.io/badge/Oracle_DB-%23F80000.svg?&style=for-the-badge&logo=oracle&logoColor=white" />
+<div>
+  <img src="https://img.shields.io/badge/spring-%236DB33F.svg?&style=for-the-badge&logo=spring&logoColor=white" />
+  <img src="https://img.shields.io/badge/SpringSecurity-%236DB33F.svg?&style=for-the-badge&logo=springsecurity&logoColor=white" /> <br>
+  <img src="https://img.shields.io/badge/MyBatis-000000?style=for-the-badge&logo=none" alt="MyBatis" style="background-color: #000000; color: white;"> <br>
+  <img src="https://img.shields.io/badge/Apache--POI-white?style=for-the-badge&logo=none" alt="POI" style="background-color: white; color: black;">
+  <img src="https://img.shields.io/badge/PDFBox-008B8B?style=for-the-badge&logo=none" alt="PDFBox" style="background-color: #008B8B; color: white;">
+  <img src="https://img.shields.io/badge/Portone-FE6E00?style=for-the-badge&logo=none" alt="Portone" style="background-color: #FE6E00; color: black;">
 
-### Server
+  #### DataBase
+  <img src="https://img.shields.io/badge/Oracle_DB-%23F80000.svg?&style=for-the-badge&logo=oracle&logoColor=white" />
+
+  #### Server
 <img src="https://img.shields.io/badge/Apache_Tomcat%20tomcat-%23F8DC75.svg?&style=for-the-badge&logo=apache%20tomcat&logoColor=black" />
+  
+</div>
+
+
+
+
 
 ### 협업
+
 <img src="https://img.shields.io/badge/github-%23181717.svg?&style=for-the-badge&logo=github&logoColor=white" />
 
 ## 역할
