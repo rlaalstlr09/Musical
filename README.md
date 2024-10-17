@@ -1,4 +1,4 @@
-# 티켓보라
+# 🎶 티켓보라
 <div>
   <img src = "https://github.com/rlaalstlr09/Musical/blob/main/portfolio/메인페이지1.png" style="width:500px;"><br>
   <img src = "https://github.com/rlaalstlr09/Musical/blob/main/portfolio/메인페이지2.png" style="width:500px;">
@@ -11,9 +11,9 @@
   <li>관리자 페이지를 통한 데이터 CRUD, 관리 로그 저장</li>
 </ul>
 
-## 기술스택
+## 🖥️ 기술스택
 
-### 프론트엔드
+### 🌐 프론트엔드
 
 <div>
   <img src="https://img.shields.io/badge/JSP-%23007396.svg?&style=for-the-badge&logo=java&logoColor=white" />
@@ -27,7 +27,7 @@
   <img src="https://img.shields.io/badge/Kakao_Map_API-%23FFCD00.svg?&style=for-the-badge&logo=kakao&logoColor=black" />
 </div>
 
-### 백엔드
+### ⚙️ 백엔드
 
 <div>
   <img src="https://img.shields.io/badge/spring-%236DB33F.svg?&style=for-the-badge&logo=spring&logoColor=white" />
@@ -39,23 +39,19 @@
   <img src="https://img.shields.io/badge/ImageIO-eeeeee?style=for-the-badge&logo=none" alt="PDFBox" style="background-color: #008B8B; color: black;">
   
 
-  #### DataBase
+  #### 🗄️ DataBase
   <img src="https://img.shields.io/badge/Oracle_DB-%23F80000.svg?&style=for-the-badge&logo=oracle&logoColor=white" />
 
-  #### Server
+  #### 💻 Server
 <img src="https://img.shields.io/badge/Apache_Tomcat%20tomcat-%23F8DC75.svg?&style=for-the-badge&logo=apache%20tomcat&logoColor=black" />
   
 </div>
 
-
-
-
-
-### 협업
+### 🤝 협업
 
 <img src="https://img.shields.io/badge/github-%23181717.svg?&style=for-the-badge&logo=github&logoColor=white" />
 
-## 역할
+## 👨‍👨‍👧 역할
 | 이름 | 역할  | 깃허브 |
 |-------|-------|-------|
 | **김민식** | **조장, 뮤지컬 관련 페이지** | [**김민식 깃허브**](github.com/rlaalstlr09) |
@@ -66,14 +62,14 @@
 | 하슬기 | CSS 디자인 | [하슬기 깃허브](github.com/danlacode) |
 
 
-## DB설계
+## 🗂 DB설계
 ![ERD](https://github.com/rlaalstlr09/Musical/blob/main/portfolio/ER%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%A8.png)
-## 사이트 맵
+## 🗺 사이트 맵
 ![SITEMAP](https://github.com/rlaalstlr09/Musical/blob/main/portfolio/%EC%82%AC%EC%9D%B4%ED%8A%B8%EB%A7%B5.png)
-## 프레젠테이션
+## 🎤 프레젠테이션
 [티켓보라PDF](https://github.com/rlaalstlr09/Musical/blob/main/portfolio/%ED%8B%B0%EC%BC%93%EB%B3%B4%EB%9D%BC.pdf)
 
-## 프로젝트 후기
+## 💌 프로젝트 후기
 
 팀원들과의 정기적인 회의를 통해 각자의 진행 상황을 공유하고 문제를 함께 논의하면서 협업의 힘을 실감했습니다. 
 
