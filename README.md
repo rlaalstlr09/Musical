@@ -12,7 +12,8 @@
   <img src="https://img.shields.io/badge/javascript-%23F7DF1E.svg?&style=for-the-badge&logo=javascript&logoColor=black" /> <br>
   <img src="https://img.shields.io/badge/bootstrap-%237952B3.svg?&style=for-the-badge&logo=bootstrap&logoColor=white" />
   <img src="https://img.shields.io/badge/swiper-%236332F6.svg?&style=for-the-badge&logo=swiper&logoColor=white" /> <br>
-  <img src="https://img.shields.io/badge/jquery-%230769AD.svg?&style=for-the-badge&logo=jquery&logoColor=white" /><img src="https://img.shields.io/badge/AJAX-4BC51D?style=for-the-badge" alt="AJAX"> <br>
+  <img src="https://img.shields.io/badge/jquery-%230769AD.svg?&style=for-the-badge&logo=jquery&logoColor=white" />
+  <img src="https://img.shields.io/badge/AJAX-4BC51D?style=for-the-badge" alt="AJAX"> <br>
   <img src="https://img.shields.io/badge/Kakao_Map_API-%23FFCD00.svg?&style=for-the-badge&logo=kakao&logoColor=black" />
 </div>
 
@@ -21,10 +22,12 @@
 <div>
   <img src="https://img.shields.io/badge/spring-%236DB33F.svg?&style=for-the-badge&logo=spring&logoColor=white" />
   <img src="https://img.shields.io/badge/SpringSecurity-%236DB33F.svg?&style=for-the-badge&logo=springsecurity&logoColor=white" /> <br>
-  <img src="https://img.shields.io/badge/MyBatis-000000?style=for-the-badge&logo=none" alt="MyBatis" style="background-color: #000000; color: white;"> <br>
-  <img src="https://img.shields.io/badge/Apache--POI-white?style=for-the-badge&logo=none" alt="POI" style="background-color: white; color: black;">
+  <img src = "https://github.com/rlaalstlr09/Musical/blob/main/portfolio/mybatis.png" style="width:28px; height:28px;"><img src="https://img.shields.io/badge/MyBatis-ffffff?style=for-the-badge&logo=none" alt="MyBatis" style="background-color: #000000; color: balck;"> <br>
+  <img src = "https://github.com/rlaalstlr09/Musical/blob/main/portfolio/portone.jpg" style="width:28px; height:28px;"><img src="https://img.shields.io/badge/Portone-black?style=for-the-badge&logo=none" alt="Portone" style="background-color: #FE6E00; color: white;">
+  <img src="https://img.shields.io/badge/Apache--POI-black?style=for-the-badge&logo=none" alt="POI" style="background-color: white; color: white;">
   <img src="https://img.shields.io/badge/PDFBox-008B8B?style=for-the-badge&logo=none" alt="PDFBox" style="background-color: #008B8B; color: white;">
-  <img src="https://img.shields.io/badge/Portone-FE6E00?style=for-the-badge&logo=none" alt="Portone" style="background-color: #FE6E00; color: black;">
+  <img src="https://img.shields.io/badge/ImageIO-eeeeee?style=for-the-badge&logo=none" alt="PDFBox" style="background-color: #008B8B; color: black;">
+  
 
   #### DataBase
   <img src="https://img.shields.io/badge/Oracle_DB-%23F80000.svg?&style=for-the-badge&logo=oracle&logoColor=white" />
@@ -46,7 +49,7 @@
 | 이름 | 역할  | 깃허브 |
 |-------|-------|-------|
 | **김민식** | **조장, 뮤지컬 관련 페이지** | [**김민식 깃허브**](github.com/rlaalstlr09) |
-| 김지민 | 탭(등장인물, 리뷰, Q&A), 마이페이지 Q&A, 리뷰 | [김지민 깃허브](github.com/danlacode) |
+| 김지민 | 탭(등장인물, 리뷰, Q&A), 마이페이지(Q&A, 리뷰) | [김지민 깃허브](github.com/danlacode) |
 | 박선준 | 고객센터, 관리자 페이지, 근처 공연장 찾기 | [박선준 깃허브](github.com/danlacode) |
 | 이승환 | 회원 관련 페이지, 마이 페이지, 문의 | [이승환 깃허브](github.com/danlacode) |
 | 최광필 | 예매 관련 페이지 | [최광필 깃허브](github.com/danlacode) |
