@@ -1,5 +1,8 @@
 # 티켓보라
-
+<div>
+  <img src = "https://github.com/rlaalstlr09/Musical/blob/main/portfolio/메인페이지1.png" style="width:500px;"><br>
+  <img src = "https://github.com/rlaalstlr09/Musical/blob/main/portfolio/메인페이지2.png" style="width:500px;">
+</div>
 <ul>
   <li>뮤지컬 예약 웹 프로젝트</li>
   <li>뮤지컬 목록 정렬, 필터링, 검색 기능</li>
@@ -69,3 +72,15 @@
 ![SITEMAP](https://github.com/rlaalstlr09/Musical/blob/main/portfolio/%EC%82%AC%EC%9D%B4%ED%8A%B8%EB%A7%B5.png)
 ## 프레젠테이션
 [티켓보라PDF](https://github.com/rlaalstlr09/Musical/blob/main/portfolio/%ED%8B%B0%EC%BC%93%EB%B3%B4%EB%9D%BC.pdf)
+
+## 프로젝트 후기
+
+팀원들과의 정기적인 회의를 통해 각자의 진행 상황을 공유하고 문제를 함께 논의하면서 협업의 힘을 실감했습니다. 
+
+프로젝트 진행 중 발생한 다양한 이슈들을 함께 해결해 나가는 과정에서 서로의 의견을 존중하고 소통하는 것이 얼마나 중요한지를 깊이 배웠습니다.
+ 
+이러한 경험은 향후 다른 프로젝트에서도 큰 도움이 될 것이라고 생각합니다.
+
+하지만 조장으로서 팀원들의 소통을 주도적으로 이끌지 못한 점과 프로젝트의 UI/UX가 다소 조잡해 보인다는 점은 개선해야 할 부분이라고 생각합니다.
+
+
