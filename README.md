@@ -57,9 +57,9 @@
 | **김민식** | **조장, 뮤지컬 관련 페이지** | [**김민식 깃허브**](github.com/rlaalstlr09) |
 | 김지민 | 탭(등장인물, 리뷰, Q&A), 마이페이지(Q&A, 리뷰) | [김지민 깃허브](github.com/danlacode) |
 | 박선준 | 고객센터, 관리자 페이지, 근처 공연장 찾기 | [박선준 깃허브](github.com/adventureJava) |
-| 이승환 | 회원 관련 페이지, 마이 페이지, 문의 | [이승환 깃허브](github.com/danlacode) |
-| 최광필 | 예매 관련 페이지 | [최광필 깃허브](github.com/danlacode) |
-| 하슬기 | CSS 디자인 | [하슬기 깃허브](github.com/danlacode) |
+| 이승환 | 회원 관련 페이지, 마이 페이지, 문의 | [이승환 깃허브](github.com/lshstory0805) |
+| 최광필 | 예매 관련 페이지 | [최광필 깃허브](github.com/dodamdo) |
+| 하슬기 | CSS 디자인 | [하슬기 깃허브](github.com/dkrlquf) |
 
 
 ## 🗂 DB설계
