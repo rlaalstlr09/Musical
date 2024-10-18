@@ -27,6 +27,7 @@ public interface IQaDao {
 	public ArrayList<QaDto> selectMyQna(@Param("customer_id") String customer_id,@Param("vo")BoardVo vo) throws Exception;//나의qna
 	public void updateQna(QaDto dto) throws Exception; //qna수정
 	public void deleteQna(int qa_id)throws Exception;
+	public void all_delete(String customer_id)throws Exception;
 	public void adResponse(@Param("qa_id") int qa_id,@Param("response")String response)throws Exception;
 	//qna페이징관련
 	public Integer totalCount(@Param("musical_id") Integer musical_id) throws Exception;

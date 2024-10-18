@@ -14,6 +14,7 @@ public interface IReviewService {
 	public ArrayList<ReviewDto> selectAll(Integer musical_id,BoardVo vo) throws Exception;
 	public ArrayList<ReviewDto> selectMyReview(String customer_id,BoardVo vo) throws Exception;
 	public void delete(int review_id) throws Exception;
+	public void all_delete(String customer_id) throws Exception;
 	public void update(ReviewDto dto) throws Exception;	
 	public Integer totalCount(Integer musical_id,String customer_id) throws Exception;
 	public Integer myTotalCount(String customer_id) throws Exception;

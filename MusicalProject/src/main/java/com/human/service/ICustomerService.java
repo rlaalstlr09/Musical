@@ -23,12 +23,19 @@ public interface ICustomerService {
 	
 	public boolean selectId(String customer_id) throws Exception;
 	
+	// 아이디 찾기
 	public List<CustomerDto> findCustomerId(String customer_email) throws Exception;
+	
+	public List<CustomerDto> findCustomerIdPhone(String customer_phone) throws Exception;
 	
 	// 비밀번호 재발급
 	public void newPwUpdate(CustomerDto dto) throws Exception;
 	
 	public int pwCheck(CustomerDto dto) throws Exception;
+	
+	public void newPwUpdatePhone(CustomerDto dto) throws Exception;
+	
+	public int pwCheckPhone(CustomerDto dto) throws Exception;
 	
 	// 현재 비밀번호 확인
 	public CustomerDto nowPwCheck(String customer_id) throws Exception;

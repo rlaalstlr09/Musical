@@ -76,6 +76,13 @@ public class QaServiceImpl implements IQaService {
 		dao.deleteQna(qa_id);
 		
 	}
+	
+	@Override
+	public void all_delete(String customer_id) throws Exception {
+		IQaDao dao=sqlSession.getMapper(IQaDao.class);
+		dao.all_delete(customer_id);
+		
+	}
 
 	@Override
 	public void updateQna(QaDto dto) throws Exception {

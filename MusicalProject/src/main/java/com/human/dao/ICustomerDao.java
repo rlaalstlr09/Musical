@@ -25,12 +25,21 @@ public interface ICustomerDao {
 	// 회원가입 시 아이디 중복체크
 	public boolean selectId(String customer_id) throws Exception;
 	
+	// 아이디 찾기
 	public List<CustomerDto> findCustomerId(String customer_email) throws Exception;
+	
+	public List<CustomerDto> findCustomerIdPhone(String customer_phone) throws Exception;
 	
 	// 비번 재발급(비밀번호 찾기)
 	public int newPwUpdate(CustomerDto dto) throws Exception;
 	
 	public int pwCheck(CustomerDto dto) throws Exception;
+	
+	// 비번 재발급(문자)
+	public int newPwUpdatePhone(CustomerDto dto) throws Exception;
+	
+	public int pwCheckPhone(CustomerDto dto) throws Exception;
+	
 	
 	public CustomerDto nowPwCheck(String customer_id) throws Exception;
 	

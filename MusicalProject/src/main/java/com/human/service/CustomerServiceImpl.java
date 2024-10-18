@@ -66,13 +66,20 @@ public class CustomerServiceImpl implements ICustomerService {
 		ICustomerDao dao = sqlSession.getMapper(ICustomerDao.class);
 		return dao.selectId(customer_id);
 	}
-	
+
+	// 아이디 찾기
 	@Override
 	public List<CustomerDto> findCustomerId(String customer_email) throws Exception{
 		ICustomerDao dao = sqlSession.getMapper(ICustomerDao.class);
 		return dao.findCustomerId(customer_email);
 	}
+	@Override
+	public List<CustomerDto> findCustomerIdPhone(String customer_phone) throws Exception{
+		ICustomerDao dao = sqlSession.getMapper(ICustomerDao.class);
+		return dao.findCustomerIdPhone(customer_phone);
+	}
 	
+	// 비번 재발급
 	@Override
 	public void newPwUpdate(CustomerDto dto) throws Exception{
 		ICustomerDao dao = sqlSession.getMapper(ICustomerDao.class);
@@ -85,6 +92,20 @@ public class CustomerServiceImpl implements ICustomerService {
 	public int pwCheck(CustomerDto dto) throws Exception{
 		ICustomerDao dao = sqlSession.getMapper(ICustomerDao.class);
 		return dao.pwCheck(dto);
+	}
+	
+	@Override
+	public void newPwUpdatePhone(CustomerDto dto) throws Exception{
+		ICustomerDao dao = sqlSession.getMapper(ICustomerDao.class);
+		String newUpdatePw = passwordEncoder.encode(dto.getCustomer_pw());
+		dto.setCustomer_pw(newUpdatePw);
+		dao.newPwUpdatePhone(dto);
+	}
+	
+	@Override
+	public int pwCheckPhone(CustomerDto dto) throws Exception{
+		ICustomerDao dao = sqlSession.getMapper(ICustomerDao.class);
+		return dao.pwCheckPhone(dto);
 	}
 	
 	@Override

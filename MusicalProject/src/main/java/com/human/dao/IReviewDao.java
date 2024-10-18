@@ -15,6 +15,7 @@ public interface IReviewDao {
 	public ArrayList<ReviewDto> selectAll(@Param("musical_id") Integer musical_id, @Param("vo")BoardVo vo) throws Exception;
 	public ArrayList<ReviewDto> selectMyReview(@Param("customer_id") String customer_id,@Param("vo")BoardVo vo) throws Exception;
 	public void delete(int review_id) throws Exception;
+	public void all_delete(String customer_id) throws Exception;
 	public void update(ReviewDto dto) throws Exception;	
 	public Integer totalCount(@Param("musical_id") Integer musical_id,@Param("customer_id") String customer_id) throws Exception;
 	public Integer myTotalCount(@Param("customer_id") String customer_id) throws Exception;
