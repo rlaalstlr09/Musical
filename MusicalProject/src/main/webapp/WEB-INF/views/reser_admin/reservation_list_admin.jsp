@@ -30,8 +30,9 @@ h1 {
 }
 
 .form-container {
+
     max-width: 1200px;
-    margin: 0 auto 20px auto;
+    margin: 80px auto 20px auto;
     padding: 0 20px;
     display: flex;
     justify-content: flex-end;
