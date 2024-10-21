@@ -157,7 +157,9 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "member/pwUpdate", method = RequestMethod.POST)
-	public String pwUpdateDB(CustomerDto dto, RedirectAttributes rttr, Model model) throws Exception{
+	public String pwUpdateDB(Authentication authentication, CustomerDto dto, RedirectAttributes rttr, Model model) throws Exception{
+		String customer_id = authentication.getName();
+		dto.setCustomer_id(customer_id);
 		System.out.println("pwUpdate: "+dto);
 		String encPassword = passwordEncoder.encode(dto.getCustomer_pw());
 		dto.setCustomer_pw(encPassword);
