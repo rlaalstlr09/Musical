@@ -51,7 +51,7 @@ public class MailService {
 		try {
 			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
 
-			messageHelper.setFrom("ticket@gmail.com", "사이트이름");
+			messageHelper.setFrom("ticket@gmail.com", "티켓보라");
 			messageHelper.setSubject(subject);
 			messageHelper.setTo(to);
 			messageHelper.setText(newBody); // 랜덤 문자열이 포함된 본문
