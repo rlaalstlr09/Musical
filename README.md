@@ -11,6 +11,8 @@
   <li>관리자 페이지를 통한 데이터 CRUD, 관리 로그 저장</li>
 </ul>
 
+<br>
+
 ## 🖥️ 기술스택
 
 ### 🌐 프론트엔드
@@ -51,6 +53,8 @@
 
 <img src="https://img.shields.io/badge/github-%23181717.svg?&style=for-the-badge&logo=github&logoColor=white" />
 
+<br>
+
 ## 👨‍👨‍👧 역할
 | 이름 | 역할  | 깃허브 |
 |-------|-------|-------|
@@ -61,15 +65,27 @@
 | 최광필 | 예매 관련 페이지, 결제 API | [최광필 깃허브](https://github.com/dodamdo) |
 | 하슬기 | CSS 디자인 | [하슬기 깃허브](https://github.com/dkrlquf) |
 
+<br>
+
 ## 🗓️ 프로젝트 기간
 2024/08/05 ~ 2024/09/30
 
+<br>
+
 ## 🗂 DB설계
 ![ERD](https://github.com/rlaalstlr09/Musical/blob/main/portfolio/ER%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%A8.png)
+
+<br>
+
 ## 🗺 사이트 맵
 ![SITEMAP](https://github.com/rlaalstlr09/Musical/blob/main/portfolio/%EC%82%AC%EC%9D%B4%ED%8A%B8%EB%A7%B5.png)
+
+<br>
+
 ## 🎤 프레젠테이션
 [티켓보라PDF](https://github.com/rlaalstlr09/Musical/blob/main/portfolio/%ED%8B%B0%EC%BC%93%EB%B3%B4%EB%9D%BC.pdf)
+
+<br>
 
 ## 💌 프로젝트 후기
 
@@ -80,6 +96,8 @@
 이러한 경험은 향후 다른 프로젝트에서도 큰 도움이 될 것이라고 생각합니다.
 
 하지만 조장으로서 팀원들의 소통을 주도적으로 이끌지 못한 점과 프로젝트의 UI/UX가 다소 조잡해 보인다는 점은 개선해야 할 부분이라고 생각합니다.
+
+<br>
 
 ## 📃 LICENSE
 
