@@ -293,7 +293,7 @@ public class ReservationController {
 		
 		
 		
-		return "reservation/reservation_list";
+		return "redirect:/reservation/reservation_list";
 	}
 
 	
