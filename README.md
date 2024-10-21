@@ -61,6 +61,8 @@
 | 최광필 | 예매 관련 페이지, 결제 API | [최광필 깃허브](https://github.com/dodamdo) |
 | 하슬기 | CSS 디자인 | [하슬기 깃허브](https://github.com/dkrlquf) |
 
+## 🗓️ 프로젝트 기간
+2024/08/05 ~ 2024/09/30
 
 ## 🗂 DB설계
 ![ERD](https://github.com/rlaalstlr09/Musical/blob/main/portfolio/ER%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%A8.png)

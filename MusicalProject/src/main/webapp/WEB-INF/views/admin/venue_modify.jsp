@@ -42,8 +42,8 @@
         <br>
         <label for="address">주소:</label>
         <input type="text" id="address" name="venue_address" value="${VenueDto.venue_address}" readonly>
-        <input type="hidden" id="longitude" name="longitude">
-        <input type="hidden" id="latitude" name="latitude">
+        <input type="hidden" id="longitude" name="longitude" value="${VenueApiDto.x}">
+        <input type="hidden" id="latitude" name="latitude" value="${VenueApiDto.y}">
         <br>
         <button type="submit" class="signup">저장</button>
     </form>

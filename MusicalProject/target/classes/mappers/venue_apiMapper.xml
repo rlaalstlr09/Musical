@@ -19,6 +19,27 @@ INSERT INTO venue_api
         ))
 </insert>
 
+<update id="venue_api_update">
+UPDATE venue_api v
+SET
+    v.x = #{x},
+    v.y = #{y},
+    v.geometry = SDO_GEOMETRY(
+        2001, -- 지오메트리 유형
+        8307, -- SRID
+        SDO_POINT_TYPE(#{x}, #{y}, NULL), -- 포인트 유형
+        NULL, -- 요소 정보
+        NULL -- 좌표 배열
+    )
+WHERE v.venue_id = #{venue_id}
+</update>
+
+<select id="getVenue" resultType="com.human.dto.Venue_apiDto">
+    SELECT *
+    FROM venue_api 
+    WHERE venue_id = #{venue_id}
+    </select>
+
 <select id="getTheaters" resultType="com.human.dto.Venue_apiDto">
     SELECT venue_name, x, y,a.venue_id,venue_address
     FROM venue_api a, venue v

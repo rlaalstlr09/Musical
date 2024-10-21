@@ -108,9 +108,9 @@ FETCH NEXT #{perPageNum} ROWS ONLY]]>
 </sql>
 
 <select id="review_listSearchCount" resultType="int">
-<![CDATA[ select count(review_id) from review r, musical m where 1=1 ]]>
+<![CDATA[ select count(DISTINCT r.review_id) from review r, musical m where 1=1 ]]>
 		<include refid="search" />
-<include refid="musical_id"/>
+<include refid="join_musical_id"/>
 <include refid="customer_id"/>
 <![CDATA[ and review_id > 0 ]]>
 </select>

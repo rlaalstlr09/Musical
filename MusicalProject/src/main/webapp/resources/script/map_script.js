@@ -109,8 +109,8 @@ window.onload = () => {
     }
 
     function displayVenueName(venueName,venue_id,venue_address) {
-    	if ($('.thearter').length) {
-			$('.thearter').remove();
+    	if ($('#content').length) {
+			$('#content').remove();
 		}  	
     	$.ajax({
     	    url: 'getTheater',
@@ -150,7 +150,7 @@ window.onload = () => {
     	        	        <div class="product_grid_unit">
     	        	            <a class="product_link" href="` + contextPath + `/musical/detail/${musical.musical_id}">
     	        	                <div class="product_imgbox">
-    	        	                    <img class="product_img" src="/poster/${musical.musical_poster}">
+    	        	                    <img class="product_img" src="` + contextPath + `/resources/img/musical/${musical.musical_poster}">
     	        	                </div>
     	        	                <div class="product_info">
     	        	                    <span class="product_title">${musical.musical_title}</span>
