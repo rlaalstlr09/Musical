@@ -3,6 +3,9 @@
   <img src = "https://github.com/rlaalstlr09/Musical/blob/main/portfolio/메인페이지1.png" style="width:500px;"><br>
   <img src = "https://github.com/rlaalstlr09/Musical/blob/main/portfolio/메인페이지2.png" style="width:500px;">
 </div>
+
+<br>
+
 <ul>
   <li>뮤지컬 예약 웹 프로젝트</li>
   <li>뮤지컬 목록 정렬, 필터링, 검색 기능</li>
