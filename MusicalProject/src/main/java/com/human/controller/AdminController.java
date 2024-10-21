@@ -263,7 +263,7 @@ public class AdminController {
 	
 	@RequestMapping(value = "/musical_remove", method = RequestMethod.GET)
 	public String admin_musical_remove(int musical_id, RedirectAttributes rttr,String reason) throws Exception {
-		if(reservationservice.reservation_musical_check(musical_id).size()==0) {
+		if(reservationservice.reservation_musical_check(musical_id).size()!=0) {
 			mu_schservice.musical_schedule_Alldelete(musical_id);
 			seatservice.seat_Alldelete(musical_id);
 			characterService.character_Alldelete(musical_id);
@@ -272,8 +272,10 @@ public class AdminController {
 			musicalService.musical_delete(musical_id);			
 			rttr.addFlashAttribute("msg", "success");
 		}else {
-			
-			rttr.addFlashAttribute("msg", "fail");
+			AdminDto dto=AdminDto.withoutFileName("musical",musical_id,musicalService.musical_read(musical_id).getMusical_title(),"table_delete",reason);
+			file_register(dto);
+			musicalService.musical_delete(musical_id);	
+			rttr.addFlashAttribute("msg", "success");
 		}
 		return "redirect:/admin/admin_musical";
 	}
@@ -571,7 +573,7 @@ public class AdminController {
 	
 	@RequestMapping(value = "/review_remove", method = RequestMethod.GET)
 	public String admin_review_remove(int review_id, RedirectAttributes rttr,String reason) throws Exception {
-		AdminDto dto=AdminDto.withoutFileName("review",review_id,rService.review_read(review_id).getContent(),"review_delete",reason);
+		AdminDto dto=AdminDto.withoutFileName("review",review_id,rService.review_read(review_id).getContent(),"table_delete",reason);
 		file_register(dto);
 		rService.delete(review_id);
 		//reason,content와 고객아이디_뮤지컬아이디을 admin테이블에 저장
